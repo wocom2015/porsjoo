@@ -1,0 +1,39 @@
+.pull-left{
+    float: left !important;
+}
+
+.pull-right{
+    float: right !important;
+}
+.img-thumb{
+    width:50px;
+    height:50px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+.img-avatar{
+    width:100px;
+    height:100px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius:10%;
+}
+.gallery-thumb{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius:10%;
+}
+#searchTable th {
+    text-align: center;
+}
+
+select.select2 {
+    opacity: 1;
+}
+
+.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
