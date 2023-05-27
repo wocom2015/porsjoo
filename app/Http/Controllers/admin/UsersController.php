@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\DataTables\UsersDataTable;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 class UsersController extends Controller
 {
     /**

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Category as CatResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\File;
 use Intervention\Image\Facades\Image;
-use App\Http\Resources\Category as CatResource;
 
 
 class CategoriesController extends Controller
