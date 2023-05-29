@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'last_name',
         'email',
+        'mobile',
         'password',
     ];
 
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function investees(): HasMany
     {
         return $this->hasMany(Plan::class);
+    }
+
+
+    public function details(){
+        return $this->belongsTo(UserDetail::class);
     }
 }

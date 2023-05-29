@@ -42,6 +42,9 @@ if(!function_exists("reply")){
             case "success":{
                 return response(['state'=> $state , 'message' => __("messages.".(($message=='')?'operation_performed_successfully':$message)) , 'title' => __("p.success_operation")]);
             }
+            case "error":{
+                return response(['state'=> $state , 'message' => (($message=='')?__('messages.operation_failed'):$message) , 'title' => __("p.failed_operation")]);
+            }
         }
 
     }

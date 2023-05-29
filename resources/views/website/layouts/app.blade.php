@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="trifles-responsive-menu">
                     <div class="logo">
-                        <a href="/"> <img src="assets/img/logo-two.png" alt="logo" /> </a>
+                        <a href="/"> <img src="/site/images/logo.png" alt="logo" style="width:130px"/> </a>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="trifles-nav">
             <div class="container">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="/"> <img src="assets/img/logo-two.png" alt="logo" /> </a>
+                    <a class="navbar-brand" href="/"> <img src="/site/images/logo.png" alt="logo" style="width:130px" /> </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent" style="display: block;">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -54,7 +54,7 @@
                             @endauth
 
                             @guest
-                                     <button class="btn text-white" style="background-color: #106CA9;" type="submit"><i class="fas fa-search"></i> لاگین </button>
+                                     <a class="btn text-white" href="/signin" style="background-color: #106CA9;" type="submit"><i class="fas fa-search"></i> {{__("p.login")}}</a>
                             @endguest
 
                         </div>
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-        <section class="farm-area ptb-100">
+        <section class="farm-area" style="padding-top: 200px">
             <div class="container">
                 @yield("content")
             </div>

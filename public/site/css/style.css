@@ -1897,17 +1897,78 @@ padding-right: 0
 .home-banner-three .home-slides .home-item .main-banner-content .banner-list li:last-child {
 border-left: none
 }
-.home-banner-three .home-slides .home-item .main-banner-content .banner-list i {
-	display: inline-block;
-	height: 50px;
-	width: 50px;
-	line-height: 50px;
-	background-color: #eefbf2;
-	color: #209e2e;
-	border-radius: 30px;
-	border: 2px dotted #d0eed6;
-	font-weight: 500
+
+.profile-avatar{
+    background-color: #B4D4EA;
+    padding: 5px;
+    border-radius: 10px;
 }
+.profile-avatar i {
+	display: inline-block;
+	height: 70px;
+	width: 70px;
+	line-height: 50px;
+	color: #209e2e;
+	border-radius: 50px;
+	border: 2px dotted #03a9f4;
+	font-weight: 500;
+    background-size: contain;
+
+}
+
+.pj-profile-item{
+    background-color: #588CAE;
+    color: #fff;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .home-banner-three .home-slides .home-item .main-banner-content .banner-list i::before {
 	font-size: 25px
 }

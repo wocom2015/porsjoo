@@ -65,4 +65,8 @@ return [
     'plans' => 'طرح ها',
     'parent' => 'والد',
     'success_operation' => 'عملیات موفق',
+    'password' => 'رمز عبور',
+    'password_repeat' => 'تکرار رمز عبور',
+    'mobile_number' => 'شماره تلفن همراه',
+    'enter_mobile_or_email' => 'شماره تلفن همراه یا پست الکترونیک',
 ];
