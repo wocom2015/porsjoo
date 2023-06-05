@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/site/css/style.css">
         <link rel="stylesheet" href="/site/css/responsive.css">
         <link rel="stylesheet" href="/site/css/rtl.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <meta name="csrf-token" content="{{csrf_token()}}"/>
     </head>
     <body style="background-color: #ececec">

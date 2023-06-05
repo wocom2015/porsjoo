@@ -13,13 +13,7 @@ body {
 	font-family: Vazir-Regular-FD, sans-serif;
 	font-size: 16px
 }
-.d-table {
-	width: 100%;
-	height: 100%
-}
-.d-table-cell {
-	vertical-align: middle
-}
+
 img {
 	max-width: 100%;
 	height: auto
@@ -37,7 +31,7 @@ a:hover {
 }
 p {
 	line-height: 1.8;
-	color: #7a7e9a;
+	color: #555;
 	margin-bottom: 15px;
 	font-weight: 400;
 	font-size: 16px
@@ -65,6 +59,10 @@ button {
 	color: #333;
 	font-weight: 700
 }
+.form-control{
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
 .default-btn {
 	border: none;
 	position: relative;
@@ -74,7 +72,7 @@ button {
 	z-index: 1;
 	color: #fff;
 	text-transform: capitalize;
-	background-color: #209e2e;
+	background-color: orange;
 	-webkit-transition: .6s;
 	transition: .6s;
 	border-radius: 50px;
@@ -951,19 +949,23 @@ button {
 	width: 100%;
 	height: 50px;
 	line-height: initial;
-	border: 1px solid #eee;
-    border-radius: 10px;
-	color: #fff !important;
-	outline: 0;
+	border: 1px solid #ccc;
+    border-radius: 30px;
+    outline: 0;
 	-webkit-transition: .6s;
 	transition: .6s;
 	padding-top: 4px;
-	padding-right: 10px;
-    background-color: #2D7CAF;
+	padding-right: 30px;
+    background-color: #fff;
+    color: #777;
+    background-image: url("/site/images/search-icon.png");
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
 }
 
 .search-form .search-input::placeholder{
-    color: #ddd;
+    color: #bbb;
 }
 .search-overlay.search-popup .search-form .search-input:focus {
 	border-color: #209e2e
@@ -985,6 +987,26 @@ button {
 .search-overlay.search-popup .search-form .search-button:hover, .search-overlay.search-popup .search-form .search-button:focus {
 	color: #209e2e
 }
+.content-frame{
+    background-color: #fdfdfd;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.content-frame h1{
+    border-bottom: 2px solid orange;
+    font-size: 1em;
+    padding-bottom: 10px;
+}
+
+.form-frame{
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+
+
 .sidebar-modal {
 	position: fixed;
 	right: 0;
@@ -1917,9 +1939,12 @@ border-left: none
 }
 
 .pj-profile-item{
-    background-color: #588CAE;
-    color: #fff;
+    background-color: #fff;
+    color: orangered;
     border-radius: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+    box-shadow: 1px 1px #ccc;
 }
 
 
@@ -6530,7 +6555,6 @@ blockquote::after, .blockquote::after {
 }
 .product-details-desc .product-add-to-cart .default-btn {
 	position: relative;
-	border: none;
 	padding: 12px 30px;
 	background-color: #209e2e;
 	color: #fff;
