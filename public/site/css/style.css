@@ -88,7 +88,6 @@ button {
 	display: block;
 	width: 0;
 	height: 0;
-	border-radius: 50%;
 	background-color: #333;
 	-webkit-transition: width .6s ease-in-out, height .6s ease-in-out;
 	transition: width .6s ease-in-out, height .6s ease-in-out;
@@ -97,6 +96,14 @@ button {
 	z-index: -1;
 	border-radius: 5px
 }
+
+.avatar{
+    width: 70px;height: 70px;border-radius: 35px; margin: 0 auto
+}
+.avatar img{
+    width: 100%;height: 100%;border-radius: 50%;border: 2px solid #777
+}
+
 .default-btn:hover {
 	color: #fff
 }
@@ -995,7 +1002,7 @@ button {
 }
 
 .content-frame h1{
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #F68002;
     font-size: 1em;
     padding-bottom: 10px;
 }
@@ -1890,7 +1897,6 @@ margin-left: 0
 	padding: 14px 30px
 }
 .home-banner-three .home-slides .home-item .main-banner-content .banner-btn .optional-btn {
-	border: none;
 	padding: 14px 30px;
 	background-color: #eafef1;
 	color: #209e2e;
@@ -1921,7 +1927,6 @@ border-left: none
 }
 
 .profile-avatar{
-    background-color: #B4D4EA;
     padding: 5px;
     border-radius: 10px;
 }
@@ -1940,7 +1945,7 @@ border-left: none
 
 .pj-profile-item{
     background-color: #fff;
-    color: orangered;
+    color: #F68002;
     border-radius: 20px;
     margin-bottom: 5px;
     text-align: center;

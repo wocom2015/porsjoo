@@ -7,6 +7,10 @@
                 <h3>خوش آمدید!</h3>
                 <p>وارد حساب کاربری خود شوید</p>
             </div>
+
+            @if($errors->any())
+                {{ implode('', $errors->all(':message')) }}
+            @endif
             <form method="post" action="{{route("users.login")}}">
                 @csrf
                 <div class="row">
