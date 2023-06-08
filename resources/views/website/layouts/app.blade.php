@@ -14,61 +14,13 @@
         <meta name="csrf-token" content="{{csrf_token()}}"/>
     </head>
     <body style="background-color: #ececec">
-        <div class="navbar-area navbar-style-two">
-        <div class="trifles-responsive-nav">
-            <div class="container">
-                <div class="trifles-responsive-menu">
-                    <div class="logo">
-                        <a href="/"> <img src="/site/images/logo.png" alt="logo" style="width:130px"/> </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="trifles-nav">
-            <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="/"> <img src="/site/images/logo.png" alt="logo" style="width:130px" /> </a>
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent" style="display: block;">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active"> خانه <i class="fa fa-chevron-down"></i> </a>
-                            </li>
-                            <li class="nav-item"><a href="/about" class="nav-link"> درباره ما </a></li>
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link"> خدمات <i class="fa fa-chevron-down"></i> </a>
-                            </li>
-                            <li class="nav-item"><a href="/contact" class="nav-link"> تماس با ما </a></li>
-                        </ul>
-                        <div class="others-options">
-                            @auth
-                            <div class="option-item">
-                                <i class="search-btn fa fa-search" style="display: block;"></i> <i class="close-btn fa fa-times"></i>
-                                <div class="search-overlay search-popup" style="display: none;">
-                                    <div class="search-box">
-                                        <form class="search-form">
-                                            <input class="search-input" name="search" placeholder="جستجو" type="text" /> <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            @endauth
-
-                            @guest
-                                     <a class="btn text-white" href="/signin" style="background-color: #106CA9;" type="submit"><i class="fas fa-search"></i> {{__("p.login")}}</a>
-                            @endguest
-
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
+        @include("website.layouts.header")
         <section class="farm-area" style="padding-top: 200px">
             <div class="container">
                 @yield("content")
             </div>
         </section>
+        @include("website.layouts.footer")
 
     </body>
     <script src="/site/js/jquery.min.js"></script>
