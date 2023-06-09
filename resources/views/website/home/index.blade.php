@@ -1,11 +1,10 @@
 @extends("website.layouts.app")
 
 @section("content")
-
         <div class="row align-content-center">
             <div class="search-box col-lg-12 mt-10">
                 <form class="search-form">
-                    <input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text">
+                    <input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search">
                 </form>
             </div>
         </div>
@@ -34,13 +33,8 @@
                 <div class="col-lg-6">دستگاه چانه گیر نانوایی</div>
                 <div class="col-lg-3">1401/12/21</div>
             </div>
-
-
-
-
             </div>
         </div>
-
-
-
 @endsection
+
+

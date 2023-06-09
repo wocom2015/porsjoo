@@ -19,11 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class , 'index'])->middleware(['verified'])->name('dashboard');
+Route::middleware('auth')->prefix("admin")->group(function () {
+    Route::get('/', [DashboardController::class , 'index'])->middleware(['verified'])->name('dashboard');
     Route::resource("users" , UsersController::class);
     Route::resource('categories' , CategoriesController::class);
     Route::post("/categories/item" , [CategoriesController::class , 'item'])->name("categories.item");
@@ -32,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get("/configuration" , [ConfigurationController::class , 'index']);
-    Route::post("/configuration/update" , [ConfigurationController::class , 'update']);
+    Route::post("/configuration/update" , [ConfigurationController::class , 'update'])->name("config.update");
 
     Route::resource('plans' , PlansController::class);
 });

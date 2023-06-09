@@ -34,10 +34,10 @@
             data-menu-scroll="1" data-menu-dropdown-timeout="500">
             <!--begin::Menu Nav-->
             <ul class="menu-nav ">
-                <li class="menu-item " aria-haspopup="true"><a href="/dashboard" class="menu-link "><i
+                <li class="menu-item " aria-haspopup="true"><a href="/admin" class="menu-link "><i
                             class="menu-icon flaticon-home"></i><span class="menu-text">{{__("p.dashboard")}}</span></a></li>
 
-                <li class="menu-item " aria-haspopup="true"><a href="/profile" class="menu-link "><i
+                <li class="menu-item " aria-haspopup="true"><a href="/admin/profile" class="menu-link "><i
                             class="menu-icon flaticon-profile"></i><span class="menu-text">{{__("p.profile")}}</span></a></li>
 
                 <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover"><a
@@ -46,7 +46,7 @@
                     <div class="menu-submenu "><i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item " aria-haspopup="true"><a
-                                    href="/users" class="menu-link "><i
+                                    href="/admin/users" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.users_list")}}</span></a></li>
 
@@ -60,7 +60,7 @@
                     <div class="menu-submenu "><i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item " aria-haspopup="true"><a
-                                    href="/categories" class="menu-link "><i
+                                    href="/admin/categories" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.categories")}}</span></a>
                             </li>
@@ -68,7 +68,7 @@
 
 
                             <li class="menu-item " aria-haspopup="true"><a
-                                    href="/plans" class="menu-link "><i
+                                    href="/admin/plans" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.plans")}}</span></a>
                             </li>
@@ -78,7 +78,7 @@
                     </div>
                 </li>
 
-                <li class="menu-item " aria-haspopup="true"><a href="/configuration" class="menu-link "><i
+                <li class="menu-item " aria-haspopup="true"><a href="/admin/configuration" class="menu-link "><i
                             class="menu-icon flaticon2-gear"></i><span class="menu-text">{{__("p.system_configurations")}}</span></a></li>
 
             </ul>

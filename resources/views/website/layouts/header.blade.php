@@ -57,10 +57,15 @@
                             </li>
                         </ul>
                         <div class="others-options d-flex align-items-center">
+                            @auth
+                                <a href="/profile" class="text-white">{{auth()->user()->name.' '.auth()->user()->last_name}}</a>
+                            @endauth
 
+                            @guest
                             <div class="menu">
                                 <a href="/signin" class="login-btn">ورود / ثبت نام</a>
                             </div>
+                            @endguest
                         </div>
                     </div>
                 </nav>

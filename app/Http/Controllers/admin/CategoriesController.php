@@ -61,7 +61,7 @@ class CategoriesController extends Controller
     {
         $title = __("p.categories");
         $children = $this->children();
-        $categories = $this->getA(1);
+        $categories = $this->getA(0);
         $parent_name = 'parent_id';
         return view("admin.categories.index" , compact("title" , "children" , "categories" , "parent_name"));
     }

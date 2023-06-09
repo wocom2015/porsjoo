@@ -69,4 +69,9 @@ return [
     'password_repeat' => 'تکرار رمز عبور',
     'mobile_number' => 'شماره تلفن همراه',
     'enter_mobile_or_email' => 'شماره تلفن همراه یا پست الکترونیک',
+    'sms_settings' => 'تنظیمات پیامک',
+    'sms_username' => 'نام کاربری پیامک',
+    'sms_password' => 'رمز عبور پیامک',
+    'sms_send_number' => 'شماره ارسال پیامک',
+    'view_uer_detail' => 'مشاهده جزییات کاربر',
 ];

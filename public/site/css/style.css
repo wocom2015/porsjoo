@@ -5258,22 +5258,15 @@ text-align: left
 .single-contact-box .content-title a:hover {
 	color: #209e2e
 }
-
-
-
 footer{
 
     padding: 31px 143px;
     gap: 20px;
-    position: absolute;
+    position: relative;
     width: 100%;
     height: auto;
-    left: 0;
-    bottom: 0;
     color: #525252;
-
-    /* footer-color */
-
+    margin-top: 50px;
     background: #E0E0E0;
 }
 footer ul{
