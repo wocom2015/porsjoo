@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-body">
-            @include('layouts.flash-message')
+            @include('admin.layouts.flash-message')
             <form action="{{route("config.update")}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="example-preview">

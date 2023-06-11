@@ -1,13 +1,14 @@
 @extends("website.layouts.app")
 
 @section("content")
-        <div class="row align-content-center">
-            <div class="search-box col-lg-12 mt-10">
-                <form class="search-form">
-                    <input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search">
-                </form>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img alt="{{conf("system_title")}}" src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
             </div>
         </div>
+
+        <search-component></search-component>
 
         <div class="content-frame">
             <div class="row p-2">

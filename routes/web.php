@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\admin\PlansController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiriesController;
@@ -29,6 +29,7 @@ Route::get('/signin', [UsersController::class , 'signin'])->name('signin');
 Route::get('/signup', [UsersController::class , 'signup'])->name('signup');
 Route::post('/signup', [UsersController::class , 'register'])->name('users.register');
 Route::post('/signin', [UsersController::class , 'login'])->name('users.login');
+Route::post('/search', [CategoriesController::class , 'search'])->name('search');
 
 
 Route::resource('plans' , PlansController::class);
