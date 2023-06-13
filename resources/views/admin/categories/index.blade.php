@@ -173,7 +173,7 @@
 
                         var c = '';
                         $.ajax({
-                            url: '/categories/update',
+                            url: '/admin/categories/update',
                             type: 'POST',
                             data: formData,
                             dataType: 'json',

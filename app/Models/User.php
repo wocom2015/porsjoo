@@ -46,13 +46,16 @@ class User extends Authenticatable
     ];
 
 
-    public function investees(): HasMany
+    public function plans(): HasMany
     {
         return $this->hasMany(Plan::class);
     }
 
-
-    public function details(){
-        return $this->belongsTo(UserDetail::class);
+    public function inquiries(): HasMany
+    {
+        return $this->hasMany(Inquiry::class);
     }
+
+
+
 }

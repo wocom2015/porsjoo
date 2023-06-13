@@ -21,6 +21,6 @@ class combo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('admin.components.categories.combo');
+        return view('components.categories.combo');
     }
 }

@@ -74,4 +74,5 @@ return [
     'sms_password' => 'رمز عبور پیامک',
     'sms_send_number' => 'شماره ارسال پیامک',
     'view_uer_detail' => 'مشاهده جزییات کاربر',
+    'failed_operation' => 'عملیات لغو شده',
 ];

@@ -1,0 +1,185 @@
+<template>
+    <form class="row form-frame" id="frmPJ">
+        <div class="col-lg-6 col-sm-12 mb-3">
+            <input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما (اجباری)" />
+        </div>
+
+        <input type="hidden" name="category_id" :value="category_id">
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <input type="text" class="form-control" name="count" placeholder="تعداد محصول (اجباری)" />
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <select class="form-control" name="unit_id">
+                <option value="">-- واحد --</option>
+                <option v-for="item in units" :value="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="col-lg-12 col-sm-12 mb-3">
+            <textarea  class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">چه زمانی قصد خرید دارید؟</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <date-picker name="buy_date"></date-picker>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">چه زمانی پرداخت می کنید؟</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <date-picker name="pay_date"></date-picker>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">استان</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <select class="form-control" name="province_id" @change="fetchCities()" ref="province">
+                <option v-for="item in provinces" :value="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">شهری که مورد نیاز است</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <select class="form-control select2" name="city_id">
+                <option v-for="item in cities" :value="item.id">{{item.name}}</option>
+            </select>
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mb-3">
+            <input type="text" class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)" />
+        </div>
+
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="cheque_enable" value="1" checked>
+                <label class="form-check-label">بله</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="cheque_enable" value="0">
+                <label class="form-check-label">خیر</label>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">نیاز به ارسال نمونه است؟</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sample_enable" value="1">
+                <label class="form-check-label">بله</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sample_enable" value="0" checked>
+                <label class="form-check-label">خیر</label>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">نیاز به ضمانت دارد؟</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="guarantee_enable" value="1">
+                <label class="form-check-label">بله</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked>
+                <label class="form-check-label">خیر</label>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mb-3">
+            <label for="formFileSm" class="form-label">تصویر محصول</label>
+            <input class="form-control form-control-sm" name="picture" type="file">
+        </div>
+
+<!--        <div class="col-lg-6 col-sm-12 mb-3">
+            <div class="form-check mt-4">
+                <input type="hidden" value="0" id="flexCheckChecked" checked="" name="show">
+                <input class="form-check-input checkbox-success" type="checkbox" value="1" >
+                <label class="form-check-label" for="flexCheckChecked">
+                    نمایش محصولات مشابه
+                </label>
+            </div>
+        </div>-->
+        <div class="col-lg-6 col-sm-12 mb-3">
+            <div class="form-check">
+                <input type="hidden" value="0" checked="" name="multiple_supplier">
+                <input class="form-check-input checkbox-success" type="checkbox" value="1" name="multiple_supplier">
+                <label class="form-check-label" for="flexCheckChecked">
+                    ارسال این درخواست برای چند تامین کننده
+                </label>
+            </div>
+        </div>
+
+        <div class="default-btn" type="button" @click="submit()">ثبت</div>
+
+
+    </form>
+</template>
+
+<script>
+import DatePicker from 'vue3-persian-datetime-picker'
+export default {
+    name: "inquiryComponent.vue",
+    props :['provinces' , 'units' , 'captcha'],
+    components: { DatePicker },
+    data() {
+        return {
+            category_id : 0,
+            province_id : 0,
+            cities : []
+        }
+    },
+    methods:{
+        fetchCities(){
+            if(this.$refs.province.value>0) {
+                this.province_id = this.$refs.province.value;
+                var self = this;
+                axios(
+                    {
+                        method: "post",
+                        url: "/cities",
+                        data: {p:self.province_id}
+                    }
+                )
+                    .then(function(response){
+                        self.cities = response.data;
+                    });
+            }
+        },
+        submit(){
+            var self = this;
+            var fData = new FormData(document.getElementById('frmPJ'));
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/create",
+                    data: fData,
+                }
+            )
+                .then(function (response) {
+                    if (response.data.state === 'success'){
+
+
+                    }
+                })
+        }
+
+    },
+    mounted(){
+        this.fetchCities(1)
+    }
+
+}
+</script>

@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "sweetalert2": "^11.7.12",
-        "vue-loader": "^17.0.1"
+        "vue-loader": "^17.0.1",
+        "vue3-persian-datetime-picker": "^1.2.2"
     }
 }

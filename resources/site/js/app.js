@@ -7,13 +7,18 @@
 import './bootstrap';
 import { createApp } from 'vue/dist/vue.esm-bundler';
 import searchComponent from './components/searchComponent.vue';
+import dateComponent from './components/dateComponent.vue';
+import inquiryComponent from './components/inquiryComponent.vue';
 const app = createApp({
     components:{
-        searchComponent
+        searchComponent,
+        dateComponent,
+        inquiryComponent
     }
 });
 app.mount('#app');
-
+import Vue3PersianDatetimePicker from 'vue3-persian-datetime-picker'
+app.component('DatePicker', Vue3PersianDatetimePicker)
 
 
 

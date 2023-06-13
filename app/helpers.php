@@ -3,6 +3,8 @@
 use App\Models\Category;
 use App\Models\Configuration;
 use App\Models\User;
+use Morilog\Jalali\CalendarUtils;
+use Illuminate\Validation\Validator;
 
 if(!function_exists("conf")){
     function conf($item){
@@ -47,5 +49,25 @@ if(!function_exists("reply")){
             }
         }
 
+    }
+}
+
+if(!function_exists("jalali2gregorian")){
+    function jalali2gregorian($date){
+        $Date = explode("/", $date);
+        $DateG = CalendarUtils::toGregorian($Date[0], $Date[1], $Date[2]); // [2016, 5, 7]
+        return $DateG[0] . '-' . $DateG[1] . '-' . $DateG[2] . ' 00:00:00';
+    }
+}
+
+if(!function_exists('checkValidation')){
+    function checkValidation(Validator $validator)
+    {
+        $messages = [];
+        foreach ($validator->errors()->messages() as $k => $v) {
+            $messages[] = $v['0'];
+        }
+
+        return reply("error", implode("<br>", $messages));
     }
 }

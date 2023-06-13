@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\admin\PlansController;
+use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiriesController;
 use App\Http\Controllers\ProfileController;
@@ -24,7 +25,7 @@ Route::get('/', [HomeController::class , 'index'])->name('home');
 
 
 Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
-Route::get('/inquiry/request', [InquiriesController::class , 'index'])->name('index');
+
 Route::get('/signin', [UsersController::class , 'signin'])->name('signin');
 Route::get('/signup', [UsersController::class , 'signup'])->name('signup');
 Route::post('/signup', [UsersController::class , 'register'])->name('users.register');
@@ -34,8 +35,10 @@ Route::post('/search', [CategoriesController::class , 'search'])->name('search')
 
 Route::resource('plans' , PlansController::class);
 
-Route::middleware('auth')->group(function () {
-
+Route::middleware('auth_user')->group(function () {
+    Route::get('/inquiry/request/{category_id}', [InquiriesController::class , 'index'])->name('inquiry-form');
+    Route::post('/inquiry/create', [InquiriesController::class , 'create'])->name('inquiry');
+    Route::post('/cities', [CitiesController::class , 'index']);
 });
 
 

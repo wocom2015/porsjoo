@@ -18,6 +18,6 @@ class Category extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('admin.components.category');
+        return view('components.category');
     }
 }
