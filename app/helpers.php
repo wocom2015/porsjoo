@@ -61,13 +61,15 @@ if(!function_exists("jalali2gregorian")){
 }
 
 if(!function_exists('checkValidation')){
-    function checkValidation(Validator $validator)
+    function checkValidation(Validator $validator , $stringOutput = true)
     {
         $messages = [];
         foreach ($validator->errors()->messages() as $k => $v) {
             $messages[] = $v['0'];
         }
-
-        return reply("error", implode("<br>", $messages));
+        if($stringOutput)
+            return reply("error", implode("<br>", $messages));
+        else
+            return reply('error' , $messages);
     }
 }

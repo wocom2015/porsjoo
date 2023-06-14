@@ -52,7 +52,7 @@
         <rect fill="#000000" x="3" y="13" width="3" height="7" rx="1.5"></rect>
     </g>
 </svg><!--end::Svg Icon--></span>        <div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">1000000</div>
-                    <div class="font-weight-bold text-inverse-success font-size-sm">مقدار سرمایه گذاری کل</div>
+                    <div class="font-weight-bold text-inverse-success font-size-sm">تعداد استعلام ها</div>
                 </div>
                 <!--end::Body-->
             </a>

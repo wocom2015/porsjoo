@@ -124,6 +124,14 @@
 
         <div class="default-btn" type="button" @click="submit()">ثبت</div>
 
+        <div class="content-frame text-success font-weight-bold" v-show="(this.message !=='') ">{{this.message}}</div>
+        <div class="content-frame" v-show="(this.errors !=='') ">
+            <p>لطفا خطاهای زیر را برطرف نمایید:</p>
+            <ul>
+                <li v-for="item in this.errors" class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i> <small >{{item}}</small></li>
+            </ul>
+        </div>
+
 
     </form>
 </template>
@@ -138,6 +146,8 @@ export default {
         return {
             category_id : 0,
             province_id : 0,
+            message : '',
+            errors : '',
             cities : []
         }
     },
@@ -161,6 +171,8 @@ export default {
         submit(){
             var self = this;
             var fData = new FormData(document.getElementById('frmPJ'));
+            this.errors = '';
+            this.message ='';
             axios(
                 {
                     method: "post",
@@ -170,8 +182,9 @@ export default {
             )
                 .then(function (response) {
                     if (response.data.state === 'success'){
-
-
+                        self.message = response.data.message;
+                    }else{
+                        self.errors = response.data.message;
                     }
                 })
         }

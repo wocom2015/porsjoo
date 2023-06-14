@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class , 'index'])->name('home');
 
 
-Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
+
 
 Route::get('/signin', [UsersController::class , 'signin'])->name('signin');
 Route::get('/signup', [UsersController::class , 'signup'])->name('signup');
@@ -39,6 +39,7 @@ Route::middleware('auth_user')->group(function () {
     Route::get('/inquiry/request/{category_id}', [InquiriesController::class , 'index'])->name('inquiry-form');
     Route::post('/inquiry/create', [InquiriesController::class , 'create'])->name('inquiry');
     Route::post('/cities', [CitiesController::class , 'index']);
+    Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
 });
 
 

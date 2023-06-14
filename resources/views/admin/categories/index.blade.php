@@ -20,7 +20,7 @@
                     <hr>
                 </div>
             </div>
-            @include("admin.includes.flash-message")
+            @include("admin.layouts.flash-message")
             <div class="row" id="categories">
                 <div class="col-lg-3">
                     @if($children)

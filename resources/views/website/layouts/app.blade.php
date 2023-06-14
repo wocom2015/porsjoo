@@ -12,7 +12,7 @@
     </head>
     <body id="app">
         @include("website.layouts.header")
-        <section class="farm-area" style="padding-top: 200px">
+        <section class="farm-area" style="padding-top: 100px">
             <div class="container">
                 @yield("content")
             </div>

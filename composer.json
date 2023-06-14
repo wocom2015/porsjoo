@@ -14,7 +14,8 @@
         "laravel/ui": "^4.2",
         "morilog/jalali": "^3.4",
         "yajra/laravel-datatables": "10.0",
-        "yajra/laravel-datatables-html": "^10.6"
+        "yajra/laravel-datatables-html": "^10.6",
+      "ext-http": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -9,4 +9,6 @@ return [
     'picture_format_is_not_correct' => 'فرمت وارد شده برای تصویر صحیح نمی باشد',
     'update your account_s profile information and email address' => 'اطلاعات پروفایل و آدرس پست الکترونیک خود را بروزرسانی کنید',
     'operation_performed_successfully' => 'عملیات با موفقیت انجام پذیرفت',
+    'not_enough_pj' => 'کاربر گرامی ، امکان ثبت استعلام برای شما وجود ندارد. برای ثبت استعلام جدید لطفا از بین طرح های موجود طرح متناسب با نیاز خود را خریداری نمایید',
+    'your_pj_inserted_successfully' => 'استعلام شما با موفقیت ثبت گردید',
 ];

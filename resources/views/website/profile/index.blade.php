@@ -9,44 +9,52 @@
                                              style="background-image:url('/site/images/person-1.jpg');background-repeat: no-repeat;background-size: cover"></i>
                     </div>
                     <div class="col-lg-6">
-                        <span class="top-0"><strong>علیرضا صادقی فر</strong></span><br>
-                        <span class="top-0">شهر شیراز</span>
+                        <span class="top-0"><strong>{{$user->name.' '.$user->last_name}}</strong></span><br>
+                        <span class="top-0">{{$user->details->job_name}}</span>
                     </div>
                     <div class="col-lg-3">
-                        ویرایش پروفایل
+                        <a href="/profile/edit" target="_blank">ویرایش پروفایل</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-4 text-center">
+            <div class="col-3 text-center">
                 <div class="pj-profile-item ">
                     <p class="text-black mb-0">
                         <i class="bi bi-view-list text-black" style="font-size: 2rem;"></i>
                     </p>
-                    <strong>67 درصد</strong>
+                    <strong>{{$user->inquiries()->count()}}</strong>
                 </div>
-                <small>استعلام</small>
+                <small>تعداد استعلام</small>
             </div>
-            <div class="col-4 text-center">
+            <div class="col-3 text-center">
                 <div class="pj-profile-item ">
                     <p class="text-black mb-0">
                         <i class="bi bi-dice-5 text-black" style="font-size: 2rem;"></i>
                     </p>
-                    <strong>12 از 20</strong>
+                    <strong>{{$user->pj_available}}</strong>
                 </div>
-                <small>رتبه شما</small>
+                <small>تعداد امکان استعلام و پاسخ</small>
             </div>
-            <div class="col-4 text-center">
+            <div class="col-3 text-center">
                 <div class="pj-profile-item ">
                     <p class="text-black mb-0">
                         <i class="bi bi-chat-left text-black" style="font-size: 2rem;"></i>
                     </p>
-
-                    <strong>پیام ها</strong>
+                    <strong>{{$relatedInquiries->count()}}</strong>
                 </div>
-                <small>پیام ها</small>
+                <small>تعداد استعلام های مرتبط با شما</small>
+            </div>
+            <div class="col-3 text-center">
+                <div class="pj-profile-item ">
+                    <p class="text-black mb-0">
+                        <i class="bi bi-chat-left text-black" style="font-size: 2rem;"></i>
+                    </p>
+                    <strong>ندارید</strong>
+                </div>
+                <small>طرح فعلی شما</small>
             </div>
         </div>
 
@@ -55,7 +63,7 @@
                 جهت ثبت اولین PJ ابتدا پروفایل خود را تکمیل کنید
             </div>
             <div class="col-lg-4 col-xs-12 text-center pt-2">
-                <button class="btn" style="background-color: #fff; border: 2px solid #f68002;border-radius: 10px">تکمیل
+                <button class="btn btn-custom-outline">تکمیل
                     پروفایل
                 </button>
             </div>
@@ -67,28 +75,35 @@
 
         <div class="content-frame">
             <div class="row p-2">
-                <div class="col-lg-12"><h1>pj های مربوط به شما : 40 مورد</h1></div>
+                <div class="col-lg-12"><h1>استعلام های ارسالی از طرف شما : {{$user->inquiries()->count()}} مورد</h1></div>
             </div>
-            <div class="row mb-2 p-2">
-                <div class="col-lg-3">اصفهان</div>
-                <div class="col-lg-6">دستگاه آب سردکن</div>
-                <div class="col-lg-3">1401/12/24</div>
+            @foreach($user->inquiries as $inquiry)
+                <div class="row mb-2 p-2">
+                    <div class="col-lg-3">{{$inquiry->province->name}}</div>
+                    <div class="col-lg-3">{{$inquiry->name}}</div>
+                    <div class="col-lg-3">{{jdate($inquiry->created_at)->format('%A , %d %B %Y')}}</div>
+                    <div class="col-lg-3">0 پاسخ</div>
+                </div>
+            @endforeach
+
+
+        </div>
+
+
+        <div class="content-frame">
+            <div class="row p-2">
+                <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{$relatedInquiries->count()}} مورد</h1></div>
             </div>
-            <div class="row mb-2 p-2">
-                <div class="col-lg-3">تهران</div>
-                <div class="col-lg-6">دستگاه کباب زن</div>
-                <div class="col-lg-3">1401/12/23</div>
-            </div>
-            <div class="row mb-2 p-2">
-                <div class="col-lg-3">یزد</div>
-                <div class="col-lg-6">یخچال</div>
-                <div class="col-lg-3">1401/12/23</div>
-            </div>
-            <div class="row mb-2 p-2">
-                <div class="col-lg-3">کرمانشاه</div>
-                <div class="col-lg-6">دستگاه چانه گیر نانوایی</div>
-                <div class="col-lg-3">1401/12/21</div>
-            </div>
+            @foreach($relatedInquiries as $inquiry)
+                <div class="row mb-2 p-2">
+                    <div class="col-lg-2">{{$inquiry->province->name}}</div>
+                    <div class="col-lg-6"><strong>{{$inquiry->name}}</strong><br>{{$inquiry->description}}</div>
+                    <div class="col-lg-2">{{jdate($inquiry->created_at)->format('%A , %d %B %Y')}}</div>
+                    <div class="col-lg-2"><button class="btn btn-custom-outline">پاسخ</button> </div>
+                </div>
+            @endforeach
+
+
         </div>
 
         <div class="content-frame">

@@ -30,13 +30,9 @@
                 @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}" class="text-white font-weight-bold">کلمه عبور را فراموش کرده اید؟</a>
                 @endif
-
-
                 <div class="form-group text-center mt-10">
                     <button id="kt_login_signin_submit" class="btn btn-pill btn-primary opacity-90 px-15 py-3">ورود</button>
                 </div>
-
-
             </div>
         </form>
     </div>

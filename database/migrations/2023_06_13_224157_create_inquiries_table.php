@@ -24,7 +24,7 @@ return new class extends Migration
             $table->dateTime("pay_date")->nullable();
             $table->foreignId("province_id")->nullable()->references("id")->on("provinces");
             $table->foreignId("city_id")->nullable()->references("id")->on("cities");
-            $table->integer("price")->nullable();
+            $table->bigInteger("price")->nullable();
             $table->boolean("cheque_enable")->nullable();
             $table->boolean("sample_enable")->nullable();
             $table->boolean("guarantee_enable")->nullable();

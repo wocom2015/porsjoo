@@ -14,6 +14,11 @@ class Category extends Model
       'name' , "slug" , "parent_id" , "img" , "description"
     ];
 
+
+    public function users(){
+        return $this->hasMany(UserDetail::class);
+    }
+
     public function inquiries(){
         return $this->belongsTo(Inquiry::class);
     }

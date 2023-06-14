@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Inquiry;
 use App\Models\Province;
 use App\Models\Unit;
+
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+
 
 class InquiriesController extends Controller
 {
     public function index($category_id)
     {
+
+        $user = User::findOrFail(auth()->user()->id);
+        if($user->pj_available<=0){
+            return view('website.inquiry.charge');
+        }
+
         $provinces = Province::all();
         $units = Unit::orderBy("name")->get();
 
@@ -20,14 +29,21 @@ class InquiriesController extends Controller
         $secondNumber = rand(1,9);
         $sum =  $firstNumber + $secondNumber;
         session()->put("captcha_sum" , $sum);
+        $category = Category::findOrFail($category_id);
 
-        return view("website.inquiry.index" , compact("category_id" , "provinces" , "units"));
+        return view("website.inquiry.index" , compact("category" , "provinces" , "units"));
     }
-
 
     public function create(Request $request){
 
+        //1. checking that pj_available is enough
+        $pj_available = auth()->user()->pj_available;
 
+        if($pj_available<=0){
+            return reply("error" , [__("messages.not_enough_pj")]);
+        }
+
+        //2. validating data
         $validator = Validator::make($request->all() ,[
             'name' => 'required' ,
             'category_id' => 'required' ,
@@ -37,9 +53,10 @@ class InquiriesController extends Controller
 
         if ( $validator->fails() )
         {
-            return checkValidation($validator);
+            return checkValidation($validator , false);
         }
 
+        //3. inserting data
         $data = [
             'name' => $request->name,
             'user_id' => auth()->user()->id,
@@ -63,5 +80,14 @@ class InquiriesController extends Controller
 
 
         $inquiry = Inquiry::create($data);
+
+        if($inquiry){
+            //decrease the pj_available
+            $user = User::find(auth()->user()->id);
+            $user->pj_available = $pj_available-1;
+            $user->update();
+
+            return reply('success' , "your_pj_inserted_successfully");
+        }
     }
 }

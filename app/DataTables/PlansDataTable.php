@@ -22,19 +22,12 @@ class PlansDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-
-            ->addColumn('product', function(Plan $plan){
-                return $plan->product->name;
-            })
-            ->addColumn('category', function(Plan $plan){
-                return $plan->product->category->name;
-            })
             ->addColumn('operations' , function (Plan $plan){
                 return
                     '<div class="btn-group" role="group">'.
                     '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/plans/'.$plan->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
                     '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/plans/'.$plan->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("products.destroy" , $plan->id).'" method="post" id="d-'.$plan->id.'">
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("plans.destroy" , $plan->id).'" method="post" id="d-'.$plan->id.'">
                                 <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="hidden" name="_method" value="delete">
                                 <i class="text-danger  fas fa-trash ml-2" onclick=\'$("#d-'.$plan->id.'").submit()\' title="'.__('p.delete').'"></i>
@@ -44,7 +37,10 @@ class PlansDataTable extends DataTable
             ->editColumn("created_at" , function (Plan $plan){
                 return jdate($plan->created_at)->format('%A, %d %B %Y');
             })
-            ->escapeColumns('operations,publish');
+            ->editColumn("active" , function (Plan $plan){
+                return ($plan->active)?__("p.active"):__("p.inactive");
+            })
+            ->escapeColumns('operations,active');
     }
 
     /**
@@ -86,12 +82,14 @@ class PlansDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-
             Column::make('id')->title('شناسه طرح'),
-            Column::make('product')->title("نام محصول"),
-            Column::make('category')->title("نام دسته بندی"),
-            Column::make('created_at')->title('تاریخ ثبت'),
-            Column::make('operations')->title('اقدامات')
+            Column::make("name")->title("نام طرح"),
+            Column::make("length")->title("مدت زمان اشتراک به ماه"),
+            Column::make("pj_per_month")->title("تعداد استعلام در هر ماه"),
+            Column::make("price")->title("قیمت طرح"),
+            Column::make("suppliers_count")->title("تعداد تامین کننده در هر بار استعلام"),
+            Column::make("active")->title("وضعیت"),
+            Column::make("operations")->title("اقدامات")
         ];
     }
 

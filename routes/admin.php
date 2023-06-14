@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\ConfigurationController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\InquiriesController;
 use App\Http\Controllers\admin\PlansController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\UsersController;
@@ -30,7 +31,9 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get("/configuration" , [ConfigurationController::class , 'index']);
     Route::post("/configuration/update" , [ConfigurationController::class , 'update'])->name("config.update");
+    Route::resource('plans' , CategoriesController::class);
 
+    Route::resource('inquiries' , InquiriesController::class);
     Route::resource('plans' , PlansController::class);
 });
 

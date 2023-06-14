@@ -64,7 +64,11 @@
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.categories")}}</span></a>
                             </li>
-
+                            <li class="menu-item " aria-haspopup="true"><a
+                                    href="/admin/inquiries" class="menu-link "><i
+                                        class="menu-bullet menu-bullet-dot"><span></span></i><span
+                                        class="menu-text">{{__("p.inquiries")}}</span></a>
+                            </li>
 
 
                             <li class="menu-item " aria-haspopup="true"><a

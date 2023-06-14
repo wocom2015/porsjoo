@@ -75,4 +75,8 @@ return [
     'sms_send_number' => 'شماره ارسال پیامک',
     'view_uer_detail' => 'مشاهده جزییات کاربر',
     'failed_operation' => 'عملیات لغو شده',
+    'inquiries' => 'استعلام ها',
+    'inquiries_list' => 'لیست استعلام ها',
+    'plans_list' => 'لیست طرح ها',
+    'add_new_plan' => 'افزودن طرح جدید',
 ];

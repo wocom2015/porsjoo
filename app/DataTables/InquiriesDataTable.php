@@ -3,15 +3,15 @@
 namespace App\DataTables;
 
 use App\Models\Inquiry;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class InquiriesDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -21,42 +21,40 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('picture', function(User $user){
-                return user_picture($user , 100 , 'img-thumb' , true);
-            })
+
             ->setRowId('id')
-            ->addColumn('category' , function(User $user){
-                return '<strong class="text-success">'.(($user->details != null)?$user->details->category->name.'</strong>':'');
+            ->addColumn('user' , function(Inquiry $inquiry){
+                return '<strong class="text-success">'.$inquiry->user->name.' '.$inquiry->user->last_name.'</strong>';
             })
-            ->addColumn("pj_count" , function (User $user){
-                return Inquiry::where("user_id" , $user->id)->count();
+            ->addColumn('category' , function(Inquiry $inquiry){
+                return '<strong class="text-success">'.$inquiry->category->name.'</strong>';
             })
-            ->addColumn("current_plan" , function (User $user){
-                //TODO : plan name;
-                return "";
-            })
-            ->addColumn('operations' , function (User $user){
+
+            ->addColumn('operations' , function (Inquiry $inquiry){
                 return
                     '<div class="btn-group" role="group">'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$user->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$user->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("users.destroy" , $user->id).'" method="post" id="d-'.$user->id.'">
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$inquiry->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$inquiry->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("users.destroy" , $inquiry->id).'" method="post" id="d-'.$inquiry->id.'">
                                 <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="hidden" name="_method" value="delete">
-                                <i class="text-danger  fas fa-trash ml-2" onclick=\'$("#d-'.$user->id.'").submit()\' title="'.__('p.delete').'"></i>
+                                <i class="text-danger  fas fa-trash ml-2" onclick=\'$("#d-'.$inquiry->id.'").submit()\' title="'.__('p.delete').'"></i>
                          </form></span>
                      </div>';
             })
-            ->editColumn("created_at" , function (User $user){
-                return jdate($user->created_at)->format('%A, %d %B %Y');
+            ->addColumn('suppliers' , function (Inquiry $inquiry){
+                return "";
             })
-            ->escapeColumns('operations,picture,publish');
+            ->editColumn("created_at" , function (Inquiry $inquiry){
+                return jdate($inquiry->created_at)->format('%A, %d %B %Y');
+            })
+            ->escapeColumns('operations');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Inquiry $model): QueryBuilder
     {
         return $model->newQuery()->orderBy("id" , "desc");
     }
@@ -96,14 +94,11 @@ class UsersDataTable extends DataTable
     {
         return [
             Column::make('id')->title('شناسه کاربر'),
-            Column::make('picture')->title('تصویر اصلی'),
-            Column::make('name')->title("نام"),
-            Column::make('last_name')->title("نام خانوادگی"),
+            Column::make('name')->title('عنوان استعلام'),
+            Column::make('user')->title("استعلام گیرنده"),
             Column::make('category')->title("دسته بندی"),
-            Column::make('mobile')->title("تلفن همراه"),
-            Column::make('pj_count')->title("تعداد استعلام ها"),
-            Column::make('current_plan')->title("طرح جاری"),
-            Column::make('created_at')->title('تاریخ ثبت نام'),
+            Column::make('created_at')->title('تاریخ درخواست'),
+            Column::make('suppliers')->title('تامین کنندگان'),
             Column::make('operations')->title('اقدامات')
         ];
     }
@@ -113,6 +108,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'Inquiries_' . date('YmdHis');
     }
 }
