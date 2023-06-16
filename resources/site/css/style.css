@@ -85,6 +85,27 @@ button {
 	padding-top: 14px;
 	padding-bottom: 14px
 }
+.orange-box {
+    border: none;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+    color: #fff;
+    text-transform: capitalize;
+    background-color: #D64012;
+    -webkit-transition: .6s;
+    transition: .6s;
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: IranYekan,sans-serif;
+}
 .default-btn span {
 	position: absolute;
 	display: block;
@@ -120,9 +141,11 @@ button {
 	position: relative;
 	top: 1px
 }
-
+.hr-custom{background-color: #D64012;height: 4px !important;opacity: 1.0}
+.header-custom{font-size: 1.1em; font-weight: 600;margin-top: 10px;}
 .btn-custom-outline{
-    background-color: #fff; border: 2px solid #f68002;border-radius: 10px
+    background-color: #fff; border: 2px solid #D64012;border-radius: 10px;
+    color:#D64012;
 }
 .optional-btn {
 	border: 1px solid #209e2e;

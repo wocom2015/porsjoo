@@ -25,8 +25,7 @@ class PlansDataTable extends DataTable
             ->addColumn('operations' , function (Plan $plan){
                 return
                     '<div class="btn-group" role="group">'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/plans/'.$plan->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/plans/'.$plan->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/admin/plans/'.$plan->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
                     '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("plans.destroy" , $plan->id).'" method="post" id="d-'.$plan->id.'">
                                 <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="hidden" name="_method" value="delete">
@@ -38,7 +37,10 @@ class PlansDataTable extends DataTable
                 return jdate($plan->created_at)->format('%A, %d %B %Y');
             })
             ->editColumn("active" , function (Plan $plan){
-                return ($plan->active)?__("p.active"):__("p.inactive");
+                return ($plan->active)?'<span class="text-success">'.__("p.active").'</span>':'<span class="text-default">'.__("p.inactive").'</span>';
+            })
+            ->editColumn("price" , function (Plan $plan){
+                return number_format($plan->price).' تومان';
             })
             ->escapeColumns('operations,active');
     }

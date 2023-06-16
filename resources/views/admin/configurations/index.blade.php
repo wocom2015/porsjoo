@@ -33,6 +33,12 @@
                                 <span class="nav-text">{{__("p.sms_settings")}}</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab-4" data-toggle="tab" href="#tab_5" aria-controls="profile">
+                                <span class="nav-icon"><i class="flaticon2-open-text-book"></i></span>
+                                <span class="nav-text">{{__("p.pages_settings")}}</span>
+                            </a>
+                        </li>
 
                     </ul>
                     <div class="tab-content mt-5">
@@ -98,6 +104,33 @@
                                     <div class="form-group">
                                         <label>{{__("p.sms_send_number")}}</label>
                                         <input type="text" class="form-control text-right" name="sms_send_number" value="{{(isset($configs['sms_send_number']))?$configs['sms_send_number']:''}}" placeholder="{{__("p.sms_send_number")}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_5" role="tabpanel" aria-labelledby="sms-tab-4">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>{{__("p.about_us_text")}}</label>
+                                        <textarea class="form-control" name="about_us_text" placeholder="{{__("p.about_us_text")}}"> {{(isset($configs['about_us_text']))?$configs['about_us_text']:''}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>{{__("p.use_help_text")}}</label>
+                                        <textarea class="form-control" name="use_help_text" placeholder="{{__("p.use_help_text")}}"> {{(isset($configs['use_help_text']))?$configs['use_help_text']:''}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>{{__("p.partner_with_us_text")}}</label>
+                                        <textarea class="form-control" name="partner_with_us_text" placeholder="{{__("p.partner_with_us_text")}}"> {{(isset($configs['partner_with_us_text']))?$configs['partner_with_us_text']:''}}</textarea>
                                     </div>
                                 </div>
                             </div>

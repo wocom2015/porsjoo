@@ -79,4 +79,11 @@ return [
     'inquiries_list' => 'لیست استعلام ها',
     'plans_list' => 'لیست طرح ها',
     'add_new_plan' => 'افزودن طرح جدید',
+    'active' => 'فعال',
+    'inactive' => 'غیرفعال',
+    'edit_plan' => 'ویرایش طرح',
+    'about_us_text' => 'متن درباره ما',
+    'use_help_text' => 'متن راهنمای استفاده',
+    'partner_with_us_text' => 'متن مشارکت با ما',
+    'pages_settings' => 'تنظیمات متون',
 ];
