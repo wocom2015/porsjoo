@@ -31,6 +31,8 @@ Route::get('/signup', [UsersController::class , 'signup'])->name('signup');
 Route::post('/signup', [UsersController::class , 'register'])->name('users.register');
 Route::post('/signin', [UsersController::class , 'login'])->name('users.login');
 Route::post('/search', [CategoriesController::class , 'search'])->name('search');
+Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
+Route::get('/page/{title}', [HomeController::class , 'page']);
 
 
 
@@ -40,8 +42,11 @@ Route::middleware('auth_user')->group(function () {
     Route::post('/inquiry/create', [InquiriesController::class , 'create'])->name('inquiry');
     Route::post('/cities', [CitiesController::class , 'index']);
     Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class , 'edit'])->name('profile.edit');
+    Route::post('/profile/edit', [ProfileController::class , 'update'])->name('profile.update');
     Route::get('/plans' , [PlansController::class , 'index']);
     Route::get('/plans/buy/{plan_id}' , [PlansController::class , 'buy']);
+    Route::get('/user/logout' , [UsersController::class , 'logout']);
 });
 
 

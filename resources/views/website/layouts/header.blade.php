@@ -7,22 +7,22 @@
                         <nav class="mean-nav">
                             <ul class="navbar-nav" style="display: none;">
                                 <li>
-                                    <a href="#" class="active"> استعلام قیمت </a>
+                                    <a href="/" class="active"> استعلام قیمت </a>
                                 </li>
                                 <li>
-                                    <a href="#"> درباره پرسجو </a>
+                                    <a href="/page/about"> درباره پرسجو </a>
 
                                 </li>
                                 <li>
-                                    <a href="#"> مشارکت با ما </a>
+                                    <a href="/page/partner-with-us"> مشارکت با ما </a>
 
                                 </li>
                                 <li>
-                                    <a href="#"> تماس با ما </a>
+                                    <a href="/contact"> تماس با ما </a>
 
                                 </li>
                                 <li>
-                                    <a href="#"> راهنمای استفاده </a>
+                                    <a href="/page/help"> راهنمای استفاده </a>
                                 </li>
 
                             </ul>
@@ -39,21 +39,22 @@
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent" style="display: none;">
                         <ul class="navbar-nav m-auto">
                             <li>
-                                <a href="#" class="active"> استعلام قیمت </a>
+                                <a href="/" class="active"> استعلام قیمت </a>
                             </li>
                             <li>
-                                <a href="#"> درباره پرسجو </a>
-                            </li>
-                            <li>
-                                <a href="#"> مشارکت با ما </a>
+                                <a href="/page/about"> درباره پرسجو </a>
 
                             </li>
                             <li>
-                                <a href="#"> تماس با ما </a>
+                                <a href="/page/partner-with-us"> مشارکت با ما </a>
 
                             </li>
                             <li>
-                                <a href="#"> راهنمای استفاده </a>
+                                <a href="/contact"> تماس با ما </a>
+
+                            </li>
+                            <li>
+                                <a href="/page/help"> راهنمای استفاده </a>
                             </li>
                         </ul>
                         <div class="others-options d-flex align-items-center">

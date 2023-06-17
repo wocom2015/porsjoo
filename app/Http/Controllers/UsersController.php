@@ -103,4 +103,11 @@ class UsersController extends Controller
 
         return reply("error", implode("<br>", $messages));
     }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect("/signin");
+    }
 }

@@ -1,19 +1,25 @@
 @extends("website.layouts.app")
 
 @section("content")
+    @include("website.layouts.sub_header" , ['title' => 'پروفایل کاربری'])
+
     <div class="container">
         <div class="row justify-content-center" style="margin-bottom: 30px">
-            <div class="col-lg-6 col-xs-12 profile-avatar">
+            <div class="col-lg-8 col-xs-12 profile-avatar">
                 <div class="row">
-                    <div class="col-lg-3"><i class="flaticon-onion"
+                    <div class="col-lg-2"><i class="flaticon-onion"
                                              style="background-image:url('/site/images/person-1.jpg');background-repeat: no-repeat;background-size: cover"></i>
                     </div>
                     <div class="col-lg-6">
                         <span class="top-0"><strong>{{$user->name.' '.$user->last_name}}</strong></span><br>
                         <span class="top-0">{{$user->details->job_name}}</span>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <a href="/profile/edit" target="_blank">ویرایش پروفایل</a>
+                    </div>
+
+                    <div class="col-lg-2 text-left">
+                        <a href="/user/logout" class="text-danger">خروج از سامانه</a>
                     </div>
                 </div>
             </div>
@@ -59,14 +65,17 @@
         </div>
 
         <div class="row mt-4 content-frame">
+            @if(!\App\Models\User::profileCompleted(\Illuminate\Support\Facades\Auth::user()->id))
             <div class="col-lg-4 col-xs-12 pt-4">
                 جهت ثبت اولین PJ ابتدا پروفایل خود را تکمیل کنید
             </div>
             <div class="col-lg-4 col-xs-12 text-center pt-2">
-                <button class="btn btn-custom-outline">تکمیل
-                    پروفایل
-                </button>
+                <a href="/profile/edit" class="btn btn-custom-outline">
+                    ویرایش پروفایل
+                </a>
             </div>
+            @endif
+
             <div class="col-lg-4 col-sm-12 text-center pt-2">
                 <a href="#" class=" default-btn"> ثبت درخواست جدید </a></div>
             <!--                <a href="" class="btn btn-info btn-block p-3 m-3 pj-profile-item">درخواست جدید</a>-->

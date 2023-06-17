@@ -62,6 +62,20 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    public function scopeProfileCompleted($query , $userId): bool
+    {
+        $user = User::findOrFail($userId);
+        return (
+            $user->name !='' and
+            $user->last_name !='' and
+            $user->details->job_name !='' and
+            $user->email != '' and
+            $user->mobile != '' and
+            $user->details->category_id !=0
+        );
+
+    }
+
 
 
 

@@ -73,3 +73,9 @@ if(!function_exists('checkValidation')){
             return reply('error' , $messages);
     }
 }
+
+if(!function_exists("s")){
+    function s(){
+        return " <span class='text-danger'>*</span>";
+    }
+}

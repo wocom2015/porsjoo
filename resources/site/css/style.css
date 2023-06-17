@@ -319,7 +319,9 @@ button {
     color: yellow;
 }
 
-
+.farm-area{
+    min-height: 600px;
+}
 
 
 

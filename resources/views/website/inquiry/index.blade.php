@@ -1,6 +1,7 @@
 @extends("website.layouts.app")
 
 @section("content")
+    @include("website.layouts.sub_header" , ['title' => 'درخواست جدید'])
     <label  class="label-info">دسته بندی مورد نظر جهت استعلام : {{$category->name}}</label>
     <p>شما می توانید از طریق pj ها همزمان از چندین فروشنده استعلام قیمت بگیرید</p>
 
