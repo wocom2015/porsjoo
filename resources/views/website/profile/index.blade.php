@@ -12,7 +12,8 @@
                     </div>
                     <div class="col-lg-6">
                         <span class="top-0"><strong>{{$user->name.' '.$user->last_name}}</strong></span><br>
-                        <span class="top-0">{{$user->details->job_name}}</span>
+                        <span class="top-0">{{$user->details->job_name}}</span><br>
+                        <span class="top-0">{{$user->details->category->name}}</span>
                     </div>
                     <div class="col-lg-2">
                         <a href="/profile/edit" target="_blank">ویرایش پروفایل</a>
@@ -94,26 +95,10 @@
                     <div class="col-lg-3">0 پاسخ</div>
                 </div>
             @endforeach
-
-
         </div>
 
 
-        <div class="content-frame">
-            <div class="row p-2">
-                <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{$relatedInquiries->count()}} مورد</h1></div>
-            </div>
-            @foreach($relatedInquiries as $inquiry)
-                <div class="row mb-2 p-2">
-                    <div class="col-lg-2">{{$inquiry->province->name}}</div>
-                    <div class="col-lg-6"><strong>{{$inquiry->name}}</strong><br>{{$inquiry->description}}</div>
-                    <div class="col-lg-2">{{jdate($inquiry->created_at)->format('%A , %d %B %Y')}}</div>
-                    <div class="col-lg-2"><button class="btn btn-custom-outline">پاسخ</button> </div>
-                </div>
-            @endforeach
-
-
-        </div>
+        <inquiry-list-component :inquiries="{{$relatedInquiries}}" :count="{{$relatedInquiries->count()}}"></inquiry-list-component>
 
         <div class="content-frame">
             <p class="text-center">افرادی که با شما همکاری داشته اند</p>

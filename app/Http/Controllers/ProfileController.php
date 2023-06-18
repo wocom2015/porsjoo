@@ -17,6 +17,13 @@ class ProfileController extends Controller
         $user = User::find(auth()->user()->id);
         //TODO : just not closed inquiries
         $relatedInquiries = Inquiry::where("category_id" , $user->details->category_id)->where("user_id" , '!=' , $user->id)->get();
+
+
+        foreach ($relatedInquiries as $r){
+            $r->provinceName = $r->province->name;
+            $r->created = jdate($r->created_at)->format('%A, %d %B %Y');
+        }
+
         return view("website.profile.index" , compact("user" , "relatedInquiries"));
     }
 

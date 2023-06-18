@@ -9,11 +9,13 @@ import { createApp } from 'vue/dist/vue.esm-bundler';
 import searchComponent from './components/searchComponent.vue';
 import dateComponent from './components/dateComponent.vue';
 import inquiryComponent from './components/inquiryComponent.vue';
+import inquiryListComponent from './components/inquiryListComponent.vue';
 const app = createApp({
     components:{
         searchComponent,
         dateComponent,
-        inquiryComponent
+        inquiryComponent,
+        inquiryListComponent,
     }
 });
 app.mount('#app');

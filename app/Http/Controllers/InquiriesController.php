@@ -90,4 +90,16 @@ class InquiriesController extends Controller
             return reply('success' , "your_pj_inserted_successfully");
         }
     }
+
+    public function item(Request $request){
+        $inquiry = Inquiry::find($request->id);
+        $inquiry->categoryName = $inquiry->category->name;
+        $inquiry->provinceName = $inquiry->province->name;
+        $inquiry->cityName = $inquiry->city->name;
+        $inquiry->pay_date = jdate($inquiry->pay_date)->format('%d %B %Y');
+        $inquiry->buy_date = jdate($inquiry->buy_date)->format('%d %B %Y');
+        $inquiry->price = number_format($inquiry->price).' تومان';
+        $inquiry->unitName = $inquiry->unit->name;
+        return ['inquiry' =>  $inquiry, 'state' => 'success'];
+    }
 }

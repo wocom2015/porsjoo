@@ -53,4 +53,9 @@ class Inquiry extends Model
         return $this->belongsTo(City::class);
     }
 
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
 }
