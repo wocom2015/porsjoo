@@ -102,4 +102,16 @@ class InquiriesController extends Controller
         $inquiry->unitName = $inquiry->unit->name;
         return ['inquiry' =>  $inquiry, 'state' => 'success'];
     }
+
+    public function reply(Request $request){
+        $validator = Validator::make($request->all() ,[
+            'price' => 'required' ,
+        ]);
+
+        if ( $validator->fails() )
+        {
+            return checkValidation($validator , false);
+        }
+
+    }
 }

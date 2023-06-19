@@ -80,10 +80,7 @@ button {
 	border-radius: 50px;
 	font-weight: 400;
 	font-size: 16px;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-top: 14px;
-	padding-bottom: 14px
+    padding: 10px 20px;
 }
 .orange-box {
     border: none;
@@ -118,6 +115,9 @@ button {
 	transform: translate(-50%, -50%);
 	z-index: -1;
 	border-radius: 5px
+}
+.bg-gray{
+    background-color: #ececec;
 }
 
 .avatar{
@@ -495,7 +495,6 @@ button {
 }
 .navbar-area.navbar-style-two .trifles-nav .navbar .others-options .option-item .search-btn {
 	display: block;
-	color: #fff;
 	width: 34px;
 	height: 34px;
 	line-height: 34px;

@@ -18,20 +18,32 @@
         </div>
 
         <div v-show="this.replyM" class="modal fade show" tabindex="-1" role="dialog" id="replyModal">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title">پاسخ به استعلام</h5>
                     </div>
                     <div class="modal-body">
-                        Reply
+                        <div class="alert alert-warning">توجه : کاربر گرامی با پاسخ به هر استعلام از تعداد امکان استعلام شما یکی کم می شود.</div>
+                        <form id="frmReply">
+                            <div class="row mb-2">
+                                <div class="col-lg-3">
+                                    <label>قیمت پیشنهادی شما (تومان)</label>
+                                    <input type="text" name="price" class="form-control text-black text-left bg-gray">
+                                </div>
+                                <div class="col-lg-9">
+                                    <label>توضیحات شما</label>
+                                    <input type="text" name="description" class="form-control text-black bg-gray">
+                                </div>
+                            </div>
+                        </form>
+                        <div v-show="replyMessage!==''" :class="replyState">
+                            <p v-for="item in replyMessage">{{item}}</p>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn default-btn" @click="sendReply(this.id)">ارسال پاسخ</button>
+                        <button type="button" class="btn btn-custom-outline" @click="hideReply()">بستن</button>
                     </div>
                 </div>
             </div>
@@ -52,7 +64,7 @@
                             <div class="col-lg-6"><span>زمان پرداخت : </span><strong>{{this.inquiry.pay_date}}</strong></div>
                             <div class="col-lg-6"><span>استان : </span><strong>{{this.inquiry.provinceName}}</strong></div>
                             <div class="col-lg-6"><span>شهر : </span><strong>{{this.inquiry.cityName}}</strong></div>
-                            <div class="col-lg-6"><span>مبلغ : </span><strong>{{this.inquiry.price}}</strong></div>
+                            <div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>{{this.inquiry.price}}</strong></div>
                             <div class="col-lg-6"><span>امکان خرید چکی : </span><strong>{{(this.inquiry.cheque_eneable)?'بله':'خیر'}}</strong></div>
                             <div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>{{(this.inquiry.sample_enable)?'بله':'خیر'}}</strong></div>
                             <div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>{{(this.inquiry.guarantee_enable)?'بله':'خیر'}}</strong></div>
@@ -78,7 +90,9 @@ export default {
             replyM : false,
             inquiryName : '',
             inquiry : [],
-            id : 0
+            id : 0,
+            replyMessage : '',
+            replyState : ''
         }
     },
     methods:{
@@ -104,14 +118,37 @@ export default {
                     }
                 })
         },
-        reply(){
+        reply(id){
             this.replyM = true;
+            this.id = id;
         },
         hideView(){
             this.viewM = false;
         },
         hideReply(){
             this.replyM = false;
+        },
+        sendReply(id){
+            var self = this;
+            var fData = new FormData(document.getElementById('frmReply'));
+            this.replyMessage = '';
+            this.replyState = '';
+            fData.append("id" , id);
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/reply",
+                    data: fData,
+                }
+            )
+                .then(function (response) {
+                    self.replyMessage = response.data.message;
+                    if (response.data.state === 'success'){
+                        self.replyState = 'alert alert-success';
+                    }else{
+                        self.replyState = 'alert alert-danger';
+                    }
+                })
         }
     }
 }

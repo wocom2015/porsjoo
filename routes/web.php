@@ -41,6 +41,7 @@ Route::middleware('auth_user')->group(function () {
     Route::get('/inquiry/request/{category_id}', [InquiriesController::class , 'index'])->name('inquiry-form');
     Route::post('/inquiry/create', [InquiriesController::class , 'create'])->name('inquiry');
     Route::post('/inquiry/item', [InquiriesController::class , 'item']);
+    Route::post('/inquiry/reply', [InquiriesController::class , 'reply']);
     Route::post('/cities', [CitiesController::class , 'index']);
     Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class , 'edit'])->name('profile.edit');
