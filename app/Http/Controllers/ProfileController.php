@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Inquiry;
+use App\Models\InquiryReply;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,13 +16,19 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        //TODO : just not closed inquiries
-        $relatedInquiries = Inquiry::where("category_id" , $user->details->category_id)->where("user_id" , '!=' , $user->id)->get();
+        $relatedInquiries = Inquiry::where("category_id" , $user->details->category_id)->where("user_id" , '!=' , $user->id)->where("accepted" , 0)->get();
 
+        foreach($user->inquiries as $inquiry){
+            $inquiry->provinceName = $inquiry->province->name;
+            $inquiry->repliesCount = $inquiry->replies->count();
+            $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
+            $inquiry->categoryName = $inquiry->category->name;
+        }
 
         foreach ($relatedInquiries as $r){
             $r->provinceName = $r->province->name;
             $r->created = jdate($r->created_at)->format('%A, %d %B %Y');
+            $r->reply_by_user = InquiryReply::where("user_id" , Auth::user()->id)->where("inquiry_id" , $r->id)->exists();
         }
 
         return view("website.profile.index" , compact("user" , "relatedInquiries"));

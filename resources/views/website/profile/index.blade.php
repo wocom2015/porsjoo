@@ -83,21 +83,8 @@
 
         </div>
 
-        <div class="content-frame">
-            <div class="row p-2">
-                <div class="col-lg-12"><h1>استعلام های ارسالی از طرف شما : {{$user->inquiries()->count()}} مورد</h1></div>
-            </div>
-            @foreach($user->inquiries as $inquiry)
-                <div class="row mb-2 p-2">
-                    <div class="col-lg-3">{{$inquiry->province->name}}</div>
-                    <div class="col-lg-3">{{$inquiry->name}}</div>
-                    <div class="col-lg-3">{{jdate($inquiry->created_at)->format('%A , %d %B %Y')}}</div>
-                    <div class="col-lg-3">0 پاسخ</div>
-                </div>
-            @endforeach
-        </div>
 
-
+        <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}"></inquiry-sent-component>
         <inquiry-list-component :inquiries="{{$relatedInquiries}}" :count="{{$relatedInquiries->count()}}"></inquiry-list-component>
 
         <div class="content-frame">

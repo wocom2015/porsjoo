@@ -10,7 +10,8 @@
                 <div class="col-lg-4"><strong>{{item.name}}</strong><br>{{item.description}}</div>
                 <div class="col-lg-2">{{item.created}}</div>
                 <div class="col-lg-2"><button @click="view(item.id)" class="btn btn-custom-outline">مشاهده مشخصات</button></div>
-                <div class="col-lg-2"><button @click="reply(item.id)" class="btn btn-custom-outline">پاسخ</button> </div>
+                <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn btn-custom-outline">پاسخ</button> </div>
+                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn btn-custom-outline">پاسخ شما</button> </div>
             </div>
 
 
@@ -21,7 +22,9 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">پاسخ به استعلام</h5>
+                        <h5 class="modal-title">پاسخ به استعلام
+                            <small class="text-warning">{{this.inquiryName}}</small>
+                        </h5>
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-warning">توجه : کاربر گرامی با پاسخ به هر استعلام از تعداد امکان استعلام شما یکی کم می شود.</div>
@@ -38,12 +41,13 @@
                             </div>
                         </form>
                         <div v-show="replyMessage!==''" :class="replyState">
-                            <p v-for="item in replyMessage">{{item}}</p>
+                            <p v-if="replyState==='alert alert-danger'" v-for="item in replyMessage">{{item}}</p>
+                            <p v-if="replyState==='alert alert-success'">{{replyMessage}}</p>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn default-btn" @click="sendReply(this.id)">ارسال پاسخ</button>
-                        <button type="button" class="btn btn-custom-outline" @click="hideReply()">بستن</button>
+                        <button type="button" class="btn default-btn" @click="this.sendReply(this.id)">ارسال پاسخ</button>
+                        <button type="button" class="btn btn-custom-outline" @click="this.hideReply()">بستن</button>
                     </div>
                 </div>
             </div>
@@ -72,7 +76,31 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-custom-outline" @click="hideView()">متوجه شدم</button>
+                        <button type="button" class="btn btn-custom-outline" @click="this.hideView()">متوجه شدم</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div v-show="this.replyReviewM" class="modal fade show" tabindex="-1" role="dialog" id="replyModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">پاسخ شما به استعلام
+                        <small class="text-success">{{this.inquiryName}}</small>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6"><span>قیمت شما : </span><strong>{{this.reply.price}}</strong></div>
+                            <div class="col-lg-6"><span>توضیحات شما : </span><strong>{{this.reply.description}}</strong></div>
+                            <div class="col-lg-6"><span>زمان پاسخ : </span><strong>{{this.reply.created}}</strong></div>
+                            <div class="col-lg-6"><span>وضعیت : </span><strong></strong></div> <!--TODO : must be assign-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-custom-outline" @click="this.hideReplyR()">بستن</button>
                     </div>
                 </div>
             </div>
@@ -88,16 +116,22 @@ export default {
         return {
             viewM : false,
             replyM : false,
+            replyReviewM : false,
             inquiryName : '',
             inquiry : [],
             id : 0,
             replyMessage : '',
-            replyState : ''
+            replyState : '',
+            reply : []
         }
     },
     methods:{
         view(id) {
             this.viewM = true;
+            this.getInfo(id);
+
+        },
+        getInfo(id){
             var self = this;
             self.id = id;
             axios(
@@ -109,25 +143,19 @@ export default {
             )
                 .then(function (response) {
                     if (response.data.state === 'success'){
-
-                        console.log(response.data);
                         self.inquiry = response.data.inquiry;
                         self.inquiryName = response.data.inquiry.name;
-                    }else{
-
                     }
                 })
         },
-        reply(id){
+        replyIt(id){
             this.replyM = true;
             this.id = id;
+            this.replyMessage = '';
         },
-        hideView(){
-            this.viewM = false;
-        },
-        hideReply(){
-            this.replyM = false;
-        },
+        hideView(){this.viewM = false;},
+        hideReply(){this.replyM = false;},
+        hideReplyR(){this.replyReviewM = false;},
         sendReply(id){
             var self = this;
             var fData = new FormData(document.getElementById('frmReply'));
@@ -149,6 +177,26 @@ export default {
                         self.replyState = 'alert alert-danger';
                     }
                 })
+        }
+        ,
+        replyReview(id){
+            this.replyReviewM =  true;
+            var self = this;
+            self.id = id;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/reply-info",
+                    data: {id : self.id},
+                }
+            )
+                .then(function (response) {
+                    //if (response.state===200){
+                        self.reply = response.data;
+                        self.inquiryName = response.data.name;
+                    //}
+                })
+
         }
     }
 }

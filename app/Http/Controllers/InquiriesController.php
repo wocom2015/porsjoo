@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Inquiry;
+use App\Models\InquiryReply;
+use App\Models\InquirySupplier;
 use App\Models\Province;
 use App\Models\Unit;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\In;
 
 
 class InquiriesController extends Controller
@@ -104,14 +108,89 @@ class InquiriesController extends Controller
     }
 
     public function reply(Request $request){
-        $validator = Validator::make($request->all() ,[
-            'price' => 'required' ,
-        ]);
+        //first check for inquiry points
 
-        if ( $validator->fails() )
-        {
-            return checkValidation($validator , false);
+        $user = User::findOrFail(Auth::user()->id);
+        if($user->pj_available>=1){
+            $validator = Validator::make($request->all() ,[
+                'price' => 'required|integer|min:1000' ,
+            ]);
+
+            if ( $validator->fails() )
+            {
+                return checkValidation($validator , false);
+            }
+
+            $inquiry = Inquiry::findOrFail($request->id);
+
+            $inquiryReply = InquiryReply::create([
+                'inquiry_id' => $inquiry->id,
+                'user_id' => Auth::user()->id,
+                'price' => $request->price,
+                'description' => $request->description,
+                'score' => 0,
+                'state_id' => 0,
+                'accepted' => 0
+            ]);
+            if($inquiryReply){
+                //decrease pj_available
+
+                $user->pj_available = ($user->pj_available-1);
+                $user->update();
+
+                return reply("success" , "your_reply_to_inquiry_submitted_successfully");
+            }
+        }else{
+            return reply("error" , [__("messages.not_sufficient_pj_error")]);
+        }
+    }
+
+
+    public function reply_info(Request $request){
+        $reply = InquiryReply::where("inquiry_id" , $request->id)->where("user_id" , Auth::user()->id)->first();
+
+        if($reply!=null){
+            $reply->created = jdate($reply->created_at)->format('%d %B %Y H:m');
+            $reply->name = $reply->inquiry->name;
+            $reply->price = number_format($reply->price).' تومان';
         }
 
+        unset($reply->inquiry);
+        return $reply;
+    }
+
+    public function replies(Request $request){
+        $inquiry = Inquiry::findOrFail($request->id);
+
+        $replies = $inquiry->replies;
+        if($replies->isNotEmpty()){
+            foreach($replies as $r){
+                $r->price = number_format($r->price).' تومان';
+            }
+        }
+        return $replies;
+    }
+
+
+    public function supplier(Request $request){
+        $user = User::findOrFail($request->id);
+        $currentUser = User::find(Auth::user()->id);
+        //check pj_available
+
+        $hasSeenBefore = InquirySupplier::where('inquiry_id' , $request->inquiry_id)->where('user_id' , $user->id)->exists();
+
+        if($currentUser->pj_available==0 and !$hasSeenBefore){
+            return reply("error" , __("messages.not_sufficient_pj_error"));
+        }else{
+            //check for viewing the supplier before
+            if(!$hasSeenBefore){
+                InquirySupplier::create(['inquiry_id'=> $request->inquiry_id , 'user_id' => $user->id]);
+                //decreasing the pj_available
+                $currentUser->pj_available--;
+                $currentUser->update();
+            }
+
+            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->details->address , 'job_name' => $user->details->job_name]];
+        }
     }
 }

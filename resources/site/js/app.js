@@ -10,12 +10,14 @@ import searchComponent from './components/searchComponent.vue';
 import dateComponent from './components/dateComponent.vue';
 import inquiryComponent from './components/inquiryComponent.vue';
 import inquiryListComponent from './components/inquiryListComponent.vue';
+import inquirySentComponent from './components/inquirySentComponent.vue';
 const app = createApp({
     components:{
         searchComponent,
         dateComponent,
         inquiryComponent,
         inquiryListComponent,
+        inquirySentComponent,
     }
 });
 app.mount('#app');

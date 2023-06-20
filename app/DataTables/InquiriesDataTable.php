@@ -43,7 +43,7 @@ class InquiriesDataTable extends DataTable
                      </div>';
             })
             ->addColumn('suppliers' , function (Inquiry $inquiry){
-                return "";
+                return $inquiry->replies()->count();
             })
             ->editColumn("created_at" , function (Inquiry $inquiry){
                 return jdate($inquiry->created_at)->format('%A, %d %B %Y');
