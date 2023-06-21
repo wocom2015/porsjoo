@@ -15,7 +15,9 @@
                                 </li>
                                 <li>
                                     <a href="/page/partner-with-us"> مشارکت با ما </a>
-
+                                </li>
+                                <li>
+                                    <a href="/plans"> طرح ها </a>
                                 </li>
                                 <li>
                                     <a href="/contact"> تماس با ما </a>
@@ -50,6 +52,9 @@
 
                             </li>
                             <li>
+                                <a href="/plans"> طرح ها </a>
+                            </li>
+                            <li>
                                 <a href="/contact"> تماس با ما </a>
 
                             </li>
@@ -59,7 +64,7 @@
                         </ul>
                         <div class="others-options d-flex align-items-center">
                             @auth
-                                <a href="/profile" class="text-white">{{auth()->user()->name.' '.auth()->user()->last_name}}</a>
+                                <a href="/profile" class="text-white" title="برای مشاهده پروفایل خود کلیک کنید">{{auth()->user()->name.' '.auth()->user()->last_name}}</a>
                             @endauth
 
                             @guest

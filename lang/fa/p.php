@@ -98,4 +98,12 @@ return [
     'job_name' => 'نام کسب و کار',
     'phone' => 'تلفن',
     'category_that_are_active_on_it' => 'دسته بندی ای که در آن فعال هستید',
+    'inquiry_details' => 'مشخصات استعلام',
+    'city' => 'شهر',
+    'province' => 'استان',
+    'position_state' => 'موقعیت مکانی',
+    'number_of_users' => 'تعداد افراد حاضر',
+    'inquiry_date' => 'تاریخ استعلام',
+    'pj_per_month' => 'استعلام در ماه',
+    'supplier_per_each_inquiry' => 'تامین کننده در هر با استعلام',
 ];

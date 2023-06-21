@@ -91,7 +91,8 @@ class UsersController extends Controller
            "category_id" => 0
         ]);
 
-        //reply("success");
+        Auth::loginUsingId($user->id);
+        return redirect("/");
     }
 
     public function checkValidation(\Illuminate\Validation\Validator $validator): ResponseFactory|\Illuminate\Contracts\Foundation\Application|null|\Illuminate\Http\Response|\Illuminate\Foundation\Application

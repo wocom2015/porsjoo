@@ -23,15 +23,20 @@ class ProfileController extends Controller
             $inquiry->repliesCount = $inquiry->replies->count();
             $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
             $inquiry->categoryName = $inquiry->category->name;
+            $inquiry->pictureSrc = inquiry_pic($inquiry->id , 100 , "thumb-img" , false);
         }
 
         foreach ($relatedInquiries as $r){
             $r->provinceName = $r->province->name;
             $r->created = jdate($r->created_at)->format('%A, %d %B %Y');
             $r->reply_by_user = InquiryReply::where("user_id" , Auth::user()->id)->where("inquiry_id" , $r->id)->exists();
+            $r->pictureSrc = inquiry_pic($r->id, 100 , "thumb-img" , false);
         }
 
-        return view("website.profile.index" , compact("user" , "relatedInquiries"));
+        $collaborators = []; //TODO : must be changed
+
+        $currentPlan = "";
+        return view("website.profile.index" , compact("user" , "relatedInquiries" , "collaborators" , "currentPlan"));
     }
 
 

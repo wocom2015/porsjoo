@@ -4,9 +4,13 @@
             <div class="row p-2">
                 <div class="col-lg-12"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
             </div>
-            <div class="row mb-2 p-2" v-for="item in this.inquiries">
+
+
+            <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
                 <div class="col-lg-1">شناسه استعلام : {{ item.id }}</div>
-                <div class="col-lg-3"><strong>{{ item.name }}</strong><br>{{ item.description }}</div>
+                <div class="col-lg-3">
+                    <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
+                    <strong>{{ item.name }}</strong><br>{{ item.description }}</div>
                 <div class="col-lg-2">{{ item.created }}</div>
                 <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
                 <div class="col-lg-2">
@@ -18,6 +22,10 @@
                     </button>
                 </div>
             </div>
+            <div v-if="this.count===0" class="row mb-2 p-2">
+                <p>شما تا کنون استعلامی ارسال ننموده اید</p>
+            </div>
+
         </div>
 
         <div v-show="this.viewM" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">

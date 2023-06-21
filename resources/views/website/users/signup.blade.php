@@ -2,15 +2,13 @@
 
 @section("content")
     <div class="container">
-
+        @include("website.layouts.sub_header" , ['title' => 'ثبت نام'])
         @if (count($errors) > 0)
-
                 <div class="alert alert-danger alert-dismissible fade show" id="formMessage" role="alert">
                     @foreach ($errors->all() as $error)
                         <p>{{ $error }}</p>
                     @endforeach
                 </div>
-
         @endif
 
             <div style="display: none;">

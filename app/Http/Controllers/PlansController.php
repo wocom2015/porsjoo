@@ -14,6 +14,7 @@ class PlansController extends Controller
 
 
     function buy($plan_id){
-        echo $plan_id;
+        $plan = Plan::findOrFail($plan_id);
+        return view("website.plans.buy" , compact("plan"));
     }
 }

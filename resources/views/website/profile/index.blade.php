@@ -13,7 +13,13 @@
                     <div class="col-lg-6">
                         <span class="top-0"><strong>{{$user->name.' '.$user->last_name}}</strong></span><br>
                         <span class="top-0">{{$user->details->job_name}}</span><br>
-                        <span class="top-0">{{$user->details->category->name}}</span>
+                        <span class="top-0">
+                            @if($user->details->category != null)
+                                {{$user->details->category->name}}
+                            @else
+                                مشخص نشده
+                            @endif
+                        </span>
                     </div>
                     <div class="col-lg-2">
                         <a href="/profile/edit" target="_blank">ویرایش پروفایل</a>
@@ -59,7 +65,9 @@
                     <p class="text-black mb-0">
                         <i class="bi bi-chat-left text-black" style="font-size: 2rem;"></i>
                     </p>
-                    <strong>ندارید</strong>
+                    <strong>{!! ($currentPlan =="")
+?"ندارید - "."<a href='/plans'>خرید طرح</a>"
+:$currentPlan !!}</strong>
                 </div>
                 <small>طرح فعلی شما</small>
             </div>
@@ -75,18 +83,24 @@
                     ویرایش پروفایل
                 </a>
             </div>
+            @else
+                <div class="col-lg-4 col-sm-12 text-center pt-2">
+                    <a href="#" class=" default-btn"> ثبت درخواست جدید </a>
+                </div>
             @endif
 
-            <div class="col-lg-4 col-sm-12 text-center pt-2">
-                <a href="#" class=" default-btn"> ثبت درخواست جدید </a></div>
-            <!--                <a href="" class="btn btn-info btn-block p-3 m-3 pj-profile-item">درخواست جدید</a>-->
+
 
         </div>
 
-
         <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}"></inquiry-sent-component>
+
+
+
         <inquiry-list-component :inquiries="{{$relatedInquiries}}" :count="{{$relatedInquiries->count()}}"></inquiry-list-component>
 
+
+        @if(!empty($collaborators))
         <div class="content-frame">
             <p class="text-center">افرادی که با شما همکاری داشته اند</p>
             <div class="row">
@@ -116,6 +130,8 @@
                 </div>
             </div>
         </div>
+
+        @endif
 
 
     </div>

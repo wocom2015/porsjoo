@@ -5,17 +5,20 @@
                 <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{this.count}} مورد</h1></div>
             </div>
 
-            <div class="row mb-2 p-2" v-for="item in this.inquiries">
+            <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
                 <div class="col-lg-2">{{item.provinceName}}</div>
-                <div class="col-lg-4"><strong>{{item.name}}</strong><br>{{item.description}}</div>
+                <div class="col-lg-4">
+                    <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
+                    <strong>{{item.name}}</strong><br>{{item.description}}</div>
                 <div class="col-lg-2">{{item.created}}</div>
                 <div class="col-lg-2"><button @click="view(item.id)" class="btn btn-custom-outline">مشاهده مشخصات</button></div>
                 <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn btn-custom-outline">پاسخ</button> </div>
                 <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn btn-custom-outline">پاسخ شما</button> </div>
             </div>
 
-
-
+            <div v-if="this.count===0" class="row mb-2 p-2">
+                <p>در حال حاضر ، استعلامی متناسب با دسته بندی شما وجود ندارد</p>
+            </div>
         </div>
 
         <div v-show="this.replyM" class="modal fade show" tabindex="-1" role="dialog" id="replyModal">

@@ -187,10 +187,14 @@ button {
 
 
 .inquiry-box{
-    border: 1px solid #fd7e14;
+    border: 1px solid #F68002;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 5px;
+}
+
+.text-default{
+    color : #F68002;
 }
 
 
@@ -5165,7 +5169,7 @@ text-align: left
 	margin: auto
 }
 .signup-form h3 {
-	font-size: 28px;
+	font-size: 18px;
 	margin-bottom: 30px;
 	text-align: center
 }
@@ -5173,12 +5177,13 @@ text-align: left
 	margin-bottom: 15px
 }
 .signup-form form .form-control {
-	height: 60px;
+	height: 40px;
 	border: 1px solid #eee;
 	border-radius: 3px;
-	color: #fff;
 	padding-left: 20px;
-	background: 0 0
+	background: 0 0;
+    font-size: 14px;
+    color: #555;
 }
 .signup-form form .form-control:focus {
 	border-color: #209e2e;
@@ -5337,5 +5342,9 @@ footer ul{
 footer ul li a{
     font-size: 13px;
     color: #7a7a7a !important;
+}
+.thumb_img{
+    width: 50px;
+    height: 40px;
 }
 

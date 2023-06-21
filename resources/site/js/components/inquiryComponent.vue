@@ -4,7 +4,7 @@
             <input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما (اجباری)" />
         </div>
 
-        <input type="hidden" name="category_id" :value="category_id">
+        <input type="hidden" name="category_id" :value="this.category_id">
 
         <div class="col-lg-3 col-sm-12 mb-3">
             <input type="text" class="form-control" name="count" placeholder="تعداد محصول (اجباری)" />
@@ -140,11 +140,10 @@
 import DatePicker from 'vue3-persian-datetime-picker'
 export default {
     name: "inquiryComponent.vue",
-    props :['provinces' , 'units' , 'captcha'],
+    props :['provinces' , 'units' , 'captcha' , 'category_id'],
     components: { DatePicker },
     data() {
         return {
-            category_id : 0,
             province_id : 0,
             message : '',
             errors : '',

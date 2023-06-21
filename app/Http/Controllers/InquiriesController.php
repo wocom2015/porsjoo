@@ -13,7 +13,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\In;
+use Intervention\Image\Facades\Image;
 
 
 class InquiriesController extends Controller
@@ -39,7 +41,6 @@ class InquiriesController extends Controller
     }
 
     public function create(Request $request){
-
         //1. checking that pj_available is enough
         $pj_available = auth()->user()->pj_available;
 
@@ -60,7 +61,6 @@ class InquiriesController extends Controller
             return checkValidation($validator , false);
         }
 
-        //3. inserting data
         $data = [
             'name' => $request->name,
             'user_id' => auth()->user()->id,
@@ -82,6 +82,39 @@ class InquiriesController extends Controller
             "ext",
         ];
 
+
+        if ($request->has("picture")) {
+            $name = Str::random(50);
+            $file = $request->file('picture');
+            $extension = $file->getClientOriginalExtension();
+            $file_mime = $file->getMimeType();
+            $fileName = $name . '.' . $extension;
+            $path = 'storage/inquiries/';
+
+            $picture_path = date("Y").'/'.date('m').'/'.date('d');
+
+            $path .= $picture_path.'/';
+            if (in_array($file_mime, ['image/jpeg', 'image/png']) and in_array(strtolower($extension), ['jpg', 'png', 'jpeg'])) {
+                $sizes = [100, 250, 800];
+                $d = getimagesize($file);
+                $width = $d[0];
+                $height = $d[1];
+                $ratio = round($width / $height, 2);
+
+                $request->file('picture')->move($path, $fileName);
+                foreach ($sizes as $size) {
+                    Image::make($path . $fileName)->resize($size, $size / $ratio)->save($path . $name . '-' . $size . '.' . $extension);
+                }
+                unlink($path.$fileName);
+                $data['picture_path'] = $picture_path;
+                $data['picture'] = $name;
+                $data['ext'] = $extension;
+            } else {
+                return back()->with('error', __("messages.picture_format_is_not_correct"));
+            }
+        }
+
+        //3. inserting data
 
         $inquiry = Inquiry::create($data);
 
@@ -191,6 +224,18 @@ class InquiriesController extends Controller
             }
 
             return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->details->address , 'job_name' => $user->details->job_name]];
+        }
+    }
+
+
+    public function details($id , $slug)
+    {
+        $inquiry = Inquiry::findOrFail($id);
+
+        if($inquiry->name == str_replace("-" ," " , $slug)){
+            return view("website.inquiry.details" , compact("inquiry"));
+        }else{
+            abort(404);
         }
     }
 }

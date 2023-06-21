@@ -79,3 +79,32 @@ if(!function_exists("s")){
         return " <span class='text-danger'>*</span>";
     }
 }
+
+if(!function_exists("custom_date_format")){
+    function custom_date_format($date): string
+    {
+        return jdate($date)->format('%A, %d %B %Y');
+    }
+}
+
+
+if(!function_exists('inquiry_pic')){
+    function inquiry_pic($inquiry_id , $size = 100 , $class = "thumb-img" , $img_tag = true){
+
+        $inquiry = \App\Models\Inquiry::find($inquiry_id);
+        if($inquiry){
+            if($inquiry->picture !=''){
+                if($img_tag==true)
+                    return "<img src='".asset("storage/inquiries/".$inquiry->picture_path.'/'.$inquiry->picture.'-'.$size.'.'.$inquiry->ext)."' class='".$class."'  />";
+                else
+                    return asset("storage/inquiries/".$inquiry->picture_path.'/'.$inquiry->picture.'-'.$size.'.'.$inquiry->ext);
+            }else{
+                return null;
+            }
+
+        }else{
+            return null;
+        }
+
+    }
+}

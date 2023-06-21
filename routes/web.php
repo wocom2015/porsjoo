@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class , 'index'])->name('home');
-
-
-
-
 Route::get('/signin', [UsersController::class , 'signin'])->name('signin');
 Route::get('/signup', [UsersController::class , 'signup'])->name('signup');
 Route::post('/signup', [UsersController::class , 'register'])->name('users.register');
@@ -34,8 +30,7 @@ Route::post('/search', [CategoriesController::class , 'search'])->name('search')
 Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
 Route::get('/page/{title}', [HomeController::class , 'page']);
 
-
-
+Route::get('/plans' , [PlansController::class , 'index']);
 
 Route::middleware('auth_user')->group(function () {
     Route::get('/inquiry/request/{category_id}', [InquiriesController::class , 'index'])->name('inquiry-form');
@@ -45,16 +40,13 @@ Route::middleware('auth_user')->group(function () {
     Route::post('/inquiry/reply-info', [InquiriesController::class , 'reply_info']);
     Route::post('/inquiry/replies', [InquiriesController::class , 'replies']);
     Route::post('/inquiry/supplier', [InquiriesController::class , 'supplier']);
+    Route::get('/inquiry/details/{id}/{name}', [InquiriesController::class , 'details']);
     Route::post('/cities', [CitiesController::class , 'index']);
     Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class , 'edit'])->name('profile.edit');
     Route::post('/profile/edit', [ProfileController::class , 'update'])->name('profile.update');
-    Route::get('/plans' , [PlansController::class , 'index']);
     Route::get('/plans/buy/{plan_id}' , [PlansController::class , 'buy']);
     Route::get('/user/logout' , [UsersController::class , 'logout']);
 });
-
-
-
 
 require __DIR__.'/auth.php';
