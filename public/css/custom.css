@@ -48,3 +48,17 @@ select.select2 {
     direction: ltr !important;
     text-align: left !important;
 }
+.user-icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-left: 10px;
+    border: 2px dashed #fff;
+}
+.user-avatar{
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 30px;
+    margin-left: 10px;
+    border: 2px dashed #fff;
+}

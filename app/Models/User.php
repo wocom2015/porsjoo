@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    use HasRoles;
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +26,15 @@ class User extends Authenticatable
         'email',
         'mobile',
         'password',
+        'job_name',
+        'phone',
+        'address',
+        'pm',
+        'pm_mobile',
+        'boss_mobile',
+        'category_id',
+        'description',
+        'logo',
     ];
 
     /**
@@ -57,10 +67,6 @@ class User extends Authenticatable
         return $this->hasMany(Inquiry::class);
     }
 
-    public function details(): HasOne
-    {
-        return $this->hasOne(UserDetail::class);
-    }
 
     public function scopeProfileCompleted($query , $userId): bool
     {
@@ -68,10 +74,10 @@ class User extends Authenticatable
         return (
             $user->name !='' and
             $user->last_name !='' and
-            $user->details->job_name !='' and
+            $user->job_name !='' and
             $user->email != '' and
             $user->mobile != '' and
-            $user->details->category_id !=0
+            $user->category_id !=0
         );
 
     }
@@ -79,6 +85,11 @@ class User extends Authenticatable
 
     public function replies(){
         return $this->hasMany(InquiryReply::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
 

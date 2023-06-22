@@ -22,7 +22,7 @@ const app = createApp({
 });
 app.mount('#app');
 import Vue3PersianDatetimePicker from 'vue3-persian-datetime-picker'
-app.component('DatePicker', Vue3PersianDatetimePicker)
+//app.component('DatePicker', Vue3PersianDatetimePicker)
 
 
 

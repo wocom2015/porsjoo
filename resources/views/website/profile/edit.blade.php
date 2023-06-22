@@ -3,18 +3,8 @@
 @section("content")
     @include("website.layouts.sub_header" , ['title' => 'تغییر مشخصات کاربری'])
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>لطفا موارد زیر را تکمیل نمایید:</strong>
-            <ul class="mr-5 mt-5">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-
-    @endif
-    <form action="/profile/edit" method="post">
+    @include("website.layouts.flash-message")
+    <form action="/profile/edit" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row mb-4">
             <div class="col-lg-4">
@@ -48,62 +38,77 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>{!! __("p.job_name").s() !!}</label>
-                    <input type="text" class="form-control" name="job_name" maxlength="50" value="{{old("job_name" , $user->details->job_name)}}">
+                    <input type="text" class="form-control" name="job_name" maxlength="50" value="{{old("job_name" , $user->job_name)}}">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>{{__("p.phone")}}</label>
-                    <input type="text" class="form-control text-left" name="phone" maxlength="11" value="{{old("phone" , $user->details->phone)}}">
+                    <input type="text" class="form-control text-left" name="phone" maxlength="11" value="{{old("phone" , $user->phone)}}">
                 </div>
             </div>
         </div>
 
         <div class="row mb-4">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label>{{__("p.address")}}</label>
-                    <input type="text" class="form-control" name="address" value="{{old("address" , $user->details->address)}}">
+                    <input type="text" class="form-control" name="address" value="{{old("address" , $user->address)}}">
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label>{{__("p.purchase_manager")}}</label>
-                    <input type="text" class="form-control" name="pm" value="{{old("pm" , $user->details->pm)}}">
+                    <input type="text" class="form-control" name="pm" value="{{old("pm" , $user->pm)}}">
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label>{{__("p.purchase_manager_mobile")}}</label>
-                    <input type="text" class="form-control text-left" name="pm_mobile" value="{{old("pm_mobile" , $user->details->pm_mobile)}}">
+                    <input type="text" class="form-control text-left" name="pm_mobile" value="{{old("pm_mobile" , $user->pm_mobile)}}">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label>{{__("p.boss_mobile")}}</label>
+                    <input type="text" class="form-control text-left" name="boss_mobile" value="{{old("boss_mobile" , $user->boss_mobile)}}">
                 </div>
             </div>
         </div>
 
         <div class="row mb-4">
-            <div class="col-lg-4">
-                <div class="form-group">
-                    <label>{{__("p.boss_mobile")}}</label>
-                    <input type="text" class="form-control text-left" name="boss_mobile" value="{{old("boss_mobile" , $user->details->boss_mobile)}}">
-                </div>
-            </div>
+
             <div class="col-lg-8">
                 <div class="form-group">
                     <label>{!! __("p.category_that_are_active_on_it").s() !!}</label>
                     <select class="form-control" name="category_id">
                         @foreach($categories as $cat)
                             @if($cat->id!=1)
-                                <option value="{{$cat->id}}"  {{($cat->id==$user->details->category_id)?"selected":""}}>{{ str_repeat("--" , $cat->level).$cat->name}}</option>
+                                <option value="{{$cat->id}}"  {{($cat->id==$user->category_id)?"selected":""}}>{{ str_repeat("--" , $cat->level).$cat->name}}</option>
                             @endif
                         @endforeach
                     </select>
                 </div>
             </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label>{!! __("p.logo_or_your_picture") !!}</label>
+                    <input type="file" class="form-control" name="logo" >
+                </div>
+            </div>
+
+            <div class="col-lg-1">
+                <div class="picture-box">
+                    {!! user_picture($user->id , '') !!}
+                </div>
+            </div>
+
+
         </div>
         <div class="row mb-4">
             <div class="col-lg-12">
                 <label>{{__("p.description")}}</label>
-                <textarea class="form-control" name="description" >{{old("description" , $user->details->description)}}</textarea>
+                <textarea class="form-control" name="description" >{{old("description" , $user->description)}}</textarea>
             </div>
         </div>
         <div class="row mb-4">

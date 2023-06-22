@@ -5,17 +5,17 @@
 
     <div class="container">
         <div class="row justify-content-center" style="margin-bottom: 30px">
-            <div class="col-lg-8 col-xs-12 profile-avatar">
+            <div class="col-lg-8 col-xs-12 profile-avatar text-center">
                 <div class="row">
-                    <div class="col-lg-2"><i class="flaticon-onion"
-                                             style="background-image:url('/site/images/person-1.jpg');background-repeat: no-repeat;background-size: cover"></i>
+                    <div class="col-lg-2">
+                        {!! user_picture($user->id , 'user-avatar') !!}
                     </div>
                     <div class="col-lg-6">
                         <span class="top-0"><strong>{{$user->name.' '.$user->last_name}}</strong></span><br>
-                        <span class="top-0">{{$user->details->job_name}}</span><br>
+                        <span class="top-0">{{$user->job_name}}</span><br>
                         <span class="top-0">
-                            @if($user->details->category != null)
-                                {{$user->details->category->name}}
+                            @if($user->category != null)
+                                {{$user->category->name}}
                             @else
                                 مشخص نشده
                             @endif
@@ -66,8 +66,8 @@
                         <i class="bi bi-chat-left text-black" style="font-size: 2rem;"></i>
                     </p>
                     <strong>{!! ($currentPlan =="")
-?"ندارید - "."<a href='/plans'>خرید طرح</a>"
-:$currentPlan !!}</strong>
+                        ?"ندارید - "."<a href='/plans'>خرید طرح</a>"
+                        :$currentPlan !!}</strong>
                 </div>
                 <small>طرح فعلی شما</small>
             </div>
@@ -93,9 +93,7 @@
 
         </div>
 
-        <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}"></inquiry-sent-component>
-
-
+        <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}" :last_3="{{$last_3}}" :last_6="{{$last_3}}" :last_12="{{$last_3}}"></inquiry-sent-component>
 
         <inquiry-list-component :inquiries="{{$relatedInquiries}}" :count="{{$relatedInquiries->count()}}"></inquiry-list-component>
 

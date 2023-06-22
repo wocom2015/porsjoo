@@ -11,9 +11,9 @@
                     <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
                     <strong>{{item.name}}</strong><br>{{item.description}}</div>
                 <div class="col-lg-2">{{item.created}}</div>
-                <div class="col-lg-2"><button @click="view(item.id)" class="btn btn-custom-outline">مشاهده مشخصات</button></div>
-                <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn btn-custom-outline">پاسخ</button> </div>
-                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn btn-custom-outline">پاسخ شما</button> </div>
+                <div class="col-lg-2"><button @click="view(item.id)" class="btn btn-custom-outline mb-1">مشاهده مشخصات</button></div>
+                <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn btn-custom-outline mb-1">پاسخ</button> </div>
+                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn btn-custom-outline mb-1">پاسخ شما</button> </div>
             </div>
 
             <div v-if="this.count===0" class="row mb-2 p-2">
@@ -65,6 +65,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                            <div class="col-lg-12 text-center" v-if="this.inquiry.picture !=''">
+                                <img :src=this.inquiry.pictureSrc style="max-width:100%;max-height: 200px;margin-bottom:30px" />
+                            </div>
                             <div class="col-lg-6"><span>تعداد : </span><strong>{{this.inquiry.count}} {{this.inquiry.unitName}}</strong></div>
                             <div class="col-lg-6"><span>دسته بندی : </span><strong>{{this.inquiry.categoryName}}</strong></div>
                             <div class="col-lg-6"><span>زمان خرید : </span><strong>{{this.inquiry.buy_date}}</strong></div>

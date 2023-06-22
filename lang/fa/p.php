@@ -106,4 +106,5 @@ return [
     'inquiry_date' => 'تاریخ استعلام',
     'pj_per_month' => 'استعلام در ماه',
     'supplier_per_each_inquiry' => 'تامین کننده در هر با استعلام',
+    'logo_or_your_picture' => 'لوگو یا تصویر شما',
 ];

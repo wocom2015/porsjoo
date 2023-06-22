@@ -64,6 +64,7 @@
                         </ul>
                         <div class="others-options d-flex align-items-center">
                             @auth
+                                {!! user_picture(auth()->user()->id) !!}
                                 <a href="/profile" class="text-white" title="برای مشاهده پروفایل خود کلیک کنید">{{auth()->user()->name.' '.auth()->user()->last_name}}</a>
                             @endauth
 

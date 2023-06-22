@@ -22,11 +22,11 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('picture', function(User $user){
-                return user_picture($user , 100 , 'img-thumb' , true);
+                return user_picture($user->id , 'user-avatar');
             })
             ->setRowId('id')
             ->addColumn('category' , function(User $user){
-                return '<strong class="text-success">'.(($user->details != null)?$user->details->category->name.'</strong>':'');
+                return '<strong class="text-success">'.(($user->category)?$user->category->name:'').'</strong>';
             })
             ->addColumn("pj_count" , function (User $user){
                 return Inquiry::where("user_id" , $user->id)->count();

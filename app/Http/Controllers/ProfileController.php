@@ -6,9 +6,13 @@ use App\Models\Category;
 use App\Models\Inquiry;
 use App\Models\InquiryReply;
 use App\Models\User;
+
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -16,36 +20,45 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        $relatedInquiries = Inquiry::where("category_id" , $user->details->category_id)->where("user_id" , '!=' , $user->id)->where("accepted" , 0)->get();
+        $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->get();
 
-        foreach($user->inquiries as $inquiry){
-            $inquiry->provinceName = $inquiry->province->name;
-            $inquiry->repliesCount = $inquiry->replies->count();
-            $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
-            $inquiry->categoryName = $inquiry->category->name;
-            $inquiry->pictureSrc = inquiry_pic($inquiry->id , 100 , "thumb-img" , false);
+
+        if ($user->inquiries->isNotEmpty()) {
+            foreach ($user->inquiries as $inquiry) {
+                $inquiry->provinceName = $inquiry->province->name;
+                $inquiry->repliesCount = $inquiry->replies->count();
+                $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
+                $inquiry->categoryName = $inquiry->category->name;
+                $inquiry->pictureSrc = inquiry_pic($inquiry->id, 100, "thumb-img", false);
+            }
         }
 
-        foreach ($relatedInquiries as $r){
-            $r->provinceName = $r->province->name;
-            $r->created = jdate($r->created_at)->format('%A, %d %B %Y');
-            $r->reply_by_user = InquiryReply::where("user_id" , Auth::user()->id)->where("inquiry_id" , $r->id)->exists();
-            $r->pictureSrc = inquiry_pic($r->id, 100 , "thumb-img" , false);
+        if ($relatedInquiries != null) {
+            foreach ($relatedInquiries as $r) {
+                $r->provinceName = $r->province->name;
+                $r->created = jdate($r->created_at)->format('%A, %d %B %Y');
+                $r->reply_by_user = InquiryReply::where("user_id", Auth::user()->id)->where("inquiry_id", $r->id)->exists();
+                $r->pictureSrc = inquiry_pic($r->id, 100, "thumb-img", false);
+            }
         }
+
+        $last_3 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
+        $last_6 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
+        $last_12 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
 
         $collaborators = []; //TODO : must be changed
 
         $currentPlan = "";
-        return view("website.profile.index" , compact("user" , "relatedInquiries" , "collaborators" , "currentPlan"));
+        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "last_3" , "last_6" , "last_12"));
     }
 
 
-
-    public function edit(){
+    public function edit()
+    {
         $categories = Category::getA(1);
 
         $user = User::find(auth()->user()->id);
-        return view("website.profile.edit" , compact("user" , "categories"));
+        return view("website.profile.edit", compact("user", "categories"));
 
     }
 
@@ -54,28 +67,27 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail(Auth::user()->id);
         $items = [
-            'name' => 'required|string|min:2|max:15' ,
-            'last_name' => 'required|string|min:2|max:20' ,
-            'email' => 'required|email' ,
-            'mobile' => 'required' ,
-            'category_id' => 'required|integer' ,
-            'job_name' => 'required|min:5' ,
+            'name' => 'required|string|min:2|max:15',
+            'last_name' => 'required|string|min:2|max:20',
+            'email' => 'required|email',
+            'mobile' => 'required',
+            'category_id' => 'required|integer',
+            'job_name' => 'required|min:5',
+            'logo' => 'nullable|mimes:jpg,bmp,png'
 
         ];
-        $validator = Validator::make($request->all() ,$items);
+        $validator = Validator::make($request->all(), $items);
 
-        if ( $validator->fails() )
-        {
+        if ($validator->fails()) {
             return back()->withErrors($validator->messages());
         }
-        $user->update([
+
+
+        $data = [
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'mobile' => $request->mobile,
-        ]);
-
-        $user->details->update([
             'job_name' => $request->job_name,
             'phone' => $request->phone,
             'address' => $request->address,
@@ -84,9 +96,34 @@ class ProfileController extends Controller
             'boss_mobile' => $request->boss_mobile,
             'category_id' => $request->category_id,
             'description' => $request->description,
-        ]);
+        ];
+
+        if ($request->has("logo")) {
+            $name = Str::random(20);
+            $file = $request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $name . '.' . $extension;
+            $path = 'storage/users/' . $user->id . '/';
+
+            $d = getimagesize($file);
+            $width = $d[0];
+            $height = $d[1];
+            $ratio = round($width / $height, 2);
+
+            $request->file('logo')->move($path, $fileName);
+            Image::make($path . $fileName)->resize(200, 200 / $ratio)->save($path . $fileName);
+            $data['logo'] = $name . '.' . $extension;
+
+            //delete previous picture
+            if ($user->logo != '')
+                unlink($path . $user->logo);
+
+        }
+        $user->update($data);
 
 
-        return back()->with(['state' => 'success' , 'message' => 'اطلاعات کاربری شما به روز شد']);
+        return back()->with('success', 'اطلاعات کاربری شما به روز شد');
     }
+
+
 }

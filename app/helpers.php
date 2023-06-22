@@ -14,12 +14,13 @@ if(!function_exists("conf")){
 
 if(!function_exists("user_picture"))
 {
-    function user_picture(User $user , $size = 100 , $class="img-thumb" , $fancybox = true){
-        if($user->picture!=''){
-            return (($fancybox==true)?'<a data-fancybox="gallery" href="'.asset('storage/users/'.$user->picture.'-800.'.$user->ext).'">':'').' <img src="'.asset('storage/users/'.$user->picture.'-'.$size.'.'.$user->ext).'" '.(($class!='')?'class="'.$class.'"':'').' alt="'.$user->name.' '.$user->last_name.'">'.(($fancybox==true)?'</a>':'');
+    function user_picture($user_id , $class="user-icon"){
+        $user = User::find($user_id);
+        if($user->logo!=''){
+            return ' <img src="'.asset('storage/users/'.$user->id.'/'.$user->logo).'" class="'.$class.'"/>';
         }else{
             return '<span class="symbol-label">
-                        <img src="/media/svg/avatars/002-'.$user->gender.'.svg" class="h-75 align-self-end '.$class.'" alt="'.$user->name.' '.$user->last_name.'">
+                        <img src="/images/avatar.png" class="h-75 align-self-end '.$class.'" alt="'.$user->name.' '.$user->last_name.'">
                     </span>';
         }
     }

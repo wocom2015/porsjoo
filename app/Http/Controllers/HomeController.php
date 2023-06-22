@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {

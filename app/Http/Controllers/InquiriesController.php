@@ -76,10 +76,7 @@ class InquiriesController extends Controller
             "cheque_enable"=> $request->cheque_enable,
             "sample_enable"=> $request->sample_enable,
             "guarantee_enable" => $request->guarantee_enable,
-            "multiple_supplier" => $request->multiple_supplier,
-            "picture" => "", //TODO
-            "picture_path",
-            "ext",
+            "multiple_supplier" => $request->multiple_supplier
         ];
 
 
@@ -109,6 +106,9 @@ class InquiriesController extends Controller
                 $data['picture_path'] = $picture_path;
                 $data['picture'] = $name;
                 $data['ext'] = $extension;
+
+
+
             } else {
                 return back()->with('error', __("messages.picture_format_is_not_correct"));
             }
@@ -137,6 +137,7 @@ class InquiriesController extends Controller
         $inquiry->buy_date = jdate($inquiry->buy_date)->format('%d %B %Y');
         $inquiry->price = number_format($inquiry->price).' تومان';
         $inquiry->unitName = $inquiry->unit->name;
+        $inquiry->pictureSrc = ($inquiry->picture!='')?asset("/storage/inquiries/".$inquiry->picture_path.'/'.$inquiry->picture.'-800.'.$inquiry->ext):'';
         return ['inquiry' =>  $inquiry, 'state' => 'success'];
     }
 
@@ -223,7 +224,7 @@ class InquiriesController extends Controller
                 $currentUser->update();
             }
 
-            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->details->address , 'job_name' => $user->details->job_name]];
+            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->address , 'job_name' => $user->job_name]];
         }
     }
 

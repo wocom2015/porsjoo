@@ -2,7 +2,10 @@
     <div>
         <div class="content-frame">
             <div class="row p-2">
-                <div class="col-lg-12"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
+                <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
+                <div class="col-lg-3"><span>سه ماه گذشته : </span> <span>{{this.last_3}}</span></div>
+                <div class="col-lg-3"><span>شش ماه گذشته : </span> <span>{{this.last_6}}</span></div>
+                <div class="col-lg-3"><span>یک سال گذشته : </span> <span>{{this.last_12}}</span></div>
             </div>
 
 
@@ -14,10 +17,10 @@
                 <div class="col-lg-2">{{ item.created }}</div>
                 <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
                 <div class="col-lg-2">
-                    <button class="btn btn-custom-outline" @click="view(item.id)">مشاهده مشخصات</button>
+                    <button class="btn btn-custom-outline mb-1" @click="view(item.id)">مشاهده مشخصات</button>
                 </div>
                 <div class="col-lg-2">
-                    <button class="btn btn-custom-outline" @click="viewReplies(item.id)">پاسخ ها
+                    <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">پاسخ ها
                         ({{ item.repliesCount }})
                     </button>
                 </div>
@@ -36,6 +39,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+
+                            <div class="col-lg-6" v-if="this.inquiry.picture !=''">
+                                <img :src=this.inquiry.pictureSrc />
+                            </div>
+
+
                             <div class="col-lg-6"><span>تعداد : </span><strong>{{ this.inquiry.count }}
                                 {{ this.inquiry.unitName }}</strong></div>
                             <div class="col-lg-6">
@@ -159,7 +168,7 @@
 <script>
 export default {
     name: "inquirySentComponent",
-    props: ['inquiries', 'count'],
+    props: ['inquiries', 'count','last_3' , 'last_6' , 'last_12'],
     data() {
         return {
             viewM: false,
