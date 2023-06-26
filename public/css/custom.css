@@ -53,6 +53,7 @@ select.select2 {
     height: 30px;
     border-radius: 15px;
     margin-left: 10px;
+    margin-top: 10px;
     border: 2px dashed #fff;
 }
 .user-avatar{
@@ -62,3 +63,4 @@ select.select2 {
     margin-left: 10px;
     border: 2px dashed #fff;
 }
+
