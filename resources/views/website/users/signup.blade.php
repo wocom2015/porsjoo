@@ -21,26 +21,33 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="text" name="name" class="form-control" value="{{old("name")}}" placeholder="نام خود را وارد نمایید *" /></div>
+                        <label>نام</label>
+                        <div class="form-group"><input type="text" name="name" class="form-control" value="{{old("name")}}" /></div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="text" name="last_name" class="form-control" value="{{old("last_name")}}" placeholder="نام خانوادگی خود را وارد نمایید *" /></div>
+                        <label>نام خانوادگی</label>
+                        <div class="form-group"><input type="text" name="last_name" class="form-control" value="{{old("last_name")}}"/></div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="text" name="job_name" class="form-control" value="{{old("job_name")}}" placeholder="نام کسب و کار خود را وارد نمایید *" /></div>
+                        <label>نام کسب و کار شما</label>
+                        <div class="form-group"><input type="text" name="job_name" class="form-control" value="{{old("job_name")}}"/></div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="text" name="mobile" class="form-control text-left" value="{{old("mobile")}}" maxlength="11" placeholder="{{__("p.mobile_number")." *"}}" /></div>
+                        <label>تلفن همراه</label>
+                        <div class="form-group"><input type="text" name="mobile" class="form-control text-left" value="{{old("mobile")}}" maxlength="11"/></div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="text" name="email" class="form-control text-left" value="{{old("email" , "")}}" autocomplete="off" placeholder="{{__("p.email")." *"}}" /></div>
+                        <label>پست الکترونیک</label>
+                        <div class="form-group"><input type="text" name="email" class="form-control text-left" value="{{old("email" , "")}}" autocomplete="off"  /></div>
                     </div>
 
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="password" name="password" class="form-control text-left" placeholder="{{__("p.password")}}" /></div>
+                        <label>رمز عبور</label>
+                        <div class="form-group"><input type="password" name="password" class="form-control text-left" /></div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="password" name="password_confirmation" class="form-control text-left" placeholder="{{__("p.password_repeat")}}" /></div>
+                        <label>تکرار رمز عبور</label>
+                        <div class="form-group"><input type="password" name="password_confirmation" class="form-control text-left" /></div>
                     </div>
 
                     <div class="col-lg-12">

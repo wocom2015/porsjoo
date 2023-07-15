@@ -18,10 +18,10 @@
             @foreach($lastPJ as $pj)
                 <a href="/inquiry/details/{{$pj->id}}/{{str_replace(" ","-" , $pj->name)}}">
                     <div class="row mb-2 p-2">
-                        <div class="col-lg-3">{{$pj->province->name}}</div>
-                        <div class="col-lg-3"><strong>{{$pj->name}}</strong></div>
-                        <div class="col-lg-3 text-info">{{$pj->category->name}}</div>
-                        <div class="col-lg-3">{{jdate($pj->created_at)->format('%A, %d %B %Y')}}</div>
+                        <div class="col-lg-3 col-6">{{$pj->province->name}}</div>
+                        <div class="col-lg-3 col-6"><strong>{{$pj->name}}</strong></div>
+                        <div class="col-lg-3 col-6 text-info">{{$pj->category->name}}</div>
+                        <div class="col-lg-3 col-6">{{jdate($pj->created_at)->format('%A, %d %B %Y')}}</div>
                     </div>
                 </a>
 

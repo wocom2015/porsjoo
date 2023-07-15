@@ -16,10 +16,12 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="text" name="email" value="{{old("username")}}" class="form-control text-left" placeholder="{{__("p.enter_mobile_or_email")}}" /></div>
+                        <label>{{__("p.enter_mobile_or_email")}}</label>
+                        <div class="form-group"><input type="text" name="email" value="{{old("username")}}" class="form-control"/></div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="form-group"><input type="password" name="password" value="{{old("password")}}" class="form-control text-left" placeholder="رمز عبور" /></div>
+                        <label>{{__("p.password")}}</label>
+                        <div class="form-group"><input type="password" name="password" value="{{old("password")}}" class="form-control" /></div>
                     </div>
 
                     <div class="col-lg-12 text-right">
@@ -35,6 +37,5 @@
                 </div>
             </form>
         </div>
-
     </div>
 @endsection
