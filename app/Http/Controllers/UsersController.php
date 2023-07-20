@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActiveCode;
 use App\Models\User;
-use App\Models\UserDetail;
+use App\Notifications\UserVerify;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
+
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
+    use Kavenegar;
+
     public function signup()
     {
         return view("website.users.signup");
@@ -85,7 +89,7 @@ class UsersController extends Controller
             "job_name" => $request->job_name,
             "category_id" => 0
         ]);
-
+        $this->send_code($user->id);
 
         Auth::loginUsingId($user->id);
         return redirect("/");
@@ -106,5 +110,45 @@ class UsersController extends Controller
     {
         Auth::logout();
         return redirect("/signin");
+    }
+
+    public function send_code($userId = 0){
+
+        if($userId==0){
+            $userId = auth('api')->user()->id;
+        }
+
+        $user = User::find($userId);
+        //generating active code
+        $activeCode = ActiveCode::generateCode($user);
+        $activeCode->expired = 10; //TODO : must become configurable
+
+        Notification::send($user, new UserVerify($activeCode->code));
+        return $activeCode;
+    }
+
+    public function verify(Request $request)
+    {
+        $code = $request->code;
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        $result = ActiveCode::where("code" , $code)
+            ->where("expired_at" , ">=" , now())
+            ->where("user_id" ,'=',$user_id)
+            ->exists();
+
+        if($result){
+            if($user->active==0){
+                $user->active = 1;
+                $user->active_at = now();
+                $user->update();
+                return reply('success' , 'authentication_done_successfully');
+            }else{
+                return reply('success' , 'code_accepted_successfully');
+            }
+        }else{
+            return reply('error' , __("messages.incorrect_code_for_user"));
+        }
     }
 }
