@@ -24,7 +24,7 @@ class ConfigurationController extends Controller
     public function update(Request $request){
 
         $configs = $request->all();
-        $path = storage_path() . '/app/public/configurations/';
+        $path =  'storage/configurations/';
         if($file = $request->file("system_logo")){
             $ext = $file->extension();
             $name = Str::random(10);

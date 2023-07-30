@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
-    use Kavenegar;
+
 
     public function signup()
     {
@@ -33,7 +33,7 @@ class UsersController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "email" => 'required|string',
+            "mobile" => 'required|string',
             "password" => 'required|min:6'
         ]);
 
@@ -41,7 +41,7 @@ class UsersController extends Controller
             return redirect()->back()->withInput()->withErrors($validator);
         }
         //dd($request->all());
-        $credentials1 = $request->only('email', 'password');
+        $credentials1 = $request->only('mobile', 'password');
         if (!Auth::validate($credentials1)):
 
             return redirect()->to('/signin')
@@ -89,7 +89,9 @@ class UsersController extends Controller
             "job_name" => $request->job_name,
             "category_id" => 0
         ]);
+
         $this->send_code($user->id);
+
 
         Auth::loginUsingId($user->id);
         return redirect("/");
@@ -115,7 +117,7 @@ class UsersController extends Controller
     public function send_code($userId = 0){
 
         if($userId==0){
-            $userId = auth('api')->user()->id;
+            $userId = auth()->user()->id;
         }
 
         $user = User::find($userId);
@@ -123,7 +125,8 @@ class UsersController extends Controller
         $activeCode = ActiveCode::generateCode($user);
         $activeCode->expired = 10; //TODO : must become configurable
 
-        Notification::send($user, new UserVerify($activeCode->code));
+
+        //Notification::send($user, new UserVerify($activeCode->code));
         return $activeCode;
     }
 

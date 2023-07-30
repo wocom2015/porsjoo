@@ -78,6 +78,35 @@
     </div>
 </div>
 
+<div class="modal fade" id="delete-confirmation-modal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 21px;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">تایید حذف آیتم</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-custom alert-outline-2x alert-outline-danger fade show mb-5" role="alert">
+                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                    <div class="alert-text">                کاربر گرامی ایا از حذف این آیتم مطمئن هستید؟ بعد از حذف اطلاعات قابل بازگشت نخواهند بود
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">خیر</button>
+                <a onclick='document.getElementById("delete_frm").submit();' target="_blank" type="button" class="btn btn-danger font-bold">بله ، مطمئنم</a>
+
+                <form class="d-none" action="" method="POST" id="delete_frm">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!--begin::Scrolltop-->
@@ -94,6 +123,11 @@
     </g>
 </svg></span></div>
 <script src="/plugins/custom/fancybox/jquery.fancybox.min.js"></script>
+<script>
+    $(document).on("click" , ".delete-button" , function(){
+        $('#delete_frm').attr('action' , $(this).data("route"));
+    })
+</script>
 @yield("scripts")
 </body>
 </html>

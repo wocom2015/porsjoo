@@ -33,14 +33,8 @@ class InquiriesDataTable extends DataTable
             ->addColumn('operations' , function (Inquiry $inquiry){
                 return
                     '<div class="btn-group" role="group">'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$inquiry->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$inquiry->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("users.destroy" , $inquiry->id).'" method="post" id="d-'.$inquiry->id.'">
-                                <input type="hidden" name="_token" value="'.csrf_token().'">
-                                <input type="hidden" name="_method" value="delete">
-                                <i class="text-danger  fas fa-trash ml-2" onclick=\'$("#d-'.$inquiry->id.'").submit()\' title="'.__('p.delete').'"></i>
-                         </form></span>
-                     </div>';
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="javascript:;"  data-route="'.route("inquiries.destroy" , $inquiry->id).'" data-toggle="modal" data-target="#delete-confirmation-modal" title="'.__('p.delete').'" class="delete-button"><i class="text-danger fa fa-trash"></i></a></span>'
+                    ;
             })
             ->addColumn('suppliers' , function (Inquiry $inquiry){
                 return $inquiry->replies()->count();

@@ -28,8 +28,6 @@
 
 @endif
 
-
-
 @if ($message = Session::get('warning'))
     <div class="alert alert-custom alert-light-warning fade show mb-5" role="alert">
         <div class="alert-icon"><i class="flaticon-warning"></i></div>
@@ -40,10 +38,7 @@
             </button>
         </div>
     </div>
-
 @endif
-
-
 
 @if ($message = Session::get('info'))
 
@@ -56,19 +51,15 @@
             </button>
         </div>
     </div>
-
 @endif
 
-
-
 @if ($errors->any())
-
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-
-        <strong>Please check the form below for errors</strong>
-
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
+    <div class="alert alert-custom alert-light-danger fade show mb-5" role="alert">
+        <div class="alert-icon"><i class="flaticon-warning"></i></div>
+        <div>
+            @foreach($errors->all() as  $message)
+                <p class="alert-text">{{ $message }}</p>
+            @endforeach
+        </div>
     </div>
-
 @endif

@@ -4,7 +4,15 @@ namespace App\Http\Controllers\admin;
 
 use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Inquiry;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
 {
@@ -46,7 +54,9 @@ class UsersController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        $title = __("p.edit_user").' '.$user->name.' '.$user->last_name;
+        return view("admin.users.edit" , compact("user" , "title"));
     }
 
     /**
@@ -54,7 +64,37 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $items = [
+            'name' => 'required|string|min:2|max:15',
+            'last_name' => 'required|string|min:2|max:20',
+            'email' => 'required|email',
+            'mobile' => 'required',
+            'job_name' => 'required|min:5',
+            'password' => 'nullable|min:6|confirmed'
+        ];
+        $request->validate($items);
+
+        $data = [
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'job_name' => $request->job_name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'pm' => $request->pm,
+            'pm_mobile' => $request->pm_mobile,
+            'boss_mobile' => $request->boss_mobile,
+            'description' => $request->description,
+        ];
+
+        if($request->password!=''){
+            $data['password'] = Hash::make($request->password);
+        }
+        $user->update($data);
+
+        return back()->with('success', 'اطلاعات کاربری به روز شد');
     }
 
     /**
@@ -62,6 +102,9 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Inquiry::where("user_id" , $id)->delete();
+
+        if(User::where("id" , $id)->delete())
+            return redirect()->route("users.index");
     }
 }

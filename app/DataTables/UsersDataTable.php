@@ -38,13 +38,8 @@ class UsersDataTable extends DataTable
             ->addColumn('operations' , function (User $user){
                 return
                     '<div class="btn-group" role="group">'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$user->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/users/'.$user->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("users.destroy" , $user->id).'" method="post" id="d-'.$user->id.'">
-                                <input type="hidden" name="_token" value="'.csrf_token().'">
-                                <input type="hidden" name="_method" value="delete">
-                                <i class="text-danger  fas fa-trash ml-2" onclick=\'$("#d-'.$user->id.'").submit()\' title="'.__('p.delete').'"></i>
-                         </form></span>
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/admin/users/'.$user->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="javascript:;"  data-route="/admin/users/'.$user->id.'" data-toggle="modal" data-target="#delete-confirmation-modal" title="'.__('p.delete').'" class="delete-button"><i class="text-danger fa fa-trash"></i></a></span>
                      </div>';
             })
             ->editColumn("created_at" , function (User $user){

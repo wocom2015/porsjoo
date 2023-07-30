@@ -109,3 +109,21 @@ if(!function_exists('inquiry_pic')){
 
     }
 }
+
+if(!function_exists('sa')){
+    function sa($address , $class="menu-item-active"){
+        if($_SERVER['REQUEST_URI']==$address)
+            return $class;
+    }
+}
+
+if(!function_exists('sam')){
+    function sam($addresses){
+        foreach($addresses as $address){
+            if($_SERVER['REQUEST_URI']==$address)
+            {
+                return "menu-item-open menu-item-here";
+            }
+        }
+    }
+}

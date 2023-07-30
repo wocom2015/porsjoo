@@ -2,17 +2,16 @@
 
 namespace App\DataTables;
 
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+
 use Yajra\DataTables\Services\DataTable;
 
-class ProductsDataTable extends DataTable
+class PermissionsDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,26 +21,20 @@ class ProductsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('category', function(Product $product){
-                return $product->category->name;
-            })
-            ->addColumn('operations' , function (Product $product){
+            ->setRowId('id')
+            ->addColumn('operations' , function (Permission $permission){
                 return
-                    '<div class="btn-group" role="group">'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/admin/products/'.$product->id.'" target="_blank" title="'.__('p.view_uer_detail').'"><i class="text-success  fas fa-eye"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/admin/products/'.$product->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="javascript:;"  data-route="/admin/products/'.$product->id.'" data-toggle="modal" data-target="#delete-confirmation-modal" title="'.__('p.delete').'" class="delete-button"><i class="text-danger fa fa-trash"></i></a></span>';
-            })
-            ->editColumn("created_at" , function (Product $product){
-                return jdate($product->created_at)->format('%A, %d %B %Y');
-            })
-            ->escapeColumns('operations,publish');
+                    '<div class="btn-group" role="group">'
+                        .'<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/admin/permissions/'.$permission->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>
+                          <span type="button" class="btn btn-outline-secondary btn-icon"><a href="javascript:;"  data-route="/admin/permissions/'.$permission->id.'" data-toggle="modal" data-target="#delete-confirmation-modal" title="'.__('p.delete').'" class="delete-button"><i class="text-danger fa fa-trash"></i></a></span>'.
+                    '</div>';
+            })->escapeColumns('operations');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Product $model): QueryBuilder
+    public function query(Permission $model): QueryBuilder
     {
         return $model->newQuery()->orderBy("id" , "desc");
     }
@@ -52,19 +45,21 @@ class ProductsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('products-table')
+            ->setTableId('permissions-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(1)
-            ->selectStyleSingle()
             ->parameters([
                 'language' => [
                     'url' => url('js/datatables/language.json'),//<--here
                 ],
                 // other configs
             ])
+            ->orderBy(1)
+            ->selectStyleSingle()
             ->buttons([
                 Button::make('excel')->text("خروجی اکسل"),
+                Button::make('csv')->text('خروجی csv'),
+                Button::make('pdf')->text('خروجی pdf'),
                 Button::make('print')->text('چاپ'),
                 Button::make('reset')->text('بارگذاری مجدد'),
                 Button::make('reload')->text('بارگذاری اطلاعات')
@@ -77,10 +72,9 @@ class ProductsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->title('شناسه محصول'),
+            Column::make('id'),
             Column::make('name')->title("نام"),
-            Column::make('category')->title("دسته بندی"),
-            Column::make('created_at')->title('تاریخ ثبت'),
+            Column::make('title')->title("عنوان فارسی"),
             Column::make('operations')->title('اقدامات')
         ];
     }
@@ -90,6 +84,6 @@ class ProductsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Products_' . date('YmdHis');
+        return 'Permission_' . date('YmdHis');
     }
 }

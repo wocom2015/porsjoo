@@ -26,12 +26,7 @@ class PlansDataTable extends DataTable
                 return
                     '<div class="btn-group" role="group">'.
                     '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="/admin/plans/'.$plan->id.'/edit" title="'.__('p.edit').'"><i class="text-primary  fas fa-pencil-alt ml-2"></i></a></span>'.
-                    '<span type="button" class="btn btn-outline-secondary btn-icon"><form action="'.route("plans.destroy" , $plan->id).'" method="post" id="d-'.$plan->id.'">
-                                <input type="hidden" name="_token" value="'.csrf_token().'">
-                                <input type="hidden" name="_method" value="delete">
-                                <i class="text-danger  fas fa-trash ml-2" onclick=\'$("#d-'.$plan->id.'").submit()\' title="'.__('p.delete').'"></i>
-                         </form></span>
-                     </div>';
+                    '<span type="button" class="btn btn-outline-secondary btn-icon"><a href="javascript:;"  data-route="/admin/plans/'.$plan->id.'" data-toggle="modal" data-target="#delete-confirmation-modal" title="'.__('p.delete').'" class="delete-button"><i class="text-danger fa fa-trash"></i></a></span>';
             })
             ->editColumn("created_at" , function (Plan $plan){
                 return jdate($plan->created_at)->format('%A, %d %B %Y');

@@ -57,6 +57,12 @@ class User extends Authenticatable
     ];
 
 
+
+    public function activeCode(): HasMany
+    {
+        return $this->hasMany(ActiveCode::class);
+    }
+
     public function plans(): HasMany
     {
         return $this->hasMany(Plan::class);

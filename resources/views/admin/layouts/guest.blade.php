@@ -26,7 +26,7 @@
             <div class="login-form text-center text-white p-7 position-relative overflow-hidden">
                 <div class="d-flex flex-center mb-15">
                     <a href="#">
-                        <img class="max-h-75px" alt="{{conf("system_title")}}" src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
+                        <img alt="{{conf("system_title")}}" src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
                     </a>
                 </div>
 

@@ -3,8 +3,7 @@
     <div class="brand flex-column-auto " id="kt_brand">
         <!--begin::Logo-->
         <a href="/" class="brand-logo">
-            <img alt="{{conf("system_title")}}" src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
-            <strong class="mt-5 text-white ml-2">{{--{{conf("system_title")}}--}}</strong>
+            <img style="width: 100px;" alt="{{conf("system_title")}}" src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
         </a>
 
         <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
@@ -39,51 +38,83 @@
 
                 <li class="menu-item " aria-haspopup="true"><a href="/admin/profile" class="menu-link "><i
                             class="menu-icon flaticon-profile"></i><span class="menu-text">{{__("p.profile")}}</span></a></li>
-
-                <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover"><a
+                @canany(['manage_users'])
+                <li class="menu-item  menu-item-submenu {!! sam(['/admin/users']) !!}" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="javascript:" class="menu-link menu-toggle"><i class="menu-icon flaticon-web"></i><span
                             class="menu-text">{{__("p.users_related")}}</span><i class="menu-arrow"></i></a>
-                    <div class="menu-submenu "><i class="menu-arrow"></i>
+                    <div class="menu-submenu"><i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item " aria-haspopup="true"><a
+                            @can("manage_users")
+                            <li class="menu-item {!! sa('/admin/users') !!}" aria-haspopup="true"><a
                                     href="/admin/users" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.users_list")}}</span></a></li>
-
+                            @endcan
                         </ul>
                     </div>
                 </li>
-
-                <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover"><a
+                @endcanany
+                @canany(['manage_categories' , 'manage_inquiries' , 'manage_plans'])
+                <li class="menu-item  menu-item-submenu {!! sam(['/admin/categories' , '/admin/inquiries' , '/admin/plans']) !!}" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="javascript:" class="menu-link menu-toggle"><i class="menu-icon flaticon-web"></i><span
                             class="menu-text">{{__("p.pj_related")}}</span><i class="menu-arrow"></i></a>
                     <div class="menu-submenu "><i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item " aria-haspopup="true"><a
+                            @can("manage_categories")
+                            <li class="menu-item {!! sa('/admin/categories') !!}" aria-haspopup="true"><a
                                     href="/admin/categories" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.categories")}}</span></a>
                             </li>
-                            <li class="menu-item " aria-haspopup="true"><a
+                            @endcan
+                            @can("manage_inquiries")
+                            <li class="menu-item {!! sa('/admin/inquiries') !!}" aria-haspopup="true"><a
                                     href="/admin/inquiries" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.inquiries")}}</span></a>
                             </li>
-
-
-                            <li class="menu-item " aria-haspopup="true"><a
+                            @endcan
+                            @can("manage_plans")
+                            <li class="menu-item {!! sa('/admin/plans') !!}" aria-haspopup="true"><a
                                     href="/admin/plans" class="menu-link "><i
                                         class="menu-bullet menu-bullet-dot"><span></span></i><span
                                         class="menu-text">{{__("p.plans")}}</span></a>
                             </li>
-
+                            @endcan
 
                         </ul>
                     </div>
                 </li>
+                @endcanany
 
+                @canany(['manage_roles' , 'manage_permissions'])
+                    <li class="menu-item  menu-item-submenu {!! sam(['/roles' , '/permissions']) !!}" aria-haspopup="true" data-menu-toggle="hover"><a
+                            href="javascript:" class="menu-link menu-toggle"><i class="menu-icon flaticon-security"></i><span
+                                class="menu-text">{{__("p.security_and_permissions")}}</span><i class="menu-arrow"></i></a>
+                        <div class="menu-submenu "><i class="menu-arrow"></i>
+                            <ul class="menu-subnav">
+                                @can('manage_roles')
+                                    <li class="menu-item {!! sa('/roles') !!}" aria-haspopup="true"><a
+                                            href="/admin/roles" class="menu-link "><i
+                                                class="menu-bullet menu-bullet-dot"><span></span></i><span
+                                                class="menu-text">{{__("p.manage_roles")}}</span></a>
+                                    </li>
+                                @endcan
+                                @can('manage_permissions')
+                                    <li class="menu-item {!! sa('/permissions') !!}" aria-haspopup="true"><a
+                                            href="/admin/permissions" class="menu-link "><i
+                                                class="menu-bullet menu-bullet-dot"><span></span></i><span
+                                                class="menu-text">{{__("p.manage_permissions")}}</span></a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
+                @endcanany
+                @can("manage_configurations")
                 <li class="menu-item " aria-haspopup="true"><a href="/admin/configuration" class="menu-link "><i
                             class="menu-icon flaticon2-gear"></i><span class="menu-text">{{__("p.system_configurations")}}</span></a></li>
+                @endcan
 
             </ul>
         </div>

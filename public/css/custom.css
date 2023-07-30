@@ -64,3 +64,8 @@ select.select2 {
     border: 2px dashed #fff;
 }
 
+.ltr{
+    direction: ltr;
+    text-align: left;
+}
+

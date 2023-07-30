@@ -4,9 +4,12 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\ConfigurationController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\InquiriesController;
+use App\Http\Controllers\admin\PermissionsController;
 use App\Http\Controllers\admin\PlansController;
 use App\Http\Controllers\admin\ProfileController;
+use App\Http\Controllers\admin\RolesController;
 use App\Http\Controllers\admin\UsersController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +38,10 @@ Route::middleware('auth_admin')->prefix("admin")->group(function () {
 
     Route::resource('inquiries' , InquiriesController::class);
     Route::resource('plans' , PlansController::class);
+    Route::resource('roles' , RolesController::class);
+    Route::resource('permissions' , PermissionsController::class);
+    Route::post("/roles/save-permissions" , [RolesController::class , 'save_permissions'])->name('roles.savePermissions');
+    Route::post("/roles/get-permissions" , [RolesController::class , 'get_permissions'])->name('roles.getPermissions');
 });
 
 

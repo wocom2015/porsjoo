@@ -19,6 +19,7 @@ class ActiveCode extends Model
 
 
     public function scopeGenerateCode($query , $user){
+
         $code = $this->getAliveCodeForUser($user);
         if($code !=null){
             return $code;
