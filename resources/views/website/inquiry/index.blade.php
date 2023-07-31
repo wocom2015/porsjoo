@@ -14,7 +14,7 @@
                 جهت ثبت اولین PJ ابتدا پروفایل خود را تکمیل کنید
             </div>
             <div class="col-lg-4 col-xs-12 text-center pt-2">
-                <a href="/profile/edit" class="btn btn-custom-outline">
+                <a href="/profile/edit?back-url=/inquiry/request/{{$category->id}}" class="btn btn-custom-outline">
                     ویرایش پروفایل
                 </a>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Inquiry;
+use App\Models\InquiryComment;
 use App\Models\InquiryReply;
 use App\Models\InquirySupplier;
 use App\Models\Province;
@@ -200,6 +201,7 @@ class InquiriesController extends Controller
         if($replies->isNotEmpty()){
             foreach($replies as $r){
                 $r->price = number_format($r->price).' تومان';
+                $r->hasSeen = InquirySupplier::where('inquiry_id' , $r->inquiry_id)->where('user_id' , $r->user_id)->exists();
             }
         }
         return $replies;
@@ -238,5 +240,45 @@ class InquiriesController extends Controller
         }else{
             abort(404);
         }
+    }
+
+
+    public function comment(Request $request){
+        $validator = Validator::make($request->all() ,[
+            'comment' => 'required' ,
+            'supplier_id' => 'required|integer' ,
+            'inquiry_id' => 'required|integer' ,
+        ]);
+
+        if ( $validator->fails() )
+        {
+            return checkValidation($validator , false);
+        }
+
+        $user_id = auth()->user()->id;
+
+        InquiryComment::create([
+            'inquiry_id' => $request->inquiry_id,
+            'supplier_id' => $request->supplier_id,
+            'user_id' => $user_id,
+            'comment' => $request->comment,
+        ]);
+
+        return reply("success" , "your_comment_added_successfully");
+    }
+
+
+    function comment_info(Request $request){
+        $inquiry_id = $request->id;
+        $inquiry = Inquiry::find($inquiry_id);
+        $user_id = $inquiry->user_id;
+        $supplier_id = auth()->user()->id;
+
+        $comment = InquiryComment::where("user_id" , $user_id)->where("supplier_id" , $supplier_id)->where("inquiry_id" , $inquiry_id)->first();
+
+        if($comment != null)
+            return ["comment" => $comment->comment , "comment_time" => jdate($comment->created_at)->format('%A, %d %B %Y H:i')];
+        else
+            return ['comment' => 'هنوز پاسخی از سمت مشتری ارسال نشده است!' , 'comment_time' => ''];
     }
 }

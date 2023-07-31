@@ -107,13 +107,18 @@
                         </div>
 
                         <div class="row" v-show="this.replies.length>0">
-                            <div class="col-lg-4" v-for="item in this.replies">
+                            <div class="col-lg-6" v-for="item in this.replies">
                                 <div class="inquiry-box">
                                     <strong>قیمت : {{ item.price }}</strong>
                                     <p><small>{{ item.description }}</small></p>
 
                                     <button class="btn default-btn" @click="viewSupplier(item.user_id)" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود">
                                         مشاهده اطلاعات تامین کننده
+                                        <i class="bi bi-file-lock2"></i>
+                                    </button>
+
+                                    <button v-if="item.hasSeen==1" class="btn default-btn" style="margin-right: 10px" @click="commentSupplier(item.user_id , item.inquiry_id)" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">
+                                        پاسخ به تامین کننده
                                         <i class="bi bi-file-lock2"></i>
                                     </button>
                                 </div>
@@ -162,6 +167,39 @@
             </div>
         </div>
 
+
+        <div v-show="this.viewC" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            پاسخ به تامین کننده
+                            <small class="text-danger">{{ this.inquiryName }}</small>
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="frmComment">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>نظر شما:</label>
+                                    <textarea name="comment" class="form-control bg-gray"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 mt-2">
+                                    <button type="button" class="btn btn-custom-outline" @click="this.saveC()">ذخیره</button>
+                                </div>
+
+                                <div class="col-lg-12 mt-2 text-info">{{this.message}}</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-custom-outline" @click="this.hideViewC()">متوجه شدم</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -171,16 +209,19 @@ export default {
     props: ['inquiries', 'count','last_3' , 'last_6' , 'last_12'],
     data() {
         return {
+            viewC: false,
             viewM: false,
             viewR: false,
             inquiryName: '',
+            inquiry_id: 0,
             inquiry: [],
             replies: [],
             viewS: false,
             supplier: [],
             supplier_id: 0,
             supplierState : '',
-            supplierMessage : ''
+            supplierMessage : '',
+            message :''
         }
     },
     methods: {
@@ -209,11 +250,36 @@ export default {
         hideView() {
             this.viewM = false;
         },
+        hideViewC() {
+            this.viewC = false;
+        },
         hideViewR() {
             this.viewR = false;
         },
         hideViewS() {
             this.viewS = false;
+        },
+        saveC(){
+            var self = this;
+            var fData = new FormData(document.getElementById("frmComment"));
+            fData.append("inquiry_id" , self.inquiry_id);
+            fData.append("supplier_id" , self.supplier_id);
+            this.errors = '';
+            this.message ='';
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/comment",
+                    data: fData,
+                }
+            )
+                .then(function (response) {
+                    if (response.data.state === 'success'){
+                        self.message = response.data.message;
+                    }else{
+                        self.errors = response.data.message;
+                    }
+                })
         },
         viewReplies(id) {
             this.getInfo(id);
@@ -253,6 +319,11 @@ export default {
                     }
                 })
         },
+        commentSupplier(supplier_id , inquiry_id){
+            this.viewC = true;
+            this.inquiry_id = inquiry_id,
+            this.supplier_id = supplier_id
+        }
 
     }
 }

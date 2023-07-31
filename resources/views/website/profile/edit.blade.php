@@ -6,6 +6,7 @@
     @include("website.layouts.flash-message")
     <form action="/profile/edit" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="back_url" value="{{(isset($_GET['back-url'])?$_GET['back-url']:'')}}">
         <div class="row mb-4">
             <div class="col-lg-4">
                 <div class="form-group">

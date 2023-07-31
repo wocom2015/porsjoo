@@ -13,4 +13,5 @@ return [
     'your_pj_inserted_successfully' => 'استعلام شما با موفقیت ثبت گردید',
     'your_reply_to_inquiry_submitted_successfully' => 'پاسخ شما به استعلام مورد نظر با موفقیت ثبت گردید',
     'not_sufficient_pj_error' => 'تعداد فرصت استعلام شما به پایان رسیده است. برای استعلام جدید یا پاسخ به استعلام به عنوان تامین کننده لطفا طرح جدیدی خریداری نمایید',
+    'your_comment_added_successfully' => 'نظر شما با موفقیت ثبت گردید',
 ];

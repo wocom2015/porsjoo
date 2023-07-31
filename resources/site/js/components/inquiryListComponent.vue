@@ -7,13 +7,14 @@
 
             <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
                 <div class="col-lg-2">{{item.provinceName}}</div>
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
                     <strong>{{item.name}}</strong><br>{{item.description}}</div>
                 <div class="col-lg-2">{{item.created}}</div>
                 <div class="col-lg-2"><button @click="view(item.id)" class="btn btn-custom-outline mb-1">مشاهده مشخصات</button></div>
                 <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn btn-custom-outline mb-1">پاسخ</button> </div>
                 <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn btn-custom-outline mb-1">پاسخ شما</button> </div>
+                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.commentReview(item.id)" class="btn btn-custom-outline mb-1">پاسخ مشتری</button> </div>
             </div>
 
             <div v-if="this.count===0" class="row mb-2 p-2">
@@ -111,6 +112,28 @@
                 </div>
             </div>
         </div>
+
+        <div v-show="this.commentReviewM" class="modal fade show" tabindex="-1" role="dialog" id="commentModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">پاسخ مشتری به استعلام
+                            <small class="text-success">{{this.inquiryName}}</small>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12"><strong>{{this.comment}}</strong></div>
+                            <div class="col-lg-12"><strong>{{this.comment_time}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-custom-outline" @click="this.hideCommentR()">بستن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -123,12 +146,15 @@ export default {
             viewM : false,
             replyM : false,
             replyReviewM : false,
+            commentReviewM : false,
             inquiryName : '',
             inquiry : [],
             id : 0,
             replyMessage : '',
             replyState : '',
-            reply : []
+            reply : [],
+            comment : '',
+            comment_time : '',
         }
     },
     methods:{
@@ -162,6 +188,7 @@ export default {
         hideView(){this.viewM = false;},
         hideReply(){this.replyM = false;},
         hideReplyR(){this.replyReviewM = false;},
+        hideCommentR(){this.commentReviewM = false;},
         sendReply(id){
             var self = this;
             var fData = new FormData(document.getElementById('frmReply'));
@@ -203,6 +230,25 @@ export default {
                     //}
                 })
 
+        },
+
+        commentReview(id){
+            this.commentReviewM =  true;
+            var self = this;
+            self.id = id;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/comment-info",
+                    data: {id : self.id , },
+                }
+            )
+                .then(function (response) {
+                    //if (response.state===200){
+                    self.comment = response.data.comment;
+                    self.comment_time = response.data.comment_time;
+                    //}
+                })
         }
     }
 }

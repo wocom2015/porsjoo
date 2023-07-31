@@ -40,6 +40,8 @@ Route::middleware('auth_user')->group(function () {
     Route::post('/inquiry/reply-info', [InquiriesController::class , 'reply_info']);
     Route::post('/inquiry/replies', [InquiriesController::class , 'replies']);
     Route::post('/inquiry/supplier', [InquiriesController::class , 'supplier']);
+    Route::post('/inquiry/comment', [InquiriesController::class , 'comment']);
+    Route::post('/inquiry/comment-info', [InquiriesController::class , 'comment_info']);
     Route::get('/inquiry/details/{id}/{name}', [InquiriesController::class , 'details']);
     Route::post('/cities', [CitiesController::class , 'index']);
     Route::get('/profile', [ProfileController::class , 'index'])->name('profile');

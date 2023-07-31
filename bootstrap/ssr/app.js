@@ -194,12 +194,15 @@ const _sfc_main$1 = {
       viewM: false,
       replyM: false,
       replyReviewM: false,
+      commentReviewM: false,
       inquiryName: "",
       inquiry: [],
       id: 0,
       replyMessage: "",
       replyState: "",
-      reply: []
+      reply: [],
+      comment: "",
+      comment_time: ""
     };
   },
   methods: {
@@ -237,6 +240,9 @@ const _sfc_main$1 = {
     hideReplyR() {
       this.replyReviewM = false;
     },
+    hideCommentR() {
+      this.commentReviewM = false;
+    },
     sendReply(id) {
       var self = this;
       var fData = new FormData(document.getElementById("frmReply"));
@@ -272,6 +278,21 @@ const _sfc_main$1 = {
         self.reply = response.data;
         self.inquiryName = response.data.name;
       });
+    },
+    commentReview(id) {
+      this.commentReviewM = true;
+      var self = this;
+      self.id = id;
+      axios(
+        {
+          method: "post",
+          url: "/inquiry/comment-info",
+          data: { id: self.id }
+        }
+      ).then(function(response) {
+        self.comment = response.data.comment;
+        self.comment_time = response.data.comment_time;
+      });
     }
   }
 };
@@ -280,13 +301,13 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   if (this.count > 0) {
     _push(`<!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
-      _push(`<div class="row mb-2 p-2"><div class="col-lg-2">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-4">`);
+      _push(`<div class="row mb-2 p-2"><div class="col-lg-2">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-2">`);
       if (item.pictureSrc != null) {
         _push(`<img${ssrRenderAttr("src", item.pictureSrc)} class="thumb_img">`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<strong>${ssrInterpolate(item.name)}</strong><br>${ssrInterpolate(item.description)}</div><div class="col-lg-2">${ssrInterpolate(item.created)}</div><div class="col-lg-2"><button class="btn btn-custom-outline mb-1">مشاهده مشخصات</button></div><div style="${ssrRenderStyle(item.reply_by_user == 0 ? null : { display: "none" })}" class="col-lg-2"><button class="btn btn-custom-outline mb-1">پاسخ</button></div><div style="${ssrRenderStyle(item.reply_by_user == 1 ? null : { display: "none" })}" class="col-lg-2"><button class="btn btn-custom-outline mb-1">پاسخ شما</button></div></div>`);
+      _push(`<strong>${ssrInterpolate(item.name)}</strong><br>${ssrInterpolate(item.description)}</div><div class="col-lg-2">${ssrInterpolate(item.created)}</div><div class="col-lg-2"><button class="btn btn-custom-outline mb-1">مشاهده مشخصات</button></div><div style="${ssrRenderStyle(item.reply_by_user == 0 ? null : { display: "none" })}" class="col-lg-2"><button class="btn btn-custom-outline mb-1">پاسخ</button></div><div style="${ssrRenderStyle(item.reply_by_user == 1 ? null : { display: "none" })}" class="col-lg-2"><button class="btn btn-custom-outline mb-1">پاسخ شما</button></div><div style="${ssrRenderStyle(item.reply_by_user == 1 ? null : { display: "none" })}" class="col-lg-2"><button class="btn btn-custom-outline mb-1">پاسخ مشتری</button></div></div>`);
     });
     _push(`<!--]-->`);
   } else {
@@ -318,7 +339,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   } else {
     _push(`<!---->`);
   }
-  _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_eneable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.replyReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="replyModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ شما به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-6"><span>قیمت شما : </span><strong>${ssrInterpolate(this.reply.price)}</strong></div><div class="col-lg-6"><span>توضیحات شما : </span><strong>${ssrInterpolate(this.reply.description)}</strong></div><div class="col-lg-6"><span>زمان پاسخ : </span><strong>${ssrInterpolate(this.reply.created)}</strong></div><div class="col-lg-6"><span>وضعیت : </span><strong></strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div></div>`);
+  _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_eneable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.replyReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="replyModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ شما به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-6"><span>قیمت شما : </span><strong>${ssrInterpolate(this.reply.price)}</strong></div><div class="col-lg-6"><span>توضیحات شما : </span><strong>${ssrInterpolate(this.reply.description)}</strong></div><div class="col-lg-6"><span>زمان پاسخ : </span><strong>${ssrInterpolate(this.reply.created)}</strong></div><div class="col-lg-6"><span>وضعیت : </span><strong></strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div><div style="${ssrRenderStyle(this.commentReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="commentModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ مشتری به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-12"><strong>${ssrInterpolate(this.comment)}</strong></div><div class="col-lg-12"><strong>${ssrInterpolate(this.comment_time)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div></div>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -332,16 +353,19 @@ const _sfc_main = {
   props: ["inquiries", "count", "last_3", "last_6", "last_12"],
   data() {
     return {
+      viewC: false,
       viewM: false,
       viewR: false,
       inquiryName: "",
+      inquiry_id: 0,
       inquiry: [],
       replies: [],
       viewS: false,
       supplier: [],
       supplier_id: 0,
       supplierState: "",
-      supplierMessage: ""
+      supplierMessage: "",
+      message: ""
     };
   },
   methods: {
@@ -368,11 +392,35 @@ const _sfc_main = {
     hideView() {
       this.viewM = false;
     },
+    hideViewC() {
+      this.viewC = false;
+    },
     hideViewR() {
       this.viewR = false;
     },
     hideViewS() {
       this.viewS = false;
+    },
+    saveC() {
+      var self = this;
+      var fData = new FormData(document.getElementById("frmComment"));
+      fData.append("inquiry_id", self.inquiry_id);
+      fData.append("supplier_id", self.supplier_id);
+      this.errors = "";
+      this.message = "";
+      axios(
+        {
+          method: "post",
+          url: "/inquiry/comment",
+          data: fData
+        }
+      ).then(function(response) {
+        if (response.data.state === "success") {
+          self.message = response.data.message;
+        } else {
+          self.errors = response.data.message;
+        }
+      });
     },
     viewReplies(id) {
       this.getInfo(id);
@@ -408,6 +456,10 @@ const _sfc_main = {
           self.supplierMessage = response.data.message;
         }
       });
+    },
+    commentSupplier(supplier_id, inquiry_id) {
+      this.viewC = true;
+      this.inquiry_id = inquiry_id, this.supplier_id = supplier_id;
     }
   }
 };
@@ -441,9 +493,15 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   }
   _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_eneable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.viewR ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-xl" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> پاسخ ها به استعلام <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div style="${ssrRenderStyle(this.replies.length > 0 ? null : { display: "none" })}" class="alert alert-warning"><strong>توجه:</strong><p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده مشخصات آن ، یکی از فرصت های استعلام شما کم می شود</p></div><div style="${ssrRenderStyle(this.replies.length == 0 ? null : { display: "none" })}" class="alert alert-info"><p>کاربر گرامی ، در حال حاضر هیچ پاسخی برای این استعلام از طرف تامین کنندگان داده نشده است.</p></div><div class="row" style="${ssrRenderStyle(this.replies.length > 0 ? null : { display: "none" })}"><!--[-->`);
   ssrRenderList(this.replies, (item) => {
-    _push(`<div class="col-lg-4"><div class="inquiry-box"><strong>قیمت : ${ssrInterpolate(item.price)}</strong><p><small>${ssrInterpolate(item.description)}</small></p><button class="btn default-btn" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده <i class="bi bi-file-lock2"></i></button></div></div>`);
+    _push(`<div class="col-lg-6"><div class="inquiry-box"><strong>قیمت : ${ssrInterpolate(item.price)}</strong><p><small>${ssrInterpolate(item.description)}</small></p><button class="btn default-btn" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده <i class="bi bi-file-lock2"></i></button>`);
+    if (item.hasSeen == 1) {
+      _push(`<button class="btn default-btn" style="${ssrRenderStyle({ "margin-right": "10px" })}" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید"> پاسخ به تامین کننده <i class="bi bi-file-lock2"></i></button>`);
+    } else {
+      _push(`<!---->`);
+    }
+    _push(`</div></div>`);
   });
-  _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم </button></div></div></div></div><div style="${ssrRenderStyle(this.viewS ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> مشاهده اطلاعات تامین کننده <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div style="${ssrRenderStyle(this.supplierState == "success" ? null : { display: "none" })}" class="row"><div class="col-lg-6"><span>نام تامین کننده : </span><strong>${ssrInterpolate(this.supplier.name)}</strong></div><div class="col-lg-6"><span>شماره تماس : </span><strong>${ssrInterpolate(this.supplier.mobile)}</strong></div><div class="col-lg-6"><span>آدرس : </span><strong>${ssrInterpolate(this.supplier.address)}</strong></div><div class="col-lg-6"><span>نام کسب و کار : </span><strong>${ssrInterpolate(this.supplier.job_name)}</strong></div></div><div style="${ssrRenderStyle(this.supplierState == "error" ? null : { display: "none" })}" class="row"><div class="alert alert-danger">${ssrInterpolate(this.supplierMessage)}</div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم </button></div></div></div></div></div>`);
+  _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم </button></div></div></div></div><div style="${ssrRenderStyle(this.viewS ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> مشاهده اطلاعات تامین کننده <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div style="${ssrRenderStyle(this.supplierState == "success" ? null : { display: "none" })}" class="row"><div class="col-lg-6"><span>نام تامین کننده : </span><strong>${ssrInterpolate(this.supplier.name)}</strong></div><div class="col-lg-6"><span>شماره تماس : </span><strong>${ssrInterpolate(this.supplier.mobile)}</strong></div><div class="col-lg-6"><span>آدرس : </span><strong>${ssrInterpolate(this.supplier.address)}</strong></div><div class="col-lg-6"><span>نام کسب و کار : </span><strong>${ssrInterpolate(this.supplier.job_name)}</strong></div></div><div style="${ssrRenderStyle(this.supplierState == "error" ? null : { display: "none" })}" class="row"><div class="alert alert-danger">${ssrInterpolate(this.supplierMessage)}</div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم </button></div></div></div></div><div style="${ssrRenderStyle(this.viewC ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> پاسخ به تامین کننده <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><form method="post" id="frmComment"><div class="row"><div class="col-lg-12"><label>نظر شما:</label><textarea name="comment" class="form-control bg-gray"></textarea></div></div><div class="row"><div class="col-lg-4 mt-2"><button type="button" class="btn btn-custom-outline">ذخیره</button></div><div class="col-lg-12 mt-2 text-info">${ssrInterpolate(this.message)}</div></div></form></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div></div>`);
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {

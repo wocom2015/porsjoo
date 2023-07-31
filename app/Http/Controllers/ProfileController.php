@@ -121,6 +121,8 @@ class ProfileController extends Controller
         }
         $user->update($data);
 
+        if($request->back_url !='')
+            return redirect($request->back_url);
 
         return back()->with('success', 'اطلاعات کاربری شما به روز شد');
     }

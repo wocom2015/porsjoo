@@ -23,7 +23,7 @@
                 <a href="/page/help"> راهنمای استفاده </a>
             </li>
         </ul>
-        <div class="others-options d-flex align-items-center">
+        <div class="others-options d-flex align-items-center" style="margin-top: -10px">
             @auth
                 {!! user_picture(auth()->user()->id) !!}
                 <a href="/profile" class="text-white"
