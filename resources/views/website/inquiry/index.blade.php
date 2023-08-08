@@ -1,7 +1,7 @@
 @extends("website.layouts.app")
 
 @section("content")
-    @include("website.layouts.sub_header" , ['title' => 'درخواست جدید'])
+    @include("website.layouts.sub_header" , ['title' => 'ثبت درخواست جدید'])
     <label  class="label-info">دسته بندی مورد نظر جهت استعلام :
     <strong>{{$category->name}}</strong>
     </label>

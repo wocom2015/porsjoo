@@ -64,6 +64,14 @@ select.select2 {
     border: 2px dashed #fff;
 }
 
+.user-avatar-big{
+    width: 192px !important;
+    height: 192px !important;
+    border-radius: 100px;
+    margin-left: 10px;
+    border: 2px dashed #fff;
+}
+
 .ltr{
     direction: ltr;
     text-align: left;

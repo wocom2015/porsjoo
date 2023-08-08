@@ -5157,6 +5157,13 @@ footer ul li a{
     margin-left: 10px;
     border: 2px dashed #fff;
 }
+.user-avatar-big{
+    width: 130px !important;
+    height: 130px !important;
+    border-radius: 100px;
+    margin-left: 10px;
+    border: 2px dashed #fff;
+}
 .picture-box{width: 70px;height: 70px;border: 1px dashed #fff;border-radius: 5px}
 .picture-box img{width:100%; height: 100%; object-fit: cover}
 

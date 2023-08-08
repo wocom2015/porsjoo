@@ -29,7 +29,7 @@
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-    "file": "assets/app-2448f911.css",
+    "file": "assets/app-db00577e.css",
     "isEntry": true,
     "src": "resources/site/css/app.css"
   },
@@ -50,7 +50,7 @@
     "src": "resources/site/images/search-icon.png"
   },
   "resources/site/js/app.js": {
-    "file": "assets/app-dbc56bde.js",
+    "file": "assets/app-6e61d9a8.js",
     "imports": [
       "__commonjsHelpers-b75a21f2.js"
     ],

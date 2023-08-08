@@ -27,10 +27,17 @@
         </div>
 
         <div class="col-lg-3 col-sm-12 mb-3">
-            <label class="mt-2">چه زمانی پرداخت می کنید؟</label>
+            <label class="mt-2">زمان تحویل کالا</label>
         </div>
         <div class="col-lg-3 col-sm-12 mb-3">
             <date-picker name="pay_date"></date-picker>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">زمان بستن استعلام</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <date-picker name="close_date"></date-picker>
         </div>
 
         <div class="col-lg-3 col-sm-12 mb-3">
@@ -94,6 +101,20 @@
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked>
+                <label class="form-check-label">خیر</label>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="visit_place_enable" value="1">
+                <label class="form-check-label">بله</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked>
                 <label class="form-check-label">خیر</label>
             </div>
         </div>

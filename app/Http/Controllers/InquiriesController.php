@@ -71,6 +71,7 @@ class InquiriesController extends Controller
             'description' => $request->description,
             'buy_date' => ($request->buy_date !='')?jalali2gregorian($request->buy_date):null,
             'pay_date' => ($request->pay_date !='')?jalali2gregorian($request->pay_date):null,
+            'close_date' => ($request->close_date !='')?jalali2gregorian($request->close_date):null,
             "province_id" => $request->province_id,
             "city_id" => $request->city_id,
             "price" => $request->price,

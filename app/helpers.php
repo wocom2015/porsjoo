@@ -20,7 +20,7 @@ if(!function_exists("user_picture"))
             return ' <img src="'.asset('storage/users/'.$user->id.'/'.$user->logo).'" class="'.$class.'"/>';
         }else{
             return '<span class="symbol-label">
-                        <img src="/images/avatar.png" class="h-75 align-self-end '.$class.'" alt="'.$user->name.' '.$user->last_name.'">
+                        <img src="/images/avatar.png" class="align-self-end '.$class.'" alt="'.$user->name.' '.$user->last_name.'">
                     </span>';
         }
     }

@@ -65,7 +65,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
-                    <label>{{__("p.purchase_manager_mobile")}}</label>
+                    <label>{!! __("p.purchase_manager_mobile").s() !!}</label>
                     <input type="text" class="form-control text-left" name="pm_mobile" value="{{old("pm_mobile" , $user->pm_mobile)}}">
                 </div>
             </div>

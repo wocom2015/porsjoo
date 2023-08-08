@@ -73,7 +73,8 @@ class ProfileController extends Controller
             'mobile' => 'required',
             'category_id' => 'required|integer',
             'job_name' => 'required|min:5',
-            'logo' => 'nullable|mimes:jpg,bmp,png'
+            'logo' => 'nullable|mimes:jpg,bmp,png',
+            'pm_mobile' => 'required'
 
         ];
         $validator = Validator::make($request->all(), $items);
