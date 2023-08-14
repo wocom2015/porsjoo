@@ -22,7 +22,6 @@ class UserVerify extends KavenegarBaseNotification
 
     public function toKavenegar($notifiable)
     {
-
         return (new KavenegarMessage())
             ->verifyLookup('verification',[$this->active_code]);
     }

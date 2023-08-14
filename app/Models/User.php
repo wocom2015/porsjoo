@@ -34,6 +34,7 @@ class User extends Authenticatable
         'boss_mobile',
         'category_id',
         'description',
+        'pj_available',
         'logo',
     ];
 
@@ -56,7 +57,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    use Notifiable;
 
+    public function routeNotificationForKavenegar($driver, $notification = null)
+    {
+        return $this->mobile;
+    }
 
     public function activeCode(): HasMany
     {

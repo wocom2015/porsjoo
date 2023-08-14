@@ -77,3 +77,9 @@ select.select2 {
     text-align: left;
 }
 
+@media (min-width: 1400px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 1320px !important;
+    }
+}
+

@@ -197,6 +197,7 @@
                         </div>
                     </div>
                     <button class="btn btn-success">{{__("p.update")}}</button>
+                </div>
             </form>
         </div>
     </div>

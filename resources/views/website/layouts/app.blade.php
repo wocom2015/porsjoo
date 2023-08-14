@@ -7,7 +7,7 @@
         <title>{{((isset($title))?strip_tags($title).' | ':'').conf('system_title')}}</title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-
+        <link rel="icon" href="{{asset("storage/configurations/".conf('system_logo'))}}" />
 
         @vite('resources/site/css/app.css')
         @vite('resources/site/js/app.js')

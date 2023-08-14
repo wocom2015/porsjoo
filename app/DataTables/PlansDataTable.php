@@ -34,10 +34,13 @@ class PlansDataTable extends DataTable
             ->editColumn("active" , function (Plan $plan){
                 return ($plan->active)?'<span class="text-success">'.__("p.active").'</span>':'<span class="text-default">'.__("p.inactive").'</span>';
             })
+            ->editColumn("picture" , function (Plan $plan){
+                return $plan->picture != ''?'<img class="img-thumb" src="/storage/plans/'.$plan->picture.'" />':'';
+            })
             ->editColumn("price" , function (Plan $plan){
                 return number_format($plan->price).' تومان';
             })
-            ->escapeColumns('operations,active');
+            ->escapeColumns('operations,active,picture');
     }
 
     /**
@@ -80,6 +83,7 @@ class PlansDataTable extends DataTable
     {
         return [
             Column::make('id')->title('شناسه طرح'),
+            Column::make("picture")->title("تصویر"),
             Column::make("name")->title("نام طرح"),
             Column::make("length")->title("مدت زمان اشتراک به ماه"),
             Column::make("pj_per_month")->title("تعداد استعلام در هر ماه"),

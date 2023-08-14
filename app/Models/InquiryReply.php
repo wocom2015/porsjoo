@@ -16,7 +16,11 @@ class InquiryReply extends Model
       'description',
       'score',
       'state_id',
-      'accepted'
+      'accepted',
+      'cheque_enable',
+      'sample_enable',
+      'guarantee_enable',
+      'visit_place_enable'
     ];
 
 

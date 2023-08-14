@@ -15,7 +15,7 @@
                 </div>
 
             @endif
-            <form action="/admin/plans" method="post">
+            <form action="/admin/plans" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
@@ -72,6 +72,13 @@
 								</label>
 							</span>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>{{__("p.plan_picture")}}</label>
+                            <input type="file" class="form-control" name="file">
+                        </div>
+                    </div>
+
 
                     <div class="col-lg-12">
                         <div class="form-group">

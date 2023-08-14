@@ -40,8 +40,8 @@
                     <div class="modal-body">
                         <div class="row">
 
-                            <div class="col-lg-6" v-if="this.inquiry.picture !=''">
-                                <img :src=this.inquiry.pictureSrc />
+                            <div class="col-lg-12 text-center" v-if="this.inquiry.picture !=''" style="overflow-y: scroll;max-height: 250px;padding: 20px">
+                                <img :src=this.inquiry.pictureSrc style="width: 50%"/>
                             </div>
 
 
@@ -111,6 +111,10 @@
                                 <div class="inquiry-box">
                                     <strong>قیمت : {{ item.price }}</strong>
                                     <p><small>{{ item.description }}</small></p>
+                                    <p><small class="ml-10">امکان پرداخت چکی : {{ item.cheque_enable }}</small> |
+                                    <small class="ml-10"> امکان ارسال نمونه : {{ item.sample_enable }}</small> |
+                                    <small class="ml-10"> دارای گارانتی : {{ item.guarantee_enable }}</small> |
+                                    <small class="ml-10">امکان بازدید از محل محصول : {{ item.visit_place_enable }}</small></p>
 
                                     <button class="btn default-btn" @click="viewSupplier(item.user_id)" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود">
                                         مشاهده اطلاعات تامین کننده

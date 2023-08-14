@@ -126,7 +126,8 @@ class UsersController extends Controller
         $activeCode->expired = 10; //TODO : must become configurable
 
 
-        //Notification::send($user, new UserVerify($activeCode->code));
+        Notification::send($user, new UserVerify($activeCode->code));
+
         return $activeCode;
     }
 

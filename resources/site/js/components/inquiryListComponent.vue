@@ -23,7 +23,7 @@
         </div>
 
         <div v-show="this.replyM" class="modal fade show" tabindex="-1" role="dialog" id="replyModal">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">پاسخ به استعلام
@@ -34,20 +34,80 @@
                         <div class="alert alert-warning">توجه : کاربر گرامی با پاسخ به هر استعلام از تعداد امکان استعلام شما یکی کم می شود.</div>
                         <form id="frmReply">
                             <div class="row mb-2">
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-sm-12 col-xs-12">
                                     <label>قیمت پیشنهادی شما (تومان)</label>
                                     <input type="text" name="price" class="form-control text-black text-left bg-gray">
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-lg-9 col-sm-12 col-xs-12">
                                     <label>توضیحات شما</label>
                                     <input type="text" name="description" class="form-control text-black bg-gray">
                                 </div>
+
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <label class="mt-2">امکان فروش به صورت چکی را دارید؟</label>
+                                </div>
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cheque_enable" value="1">
+                                        <label class="form-check-label">بله</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cheque_enable" value="0" checked>
+                                        <label class="form-check-label">خیر</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <label class="mt-2">امکان ارسال نمونه دارید؟</label>
+                                </div>
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sample_enable" value="1">
+                                        <label class="form-check-label">بله</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sample_enable" value="0" checked>
+                                        <label class="form-check-label">خیر</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <label class="mt-2">امکان ضمانت از طرف شما وجود دارد؟</label>
+                                </div>
+                                <div class="col-lg-3 col-sm-12 mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="guarantee_enable" value="1">
+                                        <label class="form-check-label">بله</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked>
+                                        <label class="form-check-label">خیر</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <label class="mt-2">امکان بازدید از مکان خرید وجود دارد؟</label>
+                                </div>
+                                <div class="col-lg-3 col-sm-12 col-xs-12 mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="visit_place_enable" value="1">
+                                        <label class="form-check-label">بله</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked>
+                                        <label class="form-check-label">خیر</label>
+                                    </div>
+                                </div>
                             </div>
                         </form>
-                        <div v-show="replyMessage!==''" :class="replyState">
-                            <p v-if="replyState==='alert alert-danger'" v-for="item in replyMessage">{{item}}</p>
-                            <p v-if="replyState==='alert alert-success'">{{replyMessage}}</p>
+                        <div class="row">
+                            <div class="col-lg-12" v-show="replyMessage!==''" :class="replyState">
+                                <p v-if="replyState==='alert alert-danger'" v-for="item in replyMessage">{{item}}</p>
+                                <p v-if="replyState==='alert alert-success'">{{replyMessage}}</p>
+                            </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn default-btn" @click="this.sendReply(this.id)">ارسال پاسخ</button>
@@ -104,6 +164,10 @@
                             <div class="col-lg-6"><span>توضیحات شما : </span><strong>{{this.reply.description}}</strong></div>
                             <div class="col-lg-6"><span>زمان پاسخ : </span><strong>{{this.reply.created}}</strong></div>
                             <div class="col-lg-6"><span>وضعیت : </span><strong></strong></div> <!--TODO : must be assign-->
+                            <p><small class="ml-10">امکان پرداخت چکی : {{ this.reply.cheque_enable }}</small> |
+                                <small class="ml-10"> امکان ارسال نمونه : {{ this.reply.sample_enable }}</small> |
+                                <small class="ml-10"> دارای گارانتی : {{ this.reply.guarantee_enable }}</small> |
+                                <small class="ml-10">امکان بازدید از محل محصول : {{ this.reply.visit_place_enable }}</small></p>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -166,7 +166,11 @@ class InquiriesController extends Controller
                 'description' => $request->description,
                 'score' => 0,
                 'state_id' => 0,
-                'accepted' => 0
+                'accepted' => 0,
+                'cheque_enable' , $request->cheque_enable ,
+                'sample_enable' , $request->sample_enable ,
+                'guarantee_enable' , $request->guarantee_enable ,
+                'visit_place_enable' , $request->visit_place_enable ,
             ]);
             if($inquiryReply){
                 //decrease pj_available
@@ -189,6 +193,10 @@ class InquiriesController extends Controller
             $reply->created = jdate($reply->created_at)->format('%d %B %Y H:m');
             $reply->name = $reply->inquiry->name;
             $reply->price = number_format($reply->price).' تومان';
+            $reply->cheque_enable = ($reply->cheque_enable==1)?"بلی":"خیر";
+            $reply->sample_enable = ($reply->sample_enable==1)?"بلی":"خیر";
+            $reply->guarantee_enable = ($reply->guarantee_enable==1)?"بلی":"خیر";
+            $reply->visit_place_enable = ($reply->visit_place_enable==1)?"بلی":"خیر";
         }
 
         unset($reply->inquiry);
@@ -203,6 +211,10 @@ class InquiriesController extends Controller
             foreach($replies as $r){
                 $r->price = number_format($r->price).' تومان';
                 $r->hasSeen = InquirySupplier::where('inquiry_id' , $r->inquiry_id)->where('user_id' , $r->user_id)->exists();
+                $r->cheque_enable = ($r->cheque_enable==1)?"بلی":"خیر";
+                $r->sample_enable = ($r->sample_enable==1)?"بلی":"خیر";
+                $r->guarantee_enable = ($r->guarantee_enable==1)?"بلی":"خیر";
+                $r->visit_place_enable = ($r->visit_place_enable==1)?"بلی":"خیر";
             }
         }
         return $replies;

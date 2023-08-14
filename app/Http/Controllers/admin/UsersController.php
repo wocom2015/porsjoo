@@ -84,6 +84,7 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'pm' => $request->pm,
+            'pj_available' => $request->pj_available,
             'pm_mobile' => $request->pm_mobile,
             'boss_mobile' => $request->boss_mobile,
             'description' => $request->description,

@@ -126,4 +126,5 @@ return [
     'edit_user' => 'ویرایش کاربر',
     'change_info' => 'تغییر اطلاعات',
     'pj_available' => 'مقدار pj فعلی',
+    'plan_picture' => 'تصویر طرح',
 ];
