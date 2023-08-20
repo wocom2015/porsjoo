@@ -136,7 +136,9 @@
                             <div class="col-lg-6"><span>استان : </span><strong>{{this.inquiry.provinceName}}</strong></div>
                             <div class="col-lg-6"><span>شهر : </span><strong>{{this.inquiry.cityName}}</strong></div>
                             <div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>{{this.inquiry.price}}</strong></div>
-                            <div class="col-lg-6"><span>امکان خرید چکی : </span><strong>{{(this.inquiry.cheque_eneable)?'بله':'خیر'}}</strong></div>
+                            <div class="col-lg-6"><span>امکان خرید چکی : </span><strong>{{(this.inquiry.cheque_enable)?'بله':'خیر'}}</strong></div>
+                            <div class="col-lg-6"><span>تعداد چک : </span><strong>{{this.inquiry.cheque_count}}</strong></div>
+                            <div class="col-lg-6"><span>درصد نقد : </span><strong>{{this.inquiry.cash_percent}}</strong></div>
                             <div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>{{(this.inquiry.sample_enable)?'بله':'خیر'}}</strong></div>
                             <div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>{{(this.inquiry.guarantee_enable)?'بله':'خیر'}}</strong></div>
                             <div class="col-lg-12"><span>توضیحات : </span><strong>{{this.inquiry.description}}</strong></div>

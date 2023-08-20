@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Inquiry;
+use App\Models\InquiryComment;
 use App\Models\InquiryReply;
+use App\Models\InquirySupplier;
 use App\Models\User;
 
 use Carbon\Carbon;
@@ -45,11 +47,32 @@ class ProfileController extends Controller
         $last_3 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
         $last_6 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
         $last_12 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
+        $collaborators = [];
+        $comments = [];
+        $inquiries = Inquiry::where("user_id" , $user->id)->get();
+        if($inquiries){
+            foreach ($inquiries as $inquiry){
+                $suppliers = InquirySupplier::where("inquiry_id" , $inquiry->id)->get();
+                if($suppliers){
+                    foreach($suppliers as $supplier){
+                        $collaborators[] = User::find($supplier->user_id);
+                    }
+                }
 
-        $collaborators = []; //TODO : must be changed
+                $supplierComments = InquiryComment::where('inquiry_id' , $inquiry->id)->get();
+                if($supplierComments){
+                    foreach($supplierComments as $comment){
+                        $comments[] = [
+                          'supplier' => User::find($comment->supplier_id),
+                          'comment'  => $comment
+                        ];
+                    }
+                }
+            }
+        }
 
         $currentPlan = "";
-        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "last_3" , "last_6" , "last_12"));
+        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "last_3" , "last_6" , "last_12" , "comments"));
     }
 
 
@@ -117,8 +140,10 @@ class ProfileController extends Controller
 
             //delete previous picture
             if ($user->logo != '')
-                unlink($path . $user->logo);
-
+            {
+                if(file_exists($path . $user->logo))
+                   unlink($path . $user->logo);
+            }
         }
         $user->update($data);
 

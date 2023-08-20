@@ -76,6 +76,8 @@ class InquiriesController extends Controller
             "city_id" => $request->city_id,
             "price" => $request->price,
             "cheque_enable"=> $request->cheque_enable,
+            "cheque_count"=> $request->cheque_count,
+            "cash_percent"=> $request->cash_percent,
             "sample_enable"=> $request->sample_enable,
             "guarantee_enable" => $request->guarantee_enable,
             "multiple_supplier" => $request->multiple_supplier

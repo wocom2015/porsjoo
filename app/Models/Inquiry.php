@@ -24,6 +24,8 @@ class Inquiry extends Model
         "city_id",
         "price",
         "cheque_enable",
+        "cheque_count",
+        "cash_percent",
         "sample_enable",
         "guarantee_enable",
         "multiple_supplier",

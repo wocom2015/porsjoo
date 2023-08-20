@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/signin', [UsersController::class , 'signin'])->name('signin');
 Route::get('/signup', [UsersController::class , 'signup'])->name('signup');
+Route::get('/check-code', [UsersController::class , 'check_code'])->name('check-code');
+Route::post('/verify', [UsersController::class , 'verify'])->name('users.verify');
 Route::post('/signup', [UsersController::class , 'register'])->name('users.register');
 Route::post('/signin', [UsersController::class , 'login'])->name('users.login');
 Route::post('/search', [CategoriesController::class , 'search'])->name('search');

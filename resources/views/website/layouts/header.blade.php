@@ -8,7 +8,7 @@
                 <a href="/plans"> طرح ها </a>
             </li>
             <li style="float: right">
-                <a href="/" class="active"> استعلام قیمت </a>
+                <a href="/" class="active"> ثبت pJ </a>
             </li>
             <li style="float: right">
                 <a href="/page/about"> درباره پرسجو </a>

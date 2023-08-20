@@ -1,13 +1,13 @@
 <template>
     <form class="row form-frame" id="frmPJ">
         <div class="col-lg-6 col-sm-12 mb-3">
-            <input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما (اجباری)" />
+            <input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما *" />
         </div>
 
         <input type="hidden" name="category_id" :value="this.category_id">
 
         <div class="col-lg-3 col-sm-12 mb-3">
-            <input type="text" class="form-control" name="count" placeholder="تعداد محصول (اجباری)" />
+            <input type="text" class="form-control" name="count" placeholder="تعداد محصول *" />
         </div>
         <div class="col-lg-3 col-sm-12 mb-3">
             <select class="form-control" name="unit_id">
@@ -76,6 +76,12 @@
             </div>
         </div>
 
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <input type="text" class="form-control" name="cheque_count" placeholder="تعداد چک" />
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی" />
+        </div>
 
         <div class="col-lg-3 col-sm-12 mb-3">
             <label class="mt-2">نیاز به ارسال نمونه است؟</label>
@@ -124,24 +130,6 @@
             <input class="form-control form-control-sm" name="picture" type="file">
         </div>
 
-<!--        <div class="col-lg-6 col-sm-12 mb-3">
-            <div class="form-check mt-4">
-                <input type="hidden" value="0" id="flexCheckChecked" checked="" name="show">
-                <input class="form-check-input checkbox-success" type="checkbox" value="1" >
-                <label class="form-check-label" for="flexCheckChecked">
-                    نمایش محصولات مشابه
-                </label>
-            </div>
-        </div>-->
-        <div class="col-lg-6 col-sm-12 mb-3">
-            <div class="form-check">
-                <input type="hidden" value="0" checked="" name="multiple_supplier">
-                <input class="form-check-input checkbox-success" type="checkbox" value="1" name="multiple_supplier">
-                <label class="form-check-label" for="flexCheckChecked">
-                    ارسال این درخواست برای چند تامین کننده
-                </label>
-            </div>
-        </div>
 
         <div class="default-btn" type="button" @click="submit()">ثبت</div>
 

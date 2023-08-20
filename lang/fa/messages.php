@@ -14,4 +14,6 @@ return [
     'your_reply_to_inquiry_submitted_successfully' => 'پاسخ شما به استعلام مورد نظر با موفقیت ثبت گردید',
     'not_sufficient_pj_error' => 'تعداد فرصت استعلام شما به پایان رسیده است. برای استعلام جدید یا پاسخ به استعلام به عنوان تامین کننده لطفا طرح جدیدی خریداری نمایید',
     'your_comment_added_successfully' => 'نظر شما با موفقیت ثبت گردید',
+    'enter_code_to_your_phone' => 'کد ارسالی به تلفن همراه خود را وارد نمایید',
+    'incorrect_code_for_user' => 'کد تایید ارسال شده صحیح نمی باشد',
 ];

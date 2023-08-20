@@ -127,4 +127,7 @@ return [
     'change_info' => 'تغییر اطلاعات',
     'pj_available' => 'مقدار pj فعلی',
     'plan_picture' => 'تصویر طرح',
+    'enter_mobile' => 'شماره تلفن همراه خود را وارد نمایید',
+    'your_job_name' => 'نام کسب و کار شما',
+    'password_confirmation' => 'تایید رمز عبور',
 ];

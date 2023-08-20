@@ -40,8 +40,16 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         }
-        //dd($request->all());
-        $credentials1 = $request->only('mobile', 'password');
+
+        if (is_numeric($request->mobile)) {
+            $field = 'mobile';
+        } elseif (filter_var($request->mobile, FILTER_VALIDATE_EMAIL)) {
+            $field = 'email';
+        }
+
+
+        request()->merge([$field => $request->mobile]);
+        $credentials1 = $request->only($field, 'password');
         if (!Auth::validate($credentials1)):
 
             return redirect()->to('/signin')
@@ -94,7 +102,7 @@ class UsersController extends Controller
 
 
         Auth::loginUsingId($user->id);
-        return redirect("/");
+        return redirect("/check-code");
     }
 
     public function checkValidation(\Illuminate\Validation\Validator $validator): ResponseFactory|\Illuminate\Contracts\Foundation\Application|null|\Illuminate\Http\Response|\Illuminate\Foundation\Application
@@ -114,9 +122,10 @@ class UsersController extends Controller
         return redirect("/signin");
     }
 
-    public function send_code($userId = 0){
+    public function send_code($userId = 0)
+    {
 
-        if($userId==0){
+        if ($userId == 0) {
             $userId = auth()->user()->id;
         }
 
@@ -126,33 +135,39 @@ class UsersController extends Controller
         $activeCode->expired = 10; //TODO : must become configurable
 
 
-        Notification::send($user, new UserVerify($activeCode->code));
+        //Notification::send($user, new UserVerify($activeCode->code));
 
         return $activeCode;
     }
 
+    public function check_code()
+    {
+        return view("website.users.check_code");
+    }
+
     public function verify(Request $request)
     {
+
         $code = $request->code;
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
 
-        $result = ActiveCode::where("code" , $code)
-            ->where("expired_at" , ">=" , now())
-            ->where("user_id" ,'=',$user_id)
-            ->exists();
+        $result = ActiveCode::where("code", $code)
+            //->where("expired_at" , ">=" , now())
+            ->where("user_id", '=', $user->id)
+            ->first();
 
-        if($result){
-            if($user->active==0){
+        if ($result) {
+            if ($user->active == 0) {
                 $user->active = 1;
                 $user->active_at = now();
                 $user->update();
-                return reply('success' , 'authentication_done_successfully');
-            }else{
-                return reply('success' , 'code_accepted_successfully');
+                return redirect(route("home"));
+            } else {
+                return redirect(route("home"));
             }
-        }else{
-            return reply('error' , __("messages.incorrect_code_for_user"));
+        } else {
+            return back()->with('error', __("messages.incorrect_code_for_user"));
         }
     }
 }

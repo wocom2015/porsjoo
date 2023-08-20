@@ -5005,7 +5005,6 @@ text-align: left
 	margin-top: 15px
 }
 .signup-form form span {
-	display: block;
 	color: #666
 }
 .signup-form form span a {
@@ -5170,4 +5169,10 @@ footer ul li a{
 
 .others-options{
     direction: ltr !important;
+}
+.code-verify{
+    letter-spacing: 50px;
+    text-align: center !important;
+    color: #E14212 !important;
+    font-weight: bold;
 }
