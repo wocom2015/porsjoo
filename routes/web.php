@@ -30,6 +30,7 @@ Route::post('/signup', [UsersController::class , 'register'])->name('users.regis
 Route::post('/signin', [UsersController::class , 'login'])->name('users.login');
 Route::post('/search', [CategoriesController::class , 'search'])->name('search');
 Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
+Route::get('/rules', [HomeController::class , 'rules'])->name('rules');
 Route::get('/page/{title}', [HomeController::class , 'page']);
 
 Route::get('/plans' , [PlansController::class , 'index']);
@@ -43,6 +44,7 @@ Route::middleware('auth_user')->group(function () {
     Route::post('/inquiry/replies', [InquiriesController::class , 'replies']);
     Route::post('/inquiry/supplier', [InquiriesController::class , 'supplier']);
     Route::post('/inquiry/comment', [InquiriesController::class , 'comment']);
+    Route::get('/inquiry/report', [InquiriesController::class , 'report']);
     Route::post('/inquiry/comment-info', [InquiriesController::class , 'comment_info']);
     Route::get('/inquiry/details/{id}/{name}', [InquiriesController::class , 'details']);
     Route::post('/cities', [CitiesController::class , 'index']);

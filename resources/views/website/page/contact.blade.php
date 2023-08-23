@@ -1,8 +1,6 @@
 @extends("website.layouts.app")
 
 @section("content")
-    @include("website.layouts.sub_header" , ['title' => $pageTitle])
-
     <div class="content-frame">
         <p>{{conf("contact_us_text")}}</p>
         <p>{!! __("p.address").' : '.conf("address") !!}</p>

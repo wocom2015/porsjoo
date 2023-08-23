@@ -2,7 +2,6 @@
 
 @section("content")
     <div class="container">
-        @include("website.layouts.sub_header" , ['title' => 'خرید اشتراک'])
 
         <table class="table table-responsive table-bordered">
             <tbody>

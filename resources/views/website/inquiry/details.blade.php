@@ -1,7 +1,6 @@
 @extends("website.layouts.app")
 
 @section("content")
-    @include("website.layouts.sub_header" , ['title' => __("p.inquiry_details").' <span class="text-default">'.$inquiry->name.'</span>'])
 
     <div class="content-frame">
         <div class="row mb-3">

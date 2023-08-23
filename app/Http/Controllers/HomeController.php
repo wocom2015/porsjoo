@@ -32,4 +32,9 @@ class HomeController extends Controller
         $pageTitle = "تماس با ما";
         return view("website.page.contact" , compact( "pageTitle"));
     }
+
+    public function rules(){
+        $pageTitle = "قوانین و مقررات";
+        return view("website.page.rules" , compact( "pageTitle"));
+    }
 }

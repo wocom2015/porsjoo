@@ -2,7 +2,6 @@
 
 @section("content")
     <div class="container">
-        @include("website.layouts.sub_header" , ['title' => 'ثبت نام'])
 
 
             <div style="display: none;">
@@ -49,6 +48,15 @@
                     <div class="col-lg-12">
                         <label>{!! __("p.password_confirmation").s() !!}</label>
                         <div class="form-group"><input type="password" name="password_confirmation" class="form-control text-left" /></div>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" style="display:inline-block !important;margin-left: 5px">
+                        <label>
+                            با
+                            <a href="/rules">قوانین و مقررات سامانه</a>
+                            موافق هستم
+                        </label>
                     </div>
 
                     <div class="col-lg-12">

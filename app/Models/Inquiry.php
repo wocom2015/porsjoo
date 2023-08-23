@@ -32,6 +32,12 @@ class Inquiry extends Model
         "picture",
         "picture_path",
         "ext",
+        "accepted",
+        "accepted_at",
+        "cheque_count",
+        "cash_percent",
+        "close_date",
+        "move_conditions",
     ];
 
 

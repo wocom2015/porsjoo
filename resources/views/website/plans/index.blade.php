@@ -2,7 +2,6 @@
 
 @section("content")
     <div class="container">
-        @include("website.layouts.sub_header" , ['title' => 'خرید اشتراک'])
         <h2 class="text-center header-custom">با خرید اشتراک های پرسجو از مزایای ما بهره مند شوید</h2>
 
         @guest

@@ -1,7 +1,6 @@
 @extends("website.layouts.app")
 
 @section("content")
-    @include("website.layouts.sub_header" , ['title' => 'پروفایل کاربری'])
 
     <div class="container">
         <div class="row justify-content-center" style="margin-bottom: 30px">
@@ -32,33 +31,37 @@
         <div class="row">
             <div class="col-3 text-center">
                 <div class="pj-profile-item ">
+                    <strong style="color: #333">تعداد استعلام</strong>
                     <p class="text-black mb-0">
                         <i class="bi bi-view-list text-black" style="font-size: 2rem;"></i>
                     </p>
                     <strong>{{$user->inquiries()->count()}}</strong>
                 </div>
-                <small>تعداد استعلام</small>
+
             </div>
             <div class="col-3 text-center">
                 <div class="pj-profile-item ">
+                    <strong style="color: #333">تعداد امکان استعلام و پاسخ</strong>
                     <p class="text-black mb-0">
                         <i class="bi bi-dice-5 text-black" style="font-size: 2rem;"></i>
                     </p>
                     <strong>{{$user->pj_available}}</strong>
                 </div>
-                <small>تعداد امکان استعلام و پاسخ</small>
+
             </div>
             <div class="col-3 text-center">
                 <div class="pj-profile-item ">
+                    <strong style="color: #333">تعداد استعلام های مرتبط با شما</strong>
                     <p class="text-black mb-0">
                         <i class="bi bi-chat-left text-black" style="font-size: 2rem;"></i>
                     </p>
                     <strong>{{$relatedInquiries->count()}}</strong>
                 </div>
-                <small>تعداد استعلام های مرتبط با شما</small>
+
             </div>
             <div class="col-3 text-center">
                 <div class="pj-profile-item ">
+                    <strong style="color: #333">طرح فعلی شما</strong>
                     <p class="text-black mb-0">
                         <i class="bi bi-chat-left text-black" style="font-size: 2rem;"></i>
                     </p>
@@ -66,7 +69,7 @@
                         ?"ندارید - "."<a href='/plans'>خرید طرح</a>"
                         :$currentPlan !!}</strong>
                 </div>
-                <small>طرح فعلی شما</small>
+
             </div>
         </div>
 
@@ -81,7 +84,7 @@
                     </a>
                 </div>
             @else
-                <div class="col-lg-4 col-sm-12 text-center pt-2">
+                <div class="col-lg-12 col-sm-12 text-center pt-2">
                     <a href="#" class=" default-btn"> ثبت درخواست جدید </a>
                 </div>
             @endif

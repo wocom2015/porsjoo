@@ -130,4 +130,5 @@ return [
     'enter_mobile' => 'شماره تلفن همراه خود را وارد نمایید',
     'your_job_name' => 'نام کسب و کار شما',
     'password_confirmation' => 'تایید رمز عبور',
+    'rules_text' => 'متن قوانین و مقررات',
 ];

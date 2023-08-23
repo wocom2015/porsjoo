@@ -130,6 +130,11 @@
             <input class="form-control form-control-sm" name="picture" type="file">
         </div>
 
+        <div class="col-lg-12 col-sm-12 mb-3">
+            <label for="formFileSm" class="form-label">در صورت نیاز به حمل و نقل ، شرایط استعلام چیست؟</label>
+            <textarea class="form-control" name="move_conditions"></textarea>
+        </div>
+
 
         <div class="default-btn" type="button" @click="submit()">ثبت</div>
 

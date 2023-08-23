@@ -1,7 +1,6 @@
 @extends("website.layouts.app")
 
 @section("content")
-    @include("website.layouts.sub_header" , ['title' => 'تغییر مشخصات کاربری'])
 
     @include("website.layouts.flash-message")
     <form action="/profile/edit" method="post" enctype="multipart/form-data">

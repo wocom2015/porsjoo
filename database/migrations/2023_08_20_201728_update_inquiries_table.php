@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::table("inquiries" , function (Blueprint $table){
            $table->integer("cheque_count")->nullable();
            $table->integer("cash_percent")->nullable();
+           $table->dateTime("close_date")->nullable();
+           $table->string("move_conditions")->nullable();
         });
     }
 
@@ -25,6 +27,8 @@ return new class extends Migration
         Schema::table("inquiries" , function (Blueprint $table){
             $table->dropColumn("cheque_count");
             $table->dropColumn("cash_percent");
+            $table->dropColumn("close_date");
+            $table->dropColumn("move_conditions");
         });
     }
 };

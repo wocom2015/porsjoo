@@ -11,6 +11,7 @@ use App\Models\Province;
 use App\Models\Unit;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -80,7 +81,8 @@ class InquiriesController extends Controller
             "cash_percent"=> $request->cash_percent,
             "sample_enable"=> $request->sample_enable,
             "guarantee_enable" => $request->guarantee_enable,
-            "multiple_supplier" => $request->multiple_supplier
+            "multiple_supplier" => $request->multiple_supplier,
+            "move_conditions" => $request->move_conditions,
         ];
 
 
@@ -295,5 +297,15 @@ class InquiriesController extends Controller
             return ["comment" => $comment->comment , "comment_time" => jdate($comment->created_at)->format('%A, %d %B %Y H:i')];
         else
             return ['comment' => 'هنوز پاسخی از سمت مشتری ارسال نشده است!' , 'comment_time' => ''];
+    }
+
+
+    function report(){
+        $title = "گزارش استعلام های ارسالی";
+        $user =  Auth::user();
+        $last_3 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(3))->count();
+        $last_6 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
+        $last_12 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(12))->count();
+        return view("website.inquiry.report" , compact("title" , "last_3" , "last_6" , "last_12"));
     }
 }

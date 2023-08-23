@@ -154,6 +154,16 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
+                                        <label>{{__("p.rules_text")}}</label>
+                                        <textarea class="form-control" name="rules_text"
+                                                  placeholder="{{__("p.rules_text")}}"> {{(isset($configs['rules_text']))?$configs['rules_text']:''}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
                                         <label>{{__("p.partner_with_us_text")}}</label>
                                         <textarea class="form-control" name="partner_with_us_text"
                                                   placeholder="{{__("p.partner_with_us_text")}}"> {{(isset($configs['partner_with_us_text']))?$configs['partner_with_us_text']:''}}</textarea>

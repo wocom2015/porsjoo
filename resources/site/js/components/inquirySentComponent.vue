@@ -3,9 +3,8 @@
         <div class="content-frame">
             <div class="row p-2">
                 <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
-                <div class="col-lg-3"><span>سه ماه گذشته : </span> <span>{{this.last_3}}</span></div>
-                <div class="col-lg-3"><span>شش ماه گذشته : </span> <span>{{this.last_6}}</span></div>
-                <div class="col-lg-3"><span>یک سال گذشته : </span> <span>{{this.last_12}}</span></div>
+                <div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div>
+
             </div>
 
 

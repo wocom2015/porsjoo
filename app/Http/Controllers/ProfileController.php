@@ -44,9 +44,7 @@ class ProfileController extends Controller
             }
         }
 
-        $last_3 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
-        $last_6 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
-        $last_12 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
+
         $collaborators = [];
         $comments = [];
         $inquiries = Inquiry::where("user_id" , $user->id)->get();
