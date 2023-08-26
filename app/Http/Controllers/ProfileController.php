@@ -24,7 +24,6 @@ class ProfileController extends Controller
         $user = User::find(auth()->user()->id);
         $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->get();
 
-
         if ($user->inquiries->isNotEmpty()) {
             foreach ($user->inquiries as $inquiry) {
                 $inquiry->provinceName = $inquiry->province->name;
@@ -44,10 +43,9 @@ class ProfileController extends Controller
             }
         }
 
-
         $collaborators = [];
         $comments = [];
-        $inquiries = Inquiry::where("user_id" , $user->id)->get();
+        $inquiries = Inquiry::where("user_id" , $user->id)->limit(10)->offset(0)->get();
         if($inquiries){
             foreach ($inquiries as $inquiry){
                 $suppliers = InquirySupplier::where("inquiry_id" , $inquiry->id)->get();
@@ -68,9 +66,9 @@ class ProfileController extends Controller
                 }
             }
         }
-
+        $type = "profile";
         $currentPlan = "";
-        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "last_3" , "last_6" , "last_12" , "comments"));
+        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "comments" , "type"));
     }
 
 

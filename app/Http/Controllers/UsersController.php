@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActiveCode;
+use App\Models\Inquiry;
+use App\Models\InquiryComment;
+use App\Models\InquirySupplier;
 use App\Models\User;
 use App\Notifications\UserVerify;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -135,7 +138,7 @@ class UsersController extends Controller
         $activeCode->expired = 10; //TODO : must become configurable
 
 
-        //Notification::send($user, new UserVerify($activeCode->code));
+        Notification::send($user, new UserVerify($activeCode->code));
 
         return $activeCode;
     }
@@ -169,5 +172,33 @@ class UsersController extends Controller
         } else {
             return back()->with('error', __("messages.incorrect_code_for_user"));
         }
+    }
+
+
+    function profile($userId){
+        $user = User::find($userId);
+        $comments = [];
+        $inquiries = Inquiry::where("user_id" , $user->id)->limit(10)->offset(0)->get();
+        if($inquiries){
+            foreach ($inquiries as $inquiry){
+                $suppliers = InquirySupplier::where("inquiry_id" , $inquiry->id)->get();
+                if($suppliers){
+                    foreach($suppliers as $supplier){
+                        $collaborators[] = User::find($supplier->user_id);
+                    }
+                }
+
+                $supplierComments = InquiryComment::where('inquiry_id' , $inquiry->id)->get();
+                if($supplierComments){
+                    foreach($supplierComments as $comment){
+                        $comments[] = [
+                            'supplier' => User::find($comment->supplier_id),
+                            'comment'  => $comment
+                        ];
+                    }
+                }
+            }
+        }
+        return view("website.users.profile" , compact("user","collaborators",  "comments" ));
     }
 }

@@ -1,42 +1,92 @@
 <template>
-    <div class="row align-content-center">
-        <div class="search-box col-lg-12 mt-10">
-            <form class="search-form">
-                <input class="search-input" ref="search" @click="showSearch()" @keyup="showResult()" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search">
+    <div>
 
-                <div class="search-result" v-show="this.result && phrase.length >=3">
-                    <div class="d-flex bd-highlight" v-show="searchResult.length>0" v-for="item in searchResult">
-                        <div class="p-1 flex-fill bd-highlight mt-2 s-t"><a :href="item.url" >{{item.name}}</a></div>
+        <div class="row align-content-center">
+            <div class="search-box col-lg-12 mt-10">
+                <form class="search-form">
+                    <input class="search-input" ref="search" @click="showSearch()" @keyup="showResult()" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search">
+
+                    <div class="search-result" v-show="this.result && phrase.length >=3">
+                        <div class="d-flex bd-highlight" v-show="searchResult.length>0" v-for="item in searchResult">
+                            <div class="p-1 flex-fill bd-highlight mt-2 s-t" @click="this.searchCat(item.id)">{{item.name}}</div>
+                        </div>
+                        <div class="text-center" v-show="this.showMore" @click="showMoreResult()">
+                            مشاهده بیشتر...
+                        </div>
                     </div>
-                    <div class="text-center" v-show="this.showMore" @click="showMoreResult()">
-                        مشاهده بیشتر...
+                    <div class="search-result" v-show="this.result  && phrase.length >=3 && searchResult.length===0">
+                        هیچ نتیجه ای برای جستجوی شما یافت نشد
                     </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="content-frame">
+            <div class="row p-2">
+                <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
+            </div>
+            <div class="row p-2">
+                <div class="col-lg-3 col-6">استان</div>
+                <div class="col-lg-3 col-6"><strong>نام محصول</strong></div>
+                <div class="col-lg-3 col-6">دسته</div>
+                <div class="col-lg-3 col-6">زمان پایان استعلام</div>
+            </div>
+
+            <a v-for="item in this.inquiries" :href="item.url">
+                <div class="row mb-2 p-2">
+                    <div class="col-lg-3 col-6">{{item.provinceName}}</div>
+                    <div class="col-lg-3 col-6"><strong>{{item.name}}</strong></div>
+                    <div class="col-lg-3 col-6">{{item.categoryName}}</div>
+                    <div class="col-lg-3 col-6">{{item.closeDate}}</div>
                 </div>
+            </a>
 
-                <div class="search-result" v-show="this.result  && phrase.length >=3 && searchResult.length===0">
+            <div class="row">
+                <div class="search-result" v-show=" inquiries.length===0">
                     هیچ نتیجه ای برای جستجوی شما یافت نشد
                 </div>
-            </form>
+            </div>
+
         </div>
     </div>
+
 </template>
 
 <script>
 export default {
     name: "searchComponent.vue",
+    props:['lastpj'],
     data() {
         return {
+            inquiries : [],
             result : false,
             phrase : '',
             searchResult: [],
             searchLimit: 5,
             offset: 0,
-            showMore : false
+            showMore : false,
+            catId: 0,
         }
     },
     methods:{
         showSearch(){
             this.result = true;
+        },
+        searchCat(catId){
+            var self = this;
+            self.catId = catId;
+            axios(
+                {
+                    method: "post",
+                    url: "/search/inquiry",
+                    data: {catId:self.catId , o:self.offset}
+                }
+            )
+                .then(function(response){
+                    self.inquiries = response.data.data;
+                    self.result = false;
+                });
+
         },
         showResult(){
             if(this.$refs.search.value.length>2){
@@ -51,9 +101,8 @@ export default {
                 )
                     .then(function(response){
                         self.result = true;
-                        console.log(response.data);
                         if(response.data.categories.length>0 && self.$refs.search.value.length>2){
-                            console.log("salam");
+
                             self.searchResult = response.data.categories;
 
                             self.showMore = response.data.hasMore;
@@ -76,6 +125,9 @@ export default {
             this.showResult();
         }
     },
+    mounted() {
+        this.inquiries = this.lastpj;
+    }
 
 }
 </script>

@@ -15,7 +15,7 @@ class CategorySearch extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'url' => '/inquiry/request/'.$this->id,
+            'id' => $this->id,
             'name' => $this->name,
         ];
     }

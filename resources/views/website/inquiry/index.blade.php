@@ -1,9 +1,6 @@
 @extends("website.layouts.app")
 
 @section("content")
-    <label  class="label-info">دسته بندی مورد نظر جهت استعلام :
-    <strong>{{$category->name}}</strong>
-    </label>
     <p>شما می توانید از طریق pj ها همزمان از چندین فروشنده استعلام قیمت بگیرید</p>
 
 
@@ -13,13 +10,13 @@
                 جهت ثبت اولین PJ ابتدا پروفایل خود را تکمیل کنید
             </div>
             <div class="col-lg-4 col-xs-12 text-center pt-2">
-                <a href="/profile/edit?back-url=/inquiry/request/{{$category->id}}" class="btn btn-custom-outline">
+                <a href="/profile/edit?back-url=/inquiry/request" class="btn btn-custom-outline">
                     ویرایش پروفایل
                 </a>
             </div>
         </div>
 
     @else
-        <inquiry-component :category_id="{{$category->id}}" :provinces="{{$provinces}}" :units="{{$units}}"></inquiry-component>
+        <inquiry-component :categories="{{$categories}}" :provinces="{{$provinces}}" :units="{{$units}}"></inquiry-component>
     @endif
 @endsection

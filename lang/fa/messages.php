@@ -16,4 +16,5 @@ return [
     'your_comment_added_successfully' => 'نظر شما با موفقیت ثبت گردید',
     'enter_code_to_your_phone' => 'کد ارسالی به تلفن همراه خود را وارد نمایید',
     'incorrect_code_for_user' => 'کد تایید ارسال شده صحیح نمی باشد',
+    'close_date_smaller_than_delivery_date' => 'زمان بستن استعلام باید قبل از زمان تحویل کالا باشد',
 ];

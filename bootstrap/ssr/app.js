@@ -1,8 +1,8 @@
 import "bootstrap";
 import axios$1 from "axios";
 import { createApp } from "vue/dist/vue.esm-bundler";
-import { mergeProps, useSSRContext, resolveComponent } from "vue";
-import { ssrRenderAttrs, ssrRenderStyle, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderComponent, ssrRenderClass } from "vue/server-renderer";
+import { ssrRenderAttrs, ssrRenderStyle, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass } from "vue/server-renderer";
+import { useSSRContext, resolveComponent, mergeProps } from "vue";
 import DatePicker from "vue3-persian-datetime-picker";
 window.axios = axios$1;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -15,19 +15,36 @@ const _export_sfc = (sfc, props) => {
 };
 const _sfc_main$4 = {
   name: "searchComponent.vue",
+  props: ["lastpj"],
   data() {
     return {
+      inquiries: [],
       result: false,
       phrase: "",
       searchResult: [],
       searchLimit: 5,
       offset: 0,
-      showMore: false
+      showMore: false,
+      catId: 0
     };
   },
   methods: {
     showSearch() {
       this.result = true;
+    },
+    searchCat(catId) {
+      var self = this;
+      self.catId = catId;
+      axios(
+        {
+          method: "post",
+          url: "/search/inquiry",
+          data: { catId: self.catId, o: self.offset }
+        }
+      ).then(function(response) {
+        self.inquiries = response.data.data;
+        self.result = false;
+      });
     },
     showResult() {
       if (this.$refs.search.value.length > 2) {
@@ -41,9 +58,7 @@ const _sfc_main$4 = {
           }
         ).then(function(response) {
           self.result = true;
-          console.log(response.data);
           if (response.data.categories.length > 0 && self.$refs.search.value.length > 2) {
-            console.log("salam");
             self.searchResult = response.data.categories;
             self.showMore = response.data.hasMore;
           } else {
@@ -62,14 +77,21 @@ const _sfc_main$4 = {
       this.searchLimit += this.searchLimit;
       this.showResult();
     }
+  },
+  mounted() {
+    this.inquiries = this.lastpj;
   }
 };
 function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "row align-content-center" }, _attrs))}><div class="search-box col-lg-12 mt-10"><form class="search-form"><input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : { display: "none" })}"><!--[-->`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : { display: "none" })}"><!--[-->`);
   ssrRenderList($data.searchResult, (item) => {
-    _push(`<div class="d-flex bd-highlight" style="${ssrRenderStyle($data.searchResult.length > 0 ? null : { display: "none" })}"><div class="p-1 flex-fill bd-highlight mt-2 s-t"><a${ssrRenderAttr("href", item.url)}>${ssrInterpolate(item.name)}</a></div></div>`);
+    _push(`<div class="d-flex bd-highlight" style="${ssrRenderStyle($data.searchResult.length > 0 ? null : { display: "none" })}"><div class="p-1 flex-fill bd-highlight mt-2 s-t">${ssrInterpolate(item.name)}</div></div>`);
   });
-  _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : { display: "none" })}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : { display: "none" })}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div>`);
+  _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : { display: "none" })}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : { display: "none" })}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-6">استان</div><div class="col-lg-3 col-6"><strong>نام محصول</strong></div><div class="col-lg-3 col-6">دسته</div><div class="col-lg-3 col-6">زمان پایان استعلام</div></div><!--[-->`);
+  ssrRenderList(this.inquiries, (item) => {
+    _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-6"><strong>${ssrInterpolate(item.name)}</strong></div><div class="col-lg-3 col-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-3 col-6">${ssrInterpolate(item.closeDate)}</div></div></a>`);
+  });
+  _push(`<!--]--><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : { display: "none" })}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
 }
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
@@ -102,7 +124,7 @@ _sfc_main$3.setup = (props, ctx) => {
 const dateComponent = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
 const _sfc_main$2 = {
   name: "inquiryComponent.vue",
-  props: ["provinces", "units", "captcha", "category_id"],
+  props: ["provinces", "units", "captcha", "categories"],
   components: { DatePicker },
   data() {
     return {
@@ -157,8 +179,12 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<form${ssrRenderAttrs(mergeProps({
     class: "row form-frame",
     id: "frmPJ"
-  }, _attrs))}><div class="col-lg-6 col-sm-12 mb-3"><input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما (اجباری)"></div><input type="hidden" name="category_id"${ssrRenderAttr("value", this.category_id)}><div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="count" placeholder="تعداد محصول (اجباری)"></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="unit_id"><option value="">-- واحد --</option><!--[-->`);
+  }, _attrs))}><div class="col-lg-6 col-sm-12 mb-3"><input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما *"></div><div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="count" placeholder="تعداد محصول *"></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="unit_id"><option value="">-- واحد --</option><!--[-->`);
   ssrRenderList($props.units, (item) => {
+    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
+  });
+  _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">دسته بندی محصول</label></div><div class="col-lg-9 col-sm-12 mb-3"><select class="form-control" name="category_id"><option value="">-- انتخاب کنید --</option><!--[-->`);
+  ssrRenderList($props.categories, (item) => {
     _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
   });
   _push(`<!--]--></select></div><div class="col-lg-12 col-sm-12 mb-3"><textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">چه زمانی قصد خرید دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
@@ -175,7 +201,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   ssrRenderList($data.cities, (item) => {
     _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
   });
-  _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input type="text" class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><div class="form-check"><input type="hidden" value="0" checked="" name="multiple_supplier"><input class="form-check-input checkbox-success" type="checkbox" value="1" name="multiple_supplier"><label class="form-check-label" for="flexCheckChecked"> ارسال این درخواست برای چند تامین کننده </label></div></div><div class="default-btn" type="button">ثبت</div><div class="content-frame text-success font-weight-bold" style="${ssrRenderStyle(this.message !== "" ? null : { display: "none" })}">${ssrInterpolate(this.message)}</div><div class="content-frame" style="${ssrRenderStyle(this.errors !== "" ? null : { display: "none" })}"><p>لطفا خطاهای زیر را برطرف نمایید:</p><ul><!--[-->`);
+  _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input type="text" class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cheque_count" placeholder="تعداد چک"></div><div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-12 col-sm-12 mb-3"><label for="formFileSm" class="form-label">در صورت نیاز به حمل و نقل ، شرایط استعلام چیست؟</label><textarea class="form-control" name="move_conditions"></textarea></div><div class="default-btn" type="button">ثبت</div><div class="content-frame text-success font-weight-bold" style="${ssrRenderStyle(this.message !== "" ? null : { display: "none" })}">${ssrInterpolate(this.message)}</div><div class="content-frame" style="${ssrRenderStyle(this.errors !== "" ? null : { display: "none" })}"><p>لطفا خطاهای زیر را برطرف نمایید:</p><ul><!--[-->`);
   ssrRenderList(this.errors, (item) => {
     _push(`<li class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i> <small>${ssrInterpolate(item)}</small></li>`);
   });
@@ -341,7 +367,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   } else {
     _push(`<!---->`);
   }
-  _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_eneable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.replyReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="replyModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ شما به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-6"><span>قیمت شما : </span><strong>${ssrInterpolate(this.reply.price)}</strong></div><div class="col-lg-6"><span>توضیحات شما : </span><strong>${ssrInterpolate(this.reply.description)}</strong></div><div class="col-lg-6"><span>زمان پاسخ : </span><strong>${ssrInterpolate(this.reply.created)}</strong></div><div class="col-lg-6"><span>وضعیت : </span><strong></strong></div><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(this.reply.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(this.reply.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(this.reply.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(this.reply.visit_place_enable)}</small></p></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div><div style="${ssrRenderStyle(this.commentReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="commentModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ مشتری به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-12"><strong>${ssrInterpolate(this.comment)}</strong></div><div class="col-lg-12"><strong>${ssrInterpolate(this.comment_time)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div></div>`);
+  _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>تعداد چک : </span><strong>${ssrInterpolate(this.inquiry.cheque_count)}</strong></div><div class="col-lg-6"><span>درصد نقد : </span><strong>${ssrInterpolate(this.inquiry.cash_percent)}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.replyReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="replyModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ شما به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-6"><span>قیمت شما : </span><strong>${ssrInterpolate(this.reply.price)}</strong></div><div class="col-lg-6"><span>توضیحات شما : </span><strong>${ssrInterpolate(this.reply.description)}</strong></div><div class="col-lg-6"><span>زمان پاسخ : </span><strong>${ssrInterpolate(this.reply.created)}</strong></div><div class="col-lg-6"><span>وضعیت : </span><strong></strong></div><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(this.reply.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(this.reply.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(this.reply.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(this.reply.visit_place_enable)}</small></p></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div><div style="${ssrRenderStyle(this.commentReviewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="commentModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">پاسخ مشتری به استعلام <small class="text-success">${ssrInterpolate(this.inquiryName)}</small></h5></div><div class="modal-body"><div class="row"><div class="col-lg-12"><strong>${ssrInterpolate(this.comment)}</strong></div><div class="col-lg-12"><strong>${ssrInterpolate(this.comment_time)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">بستن</button></div></div></div></div></div>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -352,7 +378,7 @@ _sfc_main$1.setup = (props, ctx) => {
 const inquiryListComponent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
 const _sfc_main = {
   name: "inquirySentComponent",
-  props: ["inquiries", "count", "last_3", "last_6", "last_12"],
+  props: ["inquiries", "count", "type"],
   data() {
     return {
       viewC: false,
@@ -466,7 +492,7 @@ const _sfc_main = {
   }
 };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="content-frame"><div class="row p-2"><div class="col-lg-3"><h1>استعلام های ارسالی شما : ${ssrInterpolate(this.count)} مورد</h1></div><div class="col-lg-3"><span>سه ماه گذشته : </span> <span>${ssrInterpolate(this.last_3)}</span></div><div class="col-lg-3"><span>شش ماه گذشته : </span> <span>${ssrInterpolate(this.last_6)}</span></div><div class="col-lg-3"><span>یک سال گذشته : </span> <span>${ssrInterpolate(this.last_12)}</span></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="row p-2"><div class="col-lg-3"><h1>استعلام های ارسالی شما : ${ssrInterpolate(this.count)} مورد</h1></div><div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div></div>`);
   if (this.count > 0) {
     _push(`<!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
@@ -487,7 +513,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   } else {
     _push(`<!---->`);
   }
-  _push(`</div><div style="${ssrRenderStyle(this.viewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">${ssrInterpolate(this.inquiryName)}</h5></div><div class="modal-body"><div class="row">`);
+  _push(`<div style="${ssrRenderStyle(this.viewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">${ssrInterpolate(this.inquiryName)}</h5></div><div class="modal-body"><div class="row">`);
   if (this.inquiry.picture != "") {
     _push(`<div class="col-lg-12 text-center" style="${ssrRenderStyle({ "overflow-y": "scroll", "max-height": "250px", "padding": "20px" })}"><img${ssrRenderAttr("src", this.inquiry.pictureSrc)} style="${ssrRenderStyle({ "width": "50%" })}"></div>`);
   } else {

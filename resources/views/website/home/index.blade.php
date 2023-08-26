@@ -8,31 +8,10 @@
             </div>
         </div>
 
-        <search-component></search-component>
+        <search-component :lastpj="{{$lastPJ}}"></search-component>
 
-        <div class="content-frame">
-            <div class="row p-2">
-                <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
-            </div>
-            <div class="row p-2">
-                <div class="col-lg-3 col-6">استان</div>
-                <div class="col-lg-3 col-6"><strong>نام محصول</strong></div>
-                <div class="col-lg-3 col-6">دسته</div>
-                <div class="col-lg-3 col-6">زمان پایان استعلام</div>
-            </div>
 
-            @foreach($lastPJ as $pj)
-                <a href="/inquiry/details/{{$pj->id}}/{{str_replace(" ","-" , $pj->name)}}">
-                    <div class="row mb-2 p-2">
-                        <div class="col-lg-3 col-6">{{$pj->province->name}}</div>
-                        <div class="col-lg-3 col-6"><strong>{{$pj->name}}</strong></div>
-                        <div class="col-lg-3 col-6">{{$pj->category->name}}</div>
-                        <div class="col-lg-3 col-6">{{($pj->close_date!='')?jdate($pj->close_date)->format('%A, %d %B %Y'):''}}</div>
-                    </div>
-                </a>
-            @endforeach
-            </div>
-        </div>
+
 @endsection
 
 

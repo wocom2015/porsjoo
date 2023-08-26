@@ -1,34 +1,36 @@
 <template>
     <div>
-        <div class="content-frame">
-            <div class="row p-2">
-                <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
-                <div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div>
-
-            </div>
 
 
-            <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
-                <div class="col-lg-1">شناسه استعلام : {{ item.id }}</div>
-                <div class="col-lg-3">
-                    <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
-                    <strong>{{ item.name }}</strong><br>{{ item.description }}</div>
-                <div class="col-lg-2">{{ item.created }}</div>
-                <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
-                <div class="col-lg-2">
-                    <button class="btn btn-custom-outline mb-1" @click="view(item.id)">مشاهده مشخصات</button>
+                <div class="row p-2">
+                    <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
+                    <div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div>
+
                 </div>
-                <div class="col-lg-2">
-                    <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">پاسخ ها
-                        ({{ item.repliesCount }})
-                    </button>
-                </div>
-            </div>
-            <div v-if="this.count===0" class="row mb-2 p-2">
-                <p>شما تا کنون استعلامی ارسال ننموده اید</p>
-            </div>
 
-        </div>
+
+                <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
+                    <div class="col-lg-1">شناسه استعلام : {{ item.id }}</div>
+                    <div class="col-lg-3">
+                        <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
+                        <strong>{{ item.name }}</strong><br>{{ item.description }}</div>
+                    <div class="col-lg-2">{{ item.created }}</div>
+                    <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-custom-outline mb-1" @click="view(item.id)">مشاهده مشخصات</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">پاسخ ها
+                            ({{ item.repliesCount }})
+                        </button>
+                    </div>
+                </div>
+                <div v-if="this.count===0" class="row mb-2 p-2">
+                    <p>شما تا کنون استعلامی ارسال ننموده اید</p>
+                </div>
+
+
+
 
         <div v-show="this.viewM" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">
             <div class="modal-dialog modal-lg" role="document">
@@ -209,7 +211,7 @@
 <script>
 export default {
     name: "inquirySentComponent",
-    props: ['inquiries', 'count','last_3' , 'last_6' , 'last_12'],
+    props: ['inquiries', 'count', 'type'],
     data() {
         return {
             viewC: false,

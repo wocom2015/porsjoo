@@ -11,9 +11,11 @@ use App\Models\Province;
 use App\Models\Unit;
 
 use App\Models\User;
+use App\Notifications\NewPJ;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\In;
@@ -22,9 +24,10 @@ use Intervention\Image\Facades\Image;
 
 class InquiriesController extends Controller
 {
-    public function index($category_id)
+    public function index()
     {
 
+        $categories = Category::where("id" , "!=" ,1)->get();
         $user = User::findOrFail(auth()->user()->id);
         if($user->pj_available<=0){
             return view('website.inquiry.charge');
@@ -37,12 +40,11 @@ class InquiriesController extends Controller
         $secondNumber = rand(1,9);
         $sum =  $firstNumber + $secondNumber;
         session()->put("captcha_sum" , $sum);
-        $category = Category::findOrFail($category_id);
 
-        return view("website.inquiry.index" , compact("category" , "provinces" , "units"));
+        return view("website.inquiry.index" , compact("categories" , "provinces" , "units"));
     }
 
-    public function create(Request $request){
+    public function store(Request $request){
         //1. checking that pj_available is enough
         $pj_available = auth()->user()->pj_available;
 
@@ -63,6 +65,9 @@ class InquiriesController extends Controller
             return checkValidation($validator , false);
         }
 
+        if($request->close_date > $request->pay_date){
+            return reply('error' , [__("messages.close_date_smaller_than_delivery_date")]);
+        }
         $data = [
             'name' => $request->name,
             'user_id' => auth()->user()->id,
@@ -84,7 +89,6 @@ class InquiriesController extends Controller
             "multiple_supplier" => $request->multiple_supplier,
             "move_conditions" => $request->move_conditions,
         ];
-
 
         if ($request->has("picture")) {
             $name = Str::random(50);
@@ -116,7 +120,7 @@ class InquiriesController extends Controller
 
 
             } else {
-                return back()->with('error', __("messages.picture_format_is_not_correct"));
+                return reply('error' , [__("messages.picture_format_is_not_correct")]);
             }
         }
 
@@ -129,6 +133,16 @@ class InquiriesController extends Controller
             $user = User::find(auth()->user()->id);
             $user->pj_available = $pj_available-1;
             $user->update();
+
+            //sending to vendors with this category
+            $vendors = User::select("id" , "mobile")->where("category_id" , $request->category_id)->where("id" , '!=' , auth()->user()->id)->get();
+            $category = Category::find($request->category_id);
+            //TODO: uncomment
+            /*if($vendors->isNotEmpty()){
+                foreach($vendors as $user){
+                    Notification::send($user, new NewPJ($category->name));
+                }
+            }*/
 
             return reply('success' , "your_pj_inserted_successfully");
         }
@@ -307,5 +321,27 @@ class InquiriesController extends Controller
         $last_6 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(6))->count();
         $last_12 = Inquiry::where("user_id" , $user->id)->where("created_at",">", Carbon::now()->subMonths(12))->count();
         return view("website.inquiry.report" , compact("title" , "last_3" , "last_6" , "last_12"));
+    }
+
+
+    function show(){
+        $user = User::find(auth()->user()->id);
+
+
+        $collaborators = [];
+        $comments = [];
+        if ($user->inquiries->isNotEmpty()) {
+            foreach ($user->inquiries as $inquiry) {
+                $inquiry->provinceName = $inquiry->province->name;
+                $inquiry->repliesCount = $inquiry->replies->count();
+                $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
+                $inquiry->categoryName = $inquiry->category->name;
+                $inquiry->pictureSrc = inquiry_pic($inquiry->id, 100, "thumb-img", false);
+            }
+        }
+
+        $currentPlan = "";
+        $type = "archive";
+        return view("website.profile.archive", compact("user",  "collaborators", "currentPlan" , "comments" , "type"));
     }
 }

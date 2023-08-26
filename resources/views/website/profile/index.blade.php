@@ -85,44 +85,19 @@
                 </div>
             @else
                 <div class="col-lg-12 col-sm-12 text-center pt-2">
-                    <a href="#" class=" default-btn"> ثبت درخواست جدید </a>
+                    <a href="/inquiry/request" class=" default-btn"> ثبت درخواست جدید </a>
                 </div>
             @endif
-
-
+        </div>
+        <div class="content-frame">
+            <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}" :type="{{$type}}"></inquiry-sent-component>
+            <div class="row mb-2 p-2">
+                <p class="text-center" ><a href="/inquiry/archive" style="color:#E55225">نمایش موارد بیشتر...</a></p>
+            </div>
         </div>
 
-        <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}"
-                                :last_3="{{$last_3}}" :last_6="{{$last_3}}"
-                                :last_12="{{$last_3}}"></inquiry-sent-component>
+        <inquiry-list-component :inquiries="{{$relatedInquiries}}" :count="{{$relatedInquiries->count()}}"></inquiry-list-component>
 
-        <inquiry-list-component :inquiries="{{$relatedInquiries}}"
-                                :count="{{$relatedInquiries->count()}}"></inquiry-list-component>
-
-
-        @if(!empty($collaborators))
-            <div class="content-frame">
-                <p class="text-center">افرادی که با شما همکاری داشته اند</p>
-                <div class="row">
-                    @foreach($collaborators as $c)
-                        <div class="col-lg-3">
-                            <div class="p-3 m-3 text-center">
-                                <div class="avatar">
-                                    @if($c->logo != '')
-                                        <img src="storage/users/{{$c->logo}}">
-                                    @else
-                                        <img src="images/avatar.png">
-                                    @endif
-                                </div>
-                                <p>{{$c->name.' '.$c->last_name}}</p>
-                            </div>
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-
-        @endif
 
         @if(!empty($comments))
 

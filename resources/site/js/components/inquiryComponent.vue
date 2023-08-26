@@ -4,8 +4,6 @@
             <input type="text" class="form-control" name="name" placeholder="نام محصول مورد نظر شما *" />
         </div>
 
-        <input type="hidden" name="category_id" :value="this.category_id">
-
         <div class="col-lg-3 col-sm-12 mb-3">
             <input type="text" class="form-control" name="count" placeholder="تعداد محصول *" />
         </div>
@@ -13,6 +11,16 @@
             <select class="form-control" name="unit_id">
                 <option value="">-- واحد --</option>
                 <option v-for="item in units" :value="item.id">{{item.name}}</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <label class="mt-2">دسته بندی محصول</label>
+        </div>
+        <div class="col-lg-9 col-sm-12 mb-3">
+            <select class="form-control" name="category_id" >
+                <option value="">-- انتخاب کنید --</option>
+                <option v-for="item in categories" :value="item.id">{{item.name}}</option>
             </select>
         </div>
         <div class="col-lg-12 col-sm-12 mb-3">
@@ -154,7 +162,7 @@
 import DatePicker from 'vue3-persian-datetime-picker'
 export default {
     name: "inquiryComponent.vue",
-    props :['provinces' , 'units' , 'captcha' , 'category_id'],
+    props :['provinces' , 'units' , 'captcha' , 'categories'],
     components: { DatePicker },
     data() {
         return {

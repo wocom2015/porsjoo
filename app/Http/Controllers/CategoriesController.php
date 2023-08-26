@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Http\Resources\CategorySearch as CatRes;
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -22,5 +23,14 @@ class CategoriesController extends Controller
                return [];
            }
        }
+    }
+
+
+    function search_inquiry(Request $request){
+        $catId = $request->catId;
+        return \App\Http\Resources\Inquiry::collection(Inquiry::
+            where("category_id" , $catId)->orderBy("id" , "desc")
+            ->where("close_date" , ">" , date("Y-m-d"))
+            ->get());
     }
 }

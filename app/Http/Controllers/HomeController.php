@@ -12,7 +12,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $lastPJ = Inquiry::orderBy("id" , "desc")->limit(10)->get();
+        $lastPJ = Inquiry::query()->orderBy("id" , "desc")
+        ->where("close_date" , ">" , date("Y-m-d"))
+        ->limit(10)->get();
+
+        foreach ($lastPJ as $pj){
+            $pj->url = "/inquiry/details/".$pj->id."/".str_replace(" ","-" , $pj->name);
+            $pj->provinceName = $pj->province->name;
+            $pj->categoryName = $pj->category->name;
+            $pj->closeDate = ($pj->close_date!='')?jdate($pj->close_date)->format('%A, %d %B %Y'):'';
+        }
         return view("website.home.index" , compact("lastPJ"));
     }
 

@@ -144,6 +144,7 @@ button {
 .btn-custom-outline{
     background-color: #fff; border: 2px solid #D64012;border-radius: 10px;
     color:#D64012;
+    font-size: 12px;
 }
 .optional-btn {
 	border: 1px solid #209e2e;
@@ -5175,4 +5176,7 @@ footer ul li a{
     text-align: center !important;
     color: #E14212 !important;
     font-weight: bold;
+}
+.bd-highlight:hover{
+    cursor:pointer;
 }
