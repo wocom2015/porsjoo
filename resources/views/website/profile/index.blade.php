@@ -18,10 +18,7 @@
                                 مشخص نشده
                             @endif
                         </span><br>
-                        <span class="top-0"><a href="/profile/edit" target="_blank" class="text-muted">
-                                <img src="/images/edit.png" class="ml-2">
-                                ویرایش پروفایل</a></span><br>
-                        <span class="top-0"><a href="/user/logout" class="text-danger">خروج از سامانه</a></span>
+
                     </div>
 
                 </div>
@@ -29,7 +26,7 @@
         </div>
 
         <div class="row">
-            <div class="col-3 text-center">
+            <div class="col-lg-3 col-xs-12 col-sm-12 text-center">
                 <div class="pj-profile-item ">
                     <strong style="color: #333">تعداد استعلام</strong>
                     <p class="text-black mb-0">
@@ -37,9 +34,8 @@
                     </p>
                     <strong>{{$user->inquiries()->count()}}</strong>
                 </div>
-
             </div>
-            <div class="col-3 text-center">
+            <div class="col-lg-3 col-xs-12 col-sm-12 text-center">
                 <div class="pj-profile-item ">
                     <strong style="color: #333">تعداد امکان استعلام و پاسخ</strong>
                     <p class="text-black mb-0">
@@ -49,7 +45,7 @@
                 </div>
 
             </div>
-            <div class="col-3 text-center">
+            <div class="col-lg-3 col-xs-12 col-sm-12 text-center">
                 <div class="pj-profile-item ">
                     <strong style="color: #333">تعداد استعلام های مرتبط با شما</strong>
                     <p class="text-black mb-0">
@@ -59,7 +55,7 @@
                 </div>
 
             </div>
-            <div class="col-3 text-center">
+            <div class="col-lg-3 col-xs-12 col-sm-12 text-center">
                 <div class="pj-profile-item ">
                     <strong style="color: #333">طرح فعلی شما</strong>
                     <p class="text-black mb-0">
@@ -92,7 +88,7 @@
         <div class="content-frame">
             <inquiry-sent-component :inquiries="{{$user->inquiries}}" :count="{{$user->inquiries->count()}}" :type="{{$type}}"></inquiry-sent-component>
             <div class="row mb-2 p-2">
-                <p class="text-center" ><a href="/inquiry/archive" style="color:#E55225">نمایش موارد بیشتر...</a></p>
+                <p class="text-center" ><a href="/inquiry/archive" style="color:#E55225">مشاهده آرشیو درخواست ها</a></p>
             </div>
         </div>
 

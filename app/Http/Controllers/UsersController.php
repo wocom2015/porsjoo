@@ -69,7 +69,7 @@ class UsersController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        return redirect()->intended();
+        return redirect('/profile');
     }
 
 
@@ -165,9 +165,9 @@ class UsersController extends Controller
                 $user->active = 1;
                 $user->active_at = now();
                 $user->update();
-                return redirect(route("home"));
+                return redirect(route("profile"));
             } else {
-                return redirect(route("home"));
+                return redirect(route("profile"));
             }
         } else {
             return back()->with('error', __("messages.incorrect_code_for_user"));
@@ -199,6 +199,18 @@ class UsersController extends Controller
                 }
             }
         }
-        return view("website.users.profile" , compact("user","collaborators",  "comments" ));
+        return view("website.users.profile" , compact("user",  "comments" ));
+    }
+
+    public function forgot()
+    {
+        return view("website.users.forgot");
+    }
+
+
+    function change_pass(Request $request){
+        $data = $request->all();
+
+        return $data;
     }
 }

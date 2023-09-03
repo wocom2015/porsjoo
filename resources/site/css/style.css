@@ -427,7 +427,7 @@ nav > ul li ul li > a {
         padding-right: 0 !important;
     }
 
-    label {
+    label.nav-label {
         display: block;
         width: 40px;
         height: 40px;
@@ -436,7 +436,7 @@ nav > ul li ul li > a {
         right: 20px;
         top: 0;
     }
-    label:after {
+    label.nav-label:after {
         content: '';
         display: block;
         width: 30px;

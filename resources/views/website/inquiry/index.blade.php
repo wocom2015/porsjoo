@@ -1,6 +1,7 @@
 @extends("website.layouts.app")
 
 @section("content")
+    <h1 class="text-center h4 mb-5">ثبت درخواست جدید</h1>
     <p>شما می توانید از طریق pj ها همزمان از چندین فروشنده استعلام قیمت بگیرید</p>
 
 

@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="col-lg-12 text-right">
-                        <p class="forgot-password"><a href="#">رمز عبور را فراموش کرده اید؟</a></p>
+                        <p class="forgot-password"><a href="/forgot">رمز عبور را فراموش کرده اید؟</a></p>
                     </div>
                     <div class="col-lg-12">
                         <div class="send-btn">

@@ -3,6 +3,7 @@
 @section("content")
 
     <div class="container">
+        <h1 class="text-center h4 mb-5">آرشیو درخواست های ارسالی شما</h1>
         <div class="row justify-content-center" style="margin-bottom: 30px">
             <div class="col-lg-8 col-xs-12 profile-avatar text-center">
                 <div class="row">
@@ -17,11 +18,8 @@
                             @else
                                 مشخص نشده
                             @endif
-                        </span><br>
-                        <span class="top-0"><a href="/profile/edit" target="_blank" class="text-muted">
-                                <img src="/images/edit.png" class="ml-2">
-                                ویرایش پروفایل</a></span><br>
-                        <span class="top-0"><a href="/user/logout" class="text-danger">خروج از سامانه</a></span>
+                        </span>
+
                     </div>
 
                 </div>

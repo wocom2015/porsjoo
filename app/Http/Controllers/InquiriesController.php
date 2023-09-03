@@ -116,9 +116,6 @@ class InquiriesController extends Controller
                 $data['picture_path'] = $picture_path;
                 $data['picture'] = $name;
                 $data['ext'] = $extension;
-
-
-
             } else {
                 return reply('error' , [__("messages.picture_format_is_not_correct")]);
             }
@@ -138,11 +135,11 @@ class InquiriesController extends Controller
             $vendors = User::select("id" , "mobile")->where("category_id" , $request->category_id)->where("id" , '!=' , auth()->user()->id)->get();
             $category = Category::find($request->category_id);
             //TODO: uncomment
-            /*if($vendors->isNotEmpty()){
+            if($vendors->isNotEmpty()){
                 foreach($vendors as $user){
                     Notification::send($user, new NewPJ($category->name));
                 }
-            }*/
+            }
 
             return reply('success' , "your_pj_inserted_successfully");
         }
@@ -257,7 +254,7 @@ class InquiriesController extends Controller
                 $currentUser->update();
             }
 
-            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->address , 'job_name' => $user->job_name]];
+            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->address , 'job_name' => $user->job_name , 'url' => '/user/profile/'.$user->id]];
         }
     }
 

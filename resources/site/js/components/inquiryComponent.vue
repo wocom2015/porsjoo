@@ -139,7 +139,7 @@
         </div>
 
         <div class="col-lg-12 col-sm-12 mb-3">
-            <label for="formFileSm" class="form-label">در صورت نیاز به حمل و نقل ، شرایط استعلام چیست؟</label>
+            <label  class="mt-2">در صورت نیاز به حمل و نقل ، شرایط استعلام چیست؟</label>
             <textarea class="form-control" name="move_conditions"></textarea>
         </div>
 
@@ -153,8 +153,6 @@
                 <li v-for="item in this.errors" class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i> <small >{{item}}</small></li>
             </ul>
         </div>
-
-
     </form>
 </template>
 

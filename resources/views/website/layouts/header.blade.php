@@ -1,5 +1,5 @@
 <nav>
-        <input type="checkbox" id="nav" /><label for="nav"></label>
+        <input type="checkbox" id="nav" /><label class="nav-label" for="nav"></label>
         <ul>
             <li style="float: right">
                 <a href="/"> خانه </a>
@@ -18,6 +18,15 @@
                 <a href="/contact"> تماس با ما </a>
 
             </li>
+            @auth
+            <li class="d-xl-none">
+                <a href="/profile/edit" target="_blank">
+                    ویرایش پروفایل</a>
+            </li>
+            <li class="d-xl-none">
+                <a href="/user/logout">خروج از سامانه</a>
+            </li>
+            @endauth
         </ul>
         <div class="others-options d-flex align-items-center" style="margin-top: -10px">
             @auth

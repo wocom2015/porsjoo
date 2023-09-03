@@ -17,10 +17,15 @@
                     <div class="col-lg-2">{{ item.created }}</div>
                     <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
                     <div class="col-lg-2">
-                        <button class="btn btn-custom-outline mb-1" @click="view(item.id)">مشاهده مشخصات</button>
+                        <button class="btn btn-custom-outline mb-1" @click="view(item.id)">
+                            <img style="width:12px; color:orange" src="/site/images/info.png"/>
+                            مشاهده مشخصات
+                        </button>
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">پاسخ ها
+                        <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">
+                            <img style="width:12px; color:orange" src="/images/message.png"/>
+                            پاسخ ها
                             ({{ item.repliesCount }})
                         </button>
                     </div>
@@ -155,6 +160,7 @@
                             <div class="col-lg-6"><span>شماره تماس : </span><strong>{{ this.supplier.mobile }}</strong></div>
                             <div class="col-lg-6"><span>آدرس : </span><strong>{{ this.supplier.address }}</strong></div>
                             <div class="col-lg-6"><span>نام کسب و کار : </span><strong>{{this.supplier.job_name }}</strong></div>
+                            <div class="col-lg-6"><a class="default-btn" :href="this.supplier.url" target="_blank">مشاهده پروفایل  </a></div>
                         </div>
 
                         <div v-show="this.supplierState=='error'" class="row">
