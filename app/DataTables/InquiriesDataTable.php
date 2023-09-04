@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Inquiry;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,7 +25,10 @@ class InquiriesDataTable extends DataTable
 
             ->setRowId('id')
             ->addColumn('user' , function(Inquiry $inquiry){
-                return '<strong class="text-success">'.$inquiry->user->name.' '.$inquiry->user->last_name.'</strong>';
+                if($inquiry->user)
+                    return '<strong class="text-success">'.$inquiry->user->name.' '.$inquiry->user->last_name.'</strong>';
+                else
+                    return '';
             })
             ->addColumn('category' , function(Inquiry $inquiry){
                 return '<strong class="text-success">'.$inquiry->category->name.'</strong>';
@@ -39,10 +43,30 @@ class InquiriesDataTable extends DataTable
             ->addColumn('suppliers' , function (Inquiry $inquiry){
                 return $inquiry->replies()->count();
             })
+            ->addColumn('details' , function (Inquiry $inquiry){
+                if($inquiry->vendor_introduce_name!='' and $inquiry->vendor_introduce_mobile!='')
+                return 'نام تامین کننده سابق: ' . $inquiry->vendor_introduce_name.'<br>'.
+                    'تلفن همراه تامین کننده سابق: '.$inquiry->vendor_introduce_mobile;
+            })
+            ->addColumn('vendor' , function (Inquiry $inquiry){
+                if($inquiry->vendor_id !=0){
+                    $user = User::find($inquiry->vendor_id);
+                    if($user){
+                        return $user->name.' '.$user->last_name;
+                    }
+                    else{
+                        return "ففف";
+                    }
+                }
+                else{
+                    return "";
+                }
+
+            })
             ->editColumn("created_at" , function (Inquiry $inquiry){
                 return jdate($inquiry->created_at)->format('%A, %d %B %Y');
             })
-            ->escapeColumns('operations');
+            ->escapeColumns('operations,details');
     }
 
     /**
@@ -93,6 +117,8 @@ class InquiriesDataTable extends DataTable
             Column::make('category')->title("دسته بندی"),
             Column::make('created_at')->title('تاریخ درخواست'),
             Column::make('suppliers')->title('تامین کنندگان'),
+            Column::make('vendor')->title('تامین کننده'),
+            Column::make('details')->title('جزییات'),
             Column::make('operations')->title('اقدامات')
         ];
     }

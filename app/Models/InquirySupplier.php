@@ -10,4 +10,13 @@ class InquirySupplier extends Model
     use HasFactory;
 
     protected $fillable = ['inquiry_id' , 'user_id'];
+
+
+    function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    function inquiry(){
+        return $this->belongsTo(Inquiry::class);
+    }
 }

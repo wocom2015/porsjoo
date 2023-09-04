@@ -26,6 +26,14 @@ class InquiriesController extends Controller
 {
     public function index()
     {
+        //checking last
+
+        $lastPJ = Inquiry::where("user_id" , auth()->user()->id)->orderBy("id" , "desc")->latest()->first();
+
+        if(!empty($lastPJ) and $lastPJ->bought_answered==0){
+            $vendors = $lastPJ->suppliers;
+            return view("website.inquiry.feedback" , compact("lastPJ" , "vendors"));
+        }
 
         $categories = Category::where("id" , "!=" ,1)->get();
         $user = User::findOrFail(auth()->user()->id);
@@ -88,6 +96,8 @@ class InquiriesController extends Controller
             "guarantee_enable" => $request->guarantee_enable,
             "multiple_supplier" => $request->multiple_supplier,
             "move_conditions" => $request->move_conditions,
+            "vendor_introduce_name" => $request->vendor_introduce_name,
+            "vendor_introduce_mobile" => $request->vendor_introduce_mobile,
         ];
 
         if ($request->has("picture")) {
@@ -134,13 +144,13 @@ class InquiriesController extends Controller
             //sending to vendors with this category
             $vendors = User::select("id" , "mobile")->where("category_id" , $request->category_id)->where("id" , '!=' , auth()->user()->id)->get();
             $category = Category::find($request->category_id);
-            //TODO: uncomment
+
             if($vendors->isNotEmpty()){
                 foreach($vendors as $user){
+                    //TODO : must be solved
                     Notification::send($user, new NewPJ($category->name));
                 }
             }
-
             return reply('success' , "your_pj_inserted_successfully");
         }
     }
@@ -340,5 +350,17 @@ class InquiriesController extends Controller
         $currentPlan = "";
         $type = "archive";
         return view("website.profile.archive", compact("user",  "collaborators", "currentPlan" , "comments" , "type"));
+    }
+
+
+    function feedback(Request $request){
+        $inquiry = Inquiry::findOrFail($request->id);
+        $inquiry->is_bought = $request->is_bought;
+        $inquiry->vendor_id = $request->vendor_id;
+        $inquiry->bought_answered = 1;
+
+        $inquiry->save();
+
+        return back();
     }
 }

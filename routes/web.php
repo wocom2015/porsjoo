@@ -41,6 +41,7 @@ Route::get('/plans' , [PlansController::class , 'index']);
 Route::middleware('auth_user')->group(function () {
     Route::get('/inquiry/request', [InquiriesController::class , 'index'])->name('inquiry-form');
     Route::post('/inquiry/create', [InquiriesController::class , 'store'])->name('inquiry');
+    Route::post('/inquiry/feedback', [InquiriesController::class , 'feedback'])->name('inquiry.feedback');
     Route::get('/inquiry/archive', [InquiriesController::class , 'show'])->name('archive');
     Route::post('/inquiry/item', [InquiriesController::class , 'item']);
     Route::post('/inquiry/reply', [InquiriesController::class , 'reply']);

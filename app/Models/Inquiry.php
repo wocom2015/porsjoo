@@ -38,6 +38,11 @@ class Inquiry extends Model
         "cash_percent",
         "close_date",
         "move_conditions",
+        "is_bought",
+        "vendor_id",
+        "bought_answered",
+        "vendor_introduce_name",
+        "vendor_introduce_mobile"
     ];
 
 
@@ -69,6 +74,11 @@ class Inquiry extends Model
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function suppliers(): HasMany
+    {
+        return $this->hasMany(InquirySupplier::class);
     }
 
 }

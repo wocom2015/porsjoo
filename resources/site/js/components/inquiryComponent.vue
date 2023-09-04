@@ -69,7 +69,6 @@
             <input type="text" class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)" />
         </div>
 
-
         <div class="col-lg-3 col-sm-12 mb-3">
             <label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label>
         </div>
@@ -142,6 +141,16 @@
             <label  class="mt-2">در صورت نیاز به حمل و نقل ، شرایط استعلام چیست؟</label>
             <textarea class="form-control" name="move_conditions"></textarea>
         </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+            <label  class="mt-2">در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</label>
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <input type="text" class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده" />
+        </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <input type="text" class="form-control" style="text-align:left;direction:ltr" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همرا تامین کننده" />
+        </div>
+
 
 
         <div class="default-btn" type="button" @click="submit()">ثبت</div>
