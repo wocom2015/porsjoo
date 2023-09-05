@@ -240,6 +240,7 @@ class InquiriesController extends Controller
                 $r->sample_enable = ($r->sample_enable==1)?"بلی":"خیر";
                 $r->guarantee_enable = ($r->guarantee_enable==1)?"بلی":"خیر";
                 $r->visit_place_enable = ($r->visit_place_enable==1)?"بلی":"خیر";
+                $r->url =  '/user/profile/'.$r->user_id;
             }
         }
         return $replies;
@@ -264,7 +265,7 @@ class InquiriesController extends Controller
                 $currentUser->update();
             }
 
-            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->address , 'job_name' => $user->job_name , 'url' => '/user/profile/'.$user->id]];
+            return ['state' => 'success' , 'info' =>['name' => $user->name.' '.$user->last_name , 'mobile' => $user->mobile , 'address' => $user->address , 'job_name' => $user->job_name ]];
         }
     }
 

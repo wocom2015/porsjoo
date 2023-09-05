@@ -880,3 +880,22 @@ blockquote::after, .blockquote::after {
 	.cart-buttons .text-right {
 		text-align: center!important
 	}}
+
+.sub-dropdown-menu{
+    list-style: none !important;
+    background-color: white;
+    margin-top: 40px;
+    padding: 10px;
+    text-align: right;
+    line-height: 2;
+
+}
+.sub-dropdown-menu  li{
+    direction: rtl;
+}
+.sub-dropdown-menu li a{
+    color: #D64012 !important;
+}
+.sub-dropdown-menu li a:hover{
+    color: orange;
+}

@@ -1,40 +1,37 @@
 <template>
     <div>
+        <div class="row p-2">
+            <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
+            <div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div>
+
+        </div>
 
 
-                <div class="row p-2">
-                    <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
-                    <div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div>
-
-                </div>
-
-
-                <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
-                    <div class="col-lg-1">شناسه استعلام : {{ item.id }}</div>
-                    <div class="col-lg-3">
-                        <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
-                        <strong>{{ item.name }}</strong><br>{{ item.description }}</div>
-                    <div class="col-lg-2">{{ item.created }}</div>
-                    <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
-                    <div class="col-lg-2">
-                        <button class="btn btn-custom-outline mb-1" @click="view(item.id)">
-                            <img style="width:12px; color:orange" src="/site/images/info.png"/>
-                            مشاهده مشخصات
-                        </button>
-                    </div>
-                    <div class="col-lg-2">
-                        <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">
-                            <img style="width:12px; color:orange" src="/images/message.png"/>
-                            پاسخ ها
-                            ({{ item.repliesCount }})
-                        </button>
-                    </div>
-                </div>
-                <div v-if="this.count===0" class="row mb-2 p-2">
-                    <p>شما تا کنون استعلامی ارسال ننموده اید</p>
-                </div>
-
-
+        <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
+            <div class="col-lg-1">شناسه استعلام : {{ item.id }}</div>
+            <div class="col-lg-3">
+                <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
+                <strong>{{ item.name }}</strong><br>{{ item.description }}
+            </div>
+            <div class="col-lg-2">{{ item.created }}</div>
+            <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
+            <div class="col-lg-2">
+                <button class="btn btn-custom-outline mb-1" @click="view(item.id)">
+                    <img style="width:12px; color:orange" src="/site/images/info.png"/>
+                    مشاهده مشخصات
+                </button>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">
+                    <img style="width:12px; color:orange" src="/site/images/message.png"/>
+                    پاسخ ها
+                    ({{ item.repliesCount }})
+                </button>
+            </div>
+        </div>
+        <div v-if="this.count===0" class="row mb-2 p-2">
+            <p>شما تا کنون استعلامی ارسال ننموده اید</p>
+        </div>
 
 
         <div v-show="this.viewM" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">
@@ -46,7 +43,8 @@
                     <div class="modal-body">
                         <div class="row">
 
-                            <div class="col-lg-12 text-center" v-if="this.inquiry.picture !=''" style="overflow-y: scroll;max-height: 250px;padding: 20px">
+                            <div class="col-lg-12 text-center" v-if="this.inquiry.picture !=''"
+                                 style="overflow-y: scroll;max-height: 250px;padding: 20px">
                                 <img :src=this.inquiry.pictureSrc style="width: 50%"/>
                             </div>
 
@@ -104,7 +102,7 @@
                         <div v-show='this.replies.length>0' class="alert alert-warning">
                             <strong>توجه:</strong>
                             <p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده
-                                مشخصات آن ، یکی از
+                                اطلاعات تامین کننده ، یکی از
                                 فرصت های استعلام شما کم می شود</p>
                         </div>
                         <div v-show='this.replies.length==0' class="alert alert-info">
@@ -118,16 +116,24 @@
                                     <strong>قیمت : {{ item.price }}</strong>
                                     <p><small>{{ item.description }}</small></p>
                                     <p><small class="ml-10">امکان پرداخت چکی : {{ item.cheque_enable }}</small> |
-                                    <small class="ml-10"> امکان ارسال نمونه : {{ item.sample_enable }}</small> |
-                                    <small class="ml-10"> دارای گارانتی : {{ item.guarantee_enable }}</small> |
-                                    <small class="ml-10">امکان بازدید از محل محصول : {{ item.visit_place_enable }}</small></p>
+                                        <small class="ml-10"> امکان ارسال نمونه : {{ item.sample_enable }}</small> |
+                                        <small class="ml-10"> دارای گارانتی : {{ item.guarantee_enable }}</small> |
+                                        <small class="ml-10">امکان بازدید از محل محصول : {{
+                                                item.visit_place_enable
+                                            }}</small></p>
 
-                                    <button class="btn default-btn" @click="viewSupplier(item.user_id)" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود">
+                                    <button class="btn default-btn" @click="viewSupplier(item.user_id)"
+                                            title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود">
                                         مشاهده اطلاعات تامین کننده
                                         <i class="bi bi-file-lock2"></i>
                                     </button>
-
-                                    <button v-if="item.hasSeen==1" class="btn default-btn" style="margin-right: 10px" @click="commentSupplier(item.user_id , item.inquiry_id)" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">
+                                    <a class="btn default-btn" :href="item.url">
+                                        مشاهده پروفایل تامین کننده
+                                    </a>
+                                    <button v-if="item.hasSeen==1" class="btn default-btn mt-2"
+                                            style="margin-right: 10px"
+                                            @click="commentSupplier(item.user_id , item.inquiry_id)"
+                                            title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">
                                         پاسخ به تامین کننده
                                         <i class="bi bi-file-lock2"></i>
                                     </button>
@@ -156,16 +162,22 @@
                     </div>
                     <div class="modal-body">
                         <div v-show="this.supplierState=='success'" class="row">
-                            <div class="col-lg-6"><span>نام تامین کننده : </span><strong>{{ this.supplier.name }}</strong></div>
-                            <div class="col-lg-6"><span>شماره تماس : </span><strong>{{ this.supplier.mobile }}</strong></div>
+                            <div class="col-lg-6"><span>نام تامین کننده : </span><strong>{{
+                                    this.supplier.name
+                                }}</strong></div>
+                            <div class="col-lg-6"><span>شماره تماس : </span><strong>{{ this.supplier.mobile }}</strong>
+                            </div>
                             <div class="col-lg-6"><span>آدرس : </span><strong>{{ this.supplier.address }}</strong></div>
-                            <div class="col-lg-6"><span>نام کسب و کار : </span><strong>{{this.supplier.job_name }}</strong></div>
-                            <div class="col-lg-6"><a class="default-btn" :href="this.supplier.url" target="_blank">مشاهده پروفایل  </a></div>
+                            <div class="col-lg-6"><span>نام کسب و کار : </span><strong>{{
+                                    this.supplier.job_name
+                                }}</strong></div>
+                            <div class="col-lg-6"><a class="default-btn" :href="this.supplier.url" target="_blank">مشاهده
+                                پروفایل </a></div>
                         </div>
 
                         <div v-show="this.supplierState=='error'" class="row">
                             <div class="alert alert-danger">
-                                {{this.supplierMessage}}
+                                {{ this.supplierMessage }}
                             </div>
                         </div>
 
@@ -198,15 +210,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 mt-2">
-                                    <button type="button" class="btn btn-custom-outline" @click="this.saveC()">ذخیره</button>
+                                    <button type="button" class="btn btn-custom-outline" @click="this.saveC()">ذخیره
+                                    </button>
                                 </div>
 
-                                <div class="col-lg-12 mt-2 text-info">{{this.message}}</div>
+                                <div class="col-lg-12 mt-2 text-info">{{ this.message }}</div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-custom-outline" @click="this.hideViewC()">متوجه شدم</button>
+                        <button type="button" class="btn btn-custom-outline" @click="this.hideViewC()">متوجه شدم
+                        </button>
                     </div>
                 </div>
             </div>
@@ -230,9 +244,9 @@ export default {
             viewS: false,
             supplier: [],
             supplier_id: 0,
-            supplierState : '',
-            supplierMessage : '',
-            message :''
+            supplierState: '',
+            supplierMessage: '',
+            message: ''
         }
     },
     methods: {
@@ -270,13 +284,13 @@ export default {
         hideViewS() {
             this.viewS = false;
         },
-        saveC(){
+        saveC() {
             var self = this;
             var fData = new FormData(document.getElementById("frmComment"));
-            fData.append("inquiry_id" , self.inquiry_id);
-            fData.append("supplier_id" , self.supplier_id);
+            fData.append("inquiry_id", self.inquiry_id);
+            fData.append("supplier_id", self.supplier_id);
             this.errors = '';
-            this.message ='';
+            this.message = '';
             axios(
                 {
                     method: "post",
@@ -285,9 +299,9 @@ export default {
                 }
             )
                 .then(function (response) {
-                    if (response.data.state === 'success'){
+                    if (response.data.state === 'success') {
                         self.message = response.data.message;
-                    }else{
+                    } else {
                         self.errors = response.data.message;
                     }
                 })
@@ -316,24 +330,23 @@ export default {
                 {
                     method: "post",
                     url: "/inquiry/supplier",
-                    data: {id: self.supplier_id , inquiry_id : self.inquiry.id},
+                    data: {id: self.supplier_id, inquiry_id: self.inquiry.id},
                 }
             )
                 .then(function (response) {
-                    if(response.data.state ==='success'){
+                    if (response.data.state === 'success') {
                         self.supplier = response.data.info;
                         self.supplierState = 'success';
-                    }
-                    else {
+                    } else {
                         self.supplierState = 'error';
                         self.supplierMessage = response.data.message
                     }
                 })
         },
-        commentSupplier(supplier_id , inquiry_id){
+        commentSupplier(supplier_id, inquiry_id) {
             this.viewC = true;
             this.inquiry_id = inquiry_id,
-            this.supplier_id = supplier_id
+                this.supplier_id = supplier_id
         }
 
     }

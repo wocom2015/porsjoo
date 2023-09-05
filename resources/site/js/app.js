@@ -11,6 +11,7 @@ import dateComponent from './components/dateComponent.vue';
 import inquiryComponent from './components/inquiryComponent.vue';
 import inquiryListComponent from './components/inquiryListComponent.vue';
 import inquirySentComponent from './components/inquirySentComponent.vue';
+import subComponent from './components/subMenuComponent.vue';
 const app = createApp({
     components:{
         searchComponent,
@@ -18,6 +19,7 @@ const app = createApp({
         inquiryComponent,
         inquiryListComponent,
         inquirySentComponent,
+        subComponent
     }
 });
 app.mount('#app');

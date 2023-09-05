@@ -19,6 +19,10 @@
 
             </li>
             @auth
+                <li class="d-xl-none">
+                    <a href="/profile" target="_blank">
+                        مشاهده پروفایل</a>
+                </li>
             <li class="d-xl-none">
                 <a href="/profile/edit" target="_blank">
                     ویرایش پروفایل</a>
@@ -28,11 +32,9 @@
             </li>
             @endauth
         </ul>
-        <div class="others-options d-flex align-items-center" style="margin-top: -10px">
+        <div class="others-options d-flex align-items-center header-m">
             @auth
-                {!! user_picture(auth()->user()->id) !!}
-                <a href="/profile" class="text-white"
-                   title="برای مشاهده پروفایل خود کلیک کنید">{{auth()->user()->name.' '.auth()->user()->last_name}}</a>
+               <sub-component fullname="{{auth()->user()->name.' '.auth()->user()->last_name}}" img="{{user_picture(auth()->user()->id , 'user-icon' , true)}}"></sub-component>
             @endauth
 
             @guest

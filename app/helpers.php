@@ -14,11 +14,17 @@ if(!function_exists("conf")){
 
 if(!function_exists("user_picture"))
 {
-    function user_picture($user_id , $class="user-icon"){
+    function user_picture($user_id , $class="user-icon" , $raw=false){
         $user = User::find($user_id);
         if($user->logo!=''){
+            if($raw){
+                return asset('storage/users/'.$user->id.'/'.$user->logo);
+            }
             return ' <img src="'.asset('storage/users/'.$user->id.'/'.$user->logo).'" class="'.$class.'"/>';
         }else{
+            if($raw){
+                return "/images/avatar.png";
+            }
             return '<span class="symbol-label">
                         <img src="/images/avatar.png" class="align-self-end '.$class.'" alt="'.$user->name.' '.$user->last_name.'">
                     </span>';
