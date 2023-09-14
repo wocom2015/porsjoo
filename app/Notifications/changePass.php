@@ -3,26 +3,28 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Kavenegar\Laravel\Message\KavenegarMessage;
 use Kavenegar\Laravel\Notification\KavenegarBaseNotification;
 
-class NewPJ extends KavenegarBaseNotification
+class changePass extends KavenegarBaseNotification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    private $category;
-    public function __construct($category)
+    private $newPass;
+    public function __construct($newPass)
     {
-        $this->category = $category;
+        $this->newPass = $newPass;
     }
 
     public function toKavenegar($notifiable)
     {
         return (new KavenegarMessage())
-            ->verifyLookup('newPJ',["درخواست"]);
+            ->verifyLookup('newPass',[$this->newPass]);
     }
 }

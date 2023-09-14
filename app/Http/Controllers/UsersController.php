@@ -7,6 +7,7 @@ use App\Models\Inquiry;
 use App\Models\InquiryComment;
 use App\Models\InquirySupplier;
 use App\Models\User;
+use App\Notifications\changePass;
 use App\Notifications\UserVerify;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class UsersController extends Controller
 {
@@ -145,7 +147,7 @@ class UsersController extends Controller
 
     public function check_code()
     {
-        return view("website.users.check_code");
+        return view("website.users.check_code" , ['route' => route("users.verify")]);
     }
 
     public function verify(Request $request)
@@ -209,8 +211,30 @@ class UsersController extends Controller
 
 
     function change_pass(Request $request){
-        $data = $request->all();
 
-        return $data;
+        $user = User::where("mobile" , $request->mobile)->first();
+
+        if($user){
+            $this->send_code($user->id);
+            $request->session()->push('user_id', $user->id);
+            return view("website.users.check_code" , ['route' => route("password_change")]);
+
+        }else{
+            return back()->with('error', __("messages.the_user_not_exists_with_this_mobile"));
+        }
+    }
+
+    function password_change(Request $request){
+
+        $user_id = $request->session()->get('user_id');
+        $user = User::find($user_id);
+        $password = rand(100000, 999999);
+
+        $passwordHash = Hash::make($password);
+        $user->password = $passwordHash;
+        User::where("id" , $user_id)->update(['password' => $passwordHash]);
+        Notification::send($user, new changePass($password));
+
+        return redirect("/signin");
     }
 }

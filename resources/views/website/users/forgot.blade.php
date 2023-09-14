@@ -7,9 +7,7 @@
                 <p>کاربر گرامی ، در صورتی که رمز عبور خود را فراموش نموده اید لطفا شماره تلفن همراه خود را وارد نمایید تا پس از تایید کد ارسالی ، رمز عبور جدید برای شما ارسال شود</p>
             </div>
 
-            @if($errors->any())
-                {{ implode('', $errors->all(':message')) }}
-            @endif
+            @include('website.layouts.flash-message')
             <form method="post" action="{{route("users.change-pass")}}">
                 @csrf
                 <div class="row">

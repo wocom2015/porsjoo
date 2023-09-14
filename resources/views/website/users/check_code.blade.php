@@ -7,7 +7,7 @@
             @if($errors->any())
                 {{ implode('', $errors->all(':message')) }}
             @endif
-            <form method="post" action="{{route("users.verify")}}">
+            <form method="post" action="{{$route}}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
