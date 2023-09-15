@@ -201,6 +201,12 @@
                         </h6>
                     </div>
                     <div class="modal-body">
+                        <div class="content-frame" v-show="(this.errors !=='') ">
+                            <p>لطفا خطاهای زیر را برطرف نمایید:</p>
+                            <ul>
+                                <li v-for="item in this.errors" class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i> <small >{{item}}</small></li>
+                            </ul>
+                        </div>
                         <form method="post" id="frmComment">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -241,6 +247,7 @@ export default {
             inquiry_id: 0,
             inquiry: [],
             replies: [],
+            errors: '',
             viewS: false,
             supplier: [],
             supplier_id: 0,

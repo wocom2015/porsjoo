@@ -12,6 +12,8 @@ use App\Models\Unit;
 
 use App\Models\User;
 use App\Notifications\NewPJ;
+use App\Notifications\requestComment;
+use App\Notifications\requestReply;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -184,6 +186,8 @@ class InquiriesController extends Controller
 
             $inquiry = Inquiry::findOrFail($request->id);
 
+
+
             $inquiryReply = InquiryReply::create([
                 'inquiry_id' => $inquiry->id,
                 'user_id' => Auth::user()->id,
@@ -203,6 +207,9 @@ class InquiriesController extends Controller
                 $user->pj_available = ($user->pj_available-1);
                 $user->update();
 
+                //send sms
+                $inquiryUser = User::find($inquiry->user_id);
+                Notification::send($inquiryUser , new requestReply($inquiry->name));
                 return reply("success" , "your_reply_to_inquiry_submitted_successfully");
             }
         }else{
@@ -302,6 +309,9 @@ class InquiriesController extends Controller
             'user_id' => $user_id,
             'comment' => $request->comment,
         ]);
+        $user = User::find($request->supplier_id);
+        $inquiry = Inquiry::find($request->inquiry_id);
+        Notification::send($user , new requestComment($inquiry->name));
 
         return reply("success" , "your_comment_added_successfully");
     }

@@ -26,18 +26,18 @@
                 <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
             </div>
             <div class="row p-2">
-                <div class="col-lg-3 col-6">استان</div>
-                <div class="col-lg-3 col-6"><strong>نام محصول</strong></div>
-                <div class="col-lg-3 col-6">دسته</div>
-                <div class="col-lg-3 col-6">زمان پایان استعلام</div>
+                <div class="col-lg-3 col-sm-6"><strong>استان</strong></div>
+                <div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div>
+                <div class="col-lg-3 col-sm-6"><strong>دسته</strong></div>
+                <div class="col-lg-3 col-sm-6"><strong>زمان پایان استعلام</strong></div>
             </div>
 
             <a v-for="item in this.inquiries" :href="item.url">
                 <div class="row mb-2 p-2">
-                    <div class="col-lg-3 col-6">{{item.provinceName}}</div>
-                    <div class="col-lg-3 col-6"><strong>{{item.name}}</strong></div>
-                    <div class="col-lg-3 col-6">{{item.categoryName}}</div>
-                    <div class="col-lg-3 col-6">{{item.closeDate}}</div>
+                    <div class="col-lg-3 col-sm-6">{{item.provinceName}}</div>
+                    <div class="col-lg-3 col-sm-6">{{item.name}}</div>
+                    <div class="col-lg-3 col-sm-6">{{item.categoryName}}</div>
+                    <div class="col-lg-3 col-sm-6">{{item.closeDate}}</div>
                 </div>
             </a>
 
