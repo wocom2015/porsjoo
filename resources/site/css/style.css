@@ -75,10 +75,11 @@ button {
 	color: #fff;
 	text-transform: capitalize;
 	background-color: #D64012;
-	border-radius: 50px;
+	border-radius: 10px;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 14px;
     padding: 10px 20px;
+    margin-left: 10px;
 }
 .orange-box {
     border: none;
@@ -142,9 +143,16 @@ button {
 .hr-custom{background-color: #D64012;height: 4px !important;opacity: 1.0}
 .header-custom{font-size: 1.1em; font-weight: 600;margin-top: 10px;}
 .btn-custom-outline{
-    background-color: #fff; border: 2px solid #D64012;border-radius: 10px;
+    background-color: #fff;
+    border: 2px solid #D64012;
+    border-radius: 10px;
     color:#D64012;
     font-size: 12px;
+}
+.btn-no-bordered{
+    border: none;
+    background-color: unset;
+    color:#D64012;
 }
 .optional-btn {
 	border: 1px solid #209e2e;
@@ -186,17 +194,35 @@ button {
 
 
 .inquiry-box{
-    border: 1px solid #F68002;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    background-color: #f7f6f6;
 }
 
 .text-default{
     color : #F68002;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 
 
@@ -374,7 +400,7 @@ nav > ul {
 nav > ul > li {
     text-align: center;
     line-height: 40px;
-    margin-left: 70px;
+    margin-left: 32px;
 }
 nav > ul li ul li {
     width: 100%;

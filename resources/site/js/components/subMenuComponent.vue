@@ -8,14 +8,25 @@
         <ul v-if="this.showSub" class="sub-dropdown-menu">
             <li>
                 <a href="/profile"
-                   title="برای مشاهده پروفایل خود کلیک کنید">مشاهده پروفایل</a>
+                   title="برای مشاهده پروفایل خود کلیک کنید">
+                    <img src="/site/images/user-avatar.png">
+                    مشاهده پروفایل
+                </a>
             </li>
             <li class="d-xs-none">
                 <a href="/profile/edit" target="_blank">
-                    ویرایش پروفایل</a>
+                    <img src="/site/images/user-edit.png">
+                    ویرایش پروفایل
+                </a>
             </li>
             <li class="d-xs-none">
-                <a href="/user/logout">خروج از سامانه</a>
+                <a href="/inquiry/archive" target="_blank">
+                    آرشیو استعلام ها</a>
+            </li>
+            <li class="d-xs-none">
+                <a href="/user/logout">
+                    <img src="/site/images/logout.png">
+                    خروج از سامانه</a>
             </li>
         </ul>
     </div>

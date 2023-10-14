@@ -22,7 +22,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->get();
+        $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->orderBy("id" , "desc")->get();
 
         if ($user->inquiries->isNotEmpty()) {
             foreach ($user->inquiries as $inquiry) {
@@ -45,7 +45,7 @@ class ProfileController extends Controller
 
         $collaborators = [];
         $comments = [];
-        $inquiries = Inquiry::where("user_id" , $user->id)->limit(10)->offset(0)->get();
+        $inquiries = Inquiry::where("user_id" , $user->id)->orderBy("id" , "desc")->limit(10)->offset(0)->get();
         if($inquiries){
             foreach ($inquiries as $inquiry){
                 $suppliers = InquirySupplier::where("inquiry_id" , $inquiry->id)->get();

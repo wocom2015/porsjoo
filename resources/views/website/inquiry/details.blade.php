@@ -17,7 +17,7 @@
                 <span class="text-info">{{__("p.inquiry_date")}}</span> :  <strong>{{custom_date_format($inquiry->created_at)}}</strong>
             </div>
             <div class="col-lg-6">
-                <span class="text-info">{{__("p.number_of_users")}}</span> :  <strong>{{$inquiry->replies->count() + 1}}</strong>
+                <span class="text-info">{{__("p.number_of_users_involved_inquiry")}}</span> :  <strong>{{$inquiry->suppliers->count() + 1}}</strong>
             </div>
         </div>
     </div>

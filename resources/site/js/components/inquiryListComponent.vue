@@ -4,17 +4,26 @@
             <div class="row p-2">
                 <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{this.count}} مورد</h1></div>
             </div>
-
+            <div class="row" style="background-color: #f0f0f0;padding: 10px">
+                <div class="col-lg-2">استان</div>
+                <div class="col-lg-2">محصول</div>
+                <div class="col-lg-2">تاریخ</div>
+                <div class="col-lg-2">مشاهده مشخصات</div>
+                <div class="col-lg-2">پاسخ شما</div>
+                <div class="col-lg-2">پاسخ مشتری</div>
+            </div>
             <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
                 <div class="col-lg-2">{{item.provinceName}}</div>
                 <div class="col-lg-2">
-                    <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
-                    <strong>{{item.name}}</strong><br>{{item.description}}</div>
+                    <strong>{{item.name}}</strong></div>
                 <div class="col-lg-2">{{item.created}}</div>
-                <div class="col-lg-2"><button @click="view(item.id)" class="btn btn-custom-outline mb-1">مشاهده مشخصات</button></div>
-                <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn btn-custom-outline mb-1">پاسخ</button> </div>
-                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn btn-custom-outline mb-1">پاسخ شما</button> </div>
-                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.commentReview(item.id)" class="btn btn-custom-outline mb-1">پاسخ مشتری</button> </div>
+                <div class="col-lg-2"><button @click="view(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>مشاهده</button></div>
+                <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                    مشاهده</button> </div>
+                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                    مشاهده</button> </div>
+                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.commentReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                    مشاهده</button> </div>
             </div>
 
             <div v-if="this.count===0" class="row mb-2 p-2">

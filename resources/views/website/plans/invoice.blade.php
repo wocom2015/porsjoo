@@ -14,6 +14,6 @@
             </tbody>
         </table>
 
-        <button class="btn default-btn">پرداخت</button>
+        <a href="/plans/payment/{{$plan->id}}" class="btn default-btn">پرداخت</a>
     </div>
 @endsection

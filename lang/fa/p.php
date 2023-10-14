@@ -131,4 +131,5 @@ return [
     'your_job_name' => 'نام کسب و کار شما',
     'password_confirmation' => 'تایید رمز عبور',
     'rules_text' => 'متن قوانین و مقررات',
+    'number_of_users_involved_inquiry' => 'تعداد افرادی که در این pj حضور دارند',
 ];

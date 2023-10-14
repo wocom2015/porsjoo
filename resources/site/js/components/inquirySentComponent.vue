@@ -6,25 +6,31 @@
 
         </div>
 
-
+        <div class="row" style="background-color: #f0f0f0;padding: 10px">
+            <div class="col-lg-2">شناسه استعلام</div>
+            <div class="col-lg-2">نام محصول</div>
+            <div class="col-lg-2">تاریخ</div>
+            <div class="col-lg-2">دسته بندی</div>
+            <div class="col-lg-2">مشخصات</div>
+            <div class="col-lg-2">پاسخ ها</div>
+        </div>
         <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
-            <div class="col-lg-1">شناسه استعلام : {{ item.id }}</div>
-            <div class="col-lg-3">
-                <img v-if="item.pictureSrc !=null" :src=item.pictureSrc class="thumb_img"/>
-                <strong>{{ item.name }}</strong><br>{{ item.description }}
+            <div class="col-lg-2">{{ item.id }}</div>
+            <div class="col-lg-2">
+                {{ item.name }}
             </div>
             <div class="col-lg-2">{{ item.created }}</div>
-            <div class="col-lg-2">دسته بندی : {{ item.categoryName }}</div>
+            <div class="col-lg-2">{{ item.categoryName }}</div>
             <div class="col-lg-2">
-                <button class="btn btn-custom-outline mb-1" @click="view(item.id)">
-                    <img style="width:12px; color:orange" src="/site/images/info.png"/>
-                    مشاهده مشخصات
+                <button class="btn-no-bordered mb-1" @click="view(item.id)">
+                    <img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                    مشاهده
                 </button>
             </div>
             <div class="col-lg-2">
-                <button class="btn btn-custom-outline mb-1" @click="viewReplies(item.id)">
-                    <img style="width:12px; color:orange" src="/site/images/message.png"/>
-                    پاسخ ها
+                <button class="btn-no-bordered mb-1" @click="viewReplies(item.id)">
+                    <img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                    مشاهده
                     ({{ item.repliesCount }})
                 </button>
             </div>
@@ -110,10 +116,10 @@
                                 است.</p>
                         </div>
 
-                        <div class="row" v-show="this.replies.length>0">
-                            <div class="col-lg-6" v-for="item in this.replies">
-                                <div class="inquiry-box">
-                                    <strong>قیمت : {{ item.price }}</strong>
+                        <div class="row" v-show="this.replies.length>0" style="max-height: 500px; overflow-y: scroll">
+                            <div class="col-lg-12" v-for="item in this.replies">
+                                <div class="inquiry-box text-center">
+                                    <p><strong>قیمت : {{ item.price }}</strong></p>
                                     <p><small>{{ item.description }}</small></p>
                                     <p><small class="ml-10">امکان پرداخت چکی : {{ item.cheque_enable }}</small> |
                                         <small class="ml-10"> امکان ارسال نمونه : {{ item.sample_enable }}</small> |
@@ -122,28 +128,26 @@
                                                 item.visit_place_enable
                                             }}</small></p>
 
-                                    <button class="btn default-btn" @click="viewSupplier(item.user_id)"
+                                    <a href="javascript:void(0)" class="btn default-btn" @click="viewSupplier(item.user_id)"
                                             title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود">
                                         مشاهده اطلاعات تامین کننده
-                                        <i class="bi bi-file-lock2"></i>
-                                    </button>
-                                    <a class="btn default-btn" :href="item.url">
+                                    </a>
+                                    <a :href="item.url" class="btn default-btn">
                                         مشاهده پروفایل تامین کننده
                                     </a>
-                                    <button v-if="item.hasSeen==1" class="btn default-btn mt-2"
-                                            style="margin-right: 10px"
+                                    <a href="javascript:void(0)" v-if="item.hasSeen==1" class="btn default-btn"
                                             @click="commentSupplier(item.user_id , item.inquiry_id)"
                                             title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">
                                         پاسخ به تامین کننده
-                                        <i class="bi bi-file-lock2"></i>
-                                    </button>
+                                    </a>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-custom-outline" @click="this.hideViewR()">متوجه شدم
+                        <button type="button" class="btn btn-custom-outline" style="margin: 0 auto" @click="this.hideViewR()">
+                            <img src="/site/images/check.png"> متوجه شدم
                         </button>
                     </div>
                 </div>

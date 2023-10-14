@@ -5,13 +5,14 @@
                 <a href="/"> خانه </a>
             </li>
             <li style="float: right">
-                <a href="/plans"> طرح ها </a>
-            </li>
-            <li style="float: right">
                 <a href="/inquiry/request" class="active"> ثبت pJ </a>
             </li>
             <li style="float: right">
-                <a href="/page/about"> درباره پرسجو </a>
+                <a href="/plans"> تعرفه </a>
+            </li>
+
+            <li style="float: right">
+                <a href="/page/about"> درباره ما </a>
 
             </li>
             <li style="float: right">

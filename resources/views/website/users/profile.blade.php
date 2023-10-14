@@ -39,7 +39,7 @@
                                         <img src="images/avatar.png">
                                     @endif
                                 </div>
-                                <p>{{$c->name.' '.$c->last_name}}</p>
+                                <a href="/user/profile/{{$c->id}}">{{$c->name.' '.$c->last_name}}</a>
                             </div>
                         </div>
                     @endforeach

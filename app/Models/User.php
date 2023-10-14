@@ -76,7 +76,7 @@ class User extends Authenticatable
 
     public function inquiries(): HasMany
     {
-        return $this->hasMany(Inquiry::class);
+        return $this->hasMany(Inquiry::class)->orderBy("id" , "desc");
     }
 
 

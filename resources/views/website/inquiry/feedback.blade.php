@@ -1,7 +1,6 @@
 @extends("website.layouts.app")
 @section("content")
     <div class="content-frame">
-        {{$lastPJ->id}}
         <p>کاربر گرامی لطفا قبل از پر کردن فرم Pj جدید به سوالات زیر پاسخ دهید:</p>
         <form method="post" action="/inquiry/feedback">
             @csrf

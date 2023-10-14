@@ -885,16 +885,22 @@ blockquote::after, .blockquote::after {
     list-style: none !important;
     background-color: white;
     margin-top: 40px;
-    padding: 10px;
+    padding: 2px;
     text-align: right;
     line-height: 2;
 
 }
 .sub-dropdown-menu  li{
     direction: rtl;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #eee;
+}
+.sub-dropdown-menu  li:last-child{
+    border-bottom: none;
 }
 .sub-dropdown-menu li a{
-    color: #D64012 !important;
+    color: #1e1e1e !important;
 }
 .sub-dropdown-menu li a:hover{
     color: orange;

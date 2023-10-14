@@ -74,19 +74,19 @@
         </div>
         <div class="col-lg-3 col-sm-12 mb-3">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="cheque_enable" value="1" checked>
+                <input class="form-check-input" type="radio" name="cheque_enable" value="1" checked @click="this.shI=1">
                 <label class="form-check-label">بله</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="cheque_enable" value="0">
-                <label class="form-check-label">خیر</label>
+                <input class="form-check-input" type="radio" name="cheque_enable" value="0" @click="this.shI=0">
+                <label class="form-check-label" >خیر</label>
             </div>
         </div>
 
-        <div class="col-lg-3 col-sm-12 mb-3">
+        <div class="col-lg-3 col-sm-12 mb-3" v-if="this.shI===1">
             <input type="text" class="form-control" name="cheque_count" placeholder="تعداد چک" />
         </div>
-        <div class="col-lg-3 col-sm-12 mb-3">
+        <div class="col-lg-3 col-sm-12 mb-3" v-if="this.shI===1">
             <input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی" />
         </div>
 
@@ -138,22 +138,24 @@
         </div>
 
         <div class="col-lg-12 col-sm-12 mb-3">
-            <label  class="mt-2">در صورت نیاز به حمل و نقل ، شرایط استعلام چیست؟</label>
+            <label  class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label>
             <textarea class="form-control" name="move_conditions"></textarea>
         </div>
-        <div class="col-lg-6 col-sm-12 mb-3">
-            <label  class="mt-2">در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</label>
+        <div class="col-lg-12 col-sm-12 mb-3">
+            <hr style="color: indianred"/>
+            <strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong>
         </div>
-        <div class="col-lg-3 col-sm-12 mb-3">
+
+        <div class="col-lg-4 col-sm-12 mb-3">
             <input type="text" class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده" />
         </div>
-        <div class="col-lg-3 col-sm-12 mb-3">
-            <input type="text" class="form-control" style="text-align:left;direction:ltr" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همرا تامین کننده" />
+        <div class="col-lg-4 col-sm-12 mb-3">
+            <input type="text" class="form-control" style="text-align:left;direction:ltr" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه" />
         </div>
 
 
 
-        <div class="default-btn" type="button" @click="submit()">ثبت</div>
+        <div class="default-btn" type="button" @click="submit()" v-if="this.submitted === 0">ثبت</div>
 
         <div class="content-frame text-success font-weight-bold" v-show="(this.message !=='') ">{{this.message}}</div>
         <div class="content-frame" v-show="(this.errors !=='') ">
@@ -176,7 +178,9 @@ export default {
             province_id : 0,
             message : '',
             errors : '',
-            cities : []
+            cities : [],
+            shI : 1,
+            submitted : 0
         }
     },
     methods:{
@@ -211,6 +215,8 @@ export default {
                 .then(function (response) {
                     if (response.data.state === 'success'){
                         self.message = response.data.message;
+                        self.submitted = 1;
+
                     }else{
                         self.errors = response.data.message;
                     }

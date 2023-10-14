@@ -36,6 +36,7 @@ Route::post('/search/inquiry', [CategoriesController::class , 'search_inquiry'])
 Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
 Route::get('/rules', [HomeController::class , 'rules'])->name('rules');
 Route::get('/page/{title}', [HomeController::class , 'page']);
+Route::get('/payment/callback', [PlansController::class , 'callback']);
 
 Route::get('/plans' , [PlansController::class , 'index']);
 
@@ -57,7 +58,8 @@ Route::middleware('auth_user')->group(function () {
     Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class , 'edit'])->name('profile.edit');
     Route::post('/profile/edit', [ProfileController::class , 'update'])->name('profile.update');
-    Route::get('/plans/buy/{plan_id}' , [PlansController::class , 'buy']);
+    Route::get('/plans/invoice/{plan_id}' , [PlansController::class , 'invoice']);
+    Route::get('/plans/payment/{plan_id}' , [PlansController::class , 'payment']);
     Route::get('/user/logout' , [UsersController::class , 'logout']);
     Route::get('/user/profile/{user_id}' , [UsersController::class , 'profile']);
 });
