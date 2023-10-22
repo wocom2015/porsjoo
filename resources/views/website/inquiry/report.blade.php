@@ -4,9 +4,15 @@
 
     <h1 class="h6">{{$title}}</h1><hr>
 
+
     <div class="row">
-        <div class="col-lg-3"><span>سه ماه گذشته : </span> <span>{{$last_3}}</span></div>
-        <div class="col-lg-3"><span>شش ماه گذشته : </span> <span>{{$last_6}}</span></div>
-        <div class="col-lg-3"><span>یک سال گذشته : </span> <span>{{$last_12}}</span></div>
+        <div class="col-lg-12">
+            <img src="/site/images/report.png" />
+        </div>
+    </div>
+    <div class="report-row mt-4 text-center">
+        <div class="report-box text-center"><p class="report-label">سه ماه گذشته </p> <p class="report-stat-num">{{$last_3}}</p></div>
+        <div class="report-box text-center"><p class="report-label">شش ماه گذشته  </p> <p class="report-stat-num">{{$last_6}}</p></div>
+        <div class="report-box text-center"><p class="report-label">یک سال گذشته  </p> <p class="report-stat-num">{{$last_12}}</p></div>
     </div>
 @endsection

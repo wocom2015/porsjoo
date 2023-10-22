@@ -83,6 +83,12 @@
                                     (this.inquiry.guarantee_enable) ? 'بله' : 'خیر'
                                 }}</strong>
                             </div>
+
+                            <div class="col-lg-6">
+                                <span>مسئولیت حمل و نقل با : </span><strong>{{
+                                    (this.inquiry.move_conditions=="buyer") ? 'فروشنده' : 'خریدار'
+                                }}</strong>
+                            </div>
                             <div class="col-lg-12">
                                 <span>توضیحات : </span><strong>{{ this.inquiry.description }}</strong></div>
                         </div>
@@ -105,18 +111,19 @@
                         </h6>
                     </div>
                     <div class="modal-body">
-                        <div v-show='this.replies.length>0' class="alert alert-warning">
-                            <strong>توجه:</strong>
-                            <p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده
-                                اطلاعات تامین کننده ، یکی از
-                                فرصت های استعلام شما کم می شود</p>
-                        </div>
+
                         <div v-show='this.replies.length==0' class="alert alert-info">
                             <p>کاربر گرامی ، در حال حاضر هیچ پاسخی برای این استعلام از طرف تامین کنندگان داده نشده
                                 است.</p>
                         </div>
 
-                        <div class="row" v-show="this.replies.length>0" style="max-height: 500px; overflow-y: scroll">
+                        <div class="row" v-show="this.replies.length>0" style="max-height: 400px; overflow-y: scroll">
+                            <div v-show='this.replies.length>0' class="alert alert-warning">
+                                <strong>توجه:</strong>
+                                <p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده
+                                    اطلاعات تامین کننده ، یکی از
+                                    فرصت های استعلام شما کم می شود</p>
+                            </div>
                             <div class="col-lg-12" v-for="item in this.replies">
                                 <div class="inquiry-box text-center">
                                     <p><strong>قیمت : {{ item.price }}</strong></p>
@@ -140,6 +147,10 @@
                                             title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">
                                         پاسخ به تامین کننده
                                     </a>
+                                    <a href="javascript:void(0)" @click="chatBox(item.user_id)" class="btn default-btn"
+                                       title="با کلیک بر روی این دکمه می توانید با تامین کننده چت کنید">
+                                        گفتگو با تامین کننده
+                                    </a>
                                 </div>
 
                             </div>
@@ -154,6 +165,47 @@
             </div>
         </div>
 
+        <div v-show="this.viewChat" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            گفتگو با تامین کننده
+                            <small class="text-danger">{{ this.inquiryName }}</small>
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="chat-box">
+                            <div class="chat-header">
+                                <span>{{this.chatUser}}</span>
+                            </div>
+                            <div v-for="item in this.chats" :class="item.class">
+                                <div class="content">
+                                    <p>
+                                        {{item.message}}
+                                    </p>
+                                    <span style="float: right">{{item.created_at}}</span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="chat-footer">
+                            <svg @click="sendMsg()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9482 3.23906C5.3284 2.90532 4.57878 2.92199 3.97443 3.28297C3.37008 3.64394 3 4.29605 3 5V19C3 19.7039 3.37008 20.3561 3.97443 20.717C4.57878 21.078 5.3284 21.0947 5.9482 20.7609L18.9482 13.7609C19.596 13.4121 20 12.7358 20 12C20 11.2642 19.596 10.5879 18.9482 10.2391L5.9482 3.23906ZM5 19V14L12 12L5 10V5L18 12L5 19Z" fill="#D64012"/>
+                            </svg>
+                            <div class="chat-message">
+                                <input ref="msg" type="text" class="form-control" placeholder="نوشتن پیام...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-custom-outline" style="margin: 0 auto" @click="this.viewChat = 0">
+                        بستن مکالمه</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div v-show="this.viewS" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">
             <div class="modal-dialog" role="document">
@@ -245,6 +297,7 @@ export default {
     data() {
         return {
             viewC: false,
+            viewChat: false,
             viewM: false,
             viewR: false,
             inquiryName: '',
@@ -257,7 +310,9 @@ export default {
             supplier_id: 0,
             supplierState: '',
             supplierMessage: '',
-            message: ''
+            message: '',
+            chats : [],
+            chatUser : ''
         }
     },
     methods: {
@@ -357,7 +412,40 @@ export default {
         commentSupplier(supplier_id, inquiry_id) {
             this.viewC = true;
             this.inquiry_id = inquiry_id,
-                this.supplier_id = supplier_id
+            this.supplier_id = supplier_id
+        },
+        chatBox(supplier_id){
+            this.viewChat = true;
+            var self = this;
+            self.supplier_id = supplier_id;
+            axios(
+                {
+                    method: "post",
+                    url: "/messages",
+                    data: {user_id: self.supplier_id},
+                }
+            )
+            .then(function (response) {
+                self.chats = response.data.messages;
+                self.chatUser = response.data.supplier;
+            });
+        },
+        sendMsg(){
+            let message = this.$refs.msg.value;
+            var self = this;
+            if(message.length>0){
+                axios(
+                    {
+                        method: "post",
+                        url: "/messages/send",
+                        data: {user_id: self.supplier_id , message : message},
+                    }
+                )
+                    .then(function (response) {
+                        self.chatBox(self.supplier_id);
+                        self.$refs.msg.value = "";
+                    });
+            }
         }
 
     }

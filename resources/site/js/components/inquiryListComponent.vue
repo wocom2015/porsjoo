@@ -119,8 +119,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn default-btn" @click="this.sendReply(this.id)">ارسال پاسخ</button>
-                        <button type="button" class="btn btn-custom-outline" @click="this.hideReply()">بستن</button>
+                        <button type="button" class="btn default-btn"  @click="this.sendReply(this.id)">ارسال پاسخ</button>
+                        <button type="button" class="btn close-btn" @click="this.hideReply()">بستن</button>
                     </div>
                 </div>
             </div>
@@ -150,6 +150,7 @@
                             <div class="col-lg-6"><span>درصد نقد : </span><strong>{{this.inquiry.cash_percent}}</strong></div>
                             <div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>{{(this.inquiry.sample_enable)?'بله':'خیر'}}</strong></div>
                             <div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>{{(this.inquiry.guarantee_enable)?'بله':'خیر'}}</strong></div>
+                            <div class="col-lg-6"><span>مسئولیت حمل و نقل با : </span><strong>{{(this.inquiry.move_conditions=="buyer")?'فروشنده':'خریدار'}}</strong></div>
                             <div class="col-lg-12"><span>توضیحات : </span><strong>{{this.inquiry.description}}</strong></div>
                         </div>
                     </div>

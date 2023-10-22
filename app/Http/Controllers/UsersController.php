@@ -201,7 +201,7 @@ class UsersController extends Controller
                 }
             }
         }
-        return view("website.users.profile" , compact("user",  "comments" ));
+        return view("website.users.profile" , compact("user",  "comments" , "collaborators" ));
     }
 
     public function forgot()

@@ -137,10 +137,20 @@
             <input class="form-control form-control-sm" name="picture" type="file">
         </div>
 
-        <div class="col-lg-12 col-sm-12 mb-3">
+        <div class="col-lg-6 col-sm-12 mb-3">
             <label  class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label>
-            <textarea class="form-control" name="move_conditions"></textarea>
         </div>
+        <div class="col-lg-3 col-sm-12 mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked>
+                <label class="form-check-label">خریدار</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="move_conditions" value="seller" >
+                <label class="form-check-label">فروشنده</label>
+            </div>
+        </div>
+
         <div class="col-lg-12 col-sm-12 mb-3">
             <hr style="color: indianred"/>
             <strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong>
@@ -156,6 +166,7 @@
 
 
         <div class="default-btn" type="button" @click="submit()" v-if="this.submitted === 0">ثبت</div>
+        <div class="col-lg-12 col-sm-12 mb-3"><a class="close-btn" href="/" v-if="this.submitted === 1">بازگشت</a></div>
 
         <div class="content-frame text-success font-weight-bold" v-show="(this.message !=='') ">{{this.message}}</div>
         <div class="content-frame" v-show="(this.errors !=='') ">

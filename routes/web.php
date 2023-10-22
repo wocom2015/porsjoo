@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiriesController;
+use App\Http\Controllers\messagesController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
@@ -62,6 +63,8 @@ Route::middleware('auth_user')->group(function () {
     Route::get('/plans/payment/{plan_id}' , [PlansController::class , 'payment']);
     Route::get('/user/logout' , [UsersController::class , 'logout']);
     Route::get('/user/profile/{user_id}' , [UsersController::class , 'profile']);
+    Route::post('/messages' , [messagesController::class , 'index']);
+    Route::post('/messages/send' , [messagesController::class , 'create']);
 });
 
 require __DIR__.'/auth.php';

@@ -71,7 +71,6 @@ class ProfileController extends Controller
         return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "comments" , "type"));
     }
 
-
     public function edit()
     {
         $categories = Category::getA(1);

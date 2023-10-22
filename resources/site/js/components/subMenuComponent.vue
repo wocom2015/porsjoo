@@ -2,8 +2,11 @@
     <div>
         <div class="text-white" style="float: right" @click="showSubb"
              title="برای مشاهده پروفایل خود کلیک کنید">
+            <img src="/site/images/bottom_arrow.png" class="user-icon" style="border: none"/>
             {{this.fullname}}
             <img :src="this.img" class="user-icon"/>
+
+
         </div>
         <ul v-if="this.showSub" class="sub-dropdown-menu">
             <li>
@@ -20,7 +23,14 @@
                 </a>
             </li>
             <li class="d-xs-none">
+                <a href="/inquiry/report" target="_blank">
+                    <img src="/site/images/report-icon.png">
+                    گزارش
+                </a>
+            </li>
+            <li class="d-xs-none">
                 <a href="/inquiry/archive" target="_blank">
+                    <img src="/site/images/archive.png">
                     آرشیو استعلام ها</a>
             </li>
             <li class="d-xs-none">
