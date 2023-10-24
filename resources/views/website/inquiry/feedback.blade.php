@@ -34,6 +34,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="col-lg-6 col-sm-12 mb-3">
+                    <label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید نظر خود را در مورد آن بنویسید
+                    </label>
+                </div>
+                <div class="col-lg-6 col-sm-12 mb-3">
+                    <textarea class="form-control" name="comment" rows="4" style="border: 1px solid #D64012"></textarea>
+                </div>
 
                 <div class="col-lg-6 col-sm-12 mb-3">
                     <button class="default-btn">ذخیره</button>

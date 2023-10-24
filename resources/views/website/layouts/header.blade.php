@@ -2,7 +2,7 @@
         <input type="checkbox" id="nav" /><label class="nav-label" for="nav"></label>
         <ul>
             <li style="float: right">
-                <img style="width: 62px;margin-top: -8px" alt="{{conf("system_title")}}" src="{{asset("site/images/logo-inverse.png")}}"/>
+                <a href="/"><img style="width: 62px;margin-top: -8px" alt="{{conf("system_title")}}" src="{{asset("site/images/logo-inverse.png")}}"/></a>
             </li>
             <li style="float: right">
                 <a href="/"> خانه </a>

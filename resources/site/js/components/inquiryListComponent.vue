@@ -5,25 +5,29 @@
                 <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{this.count}} مورد</h1></div>
             </div>
             <div class="row" style="background-color: #f0f0f0;padding: 10px">
-                <div class="col-lg-2">استان</div>
-                <div class="col-lg-2">محصول</div>
-                <div class="col-lg-2">تاریخ</div>
-                <div class="col-lg-2">مشاهده مشخصات</div>
-                <div class="col-lg-2">پاسخ شما</div>
-                <div class="col-lg-2">پاسخ مشتری</div>
+                <div class="col">استان</div>
+                <div class="col">محصول</div>
+                <div class="col">تاریخ</div>
+                <div class="col">مشاهده مشخصات</div>
+                <div class="col">پاسخ شما</div>
+                <div class="col">پاسخ مشتری</div>
+                <div class="col">گفتگو</div>
             </div>
             <div v-if="this.count>0" class="row mb-2 p-2" v-for="item in this.inquiries">
-                <div class="col-lg-2">{{item.provinceName}}</div>
-                <div class="col-lg-2">
+                <div class="col">{{item.provinceName}}</div>
+                <div class="col">
                     <strong>{{item.name}}</strong></div>
-                <div class="col-lg-2">{{item.created}}</div>
-                <div class="col-lg-2"><button @click="view(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>مشاهده</button></div>
-                <div v-show="item.reply_by_user==0" class="col-lg-2"><button @click="this.replyIt(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                <div class="col">{{item.created}}</div>
+                <div class="col"><button @click="view(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>مشاهده</button></div>
+                <div class="col" v-show="item.reply_by_user==0" ><button @click="this.replyIt(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
                     مشاهده</button> </div>
-                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.replyReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                <div v-show="item.reply_by_user==1" class="col"><button @click="this.replyReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
                     مشاهده</button> </div>
-                <div v-show="item.reply_by_user==1" class="col-lg-2"><button @click="this.commentReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                <div class="col"><button @click="this.commentReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
                     مشاهده</button> </div>
+                <div class="col"><button @click="this.chatBox(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                    مشاهده</button> </div>
+
             </div>
 
             <div v-if="this.count===0" class="row mb-2 p-2">
@@ -210,6 +214,47 @@
             </div>
         </div>
 
+        <div v-show="this.viewChat" class="modal fade show" tabindex="-1" role="dialog" id="viewModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            گفتگو با تامین کننده
+                            <small class="text-danger">{{ this.inquiryName }}</small>
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="chat-box">
+                            <div class="chat-header">
+                                <span>{{this.chatUser}}</span>
+                            </div>
+                            <div v-for="item in this.chats" :class="item.class">
+                                <div class="content">
+                                    <p>
+                                        {{item.message}}
+                                    </p>
+                                    <span style="float: right">{{item.created_at}}</span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="chat-footer">
+                            <svg @click="sendMsg()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9482 3.23906C5.3284 2.90532 4.57878 2.92199 3.97443 3.28297C3.37008 3.64394 3 4.29605 3 5V19C3 19.7039 3.37008 20.3561 3.97443 20.717C4.57878 21.078 5.3284 21.0947 5.9482 20.7609L18.9482 13.7609C19.596 13.4121 20 12.7358 20 12C20 11.2642 19.596 10.5879 18.9482 10.2391L5.9482 3.23906ZM5 19V14L12 12L5 10V5L18 12L5 19Z" fill="#D64012"/>
+                            </svg>
+                            <div class="chat-message">
+                                <input ref="msg" type="text" class="form-control" placeholder="نوشتن پیام...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-custom-outline" style="margin: 0 auto" @click="this.viewChat = 0">
+                            بستن مکالمه</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -221,6 +266,7 @@ export default {
         return {
             viewM : false,
             replyM : false,
+            viewChat: false,
             replyReviewM : false,
             commentReviewM : false,
             inquiryName : '',
@@ -231,6 +277,9 @@ export default {
             reply : [],
             comment : '',
             comment_time : '',
+            message: '',
+            chats : [],
+            chatUser : ''
         }
     },
     methods:{
@@ -325,6 +374,39 @@ export default {
                     self.comment_time = response.data.comment_time;
                     //}
                 })
+        },
+        chatBox(supplier_id){
+            this.viewChat = true;
+            var self = this;
+            self.supplier_id = supplier_id;
+            axios(
+                {
+                    method: "post",
+                    url: "/messages",
+                    data: {user_id: self.supplier_id},
+                }
+            )
+                .then(function (response) {
+                    self.chats = response.data.messages;
+                    self.chatUser = response.data.supplier;
+                });
+        },
+        sendMsg(){
+            let message = this.$refs.msg.value;
+            var self = this;
+            if(message.length>0){
+                axios(
+                    {
+                        method: "post",
+                        url: "/messages/send",
+                        data: {user_id: self.supplier_id , message : message},
+                    }
+                )
+                    .then(function (response) {
+                        self.chatBox(self.supplier_id);
+                        self.$refs.msg.value = "";
+                    });
+            }
         }
     }
 }

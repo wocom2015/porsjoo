@@ -34,7 +34,7 @@
                             <div class="p-3 m-3 text-center">
                                 <div class="avatar">
                                     @if($c->logo != '')
-                                        <img src="storage/users/{{$c->logo}}">
+                                        <img src="storage/users/{{$c->id}}/{{$c->logo}}">
                                     @else
                                         <img src="images/avatar.png">
                                     @endif
@@ -57,7 +57,7 @@
                     <div class="col-lg-2 col-sm-4 col-xs-4" style="min-width: 50px">
                         <div class="avatar" style="width:auto;height: auto">
                             @if($c['supplier']->logo != '')
-                                <img style="width: 41px;height:41px" src="storage/users/{{$c['supplier']->logo}}">
+                                <img style="width: 41px;height:41px" src="storage/users/{{$c['supplier']->id}}/{{$c['supplier']->logo}}">
                             @else
                                 <img style="width:41px;height: 41px" src="images/avatar.png">
                             @endif

@@ -368,6 +368,7 @@ class InquiriesController extends Controller
         $inquiry = Inquiry::findOrFail($request->id);
         $inquiry->is_bought = $request->is_bought;
         $inquiry->vendor_id = $request->vendor_id;
+        $inquiry->comment = $request->comment;
         $inquiry->bought_answered = 1;
 
         $inquiry->save();

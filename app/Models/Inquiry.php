@@ -42,7 +42,8 @@ class Inquiry extends Model
         "vendor_id",
         "bought_answered",
         "vendor_introduce_name",
-        "vendor_introduce_mobile"
+        "vendor_introduce_mobile",
+        "comment"
     ];
 
 

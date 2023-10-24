@@ -227,8 +227,7 @@
                             <div class="col-lg-6"><span>نام کسب و کار : </span><strong>{{
                                     this.supplier.job_name
                                 }}</strong></div>
-                            <div class="col-lg-6"><a class="default-btn" :href="this.supplier.url" target="_blank">مشاهده
-                                پروفایل </a></div>
+
                         </div>
 
                         <div v-show="this.supplierState=='error'" class="row">
