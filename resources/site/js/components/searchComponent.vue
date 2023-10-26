@@ -39,7 +39,7 @@
                     <div class="col-lg-3 col-sm-6">{{item.name}}</div>
                     <div class="col-lg-2 col-sm-6">{{item.categoryName}}</div>
                     <div class="col-lg-2 col-sm-6">{{item.closeDate}}</div>
-                    <div class="col-lg-2 col-sm-6">{{item.user_count}}</div>
+                    <div class="col-lg-2 col-sm-6">{{item.involved}}</div>
                 </div>
             </a>
 

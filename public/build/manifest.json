@@ -62,7 +62,7 @@
     "src": "resources/site/images/search-icon.png"
   },
   "resources/site/js/app.js": {
-    "file": "assets/app-5b0bcd44.js",
+    "file": "assets/app-1ba1db45.js",
     "imports": [
       "__commonjsHelpers-b75a21f2.js"
     ],

@@ -20,6 +20,7 @@ class HomeController extends Controller
             $pj->url = "/inquiry/details/".$pj->id."/".str_replace(" ","-" , $pj->name);
             $pj->provinceName = $pj->province->name;
             $pj->categoryName = $pj->category->name;
+            $pj->involved = $pj->suppliers->count() + 1;
             $pj->closeDate = ($pj->close_date!='')?jdate($pj->close_date)->format('%A, %d %B %Y'):'';
         }
         return view("website.home.index" , compact("lastPJ"));

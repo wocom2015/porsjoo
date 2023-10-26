@@ -311,7 +311,7 @@ class InquiriesController extends Controller
         ]);
         $user = User::find($request->supplier_id);
         $inquiry = Inquiry::find($request->inquiry_id);
-        Notification::send($user , new requestComment($inquiry->name));
+        //Notification::send($user , new requestComment($inquiry->name));
 
         return reply("success" , "your_comment_added_successfully");
     }
