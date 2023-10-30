@@ -652,7 +652,7 @@ const _sfc_main = {
   }
 };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="text-white" style="${ssrRenderStyle({ "float": "right" })}" title="برای مشاهده پروفایل خود کلیک کنید"><img src="/site/images/bottom_arrow.png" class="user-icon" style="${ssrRenderStyle({ "border": "none" })}"> ${ssrInterpolate(this.fullname)} <img${ssrRenderAttr("src", this.img)} class="user-icon"></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ style: { "z-index": "999" } }, _attrs))}><div class="text-white" style="${ssrRenderStyle({ "float": "right" })}" title="برای مشاهده پروفایل خود کلیک کنید"><img src="/site/images/bottom_arrow.png" class="user-icon" style="${ssrRenderStyle({ "border": "none" })}"> ${ssrInterpolate(this.fullname)} <img${ssrRenderAttr("src", this.img)} class="user-icon"></div>`);
   if (this.showSub) {
     _push(`<ul class="sub-dropdown-menu"><li><a href="/profile" title="برای مشاهده پروفایل خود کلیک کنید"><img src="/site/images/user-avatar.png"> مشاهده پروفایل </a></li><li class="d-xs-none"><a href="/profile/edit" target="_blank"><img src="/site/images/user-edit.png"> ویرایش پروفایل </a></li><li class="d-xs-none"><a href="/inquiry/report" target="_blank"><img src="/site/images/report-icon.png"> گزارش </a></li><li class="d-xs-none"><a href="/inquiry/archive" target="_blank"><img src="/site/images/archive.png"> آرشیو استعلام ها</a></li><li class="d-xs-none"><a href="/user/logout"><img src="/site/images/logout.png"> خروج از سامانه</a></li></ul>`);
   } else {

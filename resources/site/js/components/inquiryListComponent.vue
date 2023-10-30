@@ -25,7 +25,7 @@
                     مشاهده</button> </div>
                 <div class="col"><button @click="this.commentReview(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
                     مشاهده</button> </div>
-                <div class="col"><button @click="this.chatBox(item.id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
+                <div class="col"><button @click="this.chatBox(item.user_id)" class="btn-no-bordered mb-1"><img style="width:12px; color:orange" src="/site/images/view_pj.png"/>
                     مشاهده</button> </div>
 
             </div>

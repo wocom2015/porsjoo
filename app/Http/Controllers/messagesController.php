@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class messagesController extends Controller
 {
     function index(Request $request){
+
         $user_id = $request->user_id;
         $my_id = auth()->user()->id;
 

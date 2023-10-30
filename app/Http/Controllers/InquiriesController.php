@@ -209,7 +209,7 @@ class InquiriesController extends Controller
 
                 //send sms
                 $inquiryUser = User::find($inquiry->user_id);
-                Notification::send($inquiryUser , new requestReply($inquiry->name));
+                Notification::send($inquiryUser , new requestReply(str_replace(" ","_", $inquiry->name)));
                 return reply("success" , "your_reply_to_inquiry_submitted_successfully");
             }
         }else{

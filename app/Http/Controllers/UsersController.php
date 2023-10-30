@@ -139,7 +139,6 @@ class UsersController extends Controller
         $activeCode = ActiveCode::generateCode($user);
         $activeCode->expired = 10; //TODO : must become configurable
 
-
         Notification::send($user, new UserVerify($activeCode->code));
 
         return $activeCode;
@@ -147,7 +146,7 @@ class UsersController extends Controller
 
     public function check_code()
     {
-        return view("website.users.check_code" , ['route' => route("users.verify")]);
+        return view("website.users.check_code", ['route' => route("users.verify")]);
     }
 
     public function verify(Request $request)
@@ -177,40 +176,47 @@ class UsersController extends Controller
     }
 
 
-    function profile($userId){
+    function profile($userId)
+    {
         $user = User::find($userId);
         $comments = [];
         $collaborators = [];
-        $inquiries = Inquiry::where("user_id" , $user->id)->limit(10)->offset(0)->get();
-        if($inquiries){
-            foreach ($inquiries as $inquiry){
-                $suppliers = InquirySupplier::where("inquiry_id" , $inquiry->id)->get();
-                if($suppliers){
-                    foreach($suppliers as $supplier){
+        $inquiries = Inquiry::where("user_id", $user->id)->limit(10)->offset(0)->get();
+        if ($inquiries) {
+            foreach ($inquiries as $inquiry) {
+                $suppliers = InquirySupplier::where("inquiry_id", $inquiry->id)->get();
+                if ($suppliers) {
+                    foreach ($suppliers as $supplier) {
                         $user = User::find($supplier->user_id);
-                        if(!in_array($user , $collaborators))
+                        if (!in_array($user, $collaborators))
                             $collaborators[] = $user;
                     }
                 }
-
-                $inquiries = Inquiry::where('vendor_id' , $user->id)->where("is_bought" , 1)->where("comment" , "!=" , "")->get();
-                $sc = [];
-                if($inquiries){
-                    foreach($inquiries as $inquiry){
-                        $toAdd = [
-                            'supplier' => User::find($inquiry->user_id),
-                            'comment'  => $inquiry->comment
-                        ];
-                        if(!in_array($inquiry->user_id , $sc)){
-                            $comments[] = $toAdd;
-                            $sc[] = $inquiry->user_id;
-                        }
-
-                    }
-                }
             }
+
+            $inquiries = Inquiry::where('vendor_id', $user->id)->where("is_bought", 1)->where("comment", "!=", "")->get();
+            $sc = [];
+            if ($inquiries) {
+                foreach ($inquiries as $inquiry) {
+
+                    $toAdd = [
+                        'supplier' => User::find($inquiry->user_id),
+                        'comment' => $inquiry->comment,
+                        'commented_at' => $inquiry->updated_at
+                    ];
+                    if (!in_array($inquiry, $sc)) {
+                        $comments[] = $toAdd;
+                        $sc[] = $inquiry;
+                    }
+
+                }
+
+            }
+
         }
-        return view("website.users.profile" , compact("user",  "comments" , "collaborators" ));
+
+
+        return view("website.users.profile", compact("user", "comments", "collaborators"));
     }
 
     public function forgot()
@@ -219,21 +225,23 @@ class UsersController extends Controller
     }
 
 
-    function change_pass(Request $request){
+    function change_pass(Request $request)
+    {
 
-        $user = User::where("mobile" , $request->mobile)->first();
+        $user = User::where("mobile", $request->mobile)->first();
 
-        if($user){
+        if ($user) {
             $this->send_code($user->id);
             $request->session()->push('user_id', $user->id);
-            return view("website.users.check_code" , ['route' => route("password_change")]);
+            return view("website.users.check_code", ['route' => route("password_change")]);
 
-        }else{
+        } else {
             return back()->with('error', __("messages.the_user_not_exists_with_this_mobile"));
         }
     }
 
-    function password_change(Request $request){
+    function password_change(Request $request)
+    {
 
         $user_id = $request->session()->get('user_id');
         $user = User::find($user_id);
@@ -241,7 +249,7 @@ class UsersController extends Controller
 
         $passwordHash = Hash::make($password);
         $user->password = $passwordHash;
-        User::where("id" , $user_id)->update(['password' => $passwordHash]);
+        User::where("id", $user_id)->update(['password' => $passwordHash]);
         Notification::send($user, new changePass($password));
 
         return redirect("/signin");

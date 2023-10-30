@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="z-index: 999">
         <div class="text-white" style="float: right" @click="showSubb"
              title="برای مشاهده پروفایل خود کلیک کنید">
             <img src="/site/images/bottom_arrow.png" class="user-icon" style="border: none"/>

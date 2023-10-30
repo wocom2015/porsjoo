@@ -53,26 +53,26 @@
             <div class="content-frame">
                 <p class="text-center">نظرات دیگران در مورد این تامین کننده</p>
                     @foreach($comments as $c)
-                <div class="row" style="border: 1px solid #ddd;padding: 10px;margin: 10px auto;width: 80%;border-radius: 15px">
-                    <div class="col-lg-2 col-sm-4 col-xs-4" style="min-width: 50px">
-                        <div class="avatar" style="width:auto;height: auto">
-                            @if($c['supplier']->logo != '')
-                                <img style="width: 41px;height:41px" src="storage/users/{{$c['supplier']->id}}/{{$c['supplier']->logo}}">
-                            @else
-                                <img style="width:41px;height: 41px" src="images/avatar.png">
-                            @endif
+                        <div class="row" style="border: 1px solid #ddd;padding: 10px;margin: 10px auto;width: 80%;border-radius: 15px">
+                            <div class="col-lg-2 col-sm-4 col-xs-4" style="min-width: 50px">
+                                <div class="avatar" style="width:auto;height: auto">
+                                    @if($c['supplier']->logo != '')
+                                        <img style="width: 41px;height:41px" src="storage/users/{{$c['supplier']->id}}/{{$c['supplier']->logo}}">
+                                    @else
+                                        <img style="width:41px;height: 41px" src="images/avatar.png">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-8 col-xs-8 mt-2">
+                                {{$c['supplier']->name.' '.$c['supplier']->last_name}}
+                            </div>
+                            <div class="col-lg-4 mt-2">
+                                {{$c['comment']}}
+                            </div>
+                            <div class="col-lg-4 text-success mt-2">
+                                <img src="/images/calendar.png"/> {{ jdate($c['commented_at'])->format('%A, %d %B %Y') }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-8 col-xs-8 mt-2">
-                        {{$c['supplier']->name.' '.$c['supplier']->last_name}}
-                    </div>
-                    <div class="col-lg-4 mt-2">
-                        {{$c['comment']->comment}}
-                    </div>
-                    <div class="col-lg-4 text-success mt-2">
-                        <img src="/images/calendar.png"/> {{ jdate($c['comment']->created_at)->format('%A, %d %B %Y') }}
-                    </div>
-                </div>
             @endforeach
             </div>
         @endif
