@@ -187,9 +187,9 @@ class UsersController extends Controller
                 $suppliers = InquirySupplier::where("inquiry_id", $inquiry->id)->get();
                 if ($suppliers) {
                     foreach ($suppliers as $supplier) {
-                        $user = User::find($supplier->user_id);
-                        if (!in_array($user, $collaborators))
-                            $collaborators[] = $user;
+                        $u = User::find($supplier->user_id);
+                        if (!in_array($u, $collaborators))
+                            $collaborators[] = $u;
                     }
                 }
             }
