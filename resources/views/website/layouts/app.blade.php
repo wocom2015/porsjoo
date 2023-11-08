@@ -42,8 +42,7 @@
                 const para = document.createElement('p');
 
 
-                popup.id = 'popup';
-                popup.classList.add('popup','promoting-install-app-prompt','card');
+                popup.classList.add('promoting-install-app-prompt','card');
 
                 wrapper.classList.add('d-flex','justify-content-between','align-items-center','card-body');
                 para.innerText="اضافه کردن برنامه به صفحه اصلی گوشی";
@@ -81,10 +80,11 @@
         </script>
         @laravelPWA
         <style>
-            div#popup {
+            div.promoting-install-app-prompt {
                 position: fixed !important;
                 top: calc(100vh - 100px) !important;
                 min-width: 500px ;
+                margin: 0 20px;
             }
         </style>
     </head>
