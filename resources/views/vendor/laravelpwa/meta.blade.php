@@ -31,6 +31,8 @@
 <meta name="msapplication-TileImage" content="{{ data_get(end($config['icons']), 'src') }}">
 
 <script type="text/javascript">
+    let deferredPrompt;
+
     // Initialize the service worker
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/serviceworker.js', {
@@ -38,9 +40,76 @@
         }).then(function (registration) {
             // Registration was successful
             // console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
+
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent the mini-infobar from appearing on mobile
+                e.preventDefault();
+                // Stash the event so it can be triggered later.
+                deferredPrompt = e;
+                // Update UI notify the user they can install the PWA
+                showInstallPromotion();
+            });
+            window.addEventListener('appinstalled', () => {
+                // Hide the app-provided install promotion
+                hideInstallPromotion();
+                // Clear the deferredPrompt so it can be garbage collected
+                deferredPrompt = null;
+                // Optionally, send analytics event to indicate successful install
+                // console.log('PWA was installed');
+            });
         }, function (err) {
             // registration failed :(
             // console.log('Laravel PWA: ServiceWorker registration failed: ', err);
         });
     }
+    function showInstallPromotion(){
+        const popup = document.createElement('div');
+        const wrapper = document.createElement('div');
+        const button = document.createElement('div');
+        const para = document.createElement('p');
+
+
+        popup.classList.add('promoting-install-app-prompt','card');
+
+        wrapper.classList.add('d-flex','justify-content-between','align-items-center','card-body');
+        para.innerText="اضافه کردن برنامه به صفحه اصلی گوشی";
+        para.classList.add('m-0','install-message');
+
+        button.innerText ="نصب برنامه";
+        button.classList.add('btn','btn-primary');
+        button.addEventListener('click', async () => {
+            // Hide the app provided install promotion
+            // hideInstallPromotion();
+            // Show the install prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            const { outcome } = await deferredPrompt.userChoice;
+            // Optionally, send analytics event with outcome of user choice
+            console.log(`User response to the install prompt: ${outcome}`);
+            // We've used the prompt, and can't use it again, throw it away
+            deferredPrompt = null;
+        });
+
+
+        wrapper.appendChild(para);
+        wrapper.appendChild(button);
+
+        popup.appendChild(wrapper);
+
+        document.body.appendChild(popup);
+
+    }
+    function hideInstallPromotion(){
+        const prompt = document.querySelector('.promoting-install-app-prompt');
+        prompt.remove();
+    }
 </script>
+<style>
+    div.promoting-install-app-prompt {
+        position: fixed !important;
+        top: calc(100vh - 100px) !important;
+        min-width: 500px ;
+        margin: 0 20px;
+    }
+</style>
