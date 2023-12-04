@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    /****************************************************************
+     * @param Request $request
+     * @return array|void
+     */
     function search(Request $request){
        $phrase = $request->p;
        if(strlen($phrase)>=2){
@@ -27,6 +31,10 @@ class CategoriesController extends Controller
     }
 
 
+    /************************************************************************
+     * @param Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     function search_inquiry(Request $request){
         $catId = $request->catId;
         $inquiries =  \App\Http\Resources\Inquiry::collection(Inquiry::

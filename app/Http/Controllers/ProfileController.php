@@ -26,10 +26,10 @@ class ProfileController extends Controller
 
         if ($user->inquiries->isNotEmpty()) {
             foreach ($user->inquiries as $inquiry) {
-                $inquiry->provinceName = $inquiry->province->name;
+                $inquiry->provinceName = ($inquiry->province)?$inquiry->province->name:"";
                 $inquiry->repliesCount = $inquiry->replies->count();
                 $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
-                $inquiry->categoryName = $inquiry->category->name;
+                $inquiry->categoryName = ($inquiry->category)?$inquiry->category->name:"";
                 $inquiry->pictureSrc = inquiry_pic($inquiry->id, 100, "thumb-img", false);
             }
         }

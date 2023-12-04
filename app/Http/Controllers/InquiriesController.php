@@ -26,6 +26,9 @@ use Intervention\Image\Facades\Image;
 
 class InquiriesController extends Controller
 {
+    /************************************************************************
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index()
     {
         //checking last
@@ -54,6 +57,10 @@ class InquiriesController extends Controller
         return view("website.inquiry.index" , compact("categories" , "provinces" , "units"));
     }
 
+    /************************************************************************
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|void
+     */
     public function store(Request $request){
         //1. checking that pj_available is enough
         $pj_available = auth()->user()->pj_available;
@@ -157,7 +164,11 @@ class InquiriesController extends Controller
         }
     }
 
-    public function item(Request $request){
+    /************************************************************************
+     * @param Request $request
+     * @return array
+     */
+     public function item(Request $request){
         $inquiry = Inquiry::find($request->id);
         $inquiry->categoryName = $inquiry->category->name;
         $inquiry->provinceName = $inquiry->province->name;
@@ -170,7 +181,11 @@ class InquiriesController extends Controller
         return ['inquiry' =>  $inquiry, 'state' => 'success'];
     }
 
-    public function reply(Request $request){
+    /************************************************************************
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|void
+     */
+        public function reply(Request $request){
         //first check for inquiry points
 
         $user = User::findOrFail(Auth::user()->id);
@@ -217,7 +232,10 @@ class InquiriesController extends Controller
         }
     }
 
-
+    /************************************************************************
+     * @param Request $request
+     * @return mixed
+     */
     public function reply_info(Request $request){
         $reply = InquiryReply::where("inquiry_id" , $request->id)->where("user_id" , Auth::user()->id)->first();
 
@@ -235,6 +253,10 @@ class InquiriesController extends Controller
         return $reply;
     }
 
+    /************************************************************************
+     * @param Request $request
+     * @return mixed
+     */
     public function replies(Request $request){
         $inquiry = Inquiry::findOrFail($request->id);
 
@@ -253,7 +275,10 @@ class InquiriesController extends Controller
         return $replies;
     }
 
-
+    /************************************************************************
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|void
+     */
     public function supplier(Request $request){
         $user = User::findOrFail($request->id);
         $currentUser = User::find(Auth::user()->id);
@@ -276,7 +301,11 @@ class InquiriesController extends Controller
         }
     }
 
-
+    /************************************************************************
+     * @param $id
+     * @param $slug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|void
+     */
     public function details($id , $slug)
     {
         $inquiry = Inquiry::findOrFail($id);
@@ -288,7 +317,10 @@ class InquiriesController extends Controller
         }
     }
 
-
+    /************************************************************************
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|void
+     */
     public function comment(Request $request){
         $validator = Validator::make($request->all() ,[
             'comment' => 'required' ,
@@ -316,7 +348,10 @@ class InquiriesController extends Controller
         return reply("success" , "your_comment_added_successfully");
     }
 
-
+    /************************************************************************
+     * @param Request $request
+     * @return array|string[]
+     */
     function comment_info(Request $request){
         $inquiry_id = $request->id;
         $inquiry = Inquiry::find($inquiry_id);
@@ -331,7 +366,9 @@ class InquiriesController extends Controller
             return ['comment' => 'هنوز پاسخی از سمت مشتری ارسال نشده است!' , 'comment_time' => ''];
     }
 
-
+    /************************************************************************
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     function report(){
         $title = "گزارش استعلام های ارسالی";
         $user =  Auth::user();
@@ -341,7 +378,9 @@ class InquiriesController extends Controller
         return view("website.inquiry.report" , compact("title" , "last_3" , "last_6" , "last_12"));
     }
 
-
+    /************************************************************************
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     function show(){
         $user = User::find(auth()->user()->id);
 
@@ -363,7 +402,10 @@ class InquiriesController extends Controller
         return view("website.profile.archive", compact("user",  "collaborators", "currentPlan" , "comments" , "type"));
     }
 
-
+    /************************************************************************
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     function feedback(Request $request){
         $inquiry = Inquiry::findOrFail($request->id);
         $inquiry->is_bought = $request->is_bought;

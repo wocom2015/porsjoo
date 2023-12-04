@@ -182,7 +182,6 @@ return [
             'sandboxApiVerificationUrl' => 'https://sandbox.zarinpal.com/pg/services/WebGate/wsdl',
 
             'mode' => 'normal', // can be normal, sandbox
-            'currency' => '',
             'id' => '', // Specify the email of the PayPal Business account
             'callbackUrl' => 'http://yoursite.com/path/to',
             'description' => 'payment using paypal',
@@ -192,7 +191,7 @@ return [
             'apiPurchaseUrl' => 'https://api.payping.ir/v2/pay/',
             'apiPaymentUrl' => 'https://api.payping.ir/v2/pay/gotoipg/',
             'apiVerificationUrl' => 'https://api.payping.ir/v2/pay/verify/',
-            'merchantId' => '',
+            'merchantId' => '3u9xxSWu5cK7M1YrpGyPWcWumOLV9bOufwkoyqklpSY',
             'callbackUrl' => 'http://yoursite.com/path/to',
             'description' => 'payment using payping',
             'currency' => 'T', //Can be R, T (Rial, Toman)
