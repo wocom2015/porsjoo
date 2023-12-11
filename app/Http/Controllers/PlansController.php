@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Plan;
+use App\Models\PlanUser;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -53,7 +55,27 @@ class PlansController extends Controller
 
 
     function callback(Request $request){
-        $data = $request->all();
+
+
+        //In payping
+
+        $payment = Payment::where("clientRefId" , $request->clientRefId)->first();
+
+        $payment->refId = $request->refId;
+        $payment->code = $request->code;
+
+        $payment->save(); //saving payment even if that's unsuccessful.
+
+        if($request->code==200){ //if payment success
+            PlanUser::create([
+                "plan_id" => $payment->plan_id,
+                "user_id" => auth()->user()->id,
+                "price" => $request->amount,
+                "bought_at" => now(),
+                "expire_at" => "" , //you decide it in the basis of plan period,
+                "active" => 1
+            ]);
+        }
 
     }
 }
