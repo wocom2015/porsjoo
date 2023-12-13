@@ -31,7 +31,7 @@ class InquiriesDataTable extends DataTable
                     return '';
             })
             ->addColumn('category' , function(Inquiry $inquiry){
-                return '<strong class="text-success">'.$inquiry->category->name.'</strong>';
+                return '<strong class="text-success">'.(($inquiry->category)?$inquiry->category->name:"").'</strong>';
             })
 
             ->addColumn('operations' , function (Inquiry $inquiry){
