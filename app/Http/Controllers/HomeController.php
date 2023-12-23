@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $lastPJ = Inquiry::query()->orderBy("id" , "desc")
         ->where("close_date" , ">" , date("Y-m-d"))
-        ->limit(10)->get();
+        ->limit(20)->get();
 
         foreach ($lastPJ as $pj){
             $pj->url = "/inquiry/details/".$pj->id."/".str_replace(" ","-" , $pj->name);

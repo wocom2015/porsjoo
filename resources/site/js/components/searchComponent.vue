@@ -21,27 +21,29 @@
             </div>
         </div>
 
-        <div class="content-frame">
+        <div class="content-frame" >
             <div class="row p-2">
                 <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
             </div>
-            <div class="row p-2">
+            <div class="row p-2" >
                 <div class="col-lg-3 col-sm-6"><strong>استان</strong></div>
                 <div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>دسته</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div>
             </div>
+            <div style="height: 300px !important;overflow-y: scroll;overflow-x: hidden">
+                <a v-for="item in this.inquiries" :href="item.url">
+                    <div class="row mb-2 p-2" >
+                        <div class="col-lg-3 col-sm-6">{{item.provinceName}}</div>
+                        <div class="col-lg-3 col-sm-6">{{item.name}}</div>
+                        <div class="col-lg-2 col-sm-6">{{item.categoryName}}</div>
+                        <div class="col-lg-2 col-sm-6">{{item.closeDate}}</div>
+                        <div class="col-lg-2 col-sm-6">{{item.involved}}</div>
+                    </div>
+                </a>
+            </div>
 
-            <a v-for="item in this.inquiries" :href="item.url">
-                <div class="row mb-2 p-2">
-                    <div class="col-lg-3 col-sm-6">{{item.provinceName}}</div>
-                    <div class="col-lg-3 col-sm-6">{{item.name}}</div>
-                    <div class="col-lg-2 col-sm-6">{{item.categoryName}}</div>
-                    <div class="col-lg-2 col-sm-6">{{item.closeDate}}</div>
-                    <div class="col-lg-2 col-sm-6">{{item.involved}}</div>
-                </div>
-            </a>
 
             <div class="row">
                 <div class="search-result" v-show=" inquiries.length===0">
