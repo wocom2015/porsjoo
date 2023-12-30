@@ -8,8 +8,6 @@ use App\Models\InquiryComment;
 use App\Models\InquiryReply;
 use App\Models\InquirySupplier;
 use App\Models\User;
-
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -22,14 +20,14 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->orderBy("id" , "desc")->get();
+        $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->orderBy("id", "desc")->get();
 
         if ($user->inquiries->isNotEmpty()) {
             foreach ($user->inquiries as $inquiry) {
-                $inquiry->provinceName = ($inquiry->province)?$inquiry->province->name:"";
+                $inquiry->provinceName = ($inquiry->province) ? $inquiry->province->name : "";
                 $inquiry->repliesCount = $inquiry->replies->count();
                 $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
-                $inquiry->categoryName = ($inquiry->category)?$inquiry->category->name:"";
+                $inquiry->categoryName = ($inquiry->category) ? $inquiry->category->name : "";
                 $inquiry->pictureSrc = inquiry_pic($inquiry->id, 100, "thumb-img", false);
             }
         }
@@ -45,30 +43,35 @@ class ProfileController extends Controller
 
         $collaborators = [];
         $comments = [];
-        $inquiries = Inquiry::where("user_id" , $user->id)->orderBy("id" , "desc")->limit(10)->offset(0)->get();
-        if($inquiries){
-            foreach ($inquiries as $inquiry){
-                $suppliers = InquirySupplier::where("inquiry_id" , $inquiry->id)->get();
-                if($suppliers){
-                    foreach($suppliers as $supplier){
+        $inquiries = Inquiry::where("user_id", $user->id)->orderBy("id", "desc")->limit(10)->offset(0)->get();
+        if ($inquiries) {
+            foreach ($inquiries as $inquiry) {
+                $suppliers = InquirySupplier::where("inquiry_id", $inquiry->id)->get();
+                if ($suppliers) {
+                    foreach ($suppliers as $supplier) {
                         $collaborators[] = User::find($supplier->user_id);
                     }
                 }
 
-                $supplierComments = InquiryComment::where('inquiry_id' , $inquiry->id)->get();
-                if($supplierComments){
-                    foreach($supplierComments as $comment){
+                $supplierComments = InquiryComment::where('inquiry_id', $inquiry->id)->get();
+                if ($supplierComments) {
+                    foreach ($supplierComments as $comment) {
                         $comments[] = [
-                          'supplier' => User::find($comment->supplier_id),
-                          'comment'  => $comment
+                            'supplier' => User::find($comment->supplier_id),
+                            'comment' => $comment
                         ];
                     }
                 }
             }
         }
         $type = "profile";
-        $currentPlan = "";
-        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan" , "comments" , "type"));
+        $currentPlan = $user->plans()->first();
+        if ($currentPlan) {
+            $currentPlan = $currentPlan->name;
+        } else {
+            $currentPlan = "";
+        }
+        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan", "comments", "type"));
     }
 
     public function edit()
@@ -134,15 +137,14 @@ class ProfileController extends Controller
             $data['logo'] = $name . '.' . $extension;
 
             //delete previous picture
-            if ($user->logo != '')
-            {
-                if(file_exists($path . $user->logo))
-                   unlink($path . $user->logo);
+            if ($user->logo != '') {
+                if (file_exists($path . $user->logo))
+                    unlink($path . $user->logo);
             }
         }
         $user->update($data);
 
-        if($request->back_url !='')
+        if ($request->back_url != '')
             return redirect($request->back_url);
 
         return back()->with('success', 'اطلاعات کاربری شما به روز شد');
