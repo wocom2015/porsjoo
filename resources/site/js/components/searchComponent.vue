@@ -32,7 +32,7 @@
                 <div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div>
             </div>
-            <div style="height: 300px !important;overflow-y: scroll;overflow-x: hidden">
+            <div style="height: 200px !important;overflow-y: scroll;overflow-x: hidden">
                 <a v-for="item in this.inquiries" :href="item.url">
                     <div class="row mb-2 p-2" >
                         <div class="col-lg-3 col-sm-6">{{item.provinceName}}</div>
