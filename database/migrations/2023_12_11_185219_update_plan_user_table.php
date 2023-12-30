@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table("plan_user" , function (Blueprint $table){
-            $table->foreignId("payment_id" )->constrained("payments")->references("id");
+            $table->foreignId("payment_id")->constrained("payments")->references("id");
+            $table->timestamps();
         });
     }
 

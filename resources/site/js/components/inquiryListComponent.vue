@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="content-frame">
-            <div class="row p-2">
-                <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{this.count}} مورد</h1></div>
-            </div>
+            <!--            <div class="row p-2">-->
+            <!--                <div class="col-lg-12"><h1>استعلام های متناسب با حرفه شما : {{this.count}} مورد</h1></div>-->
+            <!--            </div>-->
             <div class="row" style="background-color: #f0f0f0;padding: 10px">
                 <div class="col">استان</div>
                 <div class="col">محصول</div>

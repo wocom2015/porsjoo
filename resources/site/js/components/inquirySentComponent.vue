@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row p-2">
-            <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>
+<!--            <div class="col-lg-3"><h1>استعلام های ارسالی شما : {{ this.count }} مورد</h1></div>-->
             <div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div>
 
         </div>

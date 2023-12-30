@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\slide;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $lastPJ = Inquiry::query()->orderBy("id" , "desc")
+
         ->where("close_date" , ">" , date("Y-m-d"))
         ->limit(20)->get();
 
-        foreach ($lastPJ as $pj){
-            $pj->url = "/inquiry/details/".$pj->id."/".str_replace(" ","-" , $pj->name);
+
+        foreach ($lastPJ as $pj) {
+            $pj->url = "/inquiry/details/" . $pj->id . "/" . str_replace(" ", "-", $pj->name);
             $pj->provinceName = $pj->province->name;
             $pj->categoryName = ($pj->category)?$pj->category->name:"";
             $pj->involved = $pj->suppliers->count() + 1;
-            $pj->closeDate = ($pj->close_date!='')?jdate($pj->close_date)->format('%A, %d %B %Y'):'';
+            $pj->closeDate = ($pj->close_date != '') ? jdate($pj->close_date)->format('%A, %d %B %Y') : '';
         }
-        return view("website.home.index" , compact("lastPJ"));
+        $slides = Slide::all();
+        return view("website.home.index", compact("lastPJ", "slides"));
     }
 
     public function page($title)

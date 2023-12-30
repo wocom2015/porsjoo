@@ -5,25 +5,27 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue/dist/vue.esm-bundler';
+import {createApp} from 'vue/dist/vue.esm-bundler';
 import searchComponent from './components/searchComponent.vue';
 import dateComponent from './components/dateComponent.vue';
 import inquiryComponent from './components/inquiryComponent.vue';
 import inquiryListComponent from './components/inquiryListComponent.vue';
 import inquirySentComponent from './components/inquirySentComponent.vue';
 import subComponent from './components/subMenuComponent.vue';
+import sliderComponent from './components/sliderComponent.vue';
+
 const app = createApp({
-    components:{
+    components: {
         searchComponent,
         dateComponent,
         inquiryComponent,
         inquiryListComponent,
         inquirySentComponent,
-        subComponent
+        subComponent,
+        sliderComponent,
     }
 });
 app.mount('#app');
-import Vue3PersianDatetimePicker from 'vue3-persian-datetime-picker'
 //app.component('DatePicker', Vue3PersianDatetimePicker)
 
 

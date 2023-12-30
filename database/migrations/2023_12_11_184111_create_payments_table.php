@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("clientrefid")->nullable();
             $table->string("refid" , 100)->nullable();
             $table->bigInteger("amount")->nullable();
-            $table->integer("code")->nullable();
+            $table->string("code")->nullable();
             $table->string("cardnumber")->nullable();
             $table->string("cardhashpan")->nullable();
             $table->timestamps();

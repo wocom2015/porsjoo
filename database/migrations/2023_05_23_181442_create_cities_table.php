@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("province_id")->constrained("provinces")->on("id");
-            $table->string("name" , 100);
+            $table->foreignId("province_id")->constrained("provinces");
+            $table->string("name", 100);
             $table->timestamps();
         });
     }

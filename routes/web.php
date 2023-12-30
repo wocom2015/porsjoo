@@ -37,7 +37,8 @@ Route::post('/search/inquiry', [CategoriesController::class , 'search_inquiry'])
 Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
 Route::get('/rules', [HomeController::class , 'rules'])->name('rules');
 Route::get('/page/{title}', [HomeController::class , 'page']);
-Route::get('/payment/callback', [PlansController::class , 'callback']);
+Route::get('/payment/callback', [PlansController::class, 'callback']);
+Route::post('/payment/callback', [PlansController::class, 'callback']);
 
 Route::get('/plans' , [PlansController::class , 'index']);
 

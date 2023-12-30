@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string("address" , 300)->nullable();
             $table->string("pm" , 200)->comment("purchase_management -- مسئول خرید")->nullable();
             $table->string("pm_mobile" , 20)->comment("purchase_management_mobile -- موبایل مسئول خرید")->nullable();
-            $table->string("boss_mobile" , 20)->comment(" موبایل مدیرعامل")->nullable();
-            $table->foreignId("category_id")->constrained("category")->on("id");
-            $table->string("description" , 1000)->comment("توضیح مختصری از کسب و کار")->nullable();
+            $table->string("boss_mobile", 20)->comment(" موبایل مدیرعامل")->nullable();
+            $table->foreignId("category_id")->constrained("category");
+            $table->string("description", 1000)->comment("توضیح مختصری از کسب و کار")->nullable();
             $table->string("logo" , 50)->nullable();
         });
     }
