@@ -112,7 +112,7 @@
     div.promoting-install-app-prompt {
         position: fixed !important;
         top: calc(100vh - 100px) !important;
-        min-width: 480px;
+        min-width: 400px;
         /*margin: 0 20px;*/
     }
 </style>
