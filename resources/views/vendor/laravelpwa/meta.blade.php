@@ -63,21 +63,23 @@
             // console.log('Laravel PWA: ServiceWorker registration failed: ', err);
         });
     }
-    function showInstallPromotion(){
+
+    function showInstallPromotion() {
         const popup = document.createElement('div');
         const wrapper = document.createElement('div');
         const button = document.createElement('div');
         const para = document.createElement('p');
 
 
-        popup.classList.add('promoting-install-app-prompt','card');
+        // popup.classList.add('promoting-install-app-prompt','card');
+        popup.classList.add('promoting-install-app-prompt', 'm-1', 'card');
 
-        wrapper.classList.add('d-flex','justify-content-between','align-items-center','card-body');
-        para.innerText="اضافه کردن برنامه به صفحه اصلی گوشی";
-        para.classList.add('m-0','install-message');
+        wrapper.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'card-body');
+        para.innerText = "اضافه کردن برنامه به صفحه اصلی گوشی";
+        para.classList.add('m-0', 'install-message');
 
-        button.innerText ="نصب برنامه";
-        button.classList.add('btn','btn-primary');
+        button.innerText = "نصب برنامه";
+        button.classList.add('btn', 'btn-primary');
         button.addEventListener('click', async () => {
             // Hide the app provided install promotion
             // hideInstallPromotion();
@@ -100,7 +102,8 @@
         document.body.appendChild(popup);
 
     }
-    function hideInstallPromotion(){
+
+    function hideInstallPromotion() {
         const prompt = document.querySelector('.promoting-install-app-prompt');
         prompt.remove();
     }
@@ -109,7 +112,7 @@
     div.promoting-install-app-prompt {
         position: fixed !important;
         top: calc(100vh - 100px) !important;
-        min-width: 500px ;
-        margin: 0 20px;
+        min-width: 480px;
+        /*margin: 0 20px;*/
     }
 </style>
