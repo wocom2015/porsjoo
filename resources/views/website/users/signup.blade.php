@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="form-check">
-                        <input type="checkbox" style="display:inline-block !important;margin-left: 5px">
+                        <input type="checkbox" style="display:inline-block !important;margin-left: 5px" name="rules">
                         <label>
                             با
                             <a href="/rules">قوانین و مقررات سامانه</a>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Models\Plan;
 use App\Models\PlanUser;
+use Carbon\Carbon;
+use http\Client\Curl\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -137,15 +139,20 @@ class PlansController extends Controller
         $payment->save(); //saving payment even if that's unsuccessful.
 
         if ($request->refid != "1" && $request->cardhashpan) { //if payment success
+
+            $plan = Plan::find($payment->plan_id);
+            $user = \App\Models\User::find($payment->user_id);
             PlanUser::create([
                 "plan_id" => $payment->plan_id,
                 "user_id" => $payment->user_id,
                 "price" => $payment->amount,
                 "bought_at" => now(),
-                "expire_at" => now(), //you decide it in the basis of plan period,
+                "expire_at" => Carbon::now()->addMonths($plan->length), //you decide it in the basis of plan period,
                 "active" => 1,
                 "payment_id" => $payment->id
             ]);
+            $user->pj_available += $plan->length; //adding plan pj to user
+
             $this->verify($payment->amount, $request->refid);
             return view("website.payment.success");
         }
