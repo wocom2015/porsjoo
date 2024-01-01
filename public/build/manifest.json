@@ -11,7 +11,7 @@
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
   "resources/admin/css/app.css": {
-    "file": "assets/app-50016423.css",
+    "file": "assets/app-c56a0088.css",
     "isEntry": true,
     "src": "resources/admin/css/app.css"
   },
@@ -29,7 +29,7 @@
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-    "file": "assets/app-bc0683c9.css",
+    "file": "assets/app-6b296f78.css",
     "isEntry": true,
     "src": "resources/site/css/app.css"
   },
