@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xl-4">
             <!--begin::آمار Widget 13-->
-            <a href="#" class="card card-custom bg-danger bg-hover-state-danger card-stretch gutter-b">
+            <a href="/admin/plans" class="card card-custom bg-danger bg-hover-state-danger card-stretch gutter-b">
                 <!--begin::Body-->
                 <div class="card-body">
         <span class="svg-icon svg-icon-white svg-icon-3x ml-n1"><!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -22,7 +22,7 @@
         </div>
         <div class="col-xl-4">
             <!--begin::آمار Widget 14-->
-            <a href="#" class="card card-custom bg-primary bg-hover-state-primary card-stretch gutter-b">
+            <a href="/admin/users" class="card card-custom bg-primary bg-hover-state-primary card-stretch gutter-b">
                 <!--begin::Body-->
                 <div class="card-body">
         <span class="svg-icon svg-icon-white svg-icon-3x ml-n1"><!--begin::Svg Icon | path:assets/media/svg/icons/layout/layout-4-blocks.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -40,7 +40,7 @@
         </div>
         <div class="col-xl-4">
             <!--begin::آمار Widget 15-->
-            <a href="#" class="card card-custom bg-success bg-hover-state-success card-stretch gutter-b">
+            <a href="/admin/inquiries" class="card card-custom bg-success bg-hover-state-success card-stretch gutter-b">
                 <!--begin::Body-->
                 <div class="card-body">
         <span class="svg-icon svg-icon-white svg-icon-3x ml-n1"><!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

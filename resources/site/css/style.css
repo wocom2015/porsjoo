@@ -6152,7 +6152,8 @@ footer ul li a {
 }
 
 .code-verify {
-    letter-spacing: 50px;
+    letter-spacing: 25px;
+    direction: ltr;
     text-align: center !important;
     color: #E14212 !important;
     font-weight: bold;
