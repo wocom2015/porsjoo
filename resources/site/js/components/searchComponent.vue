@@ -4,11 +4,15 @@
         <div class="row align-content-center">
             <div class="search-box col-lg-12 mt-10">
                 <form class="search-form">
-                    <input class="search-input" ref="search" @click="showSearch()" @keyup="showResult()" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search">
+                    <input id="search" ref="search" class="search-input" name="search"
+                           placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text" @click="showSearch()"
+                           @keyup="showResult()">
 
                     <div class="search-result" v-show="this.result && phrase.length >=3">
                         <div class="d-flex bd-highlight" v-show="searchResult.length>0" v-for="item in searchResult">
-                            <div class="p-1 flex-fill bd-highlight mt-2 s-t" @click="this.searchCat(item.id)">{{item.name}}</div>
+                            <div class="p-1 flex-fill bd-highlight mt-2 s-t" @click="this.searchCat(item.id)">
+                                {{ item.name }}
+                            </div>
                         </div>
                         <div class="text-center" v-show="this.showMore" @click="showMoreResult()">
                             مشاهده بیشتر...
@@ -21,29 +25,27 @@
             </div>
         </div>
 
-        <div class="content-frame" >
+        <div class="content-frame">
             <div class="row p-2">
                 <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
             </div>
-            <div class="row p-2" >
+            <div class="row p-2">
                 <div class="col-lg-3 col-sm-6"><strong>استان</strong></div>
                 <div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>دسته</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div>
             </div>
-            <div style="height: 200px !important;overflow-y: scroll;overflow-x: hidden">
-                <a v-for="item in this.inquiries" :href="item.url">
-                    <div class="row mb-2 p-2" >
-                        <div class="col-lg-3 col-sm-6">{{item.provinceName}}</div>
-                        <div class="col-lg-3 col-sm-6">{{item.name}}</div>
-                        <div class="col-lg-2 col-sm-6">{{item.categoryName}}</div>
-                        <div class="col-lg-2 col-sm-6">{{item.closeDate}}</div>
-                        <div class="col-lg-2 col-sm-6">{{item.involved}}</div>
-                    </div>
-                </a>
-            </div>
 
+            <a v-for="item in this.inquiries" :href="item.url">
+                <div class="row mb-2 p-2">
+                    <div class="col-lg-3 col-sm-6">{{ item.provinceName }}</div>
+                    <div class="col-lg-3 col-sm-6">{{ item.name }}</div>
+                    <div class="col-lg-2 col-sm-6">{{ item.categoryName }}</div>
+                    <div class="col-lg-2 col-sm-6">{{ item.closeDate }}</div>
+                    <div class="col-lg-2 col-sm-6">{{ item.involved }}</div>
+                </div>
+            </a>
 
             <div class="row">
                 <div class="search-result" v-show=" inquiries.length===0">
@@ -59,63 +61,62 @@
 <script>
 export default {
     name: "searchComponent.vue",
-    props:['lastpj'],
+    props: ['lastpj'],
     data() {
         return {
-            inquiries : [],
-            result : false,
-            phrase : '',
+            inquiries: [],
+            result: false,
+            phrase: '',
             searchResult: [],
             searchLimit: 5,
             offset: 0,
-            showMore : false,
+            showMore: false,
             catId: 0,
         }
     },
-    methods:{
-        showSearch(){
+    methods: {
+        showSearch() {
             this.result = true;
         },
-        searchCat(catId){
+        searchCat(catId) {
             var self = this;
             self.catId = catId;
             axios(
                 {
                     method: "post",
                     url: "/search/inquiry",
-                    data: {catId:self.catId , o:self.offset}
+                    data: {catId: self.catId, o: self.offset}
                 }
             )
-                .then(function(response){
+                .then(function (response) {
                     self.inquiries = response.data.data;
                     self.result = false;
                 });
 
         },
-        showResult(){
-            if(this.$refs.search.value.length>2){
+        showResult() {
+            if (this.$refs.search.value.length > 2) {
                 this.phrase = this.$refs.search.value;
                 var self = this;
                 axios(
                     {
                         method: "post",
                         url: "/search",
-                        data: {p:self.phrase , l:self.searchLimit , o:self.offset}
+                        data: {p: self.phrase, l: self.searchLimit, o: self.offset}
                     }
                 )
-                    .then(function(response){
+                    .then(function (response) {
                         self.result = true;
-                        if(response.data.categories.length>0 && self.$refs.search.value.length>2){
+                        if (response.data.categories.length > 0 && self.$refs.search.value.length > 2) {
 
                             self.searchResult = response.data.categories;
 
                             self.showMore = response.data.hasMore;
-                        }
-                        else{
+                        } else {
                             self.searchResult = [];
                         }
                     });
-            }else{
+            } else {
                 this.searchResult = [];
                 this.result = false;
                 this.offset = 0;
@@ -124,7 +125,7 @@ export default {
             }
 
         },
-        showMoreResult(){
+        showMoreResult() {
             this.searchLimit += this.searchLimit;
             this.showResult();
         }

@@ -11,9 +11,9 @@
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
   "resources/admin/css/app.css": {
-    "file": "assets/app-50016423.css",
-    "isEntry": true,
-    "src": "resources/admin/css/app.css"
+      "file": "assets/app-fa861f91.css",
+      "isEntry": true,
+      "src": "resources/admin/css/app.css"
   },
   "resources/admin/js/app.js": {
     "file": "assets/app-dc89661b.js",
@@ -24,56 +24,56 @@
     "src": "resources/admin/js/app.js"
   },
   "resources/admin/sass/app.scss": {
-    "file": "assets/app-7fb6cc3b.css",
+    "file": "assets/app-491a86e5.css",
     "isEntry": true,
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-    "file": "assets/app-bc0683c9.css",
-    "isEntry": true,
-    "src": "resources/site/css/app.css"
+      "file": "assets/app-7368f148.css",
+      "isEntry": true,
+      "src": "resources/site/css/app.css"
   },
   "resources/site/fonts/Qs_Iranyekan bold.ttf": {
     "file": "assets/Qs_Iranyekan bold-3b412787.ttf",
-    "src": "resources/site/fonts/Qs_Iranyekan bold.ttf"
+      "src": "resources/site/fonts/Qs_Iranyekan bold.ttf"
   },
-  "resources/site/fonts/Qs_Iranyekan light.ttf": {
-    "file": "assets/Qs_Iranyekan light-a0ec02f7.ttf",
-    "src": "resources/site/fonts/Qs_Iranyekan light.ttf"
-  },
-  "resources/site/fonts/Qs_Iranyekan medium.eot": {
-    "file": "assets/Qs_Iranyekan medium-22e15d54.eot",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.eot"
-  },
-  "resources/site/fonts/Qs_Iranyekan medium.ttf": {
-    "file": "assets/Qs_Iranyekan medium-33a8463f.ttf",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.ttf"
-  },
-  "resources/site/fonts/Qs_Iranyekan medium.woff": {
-    "file": "assets/Qs_Iranyekan medium-12a1b2af.woff",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.woff"
-  },
-  "resources/site/fonts/iranfont kalameh.ttf": {
-    "file": "assets/iranfont kalameh-a9f54443.ttf",
-    "src": "resources/site/fonts/iranfont kalameh.ttf"
-  },
-  "resources/site/images/search-icon.png": {
-    "file": "assets/search-icon-d05ac8e8.png",
-    "src": "resources/site/images/search-icon.png"
-  },
-  "resources/site/js/app.css": {
-    "file": "assets/app-bea71dee.css",
-    "src": "resources/site/js/app.css"
-  },
-  "resources/site/js/app.js": {
-    "css": [
-      "assets/app-bea71dee.css"
-    ],
-    "file": "assets/app-3264768c.js",
-    "imports": [
-      "__commonjsHelpers-b75a21f2.js"
-    ],
-    "isEntry": true,
-    "src": "resources/site/js/app.js"
-  }
+    "resources/site/fonts/Qs_Iranyekan light.ttf": {
+        "file": "assets/Qs_Iranyekan light-a0ec02f7.ttf",
+        "src": "resources/site/fonts/Qs_Iranyekan light.ttf"
+    },
+    "resources/site/fonts/Qs_Iranyekan medium.eot": {
+        "file": "assets/Qs_Iranyekan medium-22e15d54.eot",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.eot"
+    },
+    "resources/site/fonts/Qs_Iranyekan medium.ttf": {
+        "file": "assets/Qs_Iranyekan medium-33a8463f.ttf",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.ttf"
+    },
+    "resources/site/fonts/Qs_Iranyekan medium.woff": {
+        "file": "assets/Qs_Iranyekan medium-12a1b2af.woff",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.woff"
+    },
+    "resources/site/fonts/iranfont kalameh.ttf": {
+        "file": "assets/iranfont kalameh-a9f54443.ttf",
+        "src": "resources/site/fonts/iranfont kalameh.ttf"
+    },
+    "resources/site/images/search-icon.png": {
+        "file": "assets/search-icon-d05ac8e8.png",
+        "src": "resources/site/images/search-icon.png"
+    },
+    "resources/site/js/app.css": {
+        "file": "assets/app-a9d35258.css",
+        "src": "resources/site/js/app.css"
+    },
+    "resources/site/js/app.js": {
+        "css": [
+            "assets/app-a9d35258.css"
+        ],
+        "file": "assets/app-b94bd2f5.js",
+        "imports": [
+            "__commonjsHelpers-b75a21f2.js"
+        ],
+        "isEntry": true,
+        "src": "resources/site/js/app.js"
+    }
 }

@@ -134,4 +134,5 @@ return [
     'password_confirmation' => 'تایید رمز عبور',
     'rules_text' => 'متن قوانین و مقررات',
     'number_of_users_involved_inquiry' => 'تعداد افرادی که در این pj حضور دارند',
+    'name_and_family' => 'نام و  نام خانوادگی'
 ];

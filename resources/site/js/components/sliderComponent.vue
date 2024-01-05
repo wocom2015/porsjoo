@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <carousel :autoplay="1" :items-to-show="2.1" :transition="5000" :wrap-around="true">
+        <carousel :autoplay="1" :items-to-show="4.1" :transition="5000" :wrap-around="true">
             <slide v-for="slide in slides" :key="slide">
                 <img :src="slide.url" height="250" width="250"/>
             </slide>
@@ -38,3 +38,8 @@ export default {
 }
 </script>
 
+<style scoped>
+.carousel__slide {
+    margin: 5px 10px;
+}
+</style>
