@@ -11,7 +11,7 @@
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
   "resources/admin/css/app.css": {
-      "file": "assets/app-50016423.css",
+      "file": "assets/app-fa861f91.css",
       "isEntry": true,
       "src": "resources/admin/css/app.css"
   },
@@ -43,16 +43,16 @@
   },
   "resources/site/fonts/Qs_Iranyekan medium.eot": {
     "file": "assets/Qs_Iranyekan medium-22e15d54.eot",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.eot"
+      "src": "resources/site/fonts/Qs_Iranyekan medium.eot"
   },
-  "resources/site/fonts/Qs_Iranyekan medium.ttf": {
-    "file": "assets/Qs_Iranyekan medium-33a8463f.ttf",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.ttf"
-  },
-  "resources/site/fonts/Qs_Iranyekan medium.woff": {
-    "file": "assets/Qs_Iranyekan medium-12a1b2af.woff",
-      "src": "resources/site/fonts/Qs_Iranyekan medium.woff"
-  },
+    "resources/site/fonts/Qs_Iranyekan medium.ttf": {
+        "file": "assets/Qs_Iranyekan medium-33a8463f.ttf",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.ttf"
+    },
+    "resources/site/fonts/Qs_Iranyekan medium.woff": {
+        "file": "assets/Qs_Iranyekan medium-12a1b2af.woff",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.woff"
+    },
     "resources/site/fonts/iranfont kalameh.ttf": {
         "file": "assets/iranfont kalameh-a9f54443.ttf",
         "src": "resources/site/fonts/iranfont kalameh.ttf"
@@ -62,14 +62,14 @@
         "src": "resources/site/images/search-icon.png"
     },
     "resources/site/js/app.css": {
-        "file": "assets/app-bea71dee.css",
+        "file": "assets/app-071006ba.css",
         "src": "resources/site/js/app.css"
     },
     "resources/site/js/app.js": {
         "css": [
-            "assets/app-bea71dee.css"
+            "assets/app-071006ba.css"
         ],
-        "file": "assets/app-1db08892.js",
+        "file": "assets/app-943f6b56.js",
         "imports": [
             "__commonjsHelpers-b75a21f2.js"
         ],
