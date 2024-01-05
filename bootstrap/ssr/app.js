@@ -2,18 +2,6 @@ import "bootstrap";
 import axios$1 from "axios";
 import {createApp} from "vue/dist/vue.esm-bundler";
 import {
-    createBlock,
-    createVNode,
-    Fragment,
-    mergeProps,
-    openBlock,
-    renderList,
-    resolveComponent,
-    toDisplayString,
-    useSSRContext,
-    withCtx
-} from "vue";
-import {
     ssrInterpolate,
     ssrRenderAttr,
     ssrRenderAttrs,
@@ -22,6 +10,17 @@ import {
     ssrRenderList,
     ssrRenderStyle
 } from "vue/server-renderer";
+import {
+    createBlock,
+    createVNode,
+    Fragment,
+    mergeProps,
+    openBlock,
+    renderList,
+    resolveComponent,
+    useSSRContext,
+    withCtx
+} from "vue";
 import DatePicker from "vue3-persian-datetime-picker";
 import {Carousel, Navigation, Pagination, Slide} from "vue3-carousel";
 
@@ -55,16 +54,16 @@ const _sfc_main$6 = {
         },
         searchCat(catId) {
             var self = this;
-      self.catId = catId;
-      axios(
-        {
-          method: "post",
-          url: "/search/inquiry",
-          data: { catId: self.catId, o: self.offset }
-        }
-      ).then(function(response) {
-        self.inquiries = response.data.data;
-        self.result = false;
+            self.catId = catId;
+            axios(
+                {
+                    method: "post",
+                    url: "/search/inquiry",
+                    data: {catId: self.catId, o: self.offset}
+                }
+            ).then(function (response) {
+                self.inquiries = response.data.data;
+                self.result = false;
       });
     },
     showResult() {
@@ -104,45 +103,15 @@ const _sfc_main$6 = {
   }
 };
 function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-    const _component_marquee = resolveComponent("marquee");
-    _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
+    _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input id="search" class="search-input" name="search" placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
     ssrRenderList($data.searchResult, (item) => {
         _push(`<div class="d-flex bd-highlight" style="${ssrRenderStyle($data.searchResult.length > 0 ? null : {display: "none"})}"><div class="p-1 flex-fill bd-highlight mt-2 s-t">${ssrInterpolate(item.name)}</div></div>`);
     });
-    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div>`);
-    _push(ssrRenderComponent(_component_marquee, {
-        class: "content-frame",
-        direction: "down",
-        scrolldelay: "0"
-    }, {
-        default: withCtx((_, _push2, _parent2, _scopeId) => {
-            if (_push2) {
-                _push2(`<!--[-->`);
-                ssrRenderList(this.inquiries, (item) => {
-                    _push2(`<a${ssrRenderAttr("href", item.url)}${_scopeId}><div class="row mb-2 p-2"${_scopeId}><div class="col-lg-3 col-sm-6"${_scopeId}>${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6"${_scopeId}>${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6"${_scopeId}>${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6"${_scopeId}>${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6"${_scopeId}>${ssrInterpolate(item.involved)}</div></div></a>`);
-                });
-                _push2(`<!--]-->`);
-            } else {
-                return [
-                    (openBlock(true), createBlock(Fragment, null, renderList(this.inquiries, (item) => {
-                        return openBlock(), createBlock("a", {
-                            href: item.url
-                        }, [
-                            createVNode("div", {class: "row mb-2 p-2"}, [
-                                createVNode("div", {class: "col-lg-3 col-sm-6"}, toDisplayString(item.provinceName), 1),
-                                createVNode("div", {class: "col-lg-3 col-sm-6"}, toDisplayString(item.name), 1),
-                                createVNode("div", {class: "col-lg-2 col-sm-6"}, toDisplayString(item.categoryName), 1),
-                                createVNode("div", {class: "col-lg-2 col-sm-6"}, toDisplayString(item.closeDate), 1),
-                                createVNode("div", {class: "col-lg-2 col-sm-6"}, toDisplayString(item.involved), 1)
-                            ])
-                        ], 8, ["href"]);
-                    }), 256))
-                ];
-            }
-        }),
-        _: 1
-    }, _parent));
-    _push(`<div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
+    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div><!--[-->`);
+    ssrRenderList(this.inquiries, (item) => {
+        _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
+    });
+    _push(`<!--]--><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
 }
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
@@ -194,16 +163,16 @@ const _sfc_main$4 = {
                 var self = this;
                 axios(
                     {
-            method: "post",
-            url: "/cities",
-            data: { p: self.province_id }
-          }
-        ).then(function(response) {
-          self.cities = response.data;
-        });
-      }
-    },
-    submit() {
+                        method: "post",
+                        url: "/cities",
+                        data: {p: self.province_id}
+                    }
+                ).then(function (response) {
+                    self.cities = response.data;
+                });
+            }
+        },
+        submit() {
       var self = this;
       var fData = new FormData(document.getElementById("frmPJ"));
       this.errors = "";
@@ -249,29 +218,32 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_date_picker, {name: "close_date"}, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">استان</label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
     ssrRenderList($props.provinces, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
-  });
-  _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">شهری که مورد نیاز است</label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control select2" name="city_id"><!--[-->`);
-  ssrRenderList($data.cities, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
-  });
-  _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input type="text" class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div>`);
-  if (this.shI === 1) {
-    _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cheque_count" placeholder="تعداد چک"></div>`);
-  } else {
+        _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
+    });
+    _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">شهری که مورد نیاز است</label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control select2" name="city_id"><!--[-->`);
+    ssrRenderList($data.cities, (item) => {
+        _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
+    });
+    _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input type="text" class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div>`);
+    if (this.shI === 1) {
+        _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cheque_count" placeholder="تعداد چک"></div>`);
+    } else {
     _push(`<!---->`);
   }
   if (this.shI === 1) {
-    _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی"></div>`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({ "color": "indianred" })}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input type="text" class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده"></div><div class="col-lg-4 col-sm-12 mb-3"><input type="text" class="form-control" style="${ssrRenderStyle({ "text-align": "left", "direction": "ltr" })}" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه"></div>`);
-  if (this.submitted === 0) {
-      _push(`<div class="default-btn" type="button">ثبت</div>`);
+      _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی"></div>`);
   } else {
       _push(`<!---->`);
   }
+    _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({"color": "indianred"})}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input type="text" class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده"></div><div class="col-lg-4 col-sm-12 mb-3"><input type="text" class="form-control" style="${ssrRenderStyle({
+        "text-align": "left",
+        "direction": "ltr"
+    })}" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه"></div>`);
+    if (this.submitted === 0) {
+        _push(`<div class="default-btn" type="button">ثبت</div>`);
+    } else {
+        _push(`<!---->`);
+    }
     _push(`<div class="col-lg-12 col-sm-12 mb-3">`);
     if (this.submitted === 1) {
         _push(`<a class="close-btn" href="/">بازگشت</a>`);
@@ -312,16 +284,16 @@ const _sfc_main$3 = {
             message: "",
             chats: [],
             chatUser: ""
-    };
-  },
-  methods: {
-    view(id) {
-      this.viewM = true;
-      this.getInfo(id);
+        };
     },
-    getInfo(id) {
-      var self = this;
-      self.id = id;
+    methods: {
+        view(id) {
+            this.viewM = true;
+            this.getInfo(id);
+        },
+        getInfo(id) {
+            var self = this;
+            self.id = id;
       axios(
         {
           method: "post",
@@ -476,15 +448,15 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         ssrRenderList($data.replyMessage, (item) => {
             _push(`<p>${ssrInterpolate(item)}</p>`);
         });
-    _push(`<!--]-->`);
-  } else {
-    _push(`<!---->`);
-  }
-  if ($data.replyState === "alert alert-success") {
-      _push(`<p>${ssrInterpolate($data.replyMessage)}</p>`);
-  } else {
-      _push(`<!---->`);
-  }
+        _push(`<!--]-->`);
+    } else {
+        _push(`<!---->`);
+    }
+    if ($data.replyState === "alert alert-success") {
+        _push(`<p>${ssrInterpolate($data.replyMessage)}</p>`);
+    } else {
+        _push(`<!---->`);
+    }
     _push(`</div></div></div><div class="modal-footer"><button type="button" class="btn default-btn">ارسال پاسخ</button><button type="button" class="btn close-btn">بستن</button></div></div></div></div><div style="${ssrRenderStyle(this.viewM ? null : {display: "none"})}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">${ssrInterpolate(this.inquiryName)}</h5></div><div class="modal-body"><div class="row">`);
     if (this.inquiry.picture != "") {
         _push(`<div class="col-lg-12 text-center"><img${ssrRenderAttr("src", this.inquiry.pictureSrc)} style="${ssrRenderStyle({
@@ -529,16 +501,16 @@ const _sfc_main$2 = {
             supplierMessage: "",
             message: "",
             chats: [],
-      chatUser: ""
-    };
-  },
-  methods: {
-    view(id) {
-      this.viewM = true;
-      this.getInfo(id);
+            chatUser: ""
+        };
     },
-    getInfo(id) {
-      var self = this;
+    methods: {
+        view(id) {
+            this.viewM = true;
+            this.getInfo(id);
+        },
+        getInfo(id) {
+            var self = this;
       self.id = id;
       axios(
         {
@@ -693,10 +665,10 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     } else {
         _push(`<!---->`);
     }
-  _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_eneable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>مسئولیت حمل و نقل با : </span><strong>${ssrInterpolate(this.inquiry.move_conditions == "buyer" ? "فروشنده" : "خریدار")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.viewR ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-xl" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> پاسخ ها به استعلام <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div style="${ssrRenderStyle(this.replies.length == 0 ? null : { display: "none" })}" class="alert alert-info"><p>کاربر گرامی ، در حال حاضر هیچ پاسخی برای این استعلام از طرف تامین کنندگان داده نشده است.</p></div><div class="row" style="${ssrRenderStyle([
-    this.replies.length > 0 ? null : { display: "none" },
-    { "max-height": "400px", "overflow-y": "scroll" }
-  ])}"><div style="${ssrRenderStyle(this.replies.length > 0 ? null : {display: "none"})}" class="alert alert-warning"><strong>توجه:</strong><p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده اطلاعات تامین کننده ، یکی از فرصت های استعلام شما کم می شود</p></div><!--[-->`);
+    _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_eneable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>مسئولیت حمل و نقل با : </span><strong>${ssrInterpolate(this.inquiry.move_conditions == "buyer" ? "فروشنده" : "خریدار")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.viewR ? null : {display: "none"})}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-xl" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> پاسخ ها به استعلام <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div style="${ssrRenderStyle(this.replies.length == 0 ? null : {display: "none"})}" class="alert alert-info"><p>کاربر گرامی ، در حال حاضر هیچ پاسخی برای این استعلام از طرف تامین کنندگان داده نشده است.</p></div><div class="row" style="${ssrRenderStyle([
+        this.replies.length > 0 ? null : {display: "none"},
+        {"max-height": "400px", "overflow-y": "scroll"}
+    ])}"><div style="${ssrRenderStyle(this.replies.length > 0 ? null : {display: "none"})}" class="alert alert-warning"><strong>توجه:</strong><p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده اطلاعات تامین کننده ، یکی از فرصت های استعلام شما کم می شود</p></div><!--[-->`);
     ssrRenderList(this.replies, (item) => {
         _push(`<div class="col-lg-12"><div class="inquiry-box text-center"><p><strong>قیمت : ${ssrInterpolate(item.price)}</strong></p><p><small>${ssrInterpolate(item.description)}</small></p><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(item.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(item.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(item.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(item.visit_place_enable)}</small></p><a href="javascript:void(0)" class="btn default-btn" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده </a><a${ssrRenderAttr("href", item.url)} class="btn default-btn"> مشاهده پروفایل تامین کننده </a>`);
         if (item.hasSeen == 1) {
@@ -754,7 +726,7 @@ _sfc_main$1.setup = (props, ctx) => {
 };
 const subComponent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
 const carousel = "";
-const sliderComponent_vue_vue_type_style_index_0_scoped_77066aaf_lang = "";
+const sliderComponent_vue_vue_type_style_index_0_scoped_fe792663_lang = "";
 const _sfc_main = {
     name: "sliderComponent.vue",
     components: {
@@ -776,7 +748,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     const _component_slide = resolveComponent("slide");
     const _component_navigation = resolveComponent("navigation");
     const _component_pagination = resolveComponent("pagination");
-    _push(`<div${ssrRenderAttrs(_attrs)} data-v-77066aaf>`);
+    _push(`<div${ssrRenderAttrs(_attrs)} data-v-fe792663>`);
     _push(ssrRenderComponent(_component_carousel, {
         autoplay: 1,
         "items-to-show": 4.1,
@@ -801,7 +773,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
                     _push2(ssrRenderComponent(_component_slide, {key: slide}, {
                         default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                             if (_push3) {
-                                _push3(`<img${ssrRenderAttr("src", slide.url)} height="250" width="250" data-v-77066aaf${_scopeId2}>`);
+                                _push3(`<img${ssrRenderAttr("src", slide.url)} height="250" width="250" data-v-fe792663${_scopeId2}>`);
                             } else {
                                 return [
                                     createVNode("img", {
@@ -843,7 +815,7 @@ _sfc_main.setup = (props, ctx) => {
     (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/site/js/components/sliderComponent.vue");
     return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const sliderComponent = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-77066aaf"]]);
+const sliderComponent = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-fe792663"]]);
 const app = createApp({
     components: {
         searchComponent,
