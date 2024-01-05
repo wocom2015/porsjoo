@@ -5,8 +5,7 @@
             <div class="search-box col-lg-12 mt-10">
                 <form class="search-form">
                     <input id="search" ref="search" class="search-input" name="search"
-                           placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text" @click="showSearch()"
-                           @keyup="showResult()">
+                           placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text" @click="showSearch()" @keyup="showResult()">
 
                     <div class="search-result" v-show="this.result && phrase.length >=3">
                         <div class="d-flex bd-highlight" v-show="searchResult.length>0" v-for="item in searchResult">
@@ -36,16 +35,18 @@
                 <div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div>
                 <div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div>
             </div>
+            <div style="height: 200px !important;overflow-y: scroll;overflow-x: hidden">
+                <a v-for="item in this.inquiries" :href="item.url">
+                    <div class="row mb-2 p-2">
+                        <div class="col-lg-3 col-sm-6">{{ item.provinceName }}</div>
+                        <div class="col-lg-3 col-sm-6">{{ item.name }}</div>
+                        <div class="col-lg-2 col-sm-6">{{ item.categoryName }}</div>
+                        <div class="col-lg-2 col-sm-6">{{ item.closeDate }}</div>
+                        <div class="col-lg-2 col-sm-6">{{ item.involved }}</div>
+                    </div>
+                </a>
+            </div>
 
-            <a v-for="item in this.inquiries" :href="item.url">
-                <div class="row mb-2 p-2">
-                    <div class="col-lg-3 col-sm-6">{{ item.provinceName }}</div>
-                    <div class="col-lg-3 col-sm-6">{{ item.name }}</div>
-                    <div class="col-lg-2 col-sm-6">{{ item.categoryName }}</div>
-                    <div class="col-lg-2 col-sm-6">{{ item.closeDate }}</div>
-                    <div class="col-lg-2 col-sm-6">{{ item.involved }}</div>
-                </div>
-            </a>
 
             <div class="row">
                 <div class="search-result" v-show=" inquiries.length===0">

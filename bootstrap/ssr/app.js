@@ -84,16 +84,16 @@ const _sfc_main$6 = {
                     } else {
                         self.searchResult = [];
                     }
-        });
-      } else {
-        this.searchResult = [];
-        this.result = false;
-        this.offset = 0;
-        this.searchLimit = 5;
-        this.phrase = "";
-      }
-    },
-    showMoreResult() {
+                });
+            } else {
+                this.searchResult = [];
+                this.result = false;
+                this.offset = 0;
+                this.searchLimit = 5;
+                this.phrase = "";
+            }
+        },
+        showMoreResult() {
       this.searchLimit += this.searchLimit;
       this.showResult();
     }
@@ -103,15 +103,19 @@ const _sfc_main$6 = {
   }
 };
 function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-    _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input id="search" class="search-input" name="search" placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
+    _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
     ssrRenderList($data.searchResult, (item) => {
         _push(`<div class="d-flex bd-highlight" style="${ssrRenderStyle($data.searchResult.length > 0 ? null : {display: "none"})}"><div class="p-1 flex-fill bd-highlight mt-2 s-t">${ssrInterpolate(item.name)}</div></div>`);
     });
-    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div><!--[-->`);
+    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div><div style="${ssrRenderStyle({
+        "height": "200px !important",
+        "overflow-y": "scroll",
+        "overflow-x": "hidden"
+    })}"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
         _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
-    _push(`<!--]--><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
+    _push(`<!--]--></div><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
 }
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
@@ -193,9 +197,9 @@ const _sfc_main$4 = {
             });
         }
     },
-  mounted() {
-    this.fetchCities(1);
-  }
+    mounted() {
+        this.fetchCities(1);
+    }
 };
 function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_date_picker = resolveComponent("date-picker");
@@ -314,16 +318,16 @@ const _sfc_main$3 = {
         },
         hideView() {
             this.viewM = false;
-    },
-    hideReply() {
-      this.replyM = false;
-    },
-    hideReplyR() {
-      this.replyReviewM = false;
-    },
-    hideCommentR() {
-      this.commentReviewM = false;
-    },
+        },
+        hideReply() {
+            this.replyM = false;
+        },
+        hideReplyR() {
+            this.replyReviewM = false;
+        },
+        hideCommentR() {
+            this.commentReviewM = false;
+        },
     sendReply(id) {
       var self = this;
       var fData = new FormData(document.getElementById("frmReply"));
@@ -531,16 +535,16 @@ const _sfc_main$2 = {
         hideViewC() {
             this.viewC = false;
         },
-    hideViewR() {
-      this.viewR = false;
-    },
-    hideViewS() {
-      this.viewS = false;
-    },
-    saveC() {
-      var self = this;
-      var fData = new FormData(document.getElementById("frmComment"));
-      fData.append("inquiry_id", self.inquiry_id);
+        hideViewR() {
+            this.viewR = false;
+        },
+        hideViewS() {
+            this.viewS = false;
+        },
+        saveC() {
+            var self = this;
+            var fData = new FormData(document.getElementById("frmComment"));
+            fData.append("inquiry_id", self.inquiry_id);
       fData.append("supplier_id", self.supplier_id);
       this.errors = "";
       this.message = "";

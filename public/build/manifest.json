@@ -15,14 +15,14 @@
       "isEntry": true,
       "src": "resources/admin/css/app.css"
   },
-  "resources/admin/js/app.js": {
-    "file": "assets/app-dc89661b.js",
-    "imports": [
-        "__commonjsHelpers-b75a21f2.js"
-    ],
-      "isEntry": true,
-      "src": "resources/admin/js/app.js"
-  },
+    "resources/admin/js/app.js": {
+        "file": "assets/app-dc89661b.js",
+        "imports": [
+            "__commonjsHelpers-b75a21f2.js"
+        ],
+        "isEntry": true,
+        "src": "resources/admin/js/app.js"
+    },
     "resources/admin/sass/app.scss": {
         "file": "assets/app-491a86e5.css",
         "isEntry": true,
@@ -69,7 +69,7 @@
         "css": [
             "assets/app-a9d35258.css"
         ],
-        "file": "assets/app-b94bd2f5.js",
+        "file": "assets/app-cb105ba8.js",
         "imports": [
             "__commonjsHelpers-b75a21f2.js"
         ],
