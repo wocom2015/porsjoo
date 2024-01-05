@@ -18,18 +18,18 @@
   "resources/admin/js/app.js": {
     "file": "assets/app-dc89661b.js",
     "imports": [
-      "__commonjsHelpers-b75a21f2.js"
+        "__commonjsHelpers-b75a21f2.js"
     ],
-    "isEntry": true,
-    "src": "resources/admin/js/app.js"
+      "isEntry": true,
+      "src": "resources/admin/js/app.js"
   },
-  "resources/admin/sass/app.scss": {
-    "file": "assets/app-491a86e5.css",
-    "isEntry": true,
-    "src": "resources/admin/sass/app.scss"
-  },
+    "resources/admin/sass/app.scss": {
+        "file": "assets/app-491a86e5.css",
+        "isEntry": true,
+        "src": "resources/admin/sass/app.scss"
+    },
     "resources/site/css/app.css": {
-        "file": "assets/app-7368f148.css",
+        "file": "assets/app-542d509c.css",
         "isEntry": true,
         "src": "resources/site/css/app.css"
     },

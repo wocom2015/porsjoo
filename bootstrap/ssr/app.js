@@ -74,16 +74,16 @@ const _sfc_main$6 = {
                     {
                         method: "post",
                         url: "/search",
-            data: { p: self.phrase, l: self.searchLimit, o: self.offset }
-          }
-        ).then(function(response) {
-          self.result = true;
-          if (response.data.categories.length > 0 && self.$refs.search.value.length > 2) {
-            self.searchResult = response.data.categories;
-            self.showMore = response.data.hasMore;
-          } else {
-            self.searchResult = [];
-          }
+                        data: {p: self.phrase, l: self.searchLimit, o: self.offset}
+                    }
+                ).then(function (response) {
+                    self.result = true;
+                    if (response.data.categories.length > 0 && self.$refs.search.value.length > 2) {
+                        self.searchResult = response.data.categories;
+                        self.showMore = response.data.hasMore;
+                    } else {
+                        self.searchResult = [];
+                    }
         });
       } else {
         this.searchResult = [];
@@ -183,16 +183,16 @@ const _sfc_main$4 = {
                     url: "/inquiry/create",
                     data: fData
                 }
-      ).then(function(response) {
-        if (response.data.state === "success") {
-          self.message = response.data.message;
-          self.submitted = 1;
-        } else {
-          self.errors = response.data.message;
+            ).then(function (response) {
+                if (response.data.state === "success") {
+                    self.message = response.data.message;
+                    self.submitted = 1;
+                } else {
+                    self.errors = response.data.message;
+                }
+            });
         }
-      });
-    }
-  },
+    },
   mounted() {
     this.fetchCities(1);
   }
@@ -304,16 +304,16 @@ const _sfc_main$3 = {
                 if (response.data.state === "success") {
                     self.inquiry = response.data.inquiry;
                     self.inquiryName = response.data.inquiry.name;
-        }
-      });
-    },
-    replyIt(id) {
-      this.replyM = true;
-      this.id = id;
-      this.replyMessage = "";
-    },
-    hideView() {
-      this.viewM = false;
+                }
+            });
+        },
+        replyIt(id) {
+            this.replyM = true;
+            this.id = id;
+            this.replyMessage = "";
+        },
+        hideView() {
+            this.viewM = false;
     },
     hideReply() {
       this.replyM = false;
@@ -521,16 +521,16 @@ const _sfc_main$2 = {
             ).then(function (response) {
                 if (response.data.state === "success") {
                     self.inquiry = response.data.inquiry;
-          self.inquiryName = response.data.inquiry.name;
-        }
-      });
-    },
-    hideView() {
-      this.viewM = false;
-    },
-    hideViewC() {
-      this.viewC = false;
-    },
+                    self.inquiryName = response.data.inquiry.name;
+                }
+            });
+        },
+        hideView() {
+            this.viewM = false;
+        },
+        hideViewC() {
+            this.viewC = false;
+        },
     hideViewR() {
       this.viewR = false;
     },
