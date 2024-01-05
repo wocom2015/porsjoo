@@ -64,16 +64,16 @@ const _sfc_main$6 = {
             ).then(function (response) {
                 self.inquiries = response.data.data;
                 self.result = false;
-      });
-    },
-    showResult() {
-      if (this.$refs.search.value.length > 2) {
-        this.phrase = this.$refs.search.value;
-        var self = this;
-        axios(
-          {
-            method: "post",
-            url: "/search",
+            });
+        },
+        showResult() {
+            if (this.$refs.search.value.length > 2) {
+                this.phrase = this.$refs.search.value;
+                var self = this;
+                axios(
+                    {
+                        method: "post",
+                        url: "/search",
             data: { p: self.phrase, l: self.searchLimit, o: self.offset }
           }
         ).then(function(response) {
@@ -173,16 +173,16 @@ const _sfc_main$4 = {
             }
         },
         submit() {
-      var self = this;
-      var fData = new FormData(document.getElementById("frmPJ"));
-      this.errors = "";
-      this.message = "";
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/create",
-          data: fData
-        }
+            var self = this;
+            var fData = new FormData(document.getElementById("frmPJ"));
+            this.errors = "";
+            this.message = "";
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/create",
+                    data: fData
+                }
       ).then(function(response) {
         if (response.data.state === "success") {
           self.message = response.data.message;
@@ -228,13 +228,13 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     if (this.shI === 1) {
         _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cheque_count" placeholder="تعداد چک"></div>`);
     } else {
-    _push(`<!---->`);
-  }
-  if (this.shI === 1) {
-      _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی"></div>`);
-  } else {
-      _push(`<!---->`);
-  }
+        _push(`<!---->`);
+    }
+    if (this.shI === 1) {
+        _push(`<div class="col-lg-3 col-sm-12 mb-3"><input type="text" class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی"></div>`);
+    } else {
+        _push(`<!---->`);
+    }
     _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({"color": "indianred"})}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input type="text" class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده"></div><div class="col-lg-4 col-sm-12 mb-3"><input type="text" class="form-control" style="${ssrRenderStyle({
         "text-align": "left",
         "direction": "ltr"
@@ -294,16 +294,16 @@ const _sfc_main$3 = {
         getInfo(id) {
             var self = this;
             self.id = id;
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/item",
-          data: { id: self.id }
-        }
-      ).then(function(response) {
-        if (response.data.state === "success") {
-          self.inquiry = response.data.inquiry;
-          self.inquiryName = response.data.inquiry.name;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/item",
+                    data: {id: self.id}
+                }
+            ).then(function (response) {
+                if (response.data.state === "success") {
+                    self.inquiry = response.data.inquiry;
+                    self.inquiryName = response.data.inquiry.name;
         }
       });
     },
@@ -511,16 +511,16 @@ const _sfc_main$2 = {
         },
         getInfo(id) {
             var self = this;
-      self.id = id;
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/item",
-          data: { id: self.id }
-        }
-      ).then(function(response) {
-        if (response.data.state === "success") {
-          self.inquiry = response.data.inquiry;
+            self.id = id;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/item",
+                    data: {id: self.id}
+                }
+            ).then(function (response) {
+                if (response.data.state === "success") {
+                    self.inquiry = response.data.inquiry;
           self.inquiryName = response.data.inquiry.name;
         }
       });

@@ -28,15 +28,15 @@
     "isEntry": true,
     "src": "resources/admin/sass/app.scss"
   },
-  "resources/site/css/app.css": {
-      "file": "assets/app-7368f148.css",
-      "isEntry": true,
-      "src": "resources/site/css/app.css"
-  },
-  "resources/site/fonts/Qs_Iranyekan bold.ttf": {
-    "file": "assets/Qs_Iranyekan bold-3b412787.ttf",
-      "src": "resources/site/fonts/Qs_Iranyekan bold.ttf"
-  },
+    "resources/site/css/app.css": {
+        "file": "assets/app-7368f148.css",
+        "isEntry": true,
+        "src": "resources/site/css/app.css"
+    },
+    "resources/site/fonts/Qs_Iranyekan bold.ttf": {
+        "file": "assets/Qs_Iranyekan bold-3b412787.ttf",
+        "src": "resources/site/fonts/Qs_Iranyekan bold.ttf"
+    },
     "resources/site/fonts/Qs_Iranyekan light.ttf": {
         "file": "assets/Qs_Iranyekan light-a0ec02f7.ttf",
         "src": "resources/site/fonts/Qs_Iranyekan light.ttf"
