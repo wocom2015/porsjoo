@@ -10,8 +10,10 @@ class HomeController extends Controller
     public function index()
     {
         $lastPJ = Inquiry::query()->orderBy("id" , "desc")
-            ->where("close_date", ">", date("Y-m-d"))
-            ->limit(10)->get();
+
+        ->where("close_date" , ">" , date("Y-m-d"))
+        ->limit(20)->get();
+
 
         foreach ($lastPJ as $pj) {
             $pj->url = "/inquiry/details/" . $pj->id . "/" . str_replace(" ", "-", $pj->name);

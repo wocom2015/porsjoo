@@ -77,6 +77,7 @@ class UsersController extends Controller
 
     public function register(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:2',
             'last_name' => 'required|string|min:3',
@@ -84,7 +85,7 @@ class UsersController extends Controller
             'mobile' => 'required|min:11|max:11|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
-
+            'rules' => 'required',
         ]);
 
 
