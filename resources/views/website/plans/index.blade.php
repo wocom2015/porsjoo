@@ -23,9 +23,9 @@
                         <p>{{$plan->description}}</p>
                         <p><small>{{$plan->pj_per_month.' '.__("p.pj_per_month").' , '.$plan->suppliers_count.' '.__("p.supplier_per_each_inquiry")}}</small></p>
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6"><div class="btn orange-box">قیمت : {{number_format($plan->price).' تومان'}}</div></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 text-center mb-1"><div class="btn orange-box">قیمت : {{number_format($plan->price).' تومان'}}</div></div>
                             @auth
-                                <div class="col-lg-6 col-md-6 col-sm-6"><a href="/plans/invoice/{{$plan->id}}" class="btn btn-custom-outline ml-3">خرید طرح</a></div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 text-center"><a href="/plans/invoice/{{$plan->id}}" class="btn btn-custom-outline ml-3">خرید طرح</a></div>
                             @endauth
                         </div>
                     </div>
