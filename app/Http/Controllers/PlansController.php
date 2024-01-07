@@ -152,7 +152,7 @@ class PlansController extends Controller
                 "payment_id" => $payment->id
             ]);
             $user->pj_available += ($plan->pj_per_month*$plan->length); //adding plan pj to user
-
+            $user->save();
             $this->verify($payment->amount, $request->refid);
             return view("website.payment.success");
         }
