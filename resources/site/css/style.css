@@ -343,7 +343,7 @@ button {
 }
 
 .chat-box {
-    width: 100%;
+    width: 90%;
     height: 400px;
     flex-shrink: 0;
     border-radius: 16px;
@@ -406,7 +406,8 @@ button {
     align-self: stretch;
     border-radius: 11px;
     background: #EDE0DB;
-    width: 300px;
+    max-width: 300px;
+    width:auto;
     margin-right: 150px;
 }
 
@@ -444,7 +445,8 @@ button {
     align-self: stretch;
     border-radius: 11px;
     background: #CCDADB;
-    width: 300px;
+    max-width: 300px;
+    width: auto;
     margin-right: 5px;
 }
 

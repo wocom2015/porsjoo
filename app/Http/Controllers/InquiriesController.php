@@ -411,6 +411,7 @@ class InquiriesController extends Controller
         $inquiry->is_bought = $request->is_bought;
         $inquiry->vendor_id = $request->vendor_id;
         $inquiry->comment = $request->comment;
+        $inquiry->score = $request->score;
         $inquiry->bought_answered = 1;
 
         $inquiry->save();

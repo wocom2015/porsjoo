@@ -13,6 +13,9 @@
             <li style="float: right">
                 <a href="/plans"> تعرفه </a>
             </li>
+            <li style="float: right">
+                <a href="/definitions"> تعاریف سایت </a>
+            </li>
 
             <li style="float: right">
                 <a href="/page/about"> درباره ما </a>

@@ -43,7 +43,8 @@ class Inquiry extends Model
         "bought_answered",
         "vendor_introduce_name",
         "vendor_introduce_mobile",
-        "comment"
+        "comment",
+        "score"
     ];
 
 

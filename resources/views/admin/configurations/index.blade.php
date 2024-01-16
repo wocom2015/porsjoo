@@ -155,8 +155,16 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>{{__("p.rules_text")}}</label>
-                                        <textarea class="form-control" name="rules_text"
+                                        <textarea class="form-control ckeditor" name="rules_text"
                                                   placeholder="{{__("p.rules_text")}}"> {{(isset($configs['rules_text']))?$configs['rules_text']:''}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>{{__("p.site_definitions")}}</label>
+                                        <textarea class="form-control ckeditor" name="site_definitions"
+                                                  placeholder="{{__("p.site_definitions")}}"> {{(isset($configs['site_definitions']))?$configs['site_definitions']:''}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -211,4 +219,8 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section("scripts")
+    <script src="/plugins/custom/ckeditor/ckeditor.js" type="text/javascript"></script>
 @endsection
