@@ -34,8 +34,9 @@ Route::post('/signup', [UsersController::class , 'register'])->name('users.regis
 Route::post('/signin', [UsersController::class , 'login'])->name('users.login');
 Route::post('/search', [CategoriesController::class , 'search'])->name('search');
 Route::post('/search/inquiry', [CategoriesController::class , 'search_inquiry'])->name('search-inquiry');
-Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
-Route::get('/rules', [HomeController::class , 'rules'])->name('rules');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact', [HomeController::class, 'sendContact'])->name('users.contact');
+Route::get('/rules', [HomeController::class, 'rules'])->name('rules');
 Route::get('/page/{title}', [HomeController::class , 'page']);
 Route::get('/payment/callback', [PlansController::class, 'callback']);
 Route::post('/payment/callback', [PlansController::class, 'callback']);

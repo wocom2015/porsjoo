@@ -94,24 +94,24 @@ const _sfc_main$6 = {
             }
         },
         showMoreResult() {
-      this.searchLimit += this.searchLimit;
-      this.showResult();
+            this.searchLimit += this.searchLimit;
+            this.showResult();
+        }
+    },
+    mounted() {
+        this.inquiries = this.lastpj;
     }
-  },
-  mounted() {
-    this.inquiries = this.lastpj;
-  }
 };
 function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-    _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input class="search-input" placeholder="دسته بندی مورد نظر خود را جستجو کنید." name="search" type="text" id="search"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
+    _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input id="search" class="search-input" name="search" placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
     ssrRenderList($data.searchResult, (item) => {
         _push(`<div class="d-flex bd-highlight" style="${ssrRenderStyle($data.searchResult.length > 0 ? null : {display: "none"})}"><div class="p-1 flex-fill bd-highlight mt-2 s-t">${ssrInterpolate(item.name)}</div></div>`);
     });
-    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div><div style="${ssrRenderStyle({
-        "height": "200px !important",
-        "overflow-y": "scroll",
-        "overflow-x": "hidden"
-    })}"><!--[-->`);
+    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame content-frame-marquee-holder"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div></div><div class="content-frame-marquee marquee"><div class="marquee__content"><!--[-->`);
+    ssrRenderList(this.inquiries, (item) => {
+        _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
+    });
+    _push(`<!--]--></div><div class="marquee__content" aria-hidden="true"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
         _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
@@ -328,16 +328,16 @@ const _sfc_main$3 = {
         hideCommentR() {
             this.commentReviewM = false;
         },
-    sendReply(id) {
-      var self = this;
-      var fData = new FormData(document.getElementById("frmReply"));
-      this.replyMessage = "";
-      this.replyState = "";
-      fData.append("id", id);
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/reply",
+        sendReply(id) {
+            var self = this;
+            var fData = new FormData(document.getElementById("frmReply"));
+            this.replyMessage = "";
+            this.replyState = "";
+            fData.append("id", id);
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/reply",
           data: fData
         }
       ).then(function(response) {
@@ -545,16 +545,16 @@ const _sfc_main$2 = {
             var self = this;
             var fData = new FormData(document.getElementById("frmComment"));
             fData.append("inquiry_id", self.inquiry_id);
-      fData.append("supplier_id", self.supplier_id);
-      this.errors = "";
-      this.message = "";
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/comment",
-          data: fData
-        }
-      ).then(function(response) {
+            fData.append("supplier_id", self.supplier_id);
+            this.errors = "";
+            this.message = "";
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/comment",
+                    data: fData
+                }
+            ).then(function (response) {
         if (response.data.state === "success") {
           self.message = response.data.message;
         } else {
@@ -674,13 +674,13 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         {"max-height": "400px", "overflow-y": "scroll"}
     ])}"><div style="${ssrRenderStyle(this.replies.length > 0 ? null : {display: "none"})}" class="alert alert-warning"><strong>توجه:</strong><p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده اطلاعات تامین کننده ، یکی از فرصت های استعلام شما کم می شود</p></div><!--[-->`);
     ssrRenderList(this.replies, (item) => {
-        _push(`<div class="col-lg-12"><div class="inquiry-box text-center"><p><strong>قیمت : ${ssrInterpolate(item.price)}</strong></p><p><small>${ssrInterpolate(item.description)}</small></p><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(item.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(item.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(item.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(item.visit_place_enable)}</small></p><a href="javascript:void(0)" class="btn default-btn" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده </a><a${ssrRenderAttr("href", item.url)} class="btn default-btn"> مشاهده پروفایل تامین کننده </a>`);
+        _push(`<div class="col-lg-12"><div class="inquiry-box text-center"><p><strong>قیمت : ${ssrInterpolate(item.price)}</strong></p><p><small>${ssrInterpolate(item.description)}</small></p><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(item.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(item.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(item.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(item.visit_place_enable)}</small></p><a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده </a><a${ssrRenderAttr("href", item.url)} class="btn default-btn mb-1"> مشاهده پروفایل تامین کننده </a>`);
         if (item.hasSeen == 1) {
-            _push(`<a href="javascript:void(0)" class="btn default-btn" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید"> پاسخ به تامین کننده </a>`);
+            _push(`<a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید"> پاسخ به تامین کننده </a>`);
         } else {
             _push(`<!---->`);
         }
-        _push(`<a href="javascript:void(0)" class="btn default-btn" title="با کلیک بر روی این دکمه می توانید با تامین کننده چت کنید"> گفتگو با تامین کننده </a></div></div>`);
+        _push(`<a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه می توانید با تامین کننده چت کنید"> گفتگو با تامین کننده </a></div></div>`);
     });
     _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline" style="${ssrRenderStyle({"margin": "0 auto"})}"><img src="/site/images/check.png"> متوجه شدم </button></div></div></div></div><div style="${ssrRenderStyle(this.viewChat ? null : {display: "none"})}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> گفتگو با تامین کننده <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div class="chat-box"><div class="chat-header"><span>${ssrInterpolate(this.chatUser)}</span></div><!--[-->`);
     ssrRenderList(this.chats, (item) => {
