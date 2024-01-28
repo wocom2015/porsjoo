@@ -31,8 +31,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-lg-2">
-            <a referrerpolicy='origin' target='_blank'
+        <div class="col-12 col-lg-2 m-auto">
+            <a referrerpolicy='origin'
+               target='_blank'
                href='https://payping.io'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 341.76 71.78">
                     <defs></defs>
