@@ -19,6 +19,7 @@
                 {{ implode('', $errors->all(':message')) }}
             @endif
             <form method="post" action="{{route("users.contact")}}">
+                @csrf
                 <div class="row">
                     <div class="col-12 col-lg-6 pt-2 pb-2">
                         <label>{{__("p.name_and_family")}}</label>
