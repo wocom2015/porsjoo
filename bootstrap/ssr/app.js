@@ -2,27 +2,27 @@ import "bootstrap";
 import axios$1 from "axios";
 import {createApp} from "vue/dist/vue.esm-bundler";
 import {
+    ssrRenderAttrs,
+    ssrRenderStyle,
+    ssrRenderList,
     ssrInterpolate,
     ssrRenderAttr,
-    ssrRenderAttrs,
-    ssrRenderClass,
     ssrRenderComponent,
-    ssrRenderList,
-    ssrRenderStyle
+    ssrRenderClass
 } from "vue/server-renderer";
 import {
-    createBlock,
-    createVNode,
-    Fragment,
-    mergeProps,
-    openBlock,
-    renderList,
-    resolveComponent,
     useSSRContext,
-    withCtx
+    resolveComponent,
+    mergeProps,
+    withCtx,
+    createVNode,
+    openBlock,
+    createBlock,
+    Fragment,
+    renderList
 } from "vue";
 import DatePicker from "vue3-persian-datetime-picker";
-import {Carousel, Navigation, Pagination, Slide} from "vue3-carousel";
+import {Carousel, Slide, Pagination, Navigation} from "vue3-carousel";
 
 window.axios = axios$1;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -111,7 +111,7 @@ function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     ssrRenderList(this.inquiries, (item) => {
         _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
-    _push(`<!--]--></div><div class="marquee__content" aria-hidden="true"><!--[-->`);
+    _push(`<!--]--></div><div aria-hidden="true" class="marquee__content"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
         _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
@@ -338,16 +338,16 @@ const _sfc_main$3 = {
                 {
                     method: "post",
                     url: "/inquiry/reply",
-          data: fData
-        }
-      ).then(function(response) {
-        self.replyMessage = response.data.message;
-        if (response.data.state === "success") {
-          self.replyState = "alert alert-success";
-        } else {
-          self.replyState = "alert alert-danger";
-        }
-      });
+                    data: fData
+                }
+            ).then(function (response) {
+                self.replyMessage = response.data.message;
+                if (response.data.state === "success") {
+                    self.replyState = "alert alert-success";
+                } else {
+                    self.replyState = "alert alert-danger";
+                }
+            });
     },
     replyReview(id) {
       this.replyReviewM = true;
@@ -555,16 +555,16 @@ const _sfc_main$2 = {
                     data: fData
                 }
             ).then(function (response) {
-        if (response.data.state === "success") {
-          self.message = response.data.message;
-        } else {
-          self.errors = response.data.message;
-        }
-      });
-    },
-    viewReplies(id) {
-      this.getInfo(id);
-      this.viewR = true;
+                if (response.data.state === "success") {
+                    self.message = response.data.message;
+                } else {
+                    self.errors = response.data.message;
+                }
+            });
+        },
+        viewReplies(id) {
+            this.getInfo(id);
+            this.viewR = true;
       var self = this;
       self.id = id;
       axios(

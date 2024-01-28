@@ -79,4 +79,10 @@ class HomeController extends Controller
         $pageTitle = "قوانین و مقررات";
         return view("website.page.rules", compact("pageTitle"));
     }
+
+    public function definitions()
+    {
+        $pageTitle = "تعاریف سایت";
+        return view("website.page.definitions", compact("pageTitle"));
+    }
 }

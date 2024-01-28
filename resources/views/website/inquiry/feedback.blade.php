@@ -43,6 +43,22 @@
                 </div>
 
                 <div class="col-lg-6 col-sm-12 mb-3">
+                    <label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید امتیاز شما به تامین کننده از 1 تا 5 چند
+                        است؟
+                    </label>
+                </div>
+                <div class="col-lg-6 col-sm-12 mb-3">
+                    <select class="form-control" name="score">
+                        <option value="">--انتخاب کنید--</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-6 col-sm-12 mb-3">
                     <button class="default-btn">ذخیره</button>
                 </div>
 

@@ -1,11 +1,11 @@
 {
-  "__commonjsHelpers-b75a21f2.js": {
-    "file": "assets/_commonjsHelpers-b75a21f2.js"
-  },
-  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
-    "file": "assets/bootstrap-icons-999550fa.woff",
-    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
-  },
+    "__commonjsHelpers-b75a21f2.js": {
+        "file": "assets/_commonjsHelpers-b75a21f2.js"
+    },
+    "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+        "file": "assets/bootstrap-icons-999550fa.woff",
+        "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+    },
     "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
         "file": "assets/bootstrap-icons-cfe45b98.woff2",
         "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
@@ -29,7 +29,7 @@
         "src": "resources/admin/sass/app.scss"
     },
     "resources/site/css/app.css": {
-        "file": "assets/app-3b4d7f3b.css",
+        "file": "assets/app-fdf46573.css",
         "isEntry": true,
         "src": "resources/site/css/app.css"
     },
@@ -69,7 +69,7 @@
         "css": [
             "assets/app-a9d35258.css"
         ],
-        "file": "assets/app-d93bc6cf.js",
+        "file": "assets/app-695b6537.js",
         "imports": [
             "__commonjsHelpers-b75a21f2.js"
         ],
