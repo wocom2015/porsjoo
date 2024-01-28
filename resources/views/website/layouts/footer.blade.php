@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-7">
-            <div class="col-10">
+            <div class="col-12">
                 <p class="text-center">پرسجو چیست؟</p>
                 <p class="text-justify">
                     پرسجو بازار آنلاین تجارت B2B در سراسر کشور است که در زمینه ی خرید و فروش ماشین
