@@ -2,27 +2,27 @@ import "bootstrap";
 import axios$1 from "axios";
 import {createApp} from "vue/dist/vue.esm-bundler";
 import {
-    ssrRenderAttrs,
-    ssrRenderStyle,
-    ssrRenderList,
     ssrInterpolate,
     ssrRenderAttr,
+    ssrRenderAttrs,
+    ssrRenderClass,
     ssrRenderComponent,
-    ssrRenderClass
+    ssrRenderList,
+    ssrRenderStyle
 } from "vue/server-renderer";
 import {
-    useSSRContext,
-    resolveComponent,
-    mergeProps,
-    withCtx,
-    createVNode,
-    openBlock,
     createBlock,
+    createVNode,
     Fragment,
-    renderList
+    mergeProps,
+    openBlock,
+    renderList,
+    resolveComponent,
+    useSSRContext,
+    withCtx
 } from "vue";
 import DatePicker from "vue3-persian-datetime-picker";
-import {Carousel, Slide, Pagination, Navigation} from "vue3-carousel";
+import {Carousel, Navigation, Pagination, Slide} from "vue3-carousel";
 
 window.axios = axios$1;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -348,16 +348,16 @@ const _sfc_main$3 = {
                     self.replyState = "alert alert-danger";
                 }
             });
-    },
-    replyReview(id) {
-      this.replyReviewM = true;
-      var self = this;
-      self.id = id;
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/reply-info",
-          data: { id: self.id }
+        },
+        replyReview(id) {
+            this.replyReviewM = true;
+            var self = this;
+            self.id = id;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/reply-info",
+                    data: {id: self.id}
         }
       ).then(function(response) {
         self.reply = response.data;
@@ -565,16 +565,16 @@ const _sfc_main$2 = {
         viewReplies(id) {
             this.getInfo(id);
             this.viewR = true;
-      var self = this;
-      self.id = id;
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/replies",
-          data: { id: self.id }
-        }
-      ).then(function(response) {
-        self.replies = response.data;
+            var self = this;
+            self.id = id;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/replies",
+                    data: {id: self.id}
+                }
+            ).then(function (response) {
+                self.replies = response.data;
       });
     },
     viewSupplier(supplier_id) {
