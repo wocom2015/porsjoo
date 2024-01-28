@@ -358,16 +358,16 @@ const _sfc_main$3 = {
                     method: "post",
                     url: "/inquiry/reply-info",
                     data: {id: self.id}
-        }
-      ).then(function(response) {
-        self.reply = response.data;
-        self.inquiryName = response.data.name;
-      });
-    },
-    commentReview(id) {
-      this.commentReviewM = true;
-      var self = this;
-      self.id = id;
+                }
+            ).then(function (response) {
+                self.reply = response.data;
+                self.inquiryName = response.data.name;
+            });
+        },
+        commentReview(id) {
+            this.commentReviewM = true;
+            var self = this;
+            self.id = id;
       axios(
         {
           method: "post",
@@ -575,16 +575,16 @@ const _sfc_main$2 = {
                 }
             ).then(function (response) {
                 self.replies = response.data;
-      });
-    },
-    viewSupplier(supplier_id) {
-      this.viewS = true;
-      var self = this;
-      self.supplier_id = supplier_id;
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/supplier",
+            });
+        },
+        viewSupplier(supplier_id) {
+            this.viewS = true;
+            var self = this;
+            self.supplier_id = supplier_id;
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/supplier",
           data: { id: self.supplier_id, inquiry_id: self.inquiry.id }
         }
       ).then(function(response) {
