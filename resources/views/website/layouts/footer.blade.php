@@ -31,7 +31,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-lg-2 m-auto">
+        <div class="col-12 col-lg-2 m-auto" style="max-width: 250px">
             <a referrerpolicy='origin'
                target='_blank'
                href='https://payping.io'>
