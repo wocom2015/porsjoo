@@ -138,7 +138,7 @@ class PlansController extends Controller
 
         $payment->save(); //saving payment even if that's unsuccessful.
 
-        if ($request->refid != "1" && $request->cardhashpan) { //if payment success
+        if ($request->refid != "1") { //if payment success
 
             $plan = Plan::find($payment->plan_id);
             $user = \App\Models\User::find($payment->user_id);
