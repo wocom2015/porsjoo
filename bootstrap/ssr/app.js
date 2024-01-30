@@ -368,16 +368,16 @@ const _sfc_main$3 = {
             this.commentReviewM = true;
             var self = this;
             self.id = id;
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/comment-info",
-          data: { id: self.id }
-        }
-      ).then(function(response) {
-        self.comment = response.data.comment;
-        self.comment_time = response.data.comment_time;
-      });
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/comment-info",
+                    data: {id: self.id}
+                }
+            ).then(function (response) {
+                self.comment = response.data.comment;
+                self.comment_time = response.data.comment_time;
+            });
     },
     chatBox(supplier_id) {
       this.viewChat = true;
@@ -585,16 +585,16 @@ const _sfc_main$2 = {
                 {
                     method: "post",
                     url: "/inquiry/supplier",
-          data: { id: self.supplier_id, inquiry_id: self.inquiry.id }
-        }
-      ).then(function(response) {
-        if (response.data.state === "success") {
-          self.supplier = response.data.info;
-          self.supplierState = "success";
-        } else {
-          self.supplierState = "error";
-          self.supplierMessage = response.data.message;
-        }
+                    data: {id: self.supplier_id, inquiry_id: self.inquiry.id}
+                }
+            ).then(function (response) {
+                if (response.data.state === "success") {
+                    self.supplier = response.data.info;
+                    self.supplierState = "success";
+                } else {
+                    self.supplierState = "error";
+                    self.supplierMessage = response.data.message;
+                }
       });
     },
     commentSupplier(supplier_id, inquiry_id) {

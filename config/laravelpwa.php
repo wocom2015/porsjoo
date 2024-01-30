@@ -3,14 +3,14 @@
 return [
     'name' => 'LaravelPWA',
     'manifest' => [
-        'name' => env('APP_NAME', 'Porsjoo'),
-        'short_name' => 'Porsjoo',
+        'name' => env('APP_NAME', 'Porsjou'),
+        'short_name' => 'Porsjou',
         'start_url' => '/',
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
         'display' => 'standalone',
-        'orientation'=> 'any',
-        'status_bar'=> 'black',
+        'orientation' => 'any',
+        'status_bar' => 'black',
         'icons' => [
             '72x72' => [
                 'path' => '/images/icons/icon-72x72.png',
