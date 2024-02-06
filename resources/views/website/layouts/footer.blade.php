@@ -31,7 +31,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-lg-1 m-auto">
+        <div class="col-12 col-lg-1 m-auto text-center">
             <a referrerpolicy='origin' target='_blank'
                href='https://trustseal.enamad.ir/?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'><img
                     referrerpolicy='origin'
