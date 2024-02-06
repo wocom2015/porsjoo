@@ -14,6 +14,12 @@
                 <h3 class="text-center m-auto mt-1 mb-2">ارتباط با ما</h3>
                 <p></p>
             </div>
+            @if($message)
+                <p class="text-center m-auto m-5 p-3 alert-success font-size-h5-sm font-weight-bold">{{$message}}</p>
+            @endif
+            @if($error)
+                <p class="text-center m-auto m-3 p-3 alert-danger font-size-h5-sm font-weight-bold">{{$error}}</p>
+            @endif
 
             @if($errors->any())
                 {{ implode('', $errors->all(':message')) }}

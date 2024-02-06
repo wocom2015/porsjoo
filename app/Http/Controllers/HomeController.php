@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
+    private $message = null;
+    private $error = null;
+
+    public function __construct()
+    {
+    }
+
     public function index()
     {
         $lastPJ = Inquiry::query()->orderBy("id", "desc")
@@ -61,17 +68,24 @@ class HomeController extends Controller
         $name = "";
         $email = "";
         $description = "";
-        return view("website.page.contact", compact("pageTitle", "name", "email", "description"));
+        $message = $this->message;
+        $error = $this->error;
+        return view("website.page.contact", compact("pageTitle", "name", "email", "description", "message", "error"));
     }
 
     public function sendContact(Request $request)
     {
-        Mail::to(env('CONTACT_EMAIL'))->send(new SendMail(
-            $request->name,
-            $request->email,
-            $request->name . ' ' . $request->email,
-            $request->description));
-        return $this->contact();
+        try {
+            Mail::to(env('CONTACT_EMAIL'))->send(new SendMail(
+                $request->name,
+                $request->email,
+                $request->name . ' ' . $request->email,
+                $request->description));
+            $this->message = "پيام شما دريافت شد. با تشکر از شما";
+            return $this->contact();
+        } catch (\Exception $ex) {
+            $this->error = "ارسال پيام با مشکل مواجه شد. لطفا مجددا تلاش کنيد.";
+        }
     }
 
     public function rules()
@@ -83,6 +97,6 @@ class HomeController extends Controller
     public function definitions()
     {
         $pageTitle = "تعاریف سایت";
-        return view("website.page.definitions", compact("pageTitle"));
+        return view("website.page.definitions", compact("pageTitle",));
     }
 }
