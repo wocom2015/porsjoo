@@ -31,14 +31,14 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-lg-1 m-auto text-center">
+        <div class="col-6 col-lg-1 m-auto text-center">
             <a referrerpolicy='origin' target='_blank'
                href='https://trustseal.enamad.ir/?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'><img
                     referrerpolicy='origin'
                     src='https://trustseal.enamad.ir/logo.aspx?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX' alt=''
                     style='cursor:pointer' Code='uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'></a>
         </div>
-        <div class="col-12 col-lg-1 m-auto" style="max-width: 250px">
+        <div class="col-6 col-lg-1 m-auto text-center" style="max-width: 200px">
             <a referrerpolicy='origin'
                target='_blank'
                href='https://payping.io'>
