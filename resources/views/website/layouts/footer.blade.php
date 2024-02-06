@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-7">
             <div class="col-12">
                 <p class="text-center">پرسجو چیست؟</p>
                 <p class="text-justify" style="text-align:justify;">
