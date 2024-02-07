@@ -17,19 +17,19 @@
                 </a>
             </li>
             <li class="d-xs-none">
-                <a href="/profile/edit" target="_blank">
+                <a href="/profile/edit">
                     <img src="/site/images/user-edit.png">
                     ویرایش پروفایل
                 </a>
             </li>
             <li class="d-xs-none">
-                <a href="/inquiry/report" target="_blank">
+                <a href="/inquiry/report">
                     <img src="/site/images/report-icon.png">
                     گزارش
                 </a>
             </li>
             <li class="d-xs-none">
-                <a href="/inquiry/archive" target="_blank">
+                <a href="/inquiry/archive">
                     <img src="/site/images/archive.png">
                     آرشیو استعلام ها</a>
             </li>

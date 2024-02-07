@@ -27,16 +27,16 @@
             </li>
             @auth
                 <li class="d-xl-none">
-                    <a href="/profile" target="_blank">
+                    <a href="/profile">
                         مشاهده پروفایل</a>
                 </li>
-            <li class="d-xl-none">
-                <a href="/profile/edit" target="_blank">
-                    ویرایش پروفایل</a>
-            </li>
-            <li class="d-xl-none">
-                <a href="/user/logout">خروج از سامانه</a>
-            </li>
+                <li class="d-xl-none">
+                    <a href="/profile/edit">
+                        ویرایش پروفایل</a>
+                </li>
+                <li class="d-xl-none">
+                    <a href="/user/logout">خروج از سامانه</a>
+                </li>
             @endauth
         </ul>
         <div class="others-options d-flex align-items-center header-m">
