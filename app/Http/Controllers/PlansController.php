@@ -6,7 +6,6 @@ use App\Models\Payment;
 use App\Models\Plan;
 use App\Models\PlanUser;
 use Carbon\Carbon;
-use http\Client\Curl\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -194,6 +193,7 @@ class PlansController extends Controller
         curl_close($curl);
         if ($err) {
             $msg = 'خطا در ارتباط به پی‌پینگ :شرح خطا' . $err;
+            return false;
         } else {
             if ($header['http_code'] == 200) {
                 $response = json_decode($response, true);
@@ -203,11 +203,14 @@ class PlansController extends Controller
                 } else {
                     $msg = 'متافسانه سامانه قادر به دریافت کد پیگیری نمی‌باشد! نتیجه درخواست: ' . $header['http_code'];
                 }
+                return true;
             } elseif ($header['http_code'] == 400) {
                 $msg = ' تراکنش ناموفق بود، شرح خطا: ' . $response;
                 $outp['msg'] = $msg;
+                return false;
             } else {
                 $msg = ' تراکنش ناموفق بود، شرح خطا: ' . $header['http_code'];
+                return false;
             }
         }
 
