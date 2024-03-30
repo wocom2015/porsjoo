@@ -3,7 +3,7 @@
 @section("content")
 
     <div class="row">
-        <div class="col-lg-12 text-center">
+        <div class="col-lg-12 text-center pb-3">
             <img alt="{{conf("system_title")}}" src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
         </div>
     </div>

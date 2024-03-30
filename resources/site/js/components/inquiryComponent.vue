@@ -31,7 +31,7 @@
             <label class="mt-2">چه زمانی قصد خرید دارید؟</label>
         </div>
         <div class="col-lg-3 col-sm-12 mb-3">
-            <date-picker name="buy_date"></date-picker>
+            <date-picker :aria-required="true" aria-required="true" name="buy_date"></date-picker>
         </div>
 
         <div class="col-lg-3 col-sm-12 mb-3">
@@ -45,7 +45,7 @@
             <label class="mt-2">زمان بستن استعلام</label>
         </div>
         <div class="col-lg-3 col-sm-12 mb-3">
-            <date-picker name="close_date"></date-picker>
+            <date-picker aria-required="true" name="close_date"></date-picker>
         </div>
 
         <div class="col-lg-3 col-sm-12 mb-3">
@@ -180,6 +180,7 @@
 
 <script>
 import DatePicker from 'vue3-persian-datetime-picker'
+
 export default {
     name: "inquiryComponent.vue",
     props :['provinces' , 'units' , 'captcha' , 'categories'],

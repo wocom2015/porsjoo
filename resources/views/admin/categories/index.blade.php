@@ -232,14 +232,14 @@
                                                                             <a href="#edit_modal" class="btn btn-sm btn-clean btn-icon mr-2 edit-item" data-toggle="modal" data-id="` + cat.id + `" title="ویرایش آیتم"><i class="fas fa-pencil-alt"></i>
                                                                             </a>
                                                                             <br>
-                                                                            <form action="/categories/` + cat.id +`" method="post">
+                                                                            <form action="/admin/categories/` + cat.id + `" method="post">
                                                                                 <input type="hidden" name="_token" value="` + csrfToken + `">
                                                                                     <input type="hidden" name="_method" value="delete">
                                                                                         <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2 delete-item" data-toggle="tooltip" onclick="$(this).parent('form').submit()"><i class="far fa-trash-alt"></i>
                                                                                 </a>
                                                                             </form>
                                                                         </div>
-                                                                                            ` + ((cat.children.length>0)?`<div style="display: inline-block;float: left"><i class="fa fa-chevron-left next-step text-info" data-id="` + cat.id + `"></i></div>`:'')+ `
+                                                                                            ` + ((cat.children.length > 0) ? `<div style="display: inline-block;float: left"><i class="fa fa-chevron-left next-step text-info" data-id="` + cat.id + `"></i></div>` : '') + `
                                                                                     </div>
                                                                 </div>`;
                                 });

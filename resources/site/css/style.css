@@ -6334,3 +6334,9 @@ footer ul li a {
 .contact-form .forgot-password a:hover {
     color: #209e2e
 }
+@media screen and (max-width: 768px) {
+
+    .inquiry-home > * {
+        width: 50% !important;
+    }
+}

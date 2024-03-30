@@ -107,15 +107,15 @@ function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     ssrRenderList($data.searchResult, (item) => {
         _push(`<div class="d-flex bd-highlight" style="${ssrRenderStyle($data.searchResult.length > 0 ? null : {display: "none"})}"><div class="p-1 flex-fill bd-highlight mt-2 s-t">${ssrInterpolate(item.name)}</div></div>`);
     });
-    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame content-frame-marquee-holder"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="row p-2"><div class="col-lg-3 col-sm-6"><strong>استان</strong></div><div class="col-lg-3 col-sm-6"><strong>نام محصول</strong></div><div class="col-lg-2 col-sm-6"><strong>دسته</strong></div><div class="col-lg-2 col-sm-6"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 col-sm-6"><strong>تعداد افراد داخل استعلام</strong></div></div></div><div class="content-frame-marquee marquee"><div class="marquee__content"><!--[-->`);
+    _push(`<!--]--><div class="text-center" style="${ssrRenderStyle(this.showMore ? null : {display: "none"})}"> مشاهده بیشتر... </div></div><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 && $data.searchResult.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></form></div></div><div class="content-frame content-frame-marquee-holder"><div class="row p-2"><div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div></div><div class="inquiry-home row p-2"><div class="col-lg-3 col-sm-4"><strong>استان</strong></div><div class="col-lg-3 col-sm-4"><strong>نام محصول</strong></div><div class="col-lg-2 d-sm-block d-none"><strong>دسته</strong></div><div class="col-lg-2 d-sm-block d-none"><strong>زمان پایان استعلام</strong></div><div class="col-lg-2 d-sm-block d-none"><strong>تعداد افراد داخل استعلام</strong></div></div></div><div class="content-frame-marquee marquee"><div class="marquee__content"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
-        _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
+        _push(`<a${ssrRenderAttr("href", item.url)}><div class="inquiry-home row mb-2 p-2"><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.name)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
-    _push(`<!--]--></div><div aria-hidden="true" class="marquee__content"><!--[-->`);
+    _push(`<!--]--><a><div class="row mb-2 p-2"><div class="col-12"><hr></div></div></a></div><div aria-hidden="true" class="marquee__content"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
-        _push(`<a${ssrRenderAttr("href", item.url)}><div class="row mb-2 p-2"><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-6">${ssrInterpolate(item.name)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 col-sm-6">${ssrInterpolate(item.involved)}</div></div></a>`);
+        _push(`<a${ssrRenderAttr("href", item.url)}><div class="inquiry-home row mb-2 p-2"><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.name)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
-    _push(`<!--]--></div><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
+    _push(`<!--]--><a><div class="row mb-2 p-2"><div class="col-12"><hr></div></div></a></div><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
 }
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
@@ -215,11 +215,17 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
     });
     _push(`<!--]--></select></div><div class="col-lg-12 col-sm-12 mb-3"><textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">چه زمانی قصد خرید دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
-    _push(ssrRenderComponent(_component_date_picker, {name: "buy_date"}, null, _parent));
+    _push(ssrRenderComponent(_component_date_picker, {
+        name: "buy_date",
+        "aria-required": "true"
+    }, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">زمان تحویل کالا</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
     _push(ssrRenderComponent(_component_date_picker, {name: "pay_date"}, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">زمان بستن استعلام</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
-    _push(ssrRenderComponent(_component_date_picker, {name: "close_date"}, null, _parent));
+    _push(ssrRenderComponent(_component_date_picker, {
+        name: "close_date",
+        "aria-required": "true"
+    }, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">استان</label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
     ssrRenderList($props.provinces, (item) => {
         _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
@@ -388,16 +394,16 @@ const _sfc_main$3 = {
                     method: "post",
                     url: "/messages",
                     data: {user_id: self.supplier_id}
-        }
-      ).then(function(response) {
-        self.chats = response.data.messages;
-        self.chatUser = response.data.supplier;
-      });
-    },
-    sendMsg() {
-      let message = this.$refs.msg.value;
-      var self = this;
-      if (message.length > 0) {
+                }
+            ).then(function (response) {
+                self.chats = response.data.messages;
+                self.chatUser = response.data.supplier;
+            });
+        },
+        sendMsg() {
+            let message = this.$refs.msg.value;
+            var self = this;
+            if (message.length > 0) {
         axios(
           {
             method: "post",
@@ -605,16 +611,16 @@ const _sfc_main$2 = {
             this.viewChat = true;
             var self = this;
             self.supplier_id = supplier_id;
-      axios(
-        {
-          method: "post",
-          url: "/messages",
-          data: { user_id: self.supplier_id }
-        }
-      ).then(function(response) {
-        self.chats = response.data.messages;
-        self.chatUser = response.data.supplier;
-      });
+            axios(
+                {
+                    method: "post",
+                    url: "/messages",
+                    data: {user_id: self.supplier_id}
+                }
+            ).then(function (response) {
+                self.chats = response.data.messages;
+                self.chatUser = response.data.supplier;
+            });
     },
     sendMsg() {
       let message = this.$refs.msg.value;
