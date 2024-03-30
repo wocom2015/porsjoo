@@ -48,7 +48,7 @@
                         <div class="col-lg-2 d-sm-block d-none">{{ item.involved }}</div>
                     </div>
                 </a>
-                <a>
+                <a v-if="this.inquiries.length > 0">
                     <div class="row mb-2 p-2">
                         <div class="col-12">
                             <hr>
@@ -67,7 +67,7 @@
                         <div class="col-lg-2 d-sm-block d-none">{{ item.involved }}</div>
                     </div>
                 </a>
-                <a>
+                <a v-if="this.inquiries.length > 0">
                     <div class="row mb-2 p-2">
                         <div class="col-12">
                             <hr>

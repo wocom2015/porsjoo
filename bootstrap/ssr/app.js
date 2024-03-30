@@ -111,11 +111,23 @@ function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     ssrRenderList(this.inquiries, (item) => {
         _push(`<a${ssrRenderAttr("href", item.url)}><div class="inquiry-home row mb-2 p-2"><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.name)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
-    _push(`<!--]--><a><div class="row mb-2 p-2"><div class="col-12"><hr></div></div></a></div><div aria-hidden="true" class="marquee__content"><!--[-->`);
+    _push(`<!--]-->`);
+    if (this.inquiries.length > 0) {
+        _push(`<a><div class="row mb-2 p-2"><div class="col-12"><hr></div></div></a>`);
+    } else {
+        _push(`<!---->`);
+    }
+    _push(`</div><div aria-hidden="true" class="marquee__content"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
         _push(`<a${ssrRenderAttr("href", item.url)}><div class="inquiry-home row mb-2 p-2"><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.name)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.involved)}</div></div></a>`);
     });
-    _push(`<!--]--><a><div class="row mb-2 p-2"><div class="col-12"><hr></div></div></a></div><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
+    _push(`<!--]-->`);
+    if (this.inquiries.length > 0) {
+        _push(`<a><div class="row mb-2 p-2"><div class="col-12"><hr></div></div></a>`);
+    } else {
+        _push(`<!---->`);
+    }
+    _push(`</div><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
 }
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
@@ -216,15 +228,15 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     });
     _push(`<!--]--></select></div><div class="col-lg-12 col-sm-12 mb-3"><textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">چه زمانی قصد خرید دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
     _push(ssrRenderComponent(_component_date_picker, {
-        name: "buy_date",
-        "aria-required": "true"
+        "aria-required": true,
+        name: "buy_date"
     }, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">زمان تحویل کالا</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
     _push(ssrRenderComponent(_component_date_picker, {name: "pay_date"}, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">زمان بستن استعلام</label></div><div class="col-lg-3 col-sm-12 mb-3">`);
     _push(ssrRenderComponent(_component_date_picker, {
-        name: "close_date",
-        "aria-required": "true"
+        "aria-required": "true",
+        name: "close_date"
     }, null, _parent));
     _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">استان</label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
     ssrRenderList($props.provinces, (item) => {
@@ -404,16 +416,16 @@ const _sfc_main$3 = {
             let message = this.$refs.msg.value;
             var self = this;
             if (message.length > 0) {
-        axios(
-          {
-            method: "post",
-            url: "/messages/send",
-            data: { user_id: self.supplier_id, message }
-          }
-        ).then(function(response) {
-          self.chatBox(self.supplier_id);
-          self.$refs.msg.value = "";
-        });
+                axios(
+                    {
+                        method: "post",
+                        url: "/messages/send",
+                        data: {user_id: self.supplier_id, message}
+                    }
+                ).then(function (response) {
+                    self.chatBox(self.supplier_id);
+                    self.$refs.msg.value = "";
+                });
       }
     }
   }
@@ -621,16 +633,16 @@ const _sfc_main$2 = {
                 self.chats = response.data.messages;
                 self.chatUser = response.data.supplier;
             });
-    },
-    sendMsg() {
-      let message = this.$refs.msg.value;
-      var self = this;
-      if (message.length > 0) {
-        axios(
-          {
-            method: "post",
-            url: "/messages/send",
-            data: { user_id: self.supplier_id, message }
+        },
+        sendMsg() {
+            let message = this.$refs.msg.value;
+            var self = this;
+            if (message.length > 0) {
+                axios(
+                    {
+                        method: "post",
+                        url: "/messages/send",
+                        data: {user_id: self.supplier_id, message}
           }
         ).then(function(response) {
           self.chatBox(self.supplier_id);
