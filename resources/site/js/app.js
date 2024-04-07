@@ -13,7 +13,10 @@ import inquiryListComponent from './components/inquiryListComponent.vue';
 import inquirySentComponent from './components/inquirySentComponent.vue';
 import subComponent from './components/subMenuComponent.vue';
 import sliderComponent from './components/sliderComponent.vue';
+import feedbackComponent from './components/feedbackComponent.vue';
+import jQuery from 'jquery';
 
+window.$ = jQuery;
 const app = createApp({
     components: {
         searchComponent,
@@ -23,6 +26,7 @@ const app = createApp({
         inquirySentComponent,
         subComponent,
         sliderComponent,
+        feedbackComponent,
     }
 });
 app.mount('#app');

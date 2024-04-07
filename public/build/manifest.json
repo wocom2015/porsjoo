@@ -1,6 +1,6 @@
 {
-    "__commonjsHelpers-b75a21f2.js": {
-        "file": "assets/_commonjsHelpers-b75a21f2.js"
+    "_jquery-86bcab04.js": {
+        "file": "assets/jquery-86bcab04.js"
     },
     "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
         "file": "assets/bootstrap-icons-999550fa.woff",
@@ -16,9 +16,9 @@
         "src": "resources/admin/css/app.css"
     },
     "resources/admin/js/app.js": {
-        "file": "assets/app-1e5e0f32.js",
+        "file": "assets/app-befa01fe.js",
         "imports": [
-            "__commonjsHelpers-b75a21f2.js"
+            "_jquery-86bcab04.js"
         ],
         "isEntry": true,
         "src": "resources/admin/js/app.js"
@@ -69,9 +69,9 @@
         "css": [
             "assets/app-a9d35258.css"
         ],
-        "file": "assets/app-bd4a98f8.js",
+        "file": "assets/app-33fbda5c.js",
         "imports": [
-            "__commonjsHelpers-b75a21f2.js"
+            "_jquery-86bcab04.js"
         ],
         "isEntry": true,
         "src": "resources/site/js/app.js"
