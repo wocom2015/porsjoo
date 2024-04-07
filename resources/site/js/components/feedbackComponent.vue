@@ -17,33 +17,36 @@
                                class="form-check-input"
                                name="is_bought"
                                type="radio"
-                               value="1"
-                               @click="changeSelected('yes')">
+                               :value="status ? 1 : 0"
+                               @click="changeSelected()">
                         <label class="form-check-label">بله</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="is_bought" type="radio" value="0"
-                               @click="changeSelected('no')">
+                        <input :value="status ? 0 : 1"
+                               class="form-check-input"
+                               name="is_bought"
+                               type="radio"
+                               @click="changeSelected()">
                         <label class="form-check-label">خیر</label>
                     </div>
                 </div>
-                <div class="yes col-lg-6 col-sm-12 mb-3">
+                <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <label class="mt-2">اگر جواب سوال قبلی شما بله است از کدام تامین کننده؟
                     </label>
                 </div>
-                <div class="yes col-lg-6 col-sm-12 mb-3">
+                <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <select class="form-control" name="vendor_id" required>
                         <option value="">-- انتخاب کنید --</option>
                         <option v-for="v in vendors" :value="v.user.id">{{ v.user.name + ' ' + v.user.last_name }}
                         </option>
                     </select>
                 </div>
-                <div class="yes col-lg-6 col-sm-12 mb-3">
+                <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید امتیاز شما به تامین کننده از 1 تا 5 چند
                         است؟
                     </label>
                 </div>
-                <div class="yes col-lg-6 col-sm-12 mb-3">
+                <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <select class="form-control" name="score" required>
                         <option value="">--انتخاب کنید--</option>
                         <option value="5">5</option>
@@ -53,11 +56,11 @@
                         <option value="1">1</option>
                     </select>
                 </div>
-                <div class="yes col-lg-6 col-sm-12 mb-3">
+                <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید نظر خود را در مورد آن بنویسید
                     </label>
                 </div>
-                <div class="yes col-lg-6 col-sm-12 mb-3">
+                <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <textarea class="form-control" name="comment" required rows="4"
                               style="border: 1px solid #D64012"></textarea>
                 </div>
@@ -78,48 +81,43 @@ export default {
     props: ['lastPJ', 'username', 'id', 'vendors'],
     data() {
         return {
-            result: false,
-            phrase: '',
-            searchResult: [],
-            searchLimit: 5,
-            offset: 0,
-            showMore: false,
-            catId: 0,
+            status: true,
         }
     },
     methods: {
-        changeSelected(status) {
-            if (status === 'yes') {
-                document.querySelectorAll(".yes").forEach(function (e) {
-                    e.style.display = 'block';
-                    // e.type = null;
-                    e.required = true;
-                    e.attributes.required = true;
-                    e.setAttribute('required', true);
-                    e.novalidate = false;
-                    e.attributes.novalidate = false;
-                    e.setAttribute('novalidate', false);
-                });
-                document.getElementById("theform").removeAttribute("novalidate");
-                document.getElementById("thebutton").removeAttribute("formnovalidate");
-            } else if (status === 'no') {
-                document.querySelectorAll(".yes").forEach(function (e) {
-                    e.required = false;
-                    e.attributes.required = false;
-                    e.setAttribute('required', false);
-                    e.novalidate = true;
-                    e.attributes.novalidate = true;
-                    e.setAttribute('novalidate', true);
-                    e.style.display = 'none';
-                    // e.type = 'hidden';
-                });
-                document.getElementById("theform").setAttribute("novalidate", "novalidate");
-                document.getElementById("thebutton").setAttribute("formnovalidate", "formnovalidate");
-            }
+        changeSelected() {
+            this.status = !this.status;
+            // if (status === 'yes') {
+            //     document.querySelectorAll(".yes").forEach(function (e) {
+            //         e.style.display = 'block';
+            //         // e.type = null;
+            //         e.required = true;
+            //         e.attributes.required = true;
+            //         e.setAttribute('required', true);
+            //         e.novalidate = false;
+            //         e.attributes.novalidate = false;
+            //         e.setAttribute('novalidate', false);
+            //     });
+            //     document.getElementById("theform").removeAttribute("novalidate");
+            //     document.getElementById("thebutton").removeAttribute("formnovalidate");
+            // } else if (status === 'no') {
+            //     document.querySelectorAll(".yes").forEach(function (e) {
+            //         e.required = false;
+            //         e.attributes.required = false;
+            //         e.setAttribute('required', false);
+            //         e.novalidate = true;
+            //         e.attributes.novalidate = true;
+            //         e.setAttribute('novalidate', true);
+            //         e.style.display = 'none';
+            //         // e.type = 'hidden';
+            //     });
+            //     document.getElementById("theform").setAttribute("novalidate", "novalidate");
+            //     document.getElementById("thebutton").setAttribute("formnovalidate", "formnovalidate");
+            // }
         }
     },
     mounted() {
-
+        this.status = true;
     }
 
 }
