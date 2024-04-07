@@ -103,7 +103,6 @@ const _sfc_main$7 = {
         this.inquiries = this.lastpj;
     }
 };
-
 function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     _push(`<div${ssrRenderAttrs(_attrs)}><div class="row align-content-center"><div class="search-box col-lg-12 mt-10"><form class="search-form"><input id="search" class="search-input" name="search" placeholder="دسته بندی مورد نظر خود را جستجو کنید." type="text"><div class="search-result" style="${ssrRenderStyle(this.result && $data.phrase.length >= 3 ? null : {display: "none"})}"><!--[-->`);
     ssrRenderList($data.searchResult, (item) => {
@@ -131,7 +130,6 @@ function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }
     _push(`</div><div class="row"><div class="search-result" style="${ssrRenderStyle($data.inquiries.length === 0 ? null : {display: "none"})}"> هیچ نتیجه ای برای جستجوی شما یافت نشد </div></div></div></div>`);
 }
-
 const _sfc_setup$7 = _sfc_main$7.setup;
 _sfc_main$7.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -147,7 +145,6 @@ const _sfc_main$6 = {
     },
     components: {DatePicker}
 };
-
 function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_date_picker = resolveComponent("date-picker");
     _push(ssrRenderComponent(_component_date_picker, mergeProps({
@@ -155,7 +152,6 @@ function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         "onUpdate:modelValue": ($event) => $data.date = $event
     }, _attrs), null, _parent));
 }
-
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -218,7 +214,6 @@ const _sfc_main$5 = {
         this.fetchCities(1);
     }
 };
-
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_date_picker = resolveComponent("date-picker");
     _push(`<form${ssrRenderAttrs(mergeProps({
@@ -284,7 +279,6 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     });
     _push(`<!--]--></ul></div></form>`);
 }
-
 const _sfc_setup$5 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -437,7 +431,6 @@ const _sfc_main$4 = {
         }
     }
 };
-
 function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     _push(`<div${ssrRenderAttrs(_attrs)}><div class="content-frame"><div class="row" style="${ssrRenderStyle({
         "background-color": "#f0f0f0",
@@ -503,7 +496,6 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     });
     _push(`<!--]--></div><div class="chat-footer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.9482 3.23906C5.3284 2.90532 4.57878 2.92199 3.97443 3.28297C3.37008 3.64394 3 4.29605 3 5V19C3 19.7039 3.37008 20.3561 3.97443 20.717C4.57878 21.078 5.3284 21.0947 5.9482 20.7609L18.9482 13.7609C19.596 13.4121 20 12.7358 20 12C20 11.2642 19.596 10.5879 18.9482 10.2391L5.9482 3.23906ZM5 19V14L12 12L5 10V5L18 12L5 19Z" fill="#D64012"></path></svg><div class="chat-message"><input type="text" class="form-control" placeholder="نوشتن پیام..."></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline" style="${ssrRenderStyle({"margin": "0 auto"})}"> بستن مکالمه</button></div></div></div></div></div>`);
 }
-
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -661,7 +653,6 @@ const _sfc_main$3 = {
         }
     }
 };
-
 function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     _push(`<div${ssrRenderAttrs(_attrs)}><div class="row p-2"><div class="col-lg-3"><strong><a href="/inquiry/report" class="text-success">گزارش</a></strong></div></div><div class="row" style="${ssrRenderStyle({
         "background-color": "#f0f0f0",
@@ -720,7 +711,6 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     });
     _push(`<!--]--></ul></div><form method="post" id="frmComment"><div class="row"><div class="col-lg-12"><label>نظر شما:</label><textarea name="comment" class="form-control bg-gray"></textarea></div></div><div class="row"><div class="col-lg-4 mt-2"><button type="button" class="btn btn-custom-outline">ذخیره </button></div><div class="col-lg-12 mt-2 text-info">${ssrInterpolate(this.message)}</div></div></form></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم </button></div></div></div></div></div>`);
 }
-
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -742,7 +732,6 @@ const _sfc_main$2 = {
         }
     }
 };
-
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     _push(`<div${ssrRenderAttrs(mergeProps({style: {"z-index": "999"}}, _attrs))}><div class="text-white" style="${ssrRenderStyle({"float": "right"})}" title="برای مشاهده پروفایل خود کلیک کنید"><img src="/site/images/bottom_arrow.png" class="user-icon" style="${ssrRenderStyle({"border": "none"})}"> ${ssrInterpolate(this.fullname)} <img${ssrRenderAttr("src", this.img)} class="user-icon"></div>`);
     if (this.showSub) {
@@ -752,7 +741,6 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }
     _push(`</div>`);
 }
-
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -778,7 +766,6 @@ const _sfc_main$1 = {
     mounted() {
     }
 };
-
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_carousel = resolveComponent("carousel");
     const _component_slide = resolveComponent("slide");
@@ -845,7 +832,6 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }, _parent));
     _push(`</div>`);
 }
-
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
@@ -858,56 +844,56 @@ const _sfc_main = {
     props: ["lastPJ", "username", "id", "vendors"],
     data() {
         return {
-            result: false,
-            phrase: "",
-            searchResult: [],
-            searchLimit: 5,
-            offset: 0,
-            showMore: false,
-            catId: 0
+            status: true
         };
     },
     methods: {
-        changeSelected(status) {
-            if (status === "yes") {
-                document.querySelectorAll(".yes").forEach(function (e) {
-                    e.style.display = "block";
-                    e.required = true;
-                    e.attributes.required = true;
-                    e.setAttribute("required", true);
-                    e.novalidate = false;
-                    e.attributes.novalidate = false;
-                    e.setAttribute("novalidate", false);
-                });
-                document.getElementById("theform").removeAttribute("novalidate");
-                document.getElementById("thebutton").removeAttribute("formnovalidate");
-            } else if (status === "no") {
-                document.querySelectorAll(".yes").forEach(function (e) {
-                    e.required = false;
-                    e.attributes.required = false;
-                    e.setAttribute("required", false);
-                    e.novalidate = true;
-                    e.attributes.novalidate = true;
-                    e.setAttribute("novalidate", true);
-                    e.style.display = "none";
-                });
-                document.getElementById("theform").setAttribute("novalidate", "novalidate");
-                document.getElementById("thebutton").setAttribute("formnovalidate", "formnovalidate");
-            }
+        changeSelected() {
+            this.status = !this.status;
         }
     },
     mounted() {
+        this.status = true;
     }
 };
-
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-    _push(`<div${ssrRenderAttrs(mergeProps({class: "content-frame"}, _attrs))}><p>کاربر گرامی لطفا قبل از پر کردن فرم Pj جدید به سوالات زیر پاسخ دهید:</p><form method="post" action="/inquiry/feedback" id="theform"><input type="hidden" name="id"${ssrRenderAttr("value", $props.id)}><div class="row"><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">آیا محصولی که در استعلام <strong>${ssrInterpolate($props.username)}</strong> به دنبال آن بودید خریداری نمودید؟ </label></div><div class="col-lg-6 col-sm-12 mt-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="is_bought" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="is_bought" value="0"><label class="form-check-label">خیر</label></div></div><div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">اگر جواب سوال قبلی شما بله است از کدام تامین کننده؟ </label></div><div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="vendor_id" required><option value="">-- انتخاب کنید --</option><!--[-->`);
-    ssrRenderList($props.vendors, (v) => {
-        _push(`<option${ssrRenderAttr("value", v.user.id)}>${ssrInterpolate(v.user.name + " " + v.user.last_name)}</option>`);
-    });
-    _push(`<!--]--></select></div><div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید امتیاز شما به تامین کننده از 1 تا 5 چند است؟ </label></div><div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="score" required><option value="">--انتخاب کنید--</option><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select></div><div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید نظر خود را در مورد آن بنویسید </label></div><div class="yes col-lg-6 col-sm-12 mb-3"><textarea class="form-control" name="comment" rows="4" style="${ssrRenderStyle({"border": "1px solid #D64012"})}" required></textarea></div><div class="col-lg-6 col-sm-12 mb-3"><button type="submit" class="default-btn" id="thebutton">ذخیره</button></div></div></form></div>`);
+    _push(`<div${ssrRenderAttrs(mergeProps({class: "content-frame"}, _attrs))}><p>کاربر گرامی لطفا قبل از پر کردن فرم Pj جدید به سوالات زیر پاسخ دهید:</p><form id="theform" action="/inquiry/feedback" method="post"><input${ssrRenderAttr("value", $props.id)} name="id" type="hidden"><div class="row"><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">آیا محصولی که در استعلام <strong>${ssrInterpolate($props.username)}</strong> به دنبال آن بودید خریداری نمودید؟ </label></div><div class="col-lg-6 col-sm-12 mt-3"><div class="form-check form-check-inline"><input checked class="form-check-input" name="is_bought" type="radio"${ssrRenderAttr("value", $data.status ? 1 : 0)}><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input${ssrRenderAttr("value", $data.status ? 0 : 1)} class="form-check-input" name="is_bought" type="radio"><label class="form-check-label">خیر</label></div></div>`);
+    if ($data.status) {
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">اگر جواب سوال قبلی شما بله است از کدام تامین کننده؟ </label></div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    if ($data.status) {
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="vendor_id" required><option value="">-- انتخاب کنید --</option><!--[-->`);
+        ssrRenderList($props.vendors, (v) => {
+            _push(`<option${ssrRenderAttr("value", v.user.id)}>${ssrInterpolate(v.user.name + " " + v.user.last_name)}</option>`);
+        });
+        _push(`<!--]--></select></div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    if ($data.status) {
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید امتیاز شما به تامین کننده از 1 تا 5 چند است؟ </label></div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    if ($data.status) {
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="score" required><option value="">--انتخاب کنید--</option><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select></div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    if ($data.status) {
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورتی که تامین کننده را انتخاب نمودید نظر خود را در مورد آن بنویسید </label></div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    if ($data.status) {
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><textarea class="form-control" name="comment" required rows="4" style="${ssrRenderStyle({"border": "1px solid #D64012"})}"></textarea></div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    _push(`<div class="col-lg-6 col-sm-12 mb-3"><button id="thebutton" class="default-btn" type="submit">ذخیره</button></div></div></form></div>`);
 }
-
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
     const ssrContext = useSSRContext();
