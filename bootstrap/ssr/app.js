@@ -841,7 +841,7 @@ _sfc_main$1.setup = (props, ctx) => {
 const sliderComponent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-fe792663"]]);
 const _sfc_main = {
     name: "feedbackComponent.vue",
-    props: ["lastPJ", "username", "id", "vendors"],
+    props: ["lastPJ", "username", "idd", "vendors"],
     data() {
         return {
             status: true
@@ -857,7 +857,7 @@ const _sfc_main = {
     }
 };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-    _push(`<div${ssrRenderAttrs(mergeProps({class: "content-frame"}, _attrs))}><p>کاربر گرامی لطفا قبل از پر کردن فرم Pj جدید به سوالات زیر پاسخ دهید:</p><form id="theform" action="/inquiry/feedback" method="post"><input${ssrRenderAttr("value", $props.id)} name="id" type="hidden"><div class="row"><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">آیا محصولی که در استعلام <strong>${ssrInterpolate($props.username)}</strong> به دنبال آن بودید خریداری نمودید؟ </label></div><div class="col-lg-6 col-sm-12 mt-3"><div class="form-check form-check-inline"><input checked class="form-check-input" name="is_bought" type="radio"${ssrRenderAttr("value", $data.status ? 1 : 0)}><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input${ssrRenderAttr("value", $data.status ? 0 : 1)} class="form-check-input" name="is_bought" type="radio"><label class="form-check-label">خیر</label></div></div>`);
+    _push(`<div${ssrRenderAttrs(mergeProps({class: "content-frame"}, _attrs))}><p>کاربر گرامی لطفا قبل از پر کردن فرم Pj جدید به سوالات زیر پاسخ دهید:</p><form id="theform" action="/inquiry/feedback" method="post"><input${ssrRenderAttr("value", $props.idd)} name="id" type="hidden"><div class="row"><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">آیا محصولی که در استعلام <strong>${ssrInterpolate($props.username)}</strong> به دنبال آن بودید خریداری نمودید؟ </label></div><div class="col-lg-6 col-sm-12 mt-3"><div class="form-check form-check-inline"><input checked class="form-check-input" name="is_bought" type="radio"${ssrRenderAttr("value", $data.status ? 1 : 0)}><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input${ssrRenderAttr("value", $data.status ? 0 : 1)} class="form-check-input" name="is_bought" type="radio"><label class="form-check-label">خیر</label></div></div>`);
     if ($data.status) {
         _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><label class="mt-2">اگر جواب سوال قبلی شما بله است از کدام تامین کننده؟ </label></div>`);
     } else {

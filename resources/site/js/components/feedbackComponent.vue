@@ -3,7 +3,7 @@
     <div class="content-frame">
         <p>کاربر گرامی لطفا قبل از پر کردن فرم Pj جدید به سوالات زیر پاسخ دهید:</p>
         <form id="theform" action="/inquiry/feedback" method="post">
-            <input :value="id" name="id" type="hidden">
+            <input :value="idd" name="id" type="hidden">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 mb-3">
                     <label class="mt-2">آیا محصولی که در استعلام
@@ -78,7 +78,7 @@
 <script>
 export default {
     name: "feedbackComponent.vue",
-    props: ['lastPJ', 'username', 'id', 'vendors'],
+    props: ['lastPJ', 'username', 'idd', 'vendors'],
     data() {
         return {
             status: true,
