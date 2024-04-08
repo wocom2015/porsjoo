@@ -37,7 +37,8 @@
                 <div v-if="status" class="yes col-lg-6 col-sm-12 mb-3">
                     <select class="form-control" name="vendor_id" required>
                         <option value="">-- انتخاب کنید --</option>
-                        <option v-for="v in vendors" :value="v.user.id">{{ v.user.name + ' ' + v.user.last_name }}
+                        <option v-for="v in vendors" :value="v.user != null ? v.user.id : ''">
+                            {{ (v.user != nuul ? v.user.name : '') + ' ' + (v.user != nuul ? v.user.last_name : '') }}
                         </option>
                     </select>
                 </div>

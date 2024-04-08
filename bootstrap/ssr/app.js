@@ -866,7 +866,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     if ($data.status) {
         _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="vendor_id" required><option value="">-- انتخاب کنید --</option><!--[-->`);
         ssrRenderList($props.vendors, (v) => {
-            _push(`<option${ssrRenderAttr("value", v.user.id)}>${ssrInterpolate(v.user.name + " " + v.user.last_name)}</option>`);
+            _push(`<option${ssrRenderAttr("value", v.user != null ? v.user.id : "")}>${ssrInterpolate((v.user != _ctx.nuul ? v.user.name : "") + " " + (v.user != _ctx.nuul ? v.user.last_name : ""))}</option>`);
         });
         _push(`<!--]--></select></div>`);
     } else {
