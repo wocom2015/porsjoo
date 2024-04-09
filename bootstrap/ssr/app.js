@@ -864,17 +864,11 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
         _push(`<!---->`);
     }
     if ($data.status) {
-        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="vendor_id" required><option value="">-- انتخاب کنید --</option>`);
-        if (_ctx.v.user != null) {
-            _push(`<!--[-->`);
-            ssrRenderList($props.vendors, (v) => {
-                _push(`<option${ssrRenderAttr("value", v.user != null ? v.user.id : "")}>${ssrInterpolate((v.user != null ? v.user.name : "") + " " + (v.user != null ? v.user.last_name : ""))}</option>`);
-            });
-            _push(`<!--]-->`);
-        } else {
-            _push(`<!---->`);
-        }
-        _push(`</select></div>`);
+        _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="vendor_id" required><option value="">-- انتخاب کنید --</option><!--[-->`);
+        ssrRenderList($props.vendors, (v) => {
+            _push(`<option${ssrRenderAttr("value", v.user != null ? v.user.id : "")}>${ssrInterpolate((v.user != null ? v.user.name : "") + " " + (v.user != null ? v.user.last_name : ""))}</option>`);
+        });
+        _push(`<!--]--></select></div>`);
     } else {
         _push(`<!---->`);
     }

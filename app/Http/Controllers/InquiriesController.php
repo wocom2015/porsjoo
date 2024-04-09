@@ -34,10 +34,6 @@ class InquiriesController extends Controller
 
         if (!empty($lastPJ) and $lastPJ->bought_answered == 0) {
             $vendors = $lastPJ->suppliers;
-            foreach ($vendors as $v) {
-                $x = $v->user;
-                $x = null;
-            }
             return view("website.inquiry.feedback", compact("lastPJ", "vendors"));
         }
 
