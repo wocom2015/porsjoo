@@ -2,27 +2,27 @@ import "bootstrap";
 import axios$1 from "axios";
 import {createApp} from "vue/dist/vue.esm-bundler";
 import {
+    ssrRenderAttrs,
+    ssrRenderStyle,
+    ssrRenderList,
     ssrInterpolate,
     ssrRenderAttr,
-    ssrRenderAttrs,
-    ssrRenderClass,
     ssrRenderComponent,
-    ssrRenderList,
-    ssrRenderStyle
+    ssrRenderClass
 } from "vue/server-renderer";
 import {
-    createBlock,
-    createVNode,
-    Fragment,
-    mergeProps,
-    openBlock,
-    renderList,
-    resolveComponent,
     useSSRContext,
-    withCtx
+    resolveComponent,
+    mergeProps,
+    withCtx,
+    createVNode,
+    openBlock,
+    createBlock,
+    Fragment,
+    renderList
 } from "vue";
 import DatePicker from "vue3-persian-datetime-picker";
-import {Carousel, Navigation, Pagination, Slide} from "vue3-carousel";
+import {Carousel, Slide, Pagination, Navigation} from "vue3-carousel";
 import jQuery from "jquery";
 
 window.axios = axios$1;
@@ -866,7 +866,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     if ($data.status) {
         _push(`<div class="yes col-lg-6 col-sm-12 mb-3"><select class="form-control" name="vendor_id" required><option value="">-- انتخاب کنید --</option><!--[-->`);
         ssrRenderList($props.vendors, (v) => {
-            _push(`<option${ssrRenderAttr("value", v.user != null ? v.user.id : "")}>${ssrInterpolate((v.user != _ctx.nuul ? v.user.name : "") + " " + (v.user != _ctx.nuul ? v.user.last_name : ""))}</option>`);
+            _push(`<option${ssrRenderAttr("value", v.user != null ? v.user.id : "")}>${ssrInterpolate((v.user != null ? v.user.name : "") + " " + (v.user != null ? v.user.last_name : ""))}</option>`);
         });
         _push(`<!--]--></select></div>`);
     } else {
