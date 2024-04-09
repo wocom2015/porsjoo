@@ -2,7 +2,7 @@
 @section("content")
     <div class="content-frame">
         @foreach($vendors as $v)
-            {{$v->user->id}} {{$v->user->name.' '.$v->user->last_name}}
+            @json($v)
         @endforeach
         <feedback-component :lastPJ="{{$lastPJ}}"
                             :username="'{{$lastPJ->name}}'"
