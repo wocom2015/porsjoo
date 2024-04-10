@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $lastPJ = Inquiry::query()->orderBy("id", "desc")
             ->where("close_date", ">", date("Y-m-d"))
-            ->limit(20)->get();
+            ->get();
 
 
         foreach ($lastPJ as $pj) {
