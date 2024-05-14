@@ -66,14 +66,14 @@
     "src": "resources/site/js/app.css"
   },
   "resources/site/js/app.js": {
-    "css": [
-      "assets/app-a9d35258.css"
-    ],
-    "file": "assets/app-e93d2abf.js",
-    "imports": [
-      "_jquery-86bcab04.js"
-    ],
-    "isEntry": true,
-    "src": "resources/site/js/app.js"
+      "css": [
+          "assets/app-a9d35258.css"
+      ],
+      "file": "assets/app-36441a7d.js",
+      "imports": [
+          "_jquery-86bcab04.js"
+      ],
+      "isEntry": true,
+      "src": "resources/site/js/app.js"
   }
 }
