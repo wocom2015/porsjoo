@@ -80,7 +80,7 @@ class UsersController extends Controller
             'last_name' => 'required|string|min:3',
             'job_name' => 'required|string|min:5',
             'mobile' => 'required|min:11|max:11|unique:users',
-            'email' => 'email|unique:users',
+            'email' => 'email',
             'password' => 'required|confirmed|min:6',
             'rules' => 'required',
         ]);
@@ -89,7 +89,6 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         }
-
 
         $user = User::create([
             "name" => $request->name,
