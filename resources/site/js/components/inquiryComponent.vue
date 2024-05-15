@@ -263,17 +263,18 @@ export default {
                     url: "/inquiry/create",
                     data: fData,
                 }
-            )
-                .then(function (response) {
-                    self.isFreeze = false;
-                    if (response.data.state === 'success') {
-                        self.message = response.data.message;
-                        self.submitted = 1;
+            ).then(function (response) {
+                self.isFreeze = false;
+                if (response.data.state === 'success') {
+                    self.message = response.data.message;
+                    self.submitted = 1;
 
-                    } else {
-                        self.errors = response.data.message;
-                    }
-                })
+                } else {
+                    self.errors = response.data.message;
+                }
+            }).catch(error => {
+                self.isFreeze = false;
+            })
         }
 
     },

@@ -30,24 +30,29 @@
                     </div>
                     <div class="col-lg-12">
                         <label>{!! __("p.your_job_name").s() !!}</label>
-                        <div class="form-group"><input type="text" name="job_name" class="form-control" value="{{old("job_name")}}"/></div>
+                        <div class="form-group"><input type="text" name="job_name" class="form-control"
+                                                       value="{{old("job_name")}}"/></div>
                     </div>
                     <div class="col-lg-12">
                         <label>{!! __("p.mobile").s() !!}</label>
-                        <div class="form-group"><input type="text" name="mobile" class="form-control text-left" value="{{old("mobile")}}" maxlength="11"/></div>
+                        <div class="form-group"><input type="text" name="mobile" class="form-control text-left"
+                                                       value="{{old("mobile")}}" maxlength="11"/></div>
                     </div>
                     <div class="col-lg-12">
-                        <label>{!! __("p.email").s() !!}</label>
-                        <div class="form-group"><input type="text" name="email" class="form-control text-left" value="{{old("email" , "")}}" autocomplete="off"  /></div>
+                        <label>{!! __("p.email") !!}</label>
+                        <div class="form-group"><input type="text" name="email" class="form-control text-left"
+                                                       value="{{old("email" , "")}}" autocomplete="off"/></div>
                     </div>
 
                     <div class="col-lg-12">
                         <label>{!! __("p.password").s() !!}</label>
-                        <div class="form-group"><input type="password" name="password" class="form-control text-left" /></div>
+                        <div class="form-group"><input type="password" name="password" class="form-control text-left"/>
+                        </div>
                     </div>
                     <div class="col-lg-12">
                         <label>{!! __("p.password_confirmation").s() !!}</label>
-                        <div class="form-group"><input type="password" name="password_confirmation" class="form-control text-left" /></div>
+                        <div class="form-group"><input type="password" name="password_confirmation"
+                                                       class="form-control text-left"/></div>
                     </div>
 
                     <div class="form-check">

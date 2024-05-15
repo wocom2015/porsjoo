@@ -28,10 +28,10 @@ import jQuery from "jquery";
 window.axios = axios$1;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 const _export_sfc = (sfc, props) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target[key] = val;
-  }
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+        target[key] = val;
+    }
   return target;
 };
 const _sfc_main$7 = {
@@ -160,9 +160,9 @@ _sfc_main$6.setup = (props, ctx) => {
 };
 const dateComponent = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6]]);
 const _sfc_main$5 = {
-  name: "inquiryComponent.vue",
-  props: ["provinces", "units", "captcha", "categories"],
-  components: { DatePicker },
+    name: "inquiryComponent.vue",
+    props: ["provinces", "units", "captcha", "categories"],
+    components: {DatePicker},
     data() {
         return {
             province_id: 0,
@@ -188,16 +188,16 @@ const _sfc_main$5 = {
                     {
                         method: "post",
                         url: "/cities",
-            data: { p: self.province_id }
-          }
-        ).then(function(response) {
-          self.cities = response.data;
-        });
-      }
-    },
-    submit() {
-        this.isFreeze = true;
-      var self = this;
+                        data: {p: self.province_id}
+                    }
+                ).then(function (response) {
+                    self.cities = response.data;
+                });
+            }
+        },
+        submit() {
+            this.isFreeze = true;
+            var self = this;
       var fData = new FormData(document.getElementById("frmPJ"));
       this.errors = "";
       this.message = "";
@@ -205,16 +205,18 @@ const _sfc_main$5 = {
         {
           method: "post",
           url: "/inquiry/create",
-          data: fData
+            data: fData
         }
-      ).then(function(response) {
+      ).then(function (response) {
           self.isFreeze = false;
-        if (response.data.state === "success") {
-          self.message = response.data.message;
-          self.submitted = 1;
-        } else {
-          self.errors = response.data.message;
-        }
+          if (response.data.state === "success") {
+              self.message = response.data.message;
+              self.submitted = 1;
+          } else {
+              self.errors = response.data.message;
+          }
+      }).catch((error) => {
+          self.isFreeze = false;
       });
     }
   },
@@ -223,7 +225,7 @@ const _sfc_main$5 = {
   }
 };
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_date_picker = resolveComponent("date-picker");
+    const _component_date_picker = resolveComponent("date-picker");
     _push(`<form${ssrRenderAttrs(mergeProps({
         class: "row form-frame",
         id: "frmPJ"
@@ -290,7 +292,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     ssrRenderList(this.errors, (item) => {
         _push(`<li class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i><small>${ssrInterpolate(item)}</small></li>`);
     });
-  _push(`<!--]--></ul></div></form>`);
+    _push(`<!--]--></ul></div></form>`);
 }
 const _sfc_setup$5 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {
