@@ -61,7 +61,8 @@
 
                     <div class="col-lg-12">
                         <label>{{__("p.description")}}</label>
-                        <textarea name="boss_mobile" cols="30" rows="5" class="form-control">{{$user->description}}</textarea>
+                        <textarea name="description" cols="30" rows="5"
+                                  class="form-control">{{$user->description}}</textarea>
                     </div>
 
                     <div class="col-lg-12">
