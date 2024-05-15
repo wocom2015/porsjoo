@@ -22,6 +22,6 @@ class NewPJ extends KavenegarBaseNotification
     public function toKavenegar($notifiable)
     {
         return (new KavenegarMessage())
-            ->verifyLookup('newPJ', ["PJ"]);
+            ->verifyLookup('newPJ', ["درخواست"]);
     }
 }
