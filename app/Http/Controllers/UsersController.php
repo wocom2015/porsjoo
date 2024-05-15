@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\ActiveCode;
 use App\Models\Inquiry;
-use App\Models\InquiryComment;
 use App\Models\InquirySupplier;
 use App\Models\User;
 use App\Notifications\changePass;
@@ -14,9 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
-
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 class UsersController extends Controller
 {
@@ -83,7 +80,7 @@ class UsersController extends Controller
             'last_name' => 'required|string|min:3',
             'job_name' => 'required|string|min:5',
             'mobile' => 'required|min:11|max:11|unique:users',
-            'email' => 'required|email|unique:users',
+            'email' => 'email|unique:users',
             'password' => 'required|confirmed|min:6',
             'rules' => 'required',
         ]);
