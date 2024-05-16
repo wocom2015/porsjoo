@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Mockery\Exception;
 
 
 class InquiriesController extends Controller
@@ -230,7 +231,11 @@ class InquiriesController extends Controller
 
                 //send sms
                 $inquiryUser = User::find($inquiry->user_id);
-                Notification::send($inquiryUser, new requestReply(str_replace(" ", "_", $inquiry->name)));
+                try {
+                    Notification::send($inquiryUser, new requestReply(str_replace(" ", "_", $inquiry->name)));
+                } catch (Exception $ex) {
+
+                }
                 return reply("success", "your_reply_to_inquiry_submitted_successfully");
             }
         } else {
