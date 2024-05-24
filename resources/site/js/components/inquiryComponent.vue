@@ -182,7 +182,8 @@
         </div>
         <div class="col-lg-4 col-sm-12 mb-3">
             <input class="form-control" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه"
-                   style="text-align:left;direction:ltr" type="text"/>
+                   dir="ltr"
+                   style="text-align:left;" type="text"/>
         </div>
 
 

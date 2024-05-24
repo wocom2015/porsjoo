@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-lg-4">
                         <label>{{__("p.mobile")}}</label>
-                        <input type="text" name="mobile" value="{{$user->mobile}}" class="form-control ltr">
+                        <input type="text" name="mobile" value="{{$user->mobile}}" class="form-control ltr" dir="ltr">
                     </div>
                     <div class="col-lg-4">
                         <label>{{__("p.email")}}</label>

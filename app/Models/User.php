@@ -88,7 +88,6 @@ class User extends Authenticatable
             $user->name !='' and
             $user->last_name !='' and
             $user->job_name !='' and
-            $user->email != '' and
             $user->mobile != '' and
             $user->category_id !=0
         );

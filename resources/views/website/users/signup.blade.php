@@ -26,7 +26,8 @@
                     </div>
                     <div class="col-lg-12">
                         <label>{!! __("p.last_name").s() !!}</label>
-                        <div class="form-group"><input type="text" name="last_name" class="form-control" value="{{old("last_name")}}"/></div>
+                        <div class="form-group"><input type="text" name="last_name" class="form-control"
+                                                       value="{{old("last_name")}}"/></div>
                     </div>
                     <div class="col-lg-12">
                         <label>{!! __("p.your_job_name").s() !!}</label>
@@ -36,7 +37,7 @@
                     <div class="col-lg-12">
                         <label>{!! __("p.mobile").s() !!}</label>
                         <div class="form-group"><input type="text" name="mobile" class="form-control text-left"
-                                                       value="{{old("mobile")}}" maxlength="11"/></div>
+                                                       value="{{old("mobile")}}" maxlength="11" dir="ltr"/></div>
                     </div>
                     <div class="col-lg-12">
                         <label>{!! __("p.email") !!}</label>

@@ -90,7 +90,7 @@ class ProfileController extends Controller
         $items = [
             'name' => 'required|string|min:2|max:15',
             'last_name' => 'required|string|min:2|max:20',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             'mobile' => 'required',
             'category_id' => 'required|integer',
             'job_name' => 'required|min:5',
@@ -109,9 +109,9 @@ class ProfileController extends Controller
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'mobile' => $request->mobile,
+            'mobile' => $this->faTOen($request->mobile),
             'job_name' => $request->job_name,
-            'phone' => $request->phone,
+            'phone' => $this->faTOen($request->phone),
             'address' => $request->address,
             'pm' => $request->pm,
             'pm_mobile' => $request->pm_mobile,
@@ -150,5 +150,9 @@ class ProfileController extends Controller
         return back()->with('success', 'اطلاعات کاربری شما به روز شد');
     }
 
+    function faTOen($string)
+    {
+        return strtr($string, array('۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'));
+    }
 
 }

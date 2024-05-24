@@ -93,7 +93,7 @@ class UsersController extends Controller
         $user = User::create([
             "name" => $request->name,
             "last_name" => $request->last_name,
-            "mobile" => $request->mobile,
+            "mobile" => $this->faTOen($request->mobile),
             "email" => $request->email,
             "password" => Hash::make($request->password),
             "job_name" => $request->job_name,
@@ -250,5 +250,10 @@ class UsersController extends Controller
         Notification::send($user, new changePass($password));
 
         return redirect("/signin");
+    }
+
+    function faTOen($string)
+    {
+        return strtr($string, array('۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'));
     }
 }

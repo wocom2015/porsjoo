@@ -17,28 +17,32 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>{!!  __("p.last_name").s()!!}</label>
-                    <input type="text" class="form-control" name="last_name" maxlength="20" value="{{old("last_name" , $user->last_name)}}">
+                    <input type="text" class="form-control" name="last_name" maxlength="20"
+                           value="{{old("last_name" , $user->last_name)}}">
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>{!! __("p.mobile").s() !!}</label>
-                    <input type="text" class="form-control text-left" name="mobile" maxlength="11" value="{{old("mobile" , $user->mobile)}}">
+                    <input type="text" class="form-control text-left" name="mobile" maxlength="11"
+                           value="{{old("mobile" , $user->mobile)}}" dir="ltr">
                 </div>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label>{!! __("p.email").s() !!}</label>
-                    <input type="text" class="form-control text-left" name="email" value="{{old("email" , $user->email)}}">
+                    <label>{!! __("p.email") !!}</label>
+                    <input type="text" class="form-control text-left" name="email"
+                           value="{{old("email" , $user->email)}}">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>{!! __("p.job_name").s() !!}</label>
-                    <input type="text" class="form-control" name="job_name" maxlength="50" value="{{old("job_name" , $user->job_name)}}">
+                    <input type="text" class="form-control" name="job_name" maxlength="50"
+                           value="{{old("job_name" , $user->job_name)}}">
                 </div>
             </div>
             <div class="col-lg-4">

@@ -32,7 +32,7 @@ const _export_sfc = (sfc, props) => {
     for (const [key, val] of props) {
         target[key] = val;
     }
-  return target;
+    return target;
 };
 const _sfc_main$7 = {
   name: "searchComponent.vue",
@@ -198,25 +198,25 @@ const _sfc_main$5 = {
         submit() {
             this.isFreeze = true;
             var self = this;
-      var fData = new FormData(document.getElementById("frmPJ"));
-      this.errors = "";
-      this.message = "";
-      axios(
-        {
-          method: "post",
-          url: "/inquiry/create",
-            data: fData
-        }
-      ).then(function (response) {
-          self.isFreeze = false;
-          if (response.data.state === "success") {
-              self.message = response.data.message;
-              self.submitted = 1;
-          } else {
-              self.errors = response.data.message;
-          }
-      }).catch((error) => {
-          self.isFreeze = false;
+            var fData = new FormData(document.getElementById("frmPJ"));
+            this.errors = "";
+            this.message = "";
+            axios(
+                {
+                    method: "post",
+                    url: "/inquiry/create",
+                    data: fData
+                }
+            ).then(function (response) {
+                self.isFreeze = false;
+                if (response.data.state === "success") {
+                    self.message = response.data.message;
+                    self.submitted = 1;
+                } else {
+                    self.errors = response.data.message;
+                }
+            }).catch((error) => {
+                self.isFreeze = false;
       });
     }
   },
@@ -268,10 +268,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     } else {
         _push(`<!---->`);
     }
-    _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" name="move_conditions" type="radio" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({"color": "indianred"})}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده" type="text"></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه" style="${ssrRenderStyle({
-        "text-align": "left",
-        "direction": "ltr"
-    })}" type="text"></div>`);
+    _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" name="move_conditions" type="radio" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({"color": "indianred"})}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده" type="text"></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه" dir="ltr" style="${ssrRenderStyle({"text-align": "left"})}" type="text"></div>`);
     if (this.submitted === 0 && !$options.isDisabled) {
         _push(`<div class="default-btn" type="button"> ثبت </div>`);
     } else {
