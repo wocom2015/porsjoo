@@ -217,12 +217,12 @@ const _sfc_main$5 = {
                 }
             }).catch((error) => {
                 self.isFreeze = false;
-      });
+            });
+        }
+    },
+    mounted() {
+        this.fetchCities(1);
     }
-  },
-  mounted() {
-    this.fetchCities(1);
-  }
 };
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_date_picker = resolveComponent("date-picker");
@@ -281,7 +281,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }
     _push(`<div class="col-lg-12 col-sm-12 mb-3">`);
     if (this.submitted === 1) {
-        _push(`<a class="close-btn" href="/">بازگشت</a>`);
+        _push(`<a class="close-btn" href="/profile">بازگشت</a>`);
     } else {
         _push(`<!---->`);
     }

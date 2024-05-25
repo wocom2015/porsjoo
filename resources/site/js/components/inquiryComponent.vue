@@ -199,7 +199,8 @@
              type="button">
             ثبت
         </div>
-        <div class="col-lg-12 col-sm-12 mb-3"><a class="close-btn" href="/" v-if="this.submitted === 1">بازگشت</a></div>
+        <div class="col-lg-12 col-sm-12 mb-3"><a v-if="this.submitted === 1" class="close-btn"
+                                                 href="/profile">بازگشت</a></div>
 
         <div v-show="(this.message !=='') " class="content-frame text-success font-weight-bold">{{ this.message }}</div>
         <div class="content-frame" v-show="(this.errors !=='') ">
