@@ -199,7 +199,8 @@ class UsersController extends Controller
                     $toAdd = [
                         'supplier' => User::find($inquiry->user_id),
                         'comment' => $inquiry->comment,
-                        'commented_at' => $inquiry->updated_at
+                        'commented_at' => $inquiry->updated_at,
+                        'score' => $inquiry->score
                     ];
                     if (!in_array($inquiry, $sc)) {
                         $comments[] = $toAdd;

@@ -71,6 +71,19 @@
                             {{$c['supplier']->name.' '.$c['supplier']->last_name}}
                         </div>
                         <div class="col-lg-4 mt-2">
+                            <div>
+                                <span>
+                                    امتياز
+                                </span>
+                                @for ($i = 1; $i <= $c['score'];  $i++)
+                                    <img src="/images/icons/star-filled.png"
+                                         style="width:16px;height:16px;display:inline-block;">
+                                @endfor
+                                @for ($i = 5; $i > $c['score'];  $i--)
+                                    <img src="/images/icons/star-empty.png"
+                                         style="width:16px;height:16px;display:inline-block;">
+                                @endfor
+                            </div>
                             {{$c['comment']}}
                         </div>
                         <div class="col-lg-4 text-success mt-2">
