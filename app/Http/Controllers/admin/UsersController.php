@@ -7,12 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Inquiry;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
 {
@@ -22,7 +17,7 @@ class UsersController extends Controller
     public function index(UsersDataTable $dataTable)
     {
         $title = __("p.users_list");
-        return $dataTable->render("admin.users.index" , compact("title"));
+        return $dataTable->render("admin.users.index", compact("title"));
     }
 
     /**
@@ -55,8 +50,8 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         $user = User::find($id);
-        $title = __("p.edit_user").' '.$user->name.' '.$user->last_name;
-        return view("admin.users.edit" , compact("user" , "title"));
+        $title = __("p.edit_user") . ' ' . $user->name . ' ' . $user->last_name;
+        return view("admin.users.edit", compact("user", "title"));
     }
 
     /**
@@ -79,18 +74,18 @@ class UsersController extends Controller
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'mobile' => $request->mobile,
+            'mobile' => $request->mobile == null ? null : $this->faTOen($request->mobile),
             'job_name' => $request->job_name,
             'phone' => $request->phone,
             'address' => $request->address,
             'pm' => $request->pm,
             'pj_available' => $request->pj_available,
-            'pm_mobile' => $request->pm_mobile,
-            'boss_mobile' => $request->boss_mobile,
+            'pm_mobile' => $request->pm_mobile == null ? null : $this->faTOen($request->pm_mobile),
+            'boss_mobile' => $request->boss_mobile == null ? null : $this->faTOen($request->boss_mobile),
             'description' => $request->description,
         ];
 
-        if($request->password!=''){
+        if ($request->password != '') {
             $data['password'] = Hash::make($request->password);
         }
         $user->update($data);
@@ -103,9 +98,14 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        Inquiry::where("user_id" , $id)->delete();
+        Inquiry::where("user_id", $id)->delete();
 
-        if(User::where("id" , $id)->delete())
+        if (User::where("id", $id)->delete())
             return redirect()->route("users.index");
+    }
+
+    function faTOen($string)
+    {
+        return strtr($string, array('۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'));
     }
 }

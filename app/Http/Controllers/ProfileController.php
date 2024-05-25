@@ -114,8 +114,8 @@ class ProfileController extends Controller
             'phone' => $this->faTOen($request->phone),
             'address' => $request->address,
             'pm' => $request->pm,
-            'pm_mobile' => $request->pm_mobile,
-            'boss_mobile' => $request->boss_mobile,
+            'pm_mobile' => $this->faTOen($request->pm_mobile),
+            'boss_mobile' => $request->boss_mobile == null ? null : $this->faTOen($request->boss_mobile),
             'category_id' => $request->category_id,
             'description' => $request->description,
         ];
