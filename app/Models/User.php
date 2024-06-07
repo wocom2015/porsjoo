@@ -91,7 +91,6 @@ class User extends Authenticatable
             $user->mobile != '' and
             $user->category_id !=0
         );
-
     }
 
 

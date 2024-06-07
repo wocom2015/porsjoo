@@ -70,7 +70,7 @@
                                 <span>میزان قدرت خرید : </span><strong>{{ this.inquiry.price }}</strong></div>
                             <div class="col-lg-6">
                                 <span>امکان خرید چکی : </span><strong>{{
-                                    (this.inquiry.cheque_eneable) ? 'بله' : 'خیر'
+                                    (this.inquiry.cheque_enable) ? 'بله' : 'خیر'
                                 }}</strong>
                             </div>
                             <div class="col-lg-6">
