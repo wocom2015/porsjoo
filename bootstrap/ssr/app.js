@@ -655,30 +655,34 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<!---->`);
   }
   if (this.count === 0) {
-    _push(`<div class="row mb-2 p-2"><p>شما تا کنون استعلامی ارسال ننموده اید</p></div>`);
+      _push(`<div class="row mb-2 p-2"><p>شما تا کنون استعلامی ارسال ننموده اید</p></div>`);
   } else {
-    _push(`<!---->`);
+      _push(`<!---->`);
   }
-  _push(`<div style="${ssrRenderStyle(this.viewM ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">${ssrInterpolate(this.inquiryName)}</h5></div><div class="modal-body"><div class="row">`);
-  if (this.inquiry.picture != "") {
-    _push(`<div class="col-lg-12 text-center" style="${ssrRenderStyle({ "overflow-y": "scroll", "max-height": "250px", "padding": "20px" })}"><img${ssrRenderAttr("src", this.inquiry.pictureSrc)} style="${ssrRenderStyle({ "width": "50%" })}"></div>`);
-  } else {
-    _push(`<!---->`);
-  }
+    _push(`<div style="${ssrRenderStyle(this.viewM ? null : {display: "none"})}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">${ssrInterpolate(this.inquiryName)}</h5></div><div class="modal-body"><div class="row">`);
+    if (this.inquiry.picture != "") {
+        _push(`<div class="col-lg-12 text-center" style="${ssrRenderStyle({
+            "overflow-y": "scroll",
+            "max-height": "250px",
+            "padding": "20px"
+        })}"><img${ssrRenderAttr("src", this.inquiry.pictureSrc)} style="${ssrRenderStyle({"width": "50%"})}"></div>`);
+    } else {
+        _push(`<!---->`);
+    }
     _push(`<div class="col-lg-6"><span>تعداد : </span><strong>${ssrInterpolate(this.inquiry.count)} ${ssrInterpolate(this.inquiry.unitName)}</strong></div><div class="col-lg-6"><span>دسته بندی : </span><strong>${ssrInterpolate(this.inquiry.categoryName)}</strong></div><div class="col-lg-6"><span>زمان خرید : </span><strong>${ssrInterpolate(this.inquiry.buy_date)}</strong></div><div class="col-lg-6"><span>زمان پرداخت : </span><strong>${ssrInterpolate(this.inquiry.pay_date)}</strong></div><div class="col-lg-6"><span>استان : </span><strong>${ssrInterpolate(this.inquiry.provinceName)}</strong></div><div class="col-lg-6"><span>شهر : </span><strong>${ssrInterpolate(this.inquiry.cityName)}</strong></div><div class="col-lg-6"><span>میزان قدرت خرید : </span><strong>${ssrInterpolate(this.inquiry.price)}</strong></div><div class="col-lg-6"><span>امکان خرید چکی : </span><strong>${ssrInterpolate(this.inquiry.cheque_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>درخواست ارسال نمونه : </span><strong>${ssrInterpolate(this.inquiry.sample_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>نیاز به ضمانت دارد؟ : </span><strong>${ssrInterpolate(this.inquiry.guarantee_enable ? "بله" : "خیر")}</strong></div><div class="col-lg-6"><span>مسئولیت حمل و نقل با : </span><strong>${ssrInterpolate(this.inquiry.move_conditions == "buyer" ? "فروشنده" : "خریدار")}</strong></div><div class="col-lg-12"><span>توضیحات : </span><strong>${ssrInterpolate(this.inquiry.description)}</strong></div></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline">متوجه شدم</button></div></div></div></div><div style="${ssrRenderStyle(this.viewR ? null : {display: "none"})}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog modal-xl" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> پاسخ ها به استعلام <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div style="${ssrRenderStyle(this.replies.length == 0 ? null : {display: "none"})}" class="alert alert-info"><p>کاربر گرامی ، در حال حاضر هیچ پاسخی برای این استعلام از طرف تامین کنندگان داده نشده است.</p></div><div class="row" style="${ssrRenderStyle([
         this.replies.length > 0 ? null : {display: "none"},
         {"max-height": "400px", "overflow-y": "scroll"}
     ])}"><div style="${ssrRenderStyle(this.replies.length > 0 ? null : {display: "none"})}" class="alert alert-warning"><strong>توجه:</strong><p class="text-danger">کاربر گرامی ، دقت داشته باشید که با هر انتخاب تامین کننده و مشاهده اطلاعات تامین کننده ، یکی از فرصت های استعلام شما کم می شود</p></div><!--[-->`);
-  ssrRenderList(this.replies, (item) => {
-    _push(`<div class="col-lg-12"><div class="inquiry-box text-center"><p><strong>قیمت : ${ssrInterpolate(item.price)}</strong></p><p><small>${ssrInterpolate(item.description)}</small></p><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(item.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(item.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(item.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(item.visit_place_enable)}</small></p><a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده </a><a${ssrRenderAttr("href", item.url)} class="btn default-btn mb-1"> مشاهده پروفایل تامین کننده </a>`);
-    if (item.hasSeen == 1) {
-      _push(`<a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید"> پاسخ به تامین کننده </a>`);
-    } else {
-      _push(`<!---->`);
-    }
-    _push(`<a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه می توانید با تامین کننده چت کنید"> گفتگو با تامین کننده </a></div></div>`);
-  });
-  _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline" style="${ssrRenderStyle({ "margin": "0 auto" })}"><img src="/site/images/check.png"> متوجه شدم </button></div></div></div></div><div style="${ssrRenderStyle(this.viewChat ? null : { display: "none" })}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> گفتگو با تامین کننده <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div class="chat-box"><div class="chat-header"><span>${ssrInterpolate(this.chatUser)}</span></div><!--[-->`);
+    ssrRenderList(this.replies, (item) => {
+        _push(`<div class="col-lg-12"><div class="inquiry-box text-center"><p><strong>قیمت : ${ssrInterpolate(item.price)}</strong></p><p><small>${ssrInterpolate(item.description)}</small></p><p><small class="ml-10">امکان پرداخت چکی : ${ssrInterpolate(item.cheque_enable)}</small> | <small class="ml-10"> امکان ارسال نمونه : ${ssrInterpolate(item.sample_enable)}</small> | <small class="ml-10"> دارای گارانتی : ${ssrInterpolate(item.guarantee_enable)}</small> | <small class="ml-10">امکان بازدید از محل محصول : ${ssrInterpolate(item.visit_place_enable)}</small></p><a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه از تعداد استعلام های شما یکی کم می شود"> مشاهده اطلاعات تامین کننده </a><a${ssrRenderAttr("href", item.url)} class="btn default-btn mb-1"> مشاهده پروفایل تامین کننده </a>`);
+        if (item.hasSeen == 1) {
+            _push(`<a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید"> پاسخ به تامین کننده </a>`);
+        } else {
+            _push(`<!---->`);
+        }
+        _push(`<a href="javascript:void(0)" class="btn default-btn mb-1" title="با کلیک بر روی این دکمه می توانید با تامین کننده چت کنید"> گفتگو با تامین کننده </a></div></div>`);
+    });
+    _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-custom-outline" style="${ssrRenderStyle({"margin": "0 auto"})}"><img src="/site/images/check.png"> متوجه شدم </button></div></div></div></div><div style="${ssrRenderStyle(this.viewChat ? null : {display: "none"})}" class="modal fade show" tabindex="-1" role="dialog" id="viewModal"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h6 class="modal-title"> گفتگو با تامین کننده <small class="text-danger">${ssrInterpolate(this.inquiryName)}</small></h6></div><div class="modal-body"><div class="chat-box"><div class="chat-header"><span>${ssrInterpolate(this.chatUser)}</span></div><!--[-->`);
   ssrRenderList(this.chats, (item) => {
     _push(`<div class="${ssrRenderClass(item.class)}"><div class="content"><p>${ssrInterpolate(item.message)}</p><span style="${ssrRenderStyle({ "float": "right" })}">${ssrInterpolate(item.created_at)}</span></div></div>`);
   });
