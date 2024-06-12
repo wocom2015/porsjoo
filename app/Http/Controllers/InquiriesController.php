@@ -218,10 +218,10 @@ class InquiriesController extends Controller
                 'score' => 0,
                 'state_id' => 0,
                 'accepted' => 0,
-                'cheque_enable', $request->cheque_enable,
-                'sample_enable', $request->sample_enable,
-                'guarantee_enable', $request->guarantee_enable,
-                'visit_place_enable', $request->visit_place_enable,
+                'cheque_enable' => $request->cheque_enable,
+                'sample_enable' => $request->sample_enable,
+                'guarantee_enable' => $request->guarantee_enable,
+                'visit_place_enable' => $request->visit_place_enable,
             ]);
             if ($inquiryReply) {
                 //decrease pj_available
