@@ -31,15 +31,18 @@ class InquiriesController extends Controller
     {
         //checking last
 
-        $lastPJ = Inquiry::where("user_id", auth()->user()->id)->orderBy("id", "desc")->latest()->first();
+        $lastPJs = Inquiry::where("user_id", auth()->user()->id)->where("bought_answered", 0)->orderBy("id", "desc")->latest()->get();
 
-        if (!empty($lastPJ) and $lastPJ->bought_answered == 0) {
-            $vendors = $lastPJ->suppliers;
-            foreach ($vendors as $v) {
-                $x = $v->user;
-                $x = null;
+        foreach ($lastPJs as $lastPJ) {
+            if ($lastPJ->pay_date > now()) continue;
+            if (!empty($lastPJ) and $lastPJ->bought_answered == 0) {
+                $vendors = $lastPJ->suppliers;
+                foreach ($vendors as $v) {
+                    $x = $v->user;
+                    $x = null;
+                }
+                return view("website.inquiry.feedback", compact("lastPJ", "vendors"));
             }
-            return view("website.inquiry.feedback", compact("lastPJ", "vendors"));
         }
 
         $categories = Category::where("id", "!=", 1)->get();

@@ -20,7 +20,11 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        $relatedInquiries = Inquiry::where("category_id", $user->category_id)->where("user_id", '!=', $user->id)->where("accepted", 0)->orderBy("id", "desc")->get();
+        $relatedInquiries = Inquiry::where("category_id", $user->category_id)
+            ->where("user_id", '!=', $user->id)
+            ->where("accepted", 0)
+            ->where("pay_date", '<=', now())
+            ->orderBy("id", "desc")->get();
 
         if ($user->inquiries->isNotEmpty()) {
             foreach ($user->inquiries as $inquiry) {
