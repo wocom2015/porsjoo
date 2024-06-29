@@ -142,11 +142,11 @@
                                     <a :href="item.url" class="btn default-btn mb-1">
                                         مشاهده پروفایل تامین کننده
                                     </a>
-                                    <a href="javascript:void(0)" v-if="item.hasSeen==1" class="btn default-btn mb-1"
-                                            @click="commentSupplier(item.user_id , item.inquiry_id)"
-                                            title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">
-                                        پاسخ به تامین کننده
-                                    </a>
+                                    <!--                                    <a href="javascript:void(0)" v-if="item.hasSeen==1" class="btn default-btn mb-1"-->
+                                    <!--                                            @click="commentSupplier(item.user_id , item.inquiry_id)"-->
+                                    <!--                                            title="با کلیک بر روی این دکمه می توانید به تامین کننده پاسخ دهید">-->
+                                    <!--                                        پاسخ به تامین کننده-->
+                                    <!--                                    </a>-->
                                     <a href="javascript:void(0)" @click="chatBox(item.user_id)" class="btn default-btn mb-1"
                                        title="با کلیک بر روی این دکمه می توانید با تامین کننده چت کنید">
                                         گفتگو با تامین کننده
