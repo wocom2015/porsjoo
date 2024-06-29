@@ -59,7 +59,13 @@ class UsersController extends Controller
         endif;
         $user = Auth::getProvider()->retrieveByCredentials($credentials1);
 
-        Auth::login($user);
+        if ($user->active == 0) {
+            $this->send_code($user->id);
+            $request->session()->push('user_id', $user->id);
+            return view("website.users.check_code", ['route' => route("password_change")]);
+        } else {
+            Auth::login($user);
+        }
 
         return $this->authenticated($request, $user);
 
@@ -103,7 +109,7 @@ class UsersController extends Controller
         $this->send_code($user->id);
 
 
-        Auth::loginUsingId($user->id);
+//        Auth::loginUsingId($user->id);
         return redirect("/check-code");
     }
 
