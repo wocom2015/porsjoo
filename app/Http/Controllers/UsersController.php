@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class UsersController extends Controller
 {
@@ -156,7 +157,11 @@ class UsersController extends Controller
     {
 
         $code = $request->code;
-        $user_id = auth()->user()->id;
+        if (auth()->user() !== null) {
+            $user_id = auth()->user()->id;
+        } else if (Session::get("current_user_id") !== null) {
+            $user_id = Session::get("current_user_id");
+        }
         $user = User::find($user_id);
 
         $result = ActiveCode::where("code", $code)
