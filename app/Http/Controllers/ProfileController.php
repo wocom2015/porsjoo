@@ -9,6 +9,7 @@ use App\Models\InquiryReply;
 use App\Models\InquirySupplier;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -23,7 +24,8 @@ class ProfileController extends Controller
         $relatedInquiries = Inquiry::where("category_id", $user->category_id)
             ->where("user_id", '!=', $user->id)
             ->where("accepted", 0)
-            ->where("pay_date", '<=', now())
+//            ->where("pay_date", '=<', Carbon::now())
+            ->where("pay_date", '>=', Carbon::parse(Carbon::now())->format("Y-m-d h:m:s"))
             ->orderBy("id", "desc")->get();
 
         if ($user->inquiries->isNotEmpty()) {
