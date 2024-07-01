@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class UsersController extends Controller
 {
@@ -62,8 +61,8 @@ class UsersController extends Controller
 
         if ($user->active == 0) {
             $this->send_code($user->id);
-            $request->session()->push('user_id', $user->id);
-            return view("website.users.check_code", ['route' => route("password_change")]);
+            $request->session()->put('user_id', $user->id);
+            return view("website.users.check_code", ['route' => route("users.verify")]);
         } else {
             Auth::login($user);
         }
@@ -108,7 +107,7 @@ class UsersController extends Controller
         ]);
 
         $this->send_code($user->id);
-
+        $request->session()->push("user_id", $user->id);
 
 //        Auth::loginUsingId($user->id);
         return redirect("/check-code");
@@ -159,8 +158,8 @@ class UsersController extends Controller
         $code = $request->code;
         if (auth()->user() !== null) {
             $user_id = auth()->user()->id;
-        } else if (Session::get("current_user_id") !== null) {
-            $user_id = Session::get("current_user_id");
+        } else if ($request->session()->get("user_id") !== null) {
+            $user_id = $request->session()->get("user_id");
         }
         $user = User::find($user_id);
 
@@ -174,8 +173,14 @@ class UsersController extends Controller
                 $user->active = 1;
                 $user->active_at = now();
                 $user->update();
+                if (auth()->user() == null) {
+                    Auth::login($user);
+                }
                 return redirect(route("profile"));
             } else {
+                if (auth()->user() == null) {
+                    Auth::login($user);
+                }
                 return redirect(route("profile"));
             }
         } else {
