@@ -107,7 +107,7 @@ class UsersController extends Controller
         ]);
 
         $this->send_code($user->id);
-        $request->session()->push("user_id", $user->id);
+        $request->session()->put("user_id", $user->id);
 
 //        Auth::loginUsingId($user->id);
         return redirect("/check-code");
@@ -246,7 +246,7 @@ class UsersController extends Controller
 
         if ($user) {
             $this->send_code($user->id);
-            $request->session()->push('user_id', $user->id);
+            $request->session()->put('user_id', $user->id);
             return view("website.users.check_code", ['route' => route("password_change")]);
 
         } else {
