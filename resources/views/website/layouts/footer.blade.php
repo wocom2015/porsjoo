@@ -1,7 +1,7 @@
 <footer>
 
     <div class="row">
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-3 bottom-right">
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <img src="{{asset("storage/configurations/".conf('system_logo'))}}"/>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-7 bottom-center">
             <div class="col-12">
                 <p class="text-center">پرسجو چیست؟</p>
                 <p class="text-justify" style="text-align:justify;">
@@ -31,14 +31,14 @@
                 </p>
             </div>
         </div>
-        <div class="col-6 col-lg-1 m-auto text-center">
+        <div class="col-12 col-lg-1 m-auto text-center bottom-left">
             <a referrerpolicy='origin' target='_blank'
                href='https://trustseal.enamad.ir/?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'><img
                     referrerpolicy='origin'
                     src='https://trustseal.enamad.ir/logo.aspx?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX' alt=''
                     style='cursor:pointer' Code='uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'></a>
         </div>
-        <div class="col-6 col-lg-1 m-auto text-center" style="max-width: 200px">
+        <div class="col-12 col-lg-1 m-auto text-center bottom-left" style="max-width: 200px">
             <a referrerpolicy='origin'
                target='_blank'
                href='https://payping.io'>

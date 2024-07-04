@@ -25,7 +25,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3 col-xs-6 col-sm-6  text-center">
+        <div class="col-12 col-lg-3 text-center">
             <div class="pj-profile-item ">
                 <strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -56,7 +56,7 @@
 
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6 col-sm-6  text-center">
+        <div class="col-12 col-lg-3 text-center">
             <div class="pj-profile-item ">
                 <strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -89,9 +89,7 @@
             </div>
 
         </div>
-
-
-        <div class="col-lg-3 col-xs-6 col-sm-6  text-center">
+        <div class="col-12 col-lg-3 text-center">
             <div class="pj-profile-item ">
                 <strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -123,8 +121,7 @@
             </div>
 
         </div>
-
-        <div class="col-lg-3 col-xs-6 col-sm-6  text-center">
+        <div class="col-12 col-lg-3 text-center">
             <div class="pj-profile-item ">
                 <strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -156,8 +153,6 @@
             </div>
 
         </div>
-
-
     </div>
 
     <div class="row mt-4 content-frame">
