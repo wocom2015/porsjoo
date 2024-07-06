@@ -29,9 +29,9 @@
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-    "file": "assets/app-770df57e.css",
-    "isEntry": true,
-    "src": "resources/site/css/app.css"
+      "file": "assets/app-b1ff2b61.css",
+      "isEntry": true,
+      "src": "resources/site/css/app.css"
   },
   "resources/site/fonts/Qs_Iranyekan bold.ttf": {
     "file": "assets/Qs_Iranyekan bold-3b412787.ttf",
@@ -66,14 +66,14 @@
     "src": "resources/site/js/app.css"
   },
   "resources/site/js/app.js": {
-    "css": [
-      "assets/app-a9d35258.css"
-    ],
-    "file": "assets/app-87449c19.js",
-    "imports": [
-      "_jquery-86bcab04.js"
-    ],
-    "isEntry": true,
-    "src": "resources/site/js/app.js"
+      "css": [
+          "assets/app-a9d35258.css"
+      ],
+      "file": "assets/app-7b08e995.js",
+      "imports": [
+          "_jquery-86bcab04.js"
+      ],
+      "isEntry": true,
+      "src": "resources/site/js/app.js"
   }
 }

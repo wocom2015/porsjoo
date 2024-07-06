@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="am-search-table">
 
         <div class="row align-content-center">
             <div class="search-box col-lg-12 mt-10">
@@ -25,27 +25,41 @@
             </div>
         </div>
 
-        <div class="content-frame content-frame-marquee-holder">
+        <div class="the-table the-flex content-frame content-frame-marquee-holder">
             <div class="row p-2">
                 <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
             </div>
-            <div class="inquiry-home row p-2">
-                <div class="col-lg-3 col-sm-4"><strong>استان</strong></div>
-                <div class="col-lg-3 col-sm-4"><strong>نام محصول</strong></div>
-                <div class="col-lg-2 d-sm-block d-none"><strong>دسته</strong></div>
-                <div class="col-lg-2 d-sm-block d-none"><strong>زمان پایان استعلام</strong></div>
-                <div class="col-lg-2 d-sm-block d-none"><strong>تعداد افراد داخل استعلام</strong></div>
+            <div class="the-header the-flex inquiry-home">
+                <div class="the-flex-item the-flex-item-1"><strong>استان</strong></div>
+                <div class="the-flex-item the-flex-item-2"><strong>نام محصول</strong></div>
+                <div class="the-flex-item the-flex-item-3"><strong>دسته</strong></div>
+                <div class="the-flex-item the-flex-item-4"><strong>زمان پایان استعلام</strong></div>
+                <div class="the-flex-item the-flex-item-5"><strong>تعداد افراد داخل استعلام</strong></div>
             </div>
         </div>
-        <div class="content-frame-marquee marquee">
-            <div class="marquee__content">
-                <a v-for="item in this.inquiries" :href="item.url">
-                    <div class="inquiry-home row mb-2 p-2">
-                        <div class="col-lg-3 col-sm-4">{{ item.provinceName }}</div>
-                        <div class="col-lg-3 col-sm-4">{{ item.name }}</div>
-                        <div class="col-lg-2 d-sm-block d-none">{{ item.categoryName }}</div>
-                        <div class="col-lg-2 d-sm-block d-none">{{ item.closeDate }}</div>
-                        <div class="col-lg-2 d-sm-block d-none">{{ item.involved }}</div>
+        <div class="the-table the-flex content-frame-marquee marquee">
+            <div class="the-body the-flex marquee__content">
+                <a v-for="item in this.inquiries" :href="item.url" class="the-row the-flex inquiry-home row mb-2 p-2">
+                    <div class="the-flex-item the-flex-item-1">{{ item.provinceName }}</div>
+                    <div class="the-flex-item the-flex-item-1-1 col-header">
+                        <strong>استان</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-2">{{ item.name }}</div>
+                    <div class="the-flex-item the-flex-item-2-1 col-header">
+                        <strong>نام محصول</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-3">{{ item.categoryName }}</div>
+                    <div class="the-flex-item the-flex-item-3-1 col-header">
+                        <strong>دسته</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-4">{{ item.closeDate }}</div>
+                    <div class="the-flex-item the-flex-item-4-1 col-header">
+                        <strong>زمان پایان استعلام</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-5">{{ item.involved }}</div>
+                    <div class="the-flex-item the-flex-item-5-1 col-header">
+                        <strong>تعداد افراد داخل
+                            استعلام</strong>
                     </div>
                 </a>
                 <a v-if="this.inquiries.length > 0">
