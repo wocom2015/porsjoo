@@ -10,9 +10,9 @@
                 <div class="the-flex-item the-flex-item-3">تاریخ</div>
                 <div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div>
                 <div class="the-flex-item the-flex-item-5">پاسخ شما</div>
-                <div class="the-flex-item the-flex-item-6">پاسخ مشتری</div>
-                <div class="the-flex-item the-flex-item-7">گفتگو</div>
-                <div class="the-flex-item the-flex-item-8"></div>
+                <!--                <div class="the-flex-item the-flex-item-6">پاسخ مشتری</div>-->
+                <div class="the-flex-item the-flex-item-6">گفتگو</div>
+                <div class="the-flex-item the-flex-item-7"></div>
             </div>
             <div class="the-body the-flex">
                 <div v-for="item in this.inquiries" v-if="this.count>0" class="the-row the-flex">
@@ -39,30 +39,30 @@
                         </button>
                     </div>
                     <div class="the-flex-item the-flex-item-5 col-header">پاسخ شما</div>
+                    <!--                    <div class="the-flex-item the-flex-item-6">-->
+                    <!--                        <button v-show="item.reply_by_user==1"-->
+                    <!--                                class="btn-no-bordered mb-1"-->
+                    <!--                                @click="this.replyReview(item.id)">-->
+                    <!--                            <img-->
+                    <!--                                src="/site/images/view_pj.png" style="width:12px; color:orange"/>-->
+                    <!--                            مشاهده-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="the-flex-item the-flex-item-6 col-header">پاسخ مشتری</div>-->
                     <div class="the-flex-item the-flex-item-6">
-                        <button v-show="item.reply_by_user==1"
-                                class="btn-no-bordered mb-1"
-                                @click="this.replyReview(item.id)">
-                            <img
-                                src="/site/images/view_pj.png" style="width:12px; color:orange"/>
-                            مشاهده
-                        </button>
-                    </div>
-                    <div class="the-flex-item the-flex-item-6 col-header">پاسخ مشتری</div>
-                    <div class="the-flex-item the-flex-item-7">
                         <button class="btn-no-bordered mb-1" @click="this.commentReview(item.id)"><img
                             src="/site/images/view_pj.png" style="width:12px; color:orange"/>
                             مشاهده
                         </button>
                     </div>
-                    <div class="the-flex-item the-flex-item-7 col-header">گفتگو</div>
-                    <div class="the-flex-item the-flex-item-8">
+                    <div class="the-flex-item the-flex-item-6 col-header">گفتگو</div>
+                    <div class="the-flex-item the-flex-item-7">
                         <button class="btn-no-bordered mb-1" @click="this.chatBox(item.user_id)"><img
                             src="/site/images/view_pj.png" style="width:12px; color:orange"/>
                             مشاهده
                         </button>
                     </div>
-                    <div class="the-flex-item the-flex-item-8 col-header">گفتگو</div>
+                    <div class="the-flex-item the-flex-item-7 col-header">گفتگو</div>
                 </div>
             </div>
             <div v-if="this.count===0" class="row mb-2 p-2">
