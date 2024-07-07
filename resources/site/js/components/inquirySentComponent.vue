@@ -62,41 +62,43 @@
                                 </div>
 
 
-                                <div class="col-lg-6"><span>تعداد : </span><strong>{{ this.inquiry.count }}
+                                <div class="col-12 col-lg-6"><span>تعداد : </span><strong>{{ this.inquiry.count }}
                                     {{ this.inquiry.unitName }}</strong></div>
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>دسته بندی : </span><strong>{{ this.inquiry.categoryName }}</strong></div>
-                                <div class="col-lg-6"><span>زمان خرید : </span><strong>{{
+                                <div class="col-12 col-lg-6"><span>زمان خرید : </span><strong>{{
                                         this.inquiry.buy_date
                                     }}</strong>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>زمان پرداخت : </span><strong>{{ this.inquiry.pay_date }}</strong></div>
-                                <div class="col-lg-6"><span>استان : </span><strong>{{
+                                <div class="col-12 col-lg-6"><span>استان : </span><strong>{{
                                         this.inquiry.provinceName
                                     }}</strong>
                                 </div>
-                                <div class="col-lg-6"><span>شهر : </span><strong>{{ this.inquiry.cityName }}</strong>
+                                <div class="col-12 col-lg-6"><span>شهر : </span><strong>{{
+                                        this.inquiry.cityName
+                                    }}</strong>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>میزان قدرت خرید : </span><strong>{{ this.inquiry.price }}</strong></div>
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>امکان خرید چکی : </span><strong>{{
                                         (this.inquiry.cheque_enable) ? 'بله' : 'خیر'
                                     }}</strong>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>درخواست ارسال نمونه : </span><strong>{{
                                         (this.inquiry.sample_enable) ? 'بله' : 'خیر'
                                     }}</strong>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>نیاز به ضمانت دارد؟ : </span><strong>{{
                                         (this.inquiry.guarantee_enable) ? 'بله' : 'خیر'
                                     }}</strong>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-12 col-lg-6">
                                     <span>مسئولیت حمل و نقل با : </span><strong>{{
                                         (this.inquiry.move_conditions == "buyer") ? 'فروشنده' : 'خریدار'
                                     }}</strong>
