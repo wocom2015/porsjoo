@@ -118,9 +118,9 @@ function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     } else {
         _push(`<!---->`);
     }
-    _push(`</div><div aria-hidden="true" class="marquee__content"><!--[-->`);
+    _push(`</div><div aria-hidden="true" class="the-body the-flex marquee__content"><!--[-->`);
     ssrRenderList(this.inquiries, (item) => {
-        _push(`<a${ssrRenderAttr("href", item.url)}><div class="inquiry-home row mb-2 p-2"><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.provinceName)}</div><div class="col-lg-3 col-sm-4">${ssrInterpolate(item.name)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.categoryName)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.closeDate)}</div><div class="col-lg-2 d-sm-block d-none">${ssrInterpolate(item.involved)}</div></div></a>`);
+        _push(`<a${ssrRenderAttr("href", item.url)} class="the-row the-flex inquiry-home row mb-2 p-2"><div class="the-flex-item the-flex-item-1">${ssrInterpolate(item.provinceName)}</div><div class="the-flex-item the-flex-item-1-1 col-header"><strong>استان</strong></div><div class="the-flex-item the-flex-item-2">${ssrInterpolate(item.name)}</div><div class="the-flex-item the-flex-item-2-1 col-header"><strong>نام محصول</strong></div><div class="the-flex-item the-flex-item-3">${ssrInterpolate(item.categoryName)}</div><div class="the-flex-item the-flex-item-3-1 col-header"><strong>دسته</strong></div><div class="the-flex-item the-flex-item-4">${ssrInterpolate(item.closeDate)}</div><div class="the-flex-item the-flex-item-4-1 col-header"><strong>زمان پایان استعلام</strong></div><div class="the-flex-item the-flex-item-5">${ssrInterpolate(item.involved)}</div><div class="the-flex-item the-flex-item-5-1 col-header"><strong>تعداد افراد داخل استعلام</strong></div></a>`);
     });
     _push(`<!--]-->`);
     if (this.inquiries.length > 0) {

@@ -26,7 +26,7 @@
         </div>
 
         <div class="the-table the-flex content-frame content-frame-marquee-holder">
-            <div class="row p-2">
+            <div class="row p-4">
                 <div class="col-lg-12"><h1>آخرین استعلام های ثبت شده</h1></div>
             </div>
             <div class="the-header the-flex inquiry-home">
@@ -61,29 +61,49 @@
                         <strong>تعداد افراد داخل
                             استعلام</strong>
                     </div>
+                    <div class="the-flex-break">
+                        <hr>
+                    </div>
                 </a>
-                <a v-if="this.inquiries.length > 0">
-                    <div class="row mb-2 p-2">
-                        <div class="col-12">
+                <a v-if="this.inquiries.length > 0" class="w-100">
+                    <div class="the-row the-flex row mb-2 p-2">
+                        <div class="the-flex-item">
                             <hr>
                         </div>
                     </div>
                 </a>
 
             </div>
-            <div aria-hidden="true" class="marquee__content">
-                <a v-for="item in this.inquiries" :href="item.url">
-                    <div class="inquiry-home row mb-2 p-2">
-                        <div class="col-lg-3 col-sm-4">{{ item.provinceName }}</div>
-                        <div class="col-lg-3 col-sm-4">{{ item.name }}</div>
-                        <div class="col-lg-2 d-sm-block d-none">{{ item.categoryName }}</div>
-                        <div class="col-lg-2 d-sm-block d-none">{{ item.closeDate }}</div>
-                        <div class="col-lg-2 d-sm-block d-none">{{ item.involved }}</div>
+            <div aria-hidden="true" class="the-body the-flex marquee__content">
+                <a v-for="item in this.inquiries" :href="item.url" class="the-row the-flex inquiry-home row mb-2 p-2">
+                    <div class="the-flex-item the-flex-item-1">{{ item.provinceName }}</div>
+                    <div class="the-flex-item the-flex-item-1-1 col-header">
+                        <strong>استان</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-2">{{ item.name }}</div>
+                    <div class="the-flex-item the-flex-item-2-1 col-header">
+                        <strong>نام محصول</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-3">{{ item.categoryName }}</div>
+                    <div class="the-flex-item the-flex-item-3-1 col-header">
+                        <strong>دسته</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-4">{{ item.closeDate }}</div>
+                    <div class="the-flex-item the-flex-item-4-1 col-header">
+                        <strong>زمان پایان استعلام</strong>
+                    </div>
+                    <div class="the-flex-item the-flex-item-5">{{ item.involved }}</div>
+                    <div class="the-flex-item the-flex-item-5-1 col-header">
+                        <strong>تعداد افراد داخل
+                            استعلام</strong>
+                    </div>
+                    <div class="the-flex-break" style="display:none;">
+                        <hr>
                     </div>
                 </a>
-                <a v-if="this.inquiries.length > 0">
-                    <div class="row mb-2 p-2">
-                        <div class="col-12">
+                <a v-if="this.inquiries.length > 0" class="w-100">
+                    <div class="the-row the-flex row mb-2 p-2">
+                        <div class="the-flex-item">
                             <hr>
                         </div>
                     </div>

@@ -33,7 +33,8 @@
         </div>
         <div class="col-12 col-lg-1 m-auto text-center bottom-left">
             <a referrerpolicy='origin' target='_blank'
-               href='https://trustseal.enamad.ir/?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'><img
+               href='https://trustseal.enamad.ir/?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'>
+                <img
                     referrerpolicy='origin'
                     src='https://trustseal.enamad.ir/logo.aspx?id=396046&Code=uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX' alt=''
                     style='cursor:pointer' Code='uOLSWUh9TaERBVuyeGgIrccjmbeMwBYX'></a>
