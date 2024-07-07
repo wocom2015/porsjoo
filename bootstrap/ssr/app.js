@@ -463,7 +463,7 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-6 col-header">گفتگو</div><div class="the-flex-item the-flex-item-7"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
                 "width": "12px",
                 "color": "orange"
-            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-7 col-header">گفتگو</div></div>`);
+            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-7 col-header">گفتگو</div><div class="the-flex-break"><hr></div></div>`);
         });
         _push(`<!--]-->`);
     } else {
@@ -677,7 +677,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-5-1 col-header">مشخصات</div><div class="the-flex-item the-flex-item-6"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
                 "width": "12px",
                 "color": "orange"
-            })}"> مشاهده (${ssrInterpolate(item.repliesCount)}) </button></div><div class="the-flex-item the-flex-item-6-1 col-header">پاسخ ها</div></div>`);
+            })}"> مشاهده (${ssrInterpolate(item.repliesCount)}) </button></div><div class="the-flex-item the-flex-item-6-1 col-header">پاسخ ها</div><div class="the-flex-break"><hr></div></div>`);
         });
         _push(`<!--]-->`);
     } else {

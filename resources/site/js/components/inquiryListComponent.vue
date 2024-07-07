@@ -63,6 +63,9 @@
                         </button>
                     </div>
                     <div class="the-flex-item the-flex-item-7 col-header">گفتگو</div>
+                    <div class="the-flex-break">
+                        <hr>
+                    </div>
                 </div>
             </div>
             <div v-if="this.count===0" class="row mb-2 p-2">
