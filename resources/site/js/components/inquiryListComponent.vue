@@ -11,8 +11,8 @@
                 <div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div>
                 <div class="the-flex-item the-flex-item-5">پاسخ شما</div>
                 <!--                <div class="the-flex-item the-flex-item-6">پاسخ مشتری</div>-->
-                <div class="the-flex-item the-flex-item-6">گفتگو</div>
-                <div class="the-flex-item the-flex-item-7"></div>
+                <!--                <div class="the-flex-item the-flex-item-6">گفتگو</div>-->
+                <div class="the-flex-item the-flex-item-6"></div>
             </div>
             <div class="the-body the-flex">
                 <div v-for="item in this.inquiries" v-if="this.count>0" class="the-row the-flex">
@@ -49,20 +49,20 @@
                     <!--                        </button>-->
                     <!--                    </div>-->
                     <!--                    <div class="the-flex-item the-flex-item-6 col-header">پاسخ مشتری</div>-->
+                    <!--                    <div class="the-flex-item the-flex-item-6">-->
+                    <!--                        <button class="btn-no-bordered mb-1" @click="this.commentReview(item.id)"><img-->
+                    <!--                            src="/site/images/view_pj.png" style="width:12px; color:orange"/>-->
+                    <!--                            مشاهده-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="the-flex-item the-flex-item-6 col-header">گفتگو</div>-->
                     <div class="the-flex-item the-flex-item-6">
-                        <button class="btn-no-bordered mb-1" @click="this.commentReview(item.id)"><img
-                            src="/site/images/view_pj.png" style="width:12px; color:orange"/>
-                            مشاهده
-                        </button>
-                    </div>
-                    <div class="the-flex-item the-flex-item-6 col-header">گفتگو</div>
-                    <div class="the-flex-item the-flex-item-7">
                         <button class="btn-no-bordered mb-1" @click="this.chatBox(item.user_id)"><img
                             src="/site/images/view_pj.png" style="width:12px; color:orange"/>
                             مشاهده
                         </button>
                     </div>
-                    <div class="the-flex-item the-flex-item-7 col-header">گفتگو</div>
+                    <div class="the-flex-item the-flex-item-6 col-header"></div>
                     <div class="the-flex-break">
                         <hr>
                     </div>

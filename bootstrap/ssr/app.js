@@ -447,7 +447,7 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<div${ssrRenderAttrs(mergeProps({class: "am-rec-table"}, _attrs))}><div class="the-table the-flex"><div class="the-header the-flex" style="${ssrRenderStyle({
         "background-color": "#f0f0f0",
         "padding": "10px"
-    })}"><div class="the-flex-item the-flex-item-1">استان</div><div class="the-flex-item the-flex-item-2">محصول</div><div class="the-flex-item the-flex-item-3">تاریخ</div><div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div><div class="the-flex-item the-flex-item-5">پاسخ شما</div><div class="the-flex-item the-flex-item-6">گفتگو</div><div class="the-flex-item the-flex-item-7"></div></div><div class="the-body the-flex">`);
+    })}"><div class="the-flex-item the-flex-item-1">استان</div><div class="the-flex-item the-flex-item-2">محصول</div><div class="the-flex-item the-flex-item-3">تاریخ</div><div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div><div class="the-flex-item the-flex-item-5">پاسخ شما</div><div class="the-flex-item the-flex-item-6"></div></div><div class="the-body the-flex">`);
     if (this.count > 0) {
         _push(`<!--[-->`);
         ssrRenderList(this.inquiries, (item) => {
@@ -460,10 +460,7 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-5 col-header">پاسخ شما</div><div class="the-flex-item the-flex-item-6"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
                 "width": "12px",
                 "color": "orange"
-            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-6 col-header">گفتگو</div><div class="the-flex-item the-flex-item-7"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
-                "width": "12px",
-                "color": "orange"
-            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-7 col-header">گفتگو</div><div class="the-flex-break"><hr></div></div>`);
+            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-6 col-header"></div><div class="the-flex-break"><hr></div></div>`);
         });
         _push(`<!--]-->`);
     } else {
