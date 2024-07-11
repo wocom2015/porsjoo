@@ -447,20 +447,17 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<div${ssrRenderAttrs(mergeProps({class: "am-rec-table"}, _attrs))}><div class="the-table the-flex"><div class="the-header the-flex" style="${ssrRenderStyle({
         "background-color": "#f0f0f0",
         "padding": "10px"
-    })}"><div class="the-flex-item the-flex-item-1">استان</div><div class="the-flex-item the-flex-item-2">محصول</div><div class="the-flex-item the-flex-item-3">تاریخ</div><div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div><div class="the-flex-item the-flex-item-5">پاسخ شما</div><div class="the-flex-item the-flex-item-6"></div></div><div class="the-body the-flex">`);
+    })}"><div class="the-flex-item the-flex-item-1">استان</div><div class="the-flex-item the-flex-item-2">محصول</div><div class="the-flex-item the-flex-item-3">تاریخ</div><div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div><div class="the-flex-item the-flex-item-5">گفتگو</div></div><div class="the-body the-flex">`);
     if (this.count > 0) {
         _push(`<!--[-->`);
         ssrRenderList(this.inquiries, (item) => {
             _push(`<div class="the-row the-flex"><div class="the-flex-item the-flex-item-1">${ssrInterpolate(item.provinceName)}</div><div class="the-flex-item the-flex-item-1 col-header">استان</div><div class="the-flex-item the-flex-item-2"><strong>${ssrInterpolate(item.name)}</strong></div><div class="the-flex-item the-flex-item-2 col-header">محصول</div><div class="the-flex-item the-flex-item-3">${ssrInterpolate(item.created)}</div><div class="the-flex-item the-flex-item-3 col-header">تاریخ</div><div class="the-flex-item the-flex-item-4"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
                 "width": "12px",
                 "color": "orange"
-            })}">مشاهده </button></div><div class="the-flex-item the-flex-item-4 col-header">مشاهده مشخصات</div><div class="the-flex-item the-flex-item-5"><button style="${ssrRenderStyle(item.reply_by_user == 0 ? null : {display: "none"})}" class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
+            })}">مشاهده </button></div><div class="the-flex-item the-flex-item-4 col-header">مشاهده مشخصات</div><div class="the-flex-item the-flex-item-5"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
                 "width": "12px",
                 "color": "orange"
-            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-5 col-header">پاسخ شما</div><div class="the-flex-item the-flex-item-6"><button class="btn-no-bordered mb-1"><img src="/site/images/view_pj.png" style="${ssrRenderStyle({
-                "width": "12px",
-                "color": "orange"
-            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-6 col-header"></div><div class="the-flex-break"><hr></div></div>`);
+            })}"> مشاهده </button></div><div class="the-flex-item the-flex-item-5 col-header">گفتگو</div><div class="the-flex-break"><hr></div></div>`);
         });
         _push(`<!--]-->`);
     } else {
