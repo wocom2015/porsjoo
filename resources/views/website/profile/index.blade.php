@@ -186,8 +186,8 @@
                 </h1>
                 <div id="flush-collapseOne"
                      class="accordion-collapse collapse">
-                    <inquiry-sent-component :inquiries="{{$user->inquiries}}"
-                                            :count="{{$user->inquiries->count()}}"
+                    <inquiry-sent-component :inquiries="{{$inquiries}}"
+                                            :count="{{$inquiries->count()}}"
                                             :type="{{$type}}">
                     </inquiry-sent-component>
                     <div class="row mb-2 p-2">

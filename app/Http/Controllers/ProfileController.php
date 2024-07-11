@@ -48,7 +48,9 @@ class ProfileController extends Controller
 
         $collaborators = [];
         $comments = [];
-        $inquiries = Inquiry::where("user_id", $user->id)->orderBy("id", "desc")->limit(10)->offset(0)->get();
+        $inquiries = Inquiry::where("user_id", $user->id)
+            ->where("pay_date", '>=', date("Y-m-d"))
+            ->orderBy("id", "desc")->limit(10)->offset(0)->get();
         if ($inquiries) {
             foreach ($inquiries as $inquiry) {
                 $suppliers = InquirySupplier::where("inquiry_id", $inquiry->id)->get();
@@ -76,7 +78,7 @@ class ProfileController extends Controller
         } else {
             $currentPlan = "";
         }
-        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan", "comments", "type"));
+        return view("website.profile.index", compact("user", "relatedInquiries", "collaborators", "currentPlan", "comments", "type", "inquiries"));
     }
 
     public function edit()

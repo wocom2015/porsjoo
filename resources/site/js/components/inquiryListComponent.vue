@@ -9,7 +9,7 @@
                 <div class="the-flex-item the-flex-item-2">محصول</div>
                 <div class="the-flex-item the-flex-item-3">تاریخ</div>
                 <div class="the-flex-item the-flex-item-4">مشاهده مشخصات</div>
-                <!--                <div class="the-flex-item the-flex-item-5">پاسخ شما</div>-->
+                <div class="the-flex-item the-flex-item-5">پاسخ شما</div>
                 <!--                <div class="the-flex-item the-flex-item-6">پاسخ مشتری</div>-->
                 <div class="the-flex-item the-flex-item-5">گفتگو</div>
                 <!--                <div class="the-flex-item the-flex-item-6"></div>-->
@@ -30,17 +30,15 @@
                         </button>
                     </div>
                     <div class="the-flex-item the-flex-item-4 col-header">مشاهده مشخصات</div>
-                    <!--
-                                        <div class="the-flex-item the-flex-item-5">
-                                            <button v-show="item.reply_by_user==0"
-                                                    class="btn-no-bordered mb-1"
-                                                    @click="this.replyIt(item.id)"><img
-                                                src="/site/images/view_pj.png" style="width:12px; color:orange"/>
-                                                مشاهده
-                                            </button>
-                                        </div>
-                                        <div class="the-flex-item the-flex-item-5 col-header">پاسخ شما</div>
-                    -->
+                    <div class="the-flex-item the-flex-item-5">
+                        <button v-show="item.reply_by_user==0"
+                                class="btn-no-bordered mb-1"
+                                @click="this.replyIt(item.id)"><img
+                            src="/site/images/view_pj.png" style="width:12px; color:orange"/>
+                            مشاهده
+                        </button>
+                    </div>
+                    <div class="the-flex-item the-flex-item-5 col-header">پاسخ شما</div>
                     <!--
                                                             <div class="the-flex-item the-flex-item-6">
                                                                 <button v-show="item.reply_by_user==1"
@@ -53,22 +51,19 @@
                                                             </div>
                                                             <div class="the-flex-item the-flex-item-6 col-header">پاسخ مشتری</div>
                     -->
-                    <div class="the-flex-item the-flex-item-5">
-                        <button class="btn-no-bordered mb-1" @click="this.commentReview(item.id)"><img
+                    <!--                    <div class="the-flex-item the-flex-item-5">-->
+                    <!--                        <button class="btn-no-bordered mb-1" @click="this.commentReview(item.id)"><img-->
+                    <!--                            src="/site/images/view_pj.png" style="width:12px; color:orange"/>-->
+                    <!--                            مشاهده-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
+                    <div class="the-flex-item the-flex-item-6">
+                        <button class="btn-no-bordered mb-1" @click="this.chatBox(item.user_id)"><img
                             src="/site/images/view_pj.png" style="width:12px; color:orange"/>
                             مشاهده
                         </button>
                     </div>
-                    <div class="the-flex-item the-flex-item-5 col-header">گفتگو</div>
-                    <!--
-                                        <div class="the-flex-item the-flex-item-6">
-                                            <button class="btn-no-bordered mb-1" @click="this.chatBox(item.user_id)"><img
-                                                src="/site/images/view_pj.png" style="width:12px; color:orange"/>
-                                                مشاهده
-                                            </button>
-                                        </div>
-                                        <div class="the-flex-item the-flex-item-6 col-header"></div>
-                    -->
+                    <div class="the-flex-item the-flex-item-6 col-header">گفتگو</div>
                     <div class="the-flex-break">
                         <hr>
                     </div>

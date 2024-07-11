@@ -300,24 +300,34 @@
     flex: 0 0 100%;
 }
 .am-rec-table .the-table .the-header.the-flex .the-flex-item.the-flex-item-1, .am-rec-table .the-table .the-row.the-flex .the-flex-item.the-flex-item-1 {
-    flex: 1 1 20%;
+    flex: 1 1 17%;
 }
+
 .am-rec-table .the-table .the-header.the-flex .the-flex-item.the-flex-item-2, .am-rec-table .the-table .the-row.the-flex .the-flex-item.the-flex-item-2 {
-    flex: 1 1 20%;
+    flex: 1 1 17%;
 }
+
 .am-rec-table .the-table .the-header.the-flex .the-flex-item.the-flex-item-3, .am-rec-table .the-table .the-row.the-flex .the-flex-item.the-flex-item-3 {
-    flex: 1 1 20%;
+    flex: 1 1 17%;
 }
+
 .am-rec-table .the-table .the-header.the-flex .the-flex-item.the-flex-item-4, .am-rec-table .the-table .the-row.the-flex .the-flex-item.the-flex-item-4 {
-    flex: 1 1 20%;
+    flex: 1 1 17%;
 }
+
 .am-rec-table .the-table .the-header.the-flex .the-flex-item.the-flex-item-5, .am-rec-table .the-table .the-row.the-flex .the-flex-item.the-flex-item-5 {
-    flex: 1 1 20%;
+    flex: 1 1 16%;
 }
+
+.am-rec-table .the-table .the-header.the-flex .the-flex-item.the-flex-item-6, .am-rec-table .the-table .the-row.the-flex .the-flex-item.the-flex-item-6 {
+    flex: 1 1 16%;
+}
+
 .am-rec-table .the-table .the-header.the-flex .the-flex-break, .am-rec-table .the-table .the-row.the-flex .the-flex-break {
     flex: 0 0 100%;
     display: none;
 }
+
 .am-rec-table .the-table .the-header {
     font-weight: 500;
     font-size: 12px;
@@ -387,18 +397,27 @@
     .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item.the-flex-item-2 {
         flex: 0 0 50%;
     }
+
     .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item.the-flex-item-3 {
         flex: 0 0 50%;
     }
+
     .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item.the-flex-item-4 {
         flex: 0 0 50%;
     }
+
     .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item.the-flex-item-5 {
         flex: 0 0 50%;
     }
+
+    .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item.the-flex-item-6 {
+        flex: 0 0 50%;
+    }
+
     .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item .the-value {
         flex: 0 0 auto;
     }
+
     .am-rec-table .the-table.the-flex .the-body.the-flex .the-row.the-flex .the-flex-item.col-header {
         display: inline-block;
         flex: 0 0 50% !important;
