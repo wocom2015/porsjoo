@@ -50,9 +50,12 @@ class ProfileController extends Controller
         $comments = [];
         $inquiries = Inquiry::where("user_id", $user->id)
             ->where("pay_date", '>=', date("Y-m-d"))
-            ->orderBy("id", "desc")->limit(10)->offset(0)->get();
+            ->orderBy("id", "desc")->/*limit(10)->offset(0)->*/get();
         if ($inquiries) {
             foreach ($inquiries as $inquiry) {
+                $inquiry->repliesCount = $inquiry->replies->count();
+                $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
+                $inquiry->categoryName = ($inquiry->category) ? $inquiry->category->name : "";
                 $suppliers = InquirySupplier::where("inquiry_id", $inquiry->id)->get();
                 if ($suppliers) {
                     foreach ($suppliers as $supplier) {

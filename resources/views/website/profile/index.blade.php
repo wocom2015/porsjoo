@@ -112,7 +112,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    تعداد استعلام های مرتبط با شما
+                    استعلام های مرتبط با شما
                 </strong>
                 <p class="mb-0 stat-num text-center">
                     {{$relatedInquiries->count()}}
@@ -181,7 +181,7 @@
                             data-bs-target="#flush-collapseOne"
                             aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        استعلام های ارسالی شما : {{ $user->inquiries->count() }} مورد
+                        استعلام های ارسالی شما : {{ $inquiries->count() }} مورد
                     </button>
                 </h1>
                 <div id="flush-collapseOne"

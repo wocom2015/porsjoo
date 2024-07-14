@@ -31,7 +31,7 @@
                     </div>
                     <div class="the-flex-item the-flex-item-4 col-header">مشاهده مشخصات</div>
                     <div class="the-flex-item the-flex-item-5">
-                        <button v-show="item.reply_by_user==0"
+                        <button
                                 class="btn-no-bordered mb-1"
                                 @click="this.replyIt(item.id)"><img
                             src="/site/images/view_pj.png" style="width:12px; color:orange"/>

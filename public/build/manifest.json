@@ -11,9 +11,9 @@
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
   "resources/admin/css/app.css": {
-      "file": "assets/app-7c8615bf.css",
-      "isEntry": true,
-      "src": "resources/admin/css/app.css"
+    "file": "assets/app-7c8615bf.css",
+    "isEntry": true,
+    "src": "resources/admin/css/app.css"
   },
   "resources/admin/js/app.js": {
     "file": "assets/app-befa01fe.js",
@@ -29,9 +29,9 @@
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-      "file": "assets/app-c6590dca.css",
-      "isEntry": true,
-      "src": "resources/site/css/app.css"
+    "file": "assets/app-c6590dca.css",
+    "isEntry": true,
+    "src": "resources/site/css/app.css"
   },
   "resources/site/fonts/Qs_Iranyekan bold.ttf": {
     "file": "assets/Qs_Iranyekan bold-3b412787.ttf",
@@ -66,14 +66,14 @@
     "src": "resources/site/js/app.css"
   },
   "resources/site/js/app.js": {
-      "css": [
-          "assets/app-a9d35258.css"
-      ],
-      "file": "assets/app-10bd2a3e.js",
-      "imports": [
-          "_jquery-86bcab04.js"
-      ],
-      "isEntry": true,
-      "src": "resources/site/js/app.js"
+    "css": [
+      "assets/app-a9d35258.css"
+    ],
+    "file": "assets/app-e4583f12.js",
+    "imports": [
+      "_jquery-86bcab04.js"
+    ],
+    "isEntry": true,
+    "src": "resources/site/js/app.js"
   }
 }
