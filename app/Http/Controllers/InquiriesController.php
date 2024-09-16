@@ -67,7 +67,7 @@ class InquiriesController extends Controller
     public function makeHierarchy($categories, $category = null): array
     {
         if ($category == null) {
-            $result = $this->getChildren($categories, 0);
+            $result = $this->getChildren($categories, 1);
         } else {
             $result = $this->getChildren($categories, $category->id);
         }
