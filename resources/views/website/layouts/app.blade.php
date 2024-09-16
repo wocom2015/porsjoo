@@ -13,10 +13,10 @@
         @yield("styles")
         <meta name="csrf-token" content="{{csrf_token()}}"/>
         <!-- append assets of pwa package -->
-        {{--        @laravelPWA--}}
+        @laravelPWA
     </head>
     <body id="app">
-        @include("website.layouts.header")
+    @include("website.layouts.header")
         <section class="farm-area" style="padding-top: 100px">
             <div class="container">
                 @yield("content")

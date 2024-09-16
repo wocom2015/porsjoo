@@ -45,7 +45,9 @@ class InquiriesController extends Controller
             }
         }
 
-        $categories = Category::where("id", "!=", 1)->get();
+        $x = Category::where("id", "!=", 1)->get();
+        $categories = $this->makeHierarchy($x->all());
+        $categories = collect($categories);
         $user = User::findOrFail(auth()->user()->id);
         if ($user->pj_available <= 0) {
             return view('website.inquiry.charge');
@@ -61,6 +63,36 @@ class InquiriesController extends Controller
 
         return view("website.inquiry.index", compact("categories", "provinces", "units"));
     }
+
+    public function makeHierarchy($categories, $category = null): array
+    {
+        if ($category == null) {
+            $result = $this->getChildren($categories, 0);
+        } else {
+            $result = $this->getChildren($categories, $category->id);
+        }
+        foreach ($result as $x) {
+            $temp = $this->makeHierarchy($categories, $x);
+            if (sizeof($temp) != 0) {
+                $x->children = $temp;
+            }
+        }
+        return $result;
+    }
+
+    public function getChildren($categories, int $parentId): array
+    {
+        $result = array();
+
+        foreach ($categories as $category) {
+            if ($category->parent_id == $parentId) {
+                array_push($result, $category);
+            }
+        }
+
+        return $result;
+    }
+
 
     /************************************************************************
      * @param Request $request

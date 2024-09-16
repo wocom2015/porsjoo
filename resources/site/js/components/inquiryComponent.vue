@@ -24,10 +24,19 @@
             </label>
         </div>
         <div class="col-lg-9 col-sm-12 mb-3">
-            <select class="form-control" name="category_id">
-                <option value="">-- انتخاب کنید --</option>
-                <option v-for="item in categories" :value="item.id">{{ item.name }}</option>
-            </select>
+            <treeselect v-model="nullValue"
+                        :multiple="false"
+                        :normalizer="normalizer"
+                        :options="categories"
+                        name="category_id"
+                        placeholder="&#45;&#45; انتخاب کنید &#45;&#45;">
+            </treeselect>
+            <!--
+                        <select class="form-control" name="category_id">
+                            <option value="">&#45;&#45; انتخاب کنید &#45;&#45;</option>
+                            <option v-for="item in categories" :value="item.id">{{ item.name }}</option>
+                        </select>
+            -->
         </div>
         <div class="col-lg-12 col-sm-12 mb-3">
             <textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea>
@@ -215,11 +224,14 @@
 
 <script>
 import DatePicker from 'vue3-persian-datetime-picker'
+import Treeselect from 'vue3-treeselect'
+import 'vue3-treeselect/dist/vue3-treeselect.css'
+
 
 export default {
     name: "inquiryComponent.vue",
     props: ['provinces', 'units', 'captcha', 'categories'],
-    components: {DatePicker},
+    components: {DatePicker, Treeselect/*,VueTreeselect.Treeselect*/},
     data() {
         return {
             province_id: 0,
@@ -229,6 +241,7 @@ export default {
             shI: 1,
             submitted: 0,
             isFreeze: false,
+            nullValue: null
         }
     },
     computed: {
@@ -237,6 +250,13 @@ export default {
         }
     },
     methods: {
+        normalizer(node) {
+            return {
+                id: node.id,
+                label: node.name,
+                children: node.children,
+            }
+        },
         fetchCities() {
             if (this.$refs.province.value > 0) {
                 this.province_id = this.$refs.province.value;

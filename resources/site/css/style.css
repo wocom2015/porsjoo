@@ -219,6 +219,20 @@ button {
     font-size: 12px;
 }
 
+.default-outline-btn {
+    color: #D64012 !important;
+    background-color: #fff !important;
+    /*border: 2px solid #D64012;*/
+    /*border-radius: 10px;*/
+}
+
+.default-outline-btn:hover {
+    color: #fff !important;
+    background-color: #D64012 !important;
+    /*border: 2px solid #D64012;*/
+    /*border-radius: 10px;*/
+}
+
 .btn-no-bordered {
     border: none;
     background-color: unset;
