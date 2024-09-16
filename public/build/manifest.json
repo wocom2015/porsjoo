@@ -29,7 +29,7 @@
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-      "file": "assets/app-6b580efd.css",
+      "file": "assets/app-0bc9b886.css",
       "isEntry": true,
       "src": "resources/site/css/app.css"
   },
@@ -69,7 +69,7 @@
       "css": [
           "assets/app-36de107f.css"
       ],
-      "file": "assets/app-9cf51e11.js",
+      "file": "assets/app-9143d7bb.js",
       "imports": [
           "_jquery-86bcab04.js"
       ],

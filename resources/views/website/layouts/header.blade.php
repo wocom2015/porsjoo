@@ -8,9 +8,11 @@
         <li style="float: right">
             <a href="/"> خانه </a>
         </li>
-        <li style="float: right">
-            <a href="/inquiry/request" class="active"> ثبت pJ </a>
-        </li>
+        <!--
+                <li style="float: right">
+                    <a href="/inquiry/request" class="active"> ثبت pJ </a>
+                </li>
+        -->
         <li style="float: right">
             <a href="/plans"> تعرفه </a>
         </li>
@@ -47,15 +49,13 @@
         @endauth
 
         @guest
-            <div class="menu">
+            <div class="menu m-1">
                 <a href="/signin" class="login-btn">ورود / ثبت نام</a>
             </div>
         @endguest
-        @auth
-            <div class="text-center">
-                <a href="/inquiry/request" class="default-btn default-outline-btn"> ثبت درخواست جدید </a>
-            </div>
-        @endauth
+        <div class="text-center header-m2">
+            <a href="/inquiry/request" class="default-btn default-outline-btn"> ثبت درخواست جدید </a>
+        </div>
     </div>
 
 </nav>

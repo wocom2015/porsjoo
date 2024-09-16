@@ -6194,7 +6194,22 @@ footer ul li a {
 }
 
 .header-m {
-    margin-top: -10px
+    margin-top: -10px;
+}
+
+.header-m2 {
+    top: 15px;
+    position: absolute;
+    left: 280px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .header-m2 {
+        top: 15px;
+        position: absolute;
+        left: 150px;
+    }
 }
 
 .accordion-button, .accordion-button:focus {

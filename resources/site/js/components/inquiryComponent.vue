@@ -29,6 +29,7 @@
                         :normalizer="normalizer"
                         :options="categories"
                         name="category_id"
+                        ref="treeselect"
                         placeholder="&#45;&#45; انتخاب کنید &#45;&#45;">
             </treeselect>
             <!--
@@ -250,6 +251,15 @@ export default {
         }
     },
     methods: {
+        setExpandLevel() {
+            const {treeselect} = this.$refs
+
+            treeselect.traverseAllNodesByIndex(node => {
+                if (node.isBranch) {
+                    node.isExpanded = true;
+                }
+            })
+        },
         normalizer(node) {
             return {
                 id: node.id,
@@ -302,6 +312,7 @@ export default {
     },
     mounted() {
         this.fetchCities(1)
+        this.setExpandLevel();
     }
 
 }

@@ -161,40 +161,48 @@ const _sfc_main$5 = {
             isFreeze: false,
             nullValue: null
         };
-  },
-  computed: {
-    isDisabled() {
-      return this.isFreeze;
-    }
-  },
-  methods: {
-      normalizer(node) {
-          return {
-              id: node.id,
-              label: node.name,
-              children: node.children
-          };
-      },
-      fetchCities() {
-          if (this.$refs.province.value > 0) {
-              this.province_id = this.$refs.province.value;
-              var self = this;
-              axios(
-                  {
-                      method: "post",
-                      url: "/cities",
-                      data: {p: self.province_id}
-                  }
-        ).then(function(response) {
-          self.cities = response.data;
-        });
-      }
     },
-    submit() {
-      this.isFreeze = true;
-      var self = this;
-      var fData = new FormData(document.getElementById("frmPJ"));
-      this.errors = "";
+    computed: {
+        isDisabled() {
+            return this.isFreeze;
+        }
+    },
+    methods: {
+        setExpandLevel() {
+            const {treeselect} = this.$refs;
+            treeselect.traverseAllNodesByIndex((node) => {
+                if (node.isBranch) {
+                    node.isExpanded = true;
+                }
+            });
+        },
+        normalizer(node) {
+            return {
+                id: node.id,
+                label: node.name,
+                children: node.children
+            };
+        },
+        fetchCities() {
+            if (this.$refs.province.value > 0) {
+                this.province_id = this.$refs.province.value;
+                var self = this;
+                axios(
+                    {
+                        method: "post",
+                        url: "/cities",
+                        data: {p: self.province_id}
+                    }
+                ).then(function (response) {
+                    self.cities = response.data;
+                });
+            }
+        },
+        submit() {
+            this.isFreeze = true;
+            var self = this;
+            var fData = new FormData(document.getElementById("frmPJ"));
+            this.errors = "";
       this.message = "";
       axios(
         {
@@ -216,7 +224,8 @@ const _sfc_main$5 = {
     }
   },
   mounted() {
-    this.fetchCities(1);
+      this.fetchCities(1);
+      this.setExpandLevel();
   }
 };
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
@@ -233,11 +242,12 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_treeselect, {
         modelValue: $data.nullValue,
         "onUpdate:modelValue": ($event) => $data.nullValue = $event,
-        name: "category_id",
         multiple: false,
         normalizer: $options.normalizer,
-        placeholder: "-- انتخاب کنید --",
-        options: $props.categories
+        options: $props.categories,
+        name: "category_id",
+        ref: "treeselect",
+        placeholder: "-- انتخاب کنید --"
     }, null, _parent));
     _push(`</div><div class="col-lg-12 col-sm-12 mb-3"><textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> چه زمانی قصد خرید دارید؟ <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
     _push(ssrRenderComponent(_component_date_picker, {
@@ -250,16 +260,16 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_date_picker, {
         "aria-required": "true",
         name: "close_date"
-  }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> استان <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
-  ssrRenderList($props.provinces, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
-  });
-  _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> شهری که مورد نیاز است <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control select2" name="city_id"><!--[-->`);
-  ssrRenderList($data.cities, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
-  });
-  _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div>`);
+    }, null, _parent));
+    _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> استان <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
+    ssrRenderList($props.provinces, (item) => {
+        _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
+    });
+    _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> شهری که مورد نیاز است <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control select2" name="city_id"><!--[-->`);
+    ssrRenderList($data.cities, (item) => {
+        _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
+    });
+    _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div>`);
   if (this.shI === 1) {
     _push(`<div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="cheque_count" placeholder="تعداد چک" type="text"></div>`);
   } else {
