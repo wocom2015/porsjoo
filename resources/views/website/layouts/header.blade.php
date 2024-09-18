@@ -54,7 +54,8 @@
             </div>
         @endguest
         <div class="text-center header-m2">
-            <a href="/inquiry/request" class="default-btn default-outline-btn"> ثبت درخواست جدید </a>
+            <a href="/inquiry/request" class="default-btn default-outline-btn"
+               style="padding:3px 10px 3px 10px!important">درخواست جدید</a>
         </div>
     </div>
 
