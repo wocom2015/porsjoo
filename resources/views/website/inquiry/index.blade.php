@@ -5,7 +5,7 @@
     <p>شما می توانید از طریق pj ها همزمان از چندین فروشنده استعلام قیمت بگیرید</p>
 
 
-    @if(!\App\Models\User::profileCompleted(\Illuminate\Support\Facades\Auth::user()->id))
+    @if(auth()->user() != null and !\App\Models\User::profileCompleted(\Illuminate\Support\Facades\Auth::user()->id))
         <div class="row">
             <div class="col-lg-4 col-xs-12 pt-4">
                 جهت ثبت اولین PJ ابتدا پروفایل خود را تکمیل کنید
@@ -16,8 +16,12 @@
                 </a>
             </div>
         </div>
-
     @else
-        <inquiry-component :categories="{{$categories}}" :provinces="{{$provinces}}" :units="{{$units}}"></inquiry-component>
+        {{--        v-bind:entity="{{json_encode($data == null ? new stdClass() : $data )}}"--}}
+        <inquiry-component :categories="{{$categories}}"
+                           :provinces="{{$provinces}}"
+                           :units="{{$units}}"
+                           v-bind:entity="{{json_encode($data)}}">
+        </inquiry-component>
     @endif
 @endsection

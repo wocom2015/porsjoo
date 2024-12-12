@@ -1,27 +1,27 @@
 {
-  "_jquery-86bcab04.js": {
-    "file": "assets/jquery-86bcab04.js"
-  },
-  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
-    "file": "assets/bootstrap-icons-999550fa.woff",
-    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
-  },
-  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
-    "file": "assets/bootstrap-icons-cfe45b98.woff2",
-    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
-  },
-  "resources/admin/css/app.css": {
+    "_jquery-305d92ea.js": {
+        "file": "assets/jquery-305d92ea.js"
+    },
+    "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+        "file": "assets/bootstrap-icons-999550fa.woff",
+        "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+    },
+    "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+        "file": "assets/bootstrap-icons-cfe45b98.woff2",
+        "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+    },
+    "resources/admin/css/app.css": {
     "file": "assets/app-7c8615bf.css",
     "isEntry": true,
     "src": "resources/admin/css/app.css"
   },
   "resources/admin/js/app.js": {
-    "file": "assets/app-befa01fe.js",
-    "imports": [
-      "_jquery-86bcab04.js"
-    ],
-    "isEntry": true,
-    "src": "resources/admin/js/app.js"
+      "file": "assets/app-82401de6.js",
+      "imports": [
+          "_jquery-305d92ea.js"
+      ],
+      "isEntry": true,
+      "src": "resources/admin/js/app.js"
   },
   "resources/admin/sass/app.scss": {
     "file": "assets/app-7fb6cc3b.css",
@@ -29,7 +29,7 @@
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-      "file": "assets/app-80046081.css",
+      "file": "assets/app-d4dcd8a7.css",
       "isEntry": true,
       "src": "resources/site/css/app.css"
   },
@@ -69,9 +69,9 @@
       "css": [
           "assets/app-36de107f.css"
       ],
-      "file": "assets/app-9143d7bb.js",
+      "file": "assets/app-6b7857dc.js",
       "imports": [
-          "_jquery-86bcab04.js"
+          "_jquery-305d92ea.js"
       ],
       "isEntry": true,
       "src": "resources/site/js/app.js"

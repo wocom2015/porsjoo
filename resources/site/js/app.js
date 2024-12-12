@@ -6,6 +6,8 @@
 
 import './bootstrap';
 import {createApp} from 'vue/dist/vue.esm-bundler';
+import circleCounterComponent from './components/circleCounterComponent.vue';
+import homeStatisticsComponent from './components/homeStatisticsComponent.vue';
 import searchComponent from './components/searchComponent.vue';
 import dateComponent from './components/dateComponent.vue';
 import inquiryComponent from './components/inquiryComponent.vue';
@@ -19,6 +21,8 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 const app = createApp({
     components: {
+        circleCounterComponent,
+        homeStatisticsComponent,
         searchComponent,
         dateComponent,
         inquiryComponent,

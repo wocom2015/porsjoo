@@ -13,14 +13,17 @@
             @endif
             <form method="post" action="{{route("users.login")}}">
                 @csrf
+                <input type="hidden" name="redirect" value="{{ app('request')->input('redirect') }}">
                 <div class="row">
                     <div class="col-lg-12">
                         <label>{{__("p.enter_mobile_or_email")}}</label>
-                        <div class="form-group"><input type="text" name="mobile" value="{{old("mobile")}}" class="form-control text-left"/></div>
+                        <div class="form-group"><input type="text" name="mobile" value="{{old("mobile")}}"
+                                                       class="form-control text-left"/></div>
                     </div>
                     <div class="col-lg-12">
                         <label>{{__("p.password")}}</label>
-                        <div class="form-group"><input type="password" name="password" value="{{old("password")}}" class="form-control text-left" /></div>
+                        <div class="form-group"><input type="password" name="password" value="{{old("password")}}"
+                                                       class="form-control text-left"/></div>
                     </div>
 
                     <div class="col-lg-12 text-right">

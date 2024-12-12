@@ -7,6 +7,7 @@ use App\Models\Inquiry;
 use App\Models\slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use stdClass;
 
 class HomeController extends Controller
 {
@@ -32,7 +33,13 @@ class HomeController extends Controller
             $pj->closeDate = ($pj->close_date != '') ? jdate($pj->close_date)->format('%A, %d %B %Y') : '';
         }
         $slides = Slide::all();
-        return view("website.home.index", compact("lastPJ", "slides"));
+        $statistics = new StdClass();
+        $statistics->statistics_industries = (int)conf("statistics_industries");
+        $statistics->statistics_customers = (int)conf("statistics_customers");
+        $statistics->statistics_inquiries = (int)conf("statistics_inquiries");
+        $statistics->statistics_success_industries = (int)conf("statistics_success_industries");
+        $aboutUs = conf("home_about_us_text");
+        return view("website.home.index", compact("lastPJ", "slides", "statistics", "aboutUs"));
     }
 
     public function page($title)

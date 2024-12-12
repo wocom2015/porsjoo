@@ -51,6 +51,13 @@
                                 <span class="nav-text">{{__("p.contactus_settings")}}</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab-4" data-toggle="tab" href="#tab_7"
+                               aria-controls="profile">
+                                <span class="nav-icon"><i class="flaticon2-analytics-2"></i></span>
+                                <span class="nav-text">{{__("p.counter_settings")}}</span>
+                            </a>
+                        </li>
 
                     </ul>
                     <div class="tab-content mt-5">
@@ -135,6 +142,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
+                                        <label>{{__("p.home_about_us_text")}}</label>
+                                        <textarea class="form-control" name="home_about_us_text"
+                                                  placeholder="{{__("p.home_about_us_text")}}"> {{(isset($configs['home_about_us_text']))?$configs['home_about_us_text']:''}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
                                         <label>{{__("p.about_us_text")}}</label>
                                         <textarea class="form-control" name="about_us_text"
                                                   placeholder="{{__("p.about_us_text")}}"> {{(isset($configs['about_us_text']))?$configs['about_us_text']:''}}</textarea>
@@ -209,6 +225,46 @@
                                         <label>{{__("p.call_hours")}}</label>
                                         <input type="text" class="form-control" name="call_hours"
                                                value="{{(isset($configs['call_hours']))?$configs['call_hours']:''}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_7" role="tabpanel" aria-labelledby="sms-tab-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>{{__("p.statistics_industries")}}</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="statistics_industries"
+                                               value="{{(isset($configs['statistics_industries']))?$configs['statistics_industries']:''}}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>{{__("p.statistics_customers")}}</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="statistics_customers"
+                                               value="{{(isset($configs['statistics_customers']))?$configs['statistics_customers']:''}}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>{{__("p.statistics_inquiries")}}</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="statistics_inquiries"
+                                               value="{{(isset($configs['statistics_inquiries']))?$configs['statistics_inquiries']:''}}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>{{__("p.statistics_success_industries")}}</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="statistics_success_industries"
+                                               value="{{(isset($configs['statistics_success_industries']))?$configs['statistics_success_industries']:''}}">
                                     </div>
                                 </div>
                             </div>

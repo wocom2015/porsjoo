@@ -74,6 +74,9 @@ class UsersController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        if ($request->get('redirect') !== null) {
+            return redirect($request->get('redirect'));
+        }
         return redirect('/profile');
     }
 

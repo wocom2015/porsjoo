@@ -42,23 +42,24 @@ Route::get('/page/{title}', [HomeController::class, 'page']);
 Route::get('/payment/callback', [PlansController::class, 'callback']);
 Route::post('/payment/callback', [PlansController::class, 'callback']);
 
-Route::get('/plans' , [PlansController::class , 'index']);
+Route::get('/plans', [PlansController::class, 'index']);
+
+Route::post('/cities', [CitiesController::class, 'index']);
+Route::get('/inquiry/request', [InquiriesController::class, 'index'])->name('inquiry-form');
+Route::post('/inquiry/create', [InquiriesController::class, 'store'])->name('inquiry');
 
 Route::middleware('auth_user')->group(function () {
-    Route::get('/inquiry/request', [InquiriesController::class , 'index'])->name('inquiry-form');
-    Route::post('/inquiry/create', [InquiriesController::class , 'store'])->name('inquiry');
-    Route::post('/inquiry/feedback', [InquiriesController::class , 'feedback'])->name('inquiry.feedback');
-    Route::get('/inquiry/archive', [InquiriesController::class , 'show'])->name('archive');
-    Route::post('/inquiry/item', [InquiriesController::class , 'item']);
-    Route::post('/inquiry/reply', [InquiriesController::class , 'reply']);
-    Route::post('/inquiry/reply-info', [InquiriesController::class , 'reply_info']);
-    Route::post('/inquiry/replies', [InquiriesController::class , 'replies']);
-    Route::post('/inquiry/supplier', [InquiriesController::class , 'supplier']);
-    Route::post('/inquiry/comment', [InquiriesController::class , 'comment']);
-    Route::get('/inquiry/report', [InquiriesController::class , 'report']);
-    Route::post('/inquiry/comment-info', [InquiriesController::class , 'comment_info']);
+    Route::post('/inquiry/feedback', [InquiriesController::class, 'feedback'])->name('inquiry.feedback');
+    Route::get('/inquiry/archive', [InquiriesController::class, 'show'])->name('archive');
+    Route::post('/inquiry/item', [InquiriesController::class, 'item']);
+    Route::post('/inquiry/reply', [InquiriesController::class, 'reply']);
+    Route::post('/inquiry/reply-info', [InquiriesController::class, 'reply_info']);
+    Route::post('/inquiry/replies', [InquiriesController::class, 'replies']);
+    Route::post('/inquiry/supplier', [InquiriesController::class, 'supplier']);
+    Route::post('/inquiry/comment', [InquiriesController::class, 'comment']);
+    Route::get('/inquiry/report', [InquiriesController::class, 'report']);
+    Route::post('/inquiry/comment-info', [InquiriesController::class, 'comment_info']);
     Route::get('/inquiry/details/{id}/{name}', [InquiriesController::class , 'details']);
-    Route::post('/cities', [CitiesController::class , 'index']);
     Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class , 'edit'])->name('profile.edit');
     Route::post('/profile/edit', [ProfileController::class , 'update'])->name('profile.update');

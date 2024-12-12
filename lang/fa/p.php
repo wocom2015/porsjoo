@@ -84,11 +84,13 @@ return [
     'active' => 'فعال',
     'inactive' => 'غیرفعال',
     'edit_plan' => 'ویرایش طرح',
+    'home_about_us_text' => 'متن درباره ما (صفحه اصلی)',
     'about_us_text' => 'متن درباره ما',
     'use_help_text' => 'متن راهنمای استفاده',
     'partner_with_us_text' => 'متن مشارکت با ما',
     'pages_settings' => 'تنظیمات متون',
     'contactus_settings' => 'تنظیمات تماس با ما',
+    'counter_settings' => 'تنظیمات آمار',
     'contact_us_text' => 'متن تماس با ما',
     'address' => 'آدرس',
     'phone_number' => 'شماره تماس',
@@ -135,5 +137,10 @@ return [
     'rules_text' => 'متن قوانین و مقررات',
     'number_of_users_involved_inquiry' => 'تعداد افرادی که در این pj حضور دارند',
     'name_and_family' => 'نام و  نام خانوادگی',
-    'site_definitions' => 'تعاریف سایت'
+    'site_definitions' => 'تعاریف سایت',
+    'statistics_industries' => 'تنوع صنایع',
+    'statistics_customers' => 'تعداد مشتریان',
+    'statistics_inquiries' => 'کل استعلام ها',
+    'statistics_success_industries' => 'استعلام های موفق',
+
 ];

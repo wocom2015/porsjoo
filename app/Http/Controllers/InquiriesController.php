@@ -27,30 +27,34 @@ class InquiriesController extends Controller
     /************************************************************************
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-    public function index()
+    public function index(Request $request)
     {
         //checking last
 
-        $lastPJs = Inquiry::where("user_id", auth()->user()->id)->where("bought_answered", 0)->orderBy("id", "desc")->latest()->get();
+        if (auth()->user() != null) {
+            $lastPJs = Inquiry::where("user_id", auth()->user()->id)->where("bought_answered", 0)->orderBy("id", "desc")->latest()->get();
 
-        foreach ($lastPJs as $lastPJ) {
-            if ($lastPJ->pay_date > now()) continue;
-            if (!empty($lastPJ) and $lastPJ->bought_answered == 0) {
-                $vendors = $lastPJ->suppliers;
-                foreach ($vendors as $v) {
-                    $x = $v->user;
-                    $x = null;
+            foreach ($lastPJs as $lastPJ) {
+                if ($lastPJ->pay_date > now()) continue;
+                if (!empty($lastPJ) and $lastPJ->bought_answered == 0) {
+                    $vendors = $lastPJ->suppliers;
+                    foreach ($vendors as $v) {
+                        $x = $v->user;
+                        $x = null;
+                    }
+                    return view("website.inquiry.feedback", compact("lastPJ", "vendors"));
                 }
-                return view("website.inquiry.feedback", compact("lastPJ", "vendors"));
             }
         }
 
         $x = Category::where("id", "!=", 1)->get();
         $categories = $this->makeHierarchy($x->all());
         $categories = collect($categories);
-        $user = User::findOrFail(auth()->user()->id);
-        if ($user->pj_available <= 0) {
-            return view('website.inquiry.charge');
+        if (auth()->user() != null) {
+            $user = User::findOrFail(auth()->user()->id);
+            if ($user->pj_available <= 0) {
+                return view('website.inquiry.charge');
+            }
         }
 
         $provinces = Province::all();
@@ -60,8 +64,8 @@ class InquiriesController extends Controller
         $secondNumber = rand(1, 9);
         $sum = $firstNumber + $secondNumber;
         session()->put("captcha_sum", $sum);
-
-        return view("website.inquiry.index", compact("categories", "provinces", "units"));
+        $data = $request->session()->remove('inquiry_request');
+        return view("website.inquiry.index", compact("data", "categories", "provinces", "units"));
     }
 
     public function makeHierarchy($categories, $category = null): array
@@ -100,12 +104,6 @@ class InquiriesController extends Controller
      */
     public function store(Request $request)
     {
-        //1. checking that pj_available is enough
-        $pj_available = auth()->user()->pj_available;
-
-        if ($pj_available <= 0) {
-            return reply("error", [__("messages.not_enough_pj")]);
-        }
 
         //2. validating data
         $validator = Validator::make($request->all(), [
@@ -127,6 +125,42 @@ class InquiriesController extends Controller
         if ($request->close_date > $request->pay_date) {
             return reply('error', [__("messages.close_date_smaller_than_delivery_date")]);
         }
+
+        if (auth()->user() == null) {
+            $data = [
+                'name' => $request->name,
+//                'user_id' => auth()->user()->id,
+                'category_id' => $request->category_id,
+                'count' => $request->count,
+                'unit_id' => $request->unit_id,
+                'description' => $request->description,
+                'buy_date' => ($request->buy_date != '') ? $request->buy_date : null,
+                'pay_date' => ($request->pay_date != '') ? $request->pay_date : null,
+                'close_date' => ($request->close_date != '') ? $request->close_date : null,
+                "province_id" => $request->province_id,
+                "city_id" => $request->city_id,
+                "price" => $request->price,
+                "cheque_enable" => $request->cheque_enable,
+                "cheque_count" => $request->cheque_count,
+                "cash_percent" => $request->cash_percent,
+                "sample_enable" => $request->sample_enable,
+                "guarantee_enable" => $request->guarantee_enable,
+                "multiple_supplier" => $request->multiple_supplier,
+                "move_conditions" => $request->move_conditions,
+                "vendor_introduce_name" => $request->vendor_introduce_name,
+                "vendor_introduce_mobile" => $request->vendor_introduce_mobile,
+            ];
+            $request->session()->put('inquiry_request', $data);
+            return response('Unauthorized.', 401);
+        }
+
+        //1. checking that pj_available is enough
+        $pj_available = auth()->user()->pj_available;
+
+        if ($pj_available <= 0) {
+            return reply("error", [__("messages.not_enough_pj")]);
+        }
+
         $data = [
             'name' => $request->name,
             'user_id' => auth()->user()->id,

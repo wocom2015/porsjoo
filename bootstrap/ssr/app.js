@@ -1,31 +1,144 @@
 import "bootstrap";
 import axios$1 from "axios";
-import { createApp } from "vue/dist/vue.esm-bundler";
-import { mergeProps, useSSRContext, resolveComponent, withCtx, createVNode, openBlock, createBlock, Fragment, renderList } from "vue";
-import { ssrRenderAttrs, ssrRenderStyle, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass } from "vue/server-renderer";
+import {createApp} from "vue/dist/vue.esm-bundler";
+import AnimatedCounter from "vue-animated-counter";
+import {
+    resolveComponent,
+    useSSRContext,
+    mergeProps,
+    withCtx,
+    createVNode,
+    openBlock,
+    createBlock,
+    Fragment,
+    renderList
+} from "vue";
+import {
+    ssrRenderAttrs,
+    ssrRenderComponent,
+    ssrRenderStyle,
+    ssrRenderList,
+    ssrInterpolate,
+    ssrRenderAttr,
+    ssrIncludeBooleanAttr,
+    ssrLooseContain,
+    ssrLooseEqual,
+    ssrRenderClass
+} from "vue/server-renderer";
 import DatePicker from "vue3-persian-datetime-picker";
 import Treeselect from "vue3-treeselect";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import {Carousel, Slide, Pagination, Navigation} from "vue3-carousel";
 import jQuery from "jquery";
+
 window.axios = axios$1;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 const _export_sfc = (sfc, props) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target[key] = val;
-  }
-  return target;
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+        target[key] = val;
+    }
+    return target;
 };
+const _sfc_main$9 = {
+    name: "circleCounterComponent.vue",
+    components: {AnimatedCounter},
+    data() {
+        return {};
+    },
+    props: {
+        class: {
+            type: String,
+            default: ""
+        },
+        duration: {
+            type: Number,
+            default: 15
+        },
+        value: {
+            type: Number,
+            default: 100
+        }
+    },
+    methods: {}
+};
+
+function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+    const _component_AnimatedCounter = resolveComponent("AnimatedCounter");
+    _push(`<div${ssrRenderAttrs(_attrs)}>`);
+    _push(ssrRenderComponent(_component_AnimatedCounter, {
+        value: $props.value,
+        duration: $props.duration,
+        class: "class"
+    }, null, _parent));
+    _push(`</div>`);
+}
+
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
+    const ssrContext = useSSRContext();
+    (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/site/js/components/circleCounterComponent.vue");
+    return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+};
+const circleCounterComponent = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
+const _sfc_main$8 = {
+    name: "homeStatisticsComponent.vue",
+    props: ["entity"],
+    components: {circleCounterComponent},
+    data() {
+        return {};
+    },
+    computed: {},
+    methods: {},
+    mounted() {
+    }
+};
+
+function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+    const _component_circle_counter_component = resolveComponent("circle-counter-component");
+    _push(`<div${ssrRenderAttrs(mergeProps({class: "container-fluid"}, _attrs))}><div class="row"><div class="col-6 text-center">`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_industries,
+        duration: "10",
+        class: "counter"
+    }, null, _parent));
+    _push(`</div><div class="col-6 text-center">`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_customers,
+        duration: "10",
+        class: "counter"
+    }, null, _parent));
+    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center"> تنوع صنایع </div><div class="col-6 text-center"> تعداد مشتریان </div></div><div class="row" style="${ssrRenderStyle({"padding": "20px 0 20px 0"})}"></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center">`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_inquiries,
+        duration: "10",
+        class: "counter"
+    }, null, _parent));
+    _push(`</div><div class="col-6 text-center">`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_success_industries,
+        duration: "10",
+        class: "counter"
+    }, null, _parent));
+    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center"> کل استعلام ها </div><div class="col-6 text-center"> استعلام های موفق </div></div></div>`);
+}
+
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
+    const ssrContext = useSSRContext();
+    (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/site/js/components/homeStatisticsComponent.vue");
+    return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+};
+const homeStatisticsComponent = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$8]]);
 const _sfc_main$7 = {
-  name: "searchComponent.vue",
-  props: ["lastpj"],
-  data() {
-    return {
-      inquiries: [],
-      result: false,
-      phrase: "",
-      searchResult: [],
-      searchLimit: 5,
+    name: "searchComponent.vue",
+    props: ["lastpj"],
+    data() {
+        return {
+            inquiries: [],
+            result: false,
+            phrase: "",
+            searchResult: [],
+            searchLimit: 5,
       offset: 0,
       showMore: false,
       catId: 0
@@ -143,24 +256,47 @@ _sfc_main$6.setup = (props, ctx) => {
 const dateComponent = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6]]);
 const vue3Treeselect = "";
 const _sfc_main$5 = {
-  name: "inquiryComponent.vue",
-  props: ["provinces", "units", "captcha", "categories"],
-  components: {
-    DatePicker,
-    Treeselect
-    /*,VueTreeselect.Treeselect*/
-  },
-  data() {
-    return {
-      province_id: 0,
-      message: "",
-      errors: "",
-      cities: [],
-      shI: 1,
-      submitted: 0,
-      isFreeze: false,
-      nullValue: null
-    };
+    name: "inquiryComponent.vue",
+    props: ["provinces", "units", "captcha", "categories", "entity"],
+    components: {
+        DatePicker,
+        Treeselect
+        /*,VueTreeselect.Treeselect*/
+    },
+    data() {
+        return {
+            province_id: 0,
+            message: "",
+            errors: "",
+            cities: [],
+            shI: 1,
+            submitted: 0,
+            isFreeze: false,
+            nullValue: null,
+            the_data: {
+                name: "abouzar",
+                count: null,
+                unit_id: null,
+                category_id: this.entity === null ? null : this.entity.category_id,
+                description: "",
+                buy_date: null,
+                pay_date: null,
+                close_date: null,
+                province_id: null,
+                city_id: null,
+                price: null,
+                cheque_enable: "1",
+                cheque_count: null,
+                cash_percent: null,
+                sample_enable: 0,
+                guarantee_enable: 0,
+                visit_place_enable: 0,
+                picture: null,
+                move_conditions: "buyer",
+                vendor_introduce_name: null,
+                vendor_introduce_mobile: null
+            }
+        };
   },
   computed: {
     isDisabled() {
@@ -176,26 +312,55 @@ const _sfc_main$5 = {
         }
       });
     },
-    normalizer(node) {
-      return {
-        id: node.id,
-        label: node.name,
-        children: node.children
-      };
-    },
-    fetchCities() {
-      if (this.$refs.province.value > 0) {
-        this.province_id = this.$refs.province.value;
-        var self = this;
-        axios(
-          {
-            method: "post",
-            url: "/cities",
-            data: { p: self.province_id }
-          }
-        ).then(function(response) {
-          self.cities = response.data;
-        });
+      normalizer(node) {
+          return {
+              id: node.id,
+              label: node.name,
+              children: node.children
+          };
+      },
+      setDefaults() {
+          if (this.entity == null)
+              return;
+          this.the_data.name = this.entity.name;
+          this.the_data.count = this.entity.count;
+          this.the_data.unit_id = this.entity.unit_id;
+          this.the_data.category_id = this.entity.category_id;
+          this.the_data.description = this.entity.description;
+          this.the_data.buy_date = this.entity.buy_date;
+          this.the_data.pay_date = this.entity.pay_date;
+          this.the_data.close_date = this.entity.close_date;
+          this.the_data.province_id = this.entity.province_id;
+          this.the_data.city_id = this.entity.city_id;
+          this.the_data.price = this.entity.price;
+          this.the_data.cheque_enable = this.entity.cheque_enable;
+          this.the_data.cheque_count = this.entity.cheque_count;
+          this.the_data.cash_percent = this.entity.cash_percent;
+          this.the_data.sample_enable = this.entity.sample_enable;
+          this.the_data.guarantee_enable = this.entity.guarantee_enable;
+          this.the_data.visit_place_enable = this.entity.visit_place_enable;
+          this.the_data.picture = this.entity.picture;
+          this.the_data.move_conditions = this.entity.move_conditions;
+          this.the_data.vendor_introduce_name = this.entity.vendor_introduce_name;
+          this.the_data.vendor_introduce_mobile = this.entity.vendor_introduce_mobile;
+      },
+      fetchCities(flag = true) {
+          if (this.$refs.province.value > 0) {
+              if (flag === true) {
+                  this.province_id = this.$refs.province.value;
+              } else {
+                  this.province_id = this.the_data.province_id;
+              }
+              var self = this;
+              axios(
+                  {
+                      method: "post",
+                      url: "/cities",
+                      data: {p: self.province_id}
+                  }
+              ).then(function (response) {
+                  self.cities = response.data;
+              });
       }
     },
     submit() {
@@ -219,68 +384,83 @@ const _sfc_main$5 = {
           self.errors = response.data.message;
         }
       }).catch((error) => {
-        self.isFreeze = false;
+          self.isFreeze = false;
+          if (error.response !== void 0 && error.response !== null) {
+              if (error.response.status = 401) {
+                  window.location.href = "/signin?redirect=/inquiry/request";
+              }
+          }
       });
     }
   },
   mounted() {
-    this.fetchCities(1);
-    this.setExpandLevel();
+      this.setDefaults();
+      this.fetchCities(false);
+      this.setExpandLevel();
   }
 };
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_treeselect = resolveComponent("treeselect");
   const _component_date_picker = resolveComponent("date-picker");
-  _push(`<form${ssrRenderAttrs(mergeProps({
-    class: "row form-frame",
-    id: "frmPJ"
-  }, _attrs))}><div class="col-lg-6 col-sm-12 mb-3"><input class="form-control" name="name" placeholder="نام محصول مورد نظر شما *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="count" placeholder="تعداد محصول *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="unit_id"><option value=""> -- واحد -- <span class="text-danger">*</span></option><!--[-->`);
-  ssrRenderList($props.units, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
-  });
+    _push(`<form${ssrRenderAttrs(mergeProps({
+        class: "row form-frame",
+        id: "frmPJ"
+    }, _attrs))}><div class="col-lg-6 col-sm-12 mb-3"><input class="form-control" name="name" placeholder="نام محصول مورد نظر شما *"${ssrRenderAttr("value", $data.the_data.name)} type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="count"${ssrRenderAttr("value", $data.the_data.count)} placeholder="تعداد محصول *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="unit_id"><option value=""${ssrIncludeBooleanAttr(Array.isArray($data.the_data.unit_id) ? ssrLooseContain($data.the_data.unit_id, "") : ssrLooseEqual($data.the_data.unit_id, "")) ? " selected" : ""}> -- واحد -- <span class="text-danger">*</span></option><!--[-->`);
+    ssrRenderList($props.units, (item) => {
+        _push(`<option${ssrRenderAttr("value", item.id)}${ssrIncludeBooleanAttr(Array.isArray($data.the_data.unit_id) ? ssrLooseContain($data.the_data.unit_id, item.id) : ssrLooseEqual($data.the_data.unit_id, item.id)) ? " selected" : ""}>${ssrInterpolate(item.name)}</option>`);
+    });
   _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> دسته بندی محصول <span class="text-danger">*</span></label></div><div class="col-lg-9 col-sm-12 mb-3">`);
   _push(ssrRenderComponent(_component_treeselect, {
-    modelValue: $data.nullValue,
-    "onUpdate:modelValue": ($event) => $data.nullValue = $event,
-    multiple: false,
-    normalizer: $options.normalizer,
-    options: $props.categories,
-    name: "category_id",
-    ref: "treeselect",
-    placeholder: "-- انتخاب کنید --"
+      modelValue: $data.the_data.category_id,
+      "onUpdate:modelValue": ($event) => $data.the_data.category_id = $event,
+      multiple: false,
+      normalizer: $options.normalizer,
+      options: $props.categories,
+      name: "category_id",
+      ref: "treeselect",
+      "aria-selected": $data.the_data.category_id,
+      placeholder: "-- انتخاب کنید --"
   }, null, _parent));
-  _push(`</div><div class="col-lg-12 col-sm-12 mb-3"><textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3"></textarea></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> چه زمانی قصد خرید دارید؟ <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
-  _push(ssrRenderComponent(_component_date_picker, {
-    "aria-required": true,
-    name: "buy_date"
-  }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> زمان تحویل کالا <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
-  _push(ssrRenderComponent(_component_date_picker, { name: "pay_date" }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> زمان بستن استعلام <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
-  _push(ssrRenderComponent(_component_date_picker, {
-    "aria-required": "true",
-    name: "close_date"
-  }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> استان <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
-  ssrRenderList($props.provinces, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
+    _push(`</div><div class="col-lg-12 col-sm-12 mb-3"><textarea class="form-control" name="description" placeholder="مشخصات فنی محصول" rows="3">${ssrInterpolate($data.the_data.description)}</textarea></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> چه زمانی قصد خرید دارید؟ <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
+    _push(ssrRenderComponent(_component_date_picker, {
+        "aria-required": true,
+        name: "buy_date",
+        modelValue: $data.the_data.buy_date,
+        "onUpdate:modelValue": ($event) => $data.the_data.buy_date = $event
+    }, null, _parent));
+    _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> زمان تحویل کالا <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
+    _push(ssrRenderComponent(_component_date_picker, {
+        name: "pay_date",
+        modelValue: $data.the_data.pay_date,
+        "onUpdate:modelValue": ($event) => $data.the_data.pay_date = $event
+    }, null, _parent));
+    _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> زمان بستن استعلام <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3">`);
+    _push(ssrRenderComponent(_component_date_picker, {
+        "aria-required": "true",
+        name: "close_date",
+        modelValue: $data.the_data.close_date,
+        "onUpdate:modelValue": ($event) => $data.the_data.close_date = $event
+    }, null, _parent));
+    _push(`</div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> استان <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="province_id"><!--[-->`);
+    ssrRenderList($props.provinces, (item) => {
+        _push(`<option${ssrRenderAttr("value", item.id)}${ssrIncludeBooleanAttr(Array.isArray($data.the_data.province_id) ? ssrLooseContain($data.the_data.province_id, item.id) : ssrLooseEqual($data.the_data.province_id, item.id)) ? " selected" : ""}>${ssrInterpolate(item.name)}</option>`);
   });
   _push(`<!--]--></select></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2"> شهری که مورد نیاز است <span class="text-danger">*</span></label></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control select2" name="city_id"><!--[-->`);
-  ssrRenderList($data.cities, (item) => {
-    _push(`<option${ssrRenderAttr("value", item.id)}>${ssrInterpolate(item.name)}</option>`);
-  });
-  _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input class="form-control" name="price" placeholder="میزان قدرت خرید (ریال)" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable" value="0"><label class="form-check-label">خیر</label></div></div>`);
+    ssrRenderList($data.cities, (item) => {
+        _push(`<option${ssrRenderAttr("value", item.id)}${ssrIncludeBooleanAttr(Array.isArray($data.the_data.city_id) ? ssrLooseContain($data.the_data.city_id, item.id) : ssrLooseEqual($data.the_data.city_id, item.id)) ? " selected" : ""}>${ssrInterpolate(item.name)}</option>`);
+    });
+    _push(`<!--]--></select></div><div class="col-lg-6 col-sm-12 mb-3"><input class="form-control" name="price"${ssrRenderAttr("value", $data.the_data.price)} placeholder="میزان قدرت خرید (ریال)" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">آیا شرایط پرداخت با چک دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.cheque_enable, "1")) ? " checked" : ""} value="1" checked><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="cheque_enable"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.cheque_enable, "0")) ? " checked" : ""} value="0"><label class="form-check-label">خیر</label></div></div>`);
   if (this.shI === 1) {
-    _push(`<div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="cheque_count" placeholder="تعداد چک" type="text"></div>`);
+      _push(`<div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="cheque_count"${ssrRenderAttr("value", $data.the_data.cheque_count)} placeholder="تعداد چک" type="text"></div>`);
   } else {
     _push(`<!---->`);
   }
   if (this.shI === 1) {
-    _push(`<div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="cash_percent" placeholder="درصد پرداخت نقدی" type="text"></div>`);
+      _push(`<div class="col-lg-3 col-sm-12 mb-3"><input class="form-control" name="cash_percent"${ssrRenderAttr("value", $data.the_data.cash_percent)} placeholder="درصد پرداخت نقدی" type="text"></div>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable" value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions" value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" name="move_conditions" type="radio" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({ "color": "indianred" })}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده" type="text"></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه" dir="ltr" style="${ssrRenderStyle({ "text-align": "left" })}" type="text"></div>`);
+    _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="1"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.sample_enable, "1")) ? " checked" : ""}><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sample_enable" value="0"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.sample_enable, "0")) ? " checked" : ""}><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="1"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.guarantee_enable, "1")) ? " checked" : ""}><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="guarantee_enable" value="0"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.guarantee_enable, "0")) ? " checked" : ""} checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.visit_place_enable, "1")) ? " checked" : ""} value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="visit_place_enable"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.visit_place_enable, "0")) ? " checked" : ""} value="0" checked><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="move_conditions"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.move_conditions, "buyer")) ? " checked" : ""} value="buyer" checked><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input class="form-check-input" name="move_conditions"${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.move_conditions, "seller")) ? " checked" : ""} type="radio" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({"color": "indianred"})}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" name="vendor_introduce_name"${ssrRenderAttr("value", $data.the_data.vendor_introduce_name)} placeholder="نام تامین کننده" type="text"></div><div class="col-lg-4 col-sm-12 mb-3"><input class="form-control" maxlength="11" name="vendor_introduce_mobile"${ssrRenderAttr("value", $data.the_data.vendor_introduce_mobile)} placeholder="شماره تلفن همراه" dir="ltr" style="${ssrRenderStyle({"text-align": "left"})}" type="text"></div>`);
   if (this.submitted === 0 && !$options.isDisabled) {
     _push(`<div class="default-btn" type="button"> ثبت </div>`);
   } else {
@@ -889,14 +1069,16 @@ const feedbackComponent = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", 
 window.$ = jQuery;
 const app = createApp({
   components: {
-    searchComponent,
-    dateComponent,
-    inquiryComponent,
-    inquiryListComponent,
-    inquirySentComponent,
-    subComponent,
-    sliderComponent,
-    feedbackComponent
+      circleCounterComponent,
+      homeStatisticsComponent,
+      searchComponent,
+      dateComponent,
+      inquiryComponent,
+      inquiryListComponent,
+      inquirySentComponent,
+      subComponent,
+      sliderComponent,
+      feedbackComponent
   }
 });
 app.mount("#app");
