@@ -1,6 +1,6 @@
 <template>
     <div>
-        <AnimatedCounter :duration="duration" :value="value" class="class"/>
+        <AnimatedCounter :class="clazz" :duration="duration" :value="value"/>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
         return {}
     },
     props: {
-        class: {
+        clazz: {
             type: String,
             default: ''
         },

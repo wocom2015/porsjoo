@@ -11,25 +11,25 @@
         "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
     },
     "resources/admin/css/app.css": {
-    "file": "assets/app-7c8615bf.css",
-    "isEntry": true,
-    "src": "resources/admin/css/app.css"
-  },
-  "resources/admin/js/app.js": {
-      "file": "assets/app-82401de6.js",
-      "imports": [
-          "_jquery-305d92ea.js"
-      ],
-      "isEntry": true,
-      "src": "resources/admin/js/app.js"
-  },
+        "file": "assets/app-7c8615bf.css",
+        "isEntry": true,
+        "src": "resources/admin/css/app.css"
+    },
+    "resources/admin/js/app.js": {
+        "file": "assets/app-82401de6.js",
+        "imports": [
+            "_jquery-305d92ea.js"
+        ],
+        "isEntry": true,
+        "src": "resources/admin/js/app.js"
+    },
   "resources/admin/sass/app.scss": {
     "file": "assets/app-7fb6cc3b.css",
     "isEntry": true,
     "src": "resources/admin/sass/app.scss"
   },
   "resources/site/css/app.css": {
-      "file": "assets/app-d4dcd8a7.css",
+      "file": "assets/app-ad198218.css",
       "isEntry": true,
       "src": "resources/site/css/app.css"
   },
@@ -69,7 +69,7 @@
       "css": [
           "assets/app-36de107f.css"
       ],
-      "file": "assets/app-6b7857dc.js",
+      "file": "assets/app-ac7b6795.js",
       "imports": [
           "_jquery-305d92ea.js"
       ],

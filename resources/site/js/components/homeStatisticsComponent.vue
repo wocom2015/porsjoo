@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-6 text-center">
-                <circle-counter-component :value="entity.statistics_industries" class="counter" duration="10"/>
+                <circle-counter-component :value="entity.statistics_industries" clazz="counter" duration="10"/>
             </div>
             <div class="col-6 text-center">
-                <circle-counter-component :value="entity.statistics_customers" class="counter" duration="10"/>
+                <circle-counter-component :value="entity.statistics_customers" clazz="counter" duration="10"/>
             </div>
         </div>
         <div class="row pt-10 pb-10 mt-10 mb-10">
@@ -20,10 +20,10 @@
         </div>
         <div class="row pt-10 pb-10 mt-10 mb-10">
             <div class="col-6 text-center">
-                <circle-counter-component :value="entity.statistics_inquiries" class="counter" duration="10"/>
+                <circle-counter-component :value="entity.statistics_inquiries" clazz="counter" duration="10"/>
             </div>
             <div class="col-6 text-center">
-                <circle-counter-component :value="entity.statistics_success_industries" class="counter" duration="10"/>
+                <circle-counter-component :value="entity.statistics_success_industries" clazz="counter" duration="10"/>
             </div>
         </div>
         <div class="row pt-10 pb-10 mt-10 mb-10">
