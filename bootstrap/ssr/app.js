@@ -65,9 +65,9 @@ function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     const _component_AnimatedCounter = resolveComponent("AnimatedCounter");
     _push(`<div${ssrRenderAttrs(_attrs)}>`);
     _push(ssrRenderComponent(_component_AnimatedCounter, {
+        class: $props.clazz,
         duration: $props.duration,
-        value: $props.value,
-        class: $props.clazz
+        value: $props.value
     }, null, _parent));
     _push(`</div>`);
 }
@@ -92,7 +92,7 @@ const _sfc_main$8 = {
 };
 function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_circle_counter_component = resolveComponent("circle-counter-component");
-    _push(`<div${ssrRenderAttrs(mergeProps({class: "container-fluid"}, _attrs))}><div class="row"><div class="col-6 text-center">`);
+    _push(`<div${ssrRenderAttrs(mergeProps({class: "container-fluid"}, _attrs))}><div class="container-fluid d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none"><div class="row"><div class="col-6 text-center">`);
     _push(ssrRenderComponent(_component_circle_counter_component, {
         value: $props.entity.statistics_industries,
         clazz: "counter",
@@ -116,7 +116,31 @@ function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         clazz: "counter",
         duration: "10"
     }, null, _parent));
-    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center"> کل استعلام ها </div><div class="col-6 text-center"> استعلام های موفق </div></div></div>`);
+    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center"> کل استعلام ها </div><div class="col-6 text-center"> استعلام های موفق </div></div></div><div class="container-fluid d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block"><div class="row"><div class="col-3 text-center counter"> +`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_industries,
+        clazz: "counter",
+        duration: "10"
+    }, null, _parent));
+    _push(`</div><div class="col-3 text-center counter"> +`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_customers,
+        clazz: "counter",
+        duration: "10"
+    }, null, _parent));
+    _push(`</div><div class="col-3 text-center counter"> +`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_inquiries,
+        clazz: "counter",
+        duration: "10"
+    }, null, _parent));
+    _push(`</div><div class="col-3 text-center counter"> +`);
+    _push(ssrRenderComponent(_component_circle_counter_component, {
+        value: $props.entity.statistics_success_industries,
+        clazz: "counter",
+        duration: "10"
+    }, null, _parent));
+    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-3 text-center"> تنوع صنایع </div><div class="col-3 text-center"> تعداد مشتریان </div><div class="col-3 text-center"> کل استعلام ها </div><div class="col-3 text-center"> استعلام های موفق </div></div></div></div>`);
 }
 const _sfc_setup$8 = _sfc_main$8.setup;
 _sfc_main$8.setup = (props, ctx) => {
@@ -145,16 +169,16 @@ const _sfc_main$7 = {
             this.result = true;
         },
         searchCat(catId) {
-      var self = this;
-      self.catId = catId;
-      axios(
-        {
-          method: "post",
-          url: "/search/inquiry",
-          data: { catId: self.catId, o: self.offset }
-        }
-      ).then(function(response) {
-        self.inquiries = response.data.data;
+            var self = this;
+            self.catId = catId;
+            axios(
+                {
+                    method: "post",
+                    url: "/search/inquiry",
+                    data: {catId: self.catId, o: self.offset}
+                }
+            ).then(function (response) {
+                self.inquiries = response.data.data;
         self.result = false;
       });
     },
@@ -270,7 +294,7 @@ const _sfc_main$5 = {
             isFreeze: false,
             nullValue: null,
             the_data: {
-                name: "abouzar",
+                name: null,
                 count: null,
                 unit_id: null,
                 category_id: this.entity === null ? null : this.entity.category_id,
@@ -367,19 +391,19 @@ const _sfc_main$5 = {
             this.message = "";
             axios(
                 {
-          method: "post",
-          url: "/inquiry/create",
-          data: fData
-        }
-      ).then(function(response) {
-        self.isFreeze = false;
-        if (response.data.state === "success") {
-          self.message = response.data.message;
-          self.submitted = 1;
-        } else {
-          self.errors = response.data.message;
-        }
-      }).catch((error) => {
+                    method: "post",
+                    url: "/inquiry/create",
+                    data: fData
+                }
+            ).then(function (response) {
+                self.isFreeze = false;
+                if (response.data.state === "success") {
+                    self.message = response.data.message;
+                    self.submitted = 1;
+                } else {
+                    self.errors = response.data.message;
+                }
+            }).catch((error) => {
                 self.isFreeze = false;
                 if (error.response !== void 0 && error.response !== null) {
                     if (error.response.status = 401) {
@@ -457,16 +481,16 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push(`<!---->`);
     }
     _push(`<div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ارسال نمونه است؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.sample_enable, "1")) ? " checked" : ""} class="form-check-input" name="sample_enable" type="radio" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.sample_enable, "0")) ? " checked" : ""} class="form-check-input" name="sample_enable" type="radio" value="0"><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به ضمانت دارد؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.guarantee_enable, "1")) ? " checked" : ""} class="form-check-input" name="guarantee_enable" type="radio" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.guarantee_enable, "0")) ? " checked" : ""} checked class="form-check-input" name="guarantee_enable" type="radio" value="0"><label class="form-check-label">خیر</label></div></div><div class="col-lg-3 col-sm-12 mb-3"><label class="mt-2">نیاز به بازدید از مکان خرید را دارید؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.visit_place_enable, "1")) ? " checked" : ""} class="form-check-input" name="visit_place_enable" type="radio" value="1"><label class="form-check-label">بله</label></div><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.visit_place_enable, "0")) ? " checked" : ""} checked class="form-check-input" name="visit_place_enable" type="radio" value="0"><label class="form-check-label">خیر</label></div></div><div class="col-lg-6 col-sm-12 mb-3"><label for="formFileSm" class="form-label">تصویر محصول</label><input class="form-control form-control-sm" name="picture" type="file"></div><div class="col-lg-6 col-sm-12 mb-3"><label class="mt-2">در صورت نیاز به حمل و نقل ، مسئولیت حمل و نقل با کیست؟</label></div><div class="col-lg-3 col-sm-12 mb-3"><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.move_conditions, "buyer")) ? " checked" : ""} checked class="form-check-input" name="move_conditions" type="radio" value="buyer"><label class="form-check-label">خریدار</label></div><div class="form-check form-check-inline"><input${ssrIncludeBooleanAttr(ssrLooseEqual($data.the_data.move_conditions, "seller")) ? " checked" : ""} class="form-check-input" name="move_conditions" type="radio" value="seller"><label class="form-check-label">فروشنده</label></div></div><div class="col-lg-12 col-sm-12 mb-3"><hr style="${ssrRenderStyle({"color": "indianred"})}"><strong class="text-danger">توجه : در صورت معرفی هر تامین کننده سابق خود یک pj رایگان دریافت کنید</strong></div><div class="col-lg-4 col-sm-12 mb-3"><input${ssrRenderAttr("value", $data.the_data.vendor_introduce_name)} class="form-control" name="vendor_introduce_name" placeholder="نام تامین کننده" type="text"></div><div class="col-lg-4 col-sm-12 mb-3"><input${ssrRenderAttr("value", $data.the_data.vendor_introduce_mobile)} class="form-control" maxlength="11" name="vendor_introduce_mobile" placeholder="شماره تلفن همراه" dir="ltr" style="${ssrRenderStyle({"text-align": "left"})}" type="text"></div>`);
-  if (this.submitted === 0 && !$options.isDisabled) {
-    _push(`<div class="default-btn" type="button"> ثبت </div>`);
-  } else {
-    _push(`<!---->`);
-  }
-  if (this.submitted === 0 && $options.isDisabled) {
-    _push(`<div class="default-btn disabled-btn" style="${ssrRenderStyle({ "background": "#D1D1D1" })}" type="button"> ثبت </div>`);
-  } else {
-    _push(`<!---->`);
-  }
+    if (this.submitted === 0 && !$options.isDisabled) {
+        _push(`<div class="default-btn" type="button"> ثبت </div>`);
+    } else {
+        _push(`<!---->`);
+    }
+    if (this.submitted === 0 && $options.isDisabled) {
+        _push(`<div class="default-btn disabled-btn" style="${ssrRenderStyle({"background": "#D1D1D1"})}" type="button"> ثبت </div>`);
+    } else {
+        _push(`<!---->`);
+    }
   _push(`<div class="col-lg-12 col-sm-12 mb-3">`);
   if (this.submitted === 1) {
     _push(`<a class="close-btn" href="/profile">بازگشت</a>`);

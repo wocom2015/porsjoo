@@ -23,16 +23,16 @@
         "isEntry": true,
         "src": "resources/admin/js/app.js"
     },
-  "resources/admin/sass/app.scss": {
-    "file": "assets/app-7fb6cc3b.css",
-    "isEntry": true,
-    "src": "resources/admin/sass/app.scss"
-  },
-  "resources/site/css/app.css": {
-      "file": "assets/app-ad198218.css",
-      "isEntry": true,
-      "src": "resources/site/css/app.css"
-  },
+    "resources/admin/sass/app.scss": {
+        "file": "assets/app-7fb6cc3b.css",
+        "isEntry": true,
+        "src": "resources/admin/sass/app.scss"
+    },
+    "resources/site/css/app.css": {
+        "file": "assets/app-c8651f90.css",
+        "isEntry": true,
+        "src": "resources/site/css/app.css"
+    },
   "resources/site/fonts/Qs_Iranyekan bold.ttf": {
     "file": "assets/Qs_Iranyekan bold-3b412787.ttf",
     "src": "resources/site/fonts/Qs_Iranyekan bold.ttf"
@@ -69,7 +69,7 @@
       "css": [
           "assets/app-36de107f.css"
       ],
-      "file": "assets/app-ac7b6795.js",
+      "file": "assets/app-6086fdbb.js",
       "imports": [
           "_jquery-305d92ea.js"
       ],

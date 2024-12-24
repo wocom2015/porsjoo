@@ -8,6 +8,7 @@ use App\Models\InquirySupplier;
 use App\Models\User;
 use App\Notifications\changePass;
 use App\Notifications\UserVerify;
+use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -145,7 +146,11 @@ class UsersController extends Controller
         $activeCode = ActiveCode::generateCode($user);
         $activeCode->expired = 10; //TODO : must become configurable
 
-        Notification::send($user, new UserVerify($activeCode->code));
+        try {
+            Notification::send($user, new UserVerify($activeCode->code));
+        } catch (Exception $e) {
+
+        }
 
         return $activeCode;
     }
@@ -267,7 +272,11 @@ class UsersController extends Controller
         $passwordHash = Hash::make($password);
         $user->password = $passwordHash;
         User::where("id", $user_id)->update(['password' => $passwordHash]);
-        Notification::send($user, new changePass($password));
+        try {
+            Notification::send($user, new changePass($password));
+        } catch (Exception $e) {
+
+        }
 
         return redirect("/signin");
     }

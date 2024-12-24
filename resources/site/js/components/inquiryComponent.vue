@@ -18,7 +18,6 @@
             <select v-model="the_data.unit_id" class="form-control" name="unit_id">
                 <option value="">
                     -- واحد --
-                    <span class='text-danger'>*</span>
                 </option>
                 <option v-for="item in units" :value="item.id">{{ item.name }}</option>
             </select>
@@ -331,7 +330,7 @@ export default {
             isFreeze: false,
             nullValue: null,
             the_data: {
-                name: 'abouzar',
+                name: null,
                 count: null,
                 unit_id: null,
                 category_id: this.entity === null ? null : this.entity.category_id,

@@ -85,7 +85,7 @@
             <div class="col-12 col-lg-8">
                 <div class="form-group mt-2 mb-2">
                     <label>{!! __("p.category_that_are_active_on_it").s() !!}</label>
-                    <select class="form-control" name="category_id">
+                    <select class="form-control" name="category_id" style=" appearance: auto;">
                         @foreach($categories as $cat)
                             @if($cat->id!=1)
                                 <option value="{{$cat->id}}"  {{($cat->id==$user->category_id)?"selected":""}}>{{ str_repeat("--" , $cat->level).$cat->name}}</option>

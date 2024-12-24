@@ -20,7 +20,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $lastPJ = Inquiry::query()->orderBy("id", "desc")
+        $lastPJ = Inquiry::query()->orderBy("created_at", "desc")
             ->where("close_date", ">", date("Y-m-d"))
             ->get();
 

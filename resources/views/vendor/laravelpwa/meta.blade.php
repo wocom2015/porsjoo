@@ -113,7 +113,8 @@
         position: fixed !important;
         top: calc(100vh - 100px) !important;
         /*min-width: 320px;*/
-        width: 100%;
+        width: 80%;
         /*margin: 0 20px;*/
+        left: 0;
     }
 </style>

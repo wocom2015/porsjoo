@@ -315,7 +315,6 @@ button {
 .report-row {
     display: inline-flex;
     align-items: flex-start;
-    gap: 60px;
 }
 
 .report-box {
@@ -6407,8 +6406,16 @@ footer ul li a {
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 48px;
+    direction: ltr;
 }
 
+.counter div {
+    display: inline;
+}
+
+.install-message {
+    padding: 0 80px 0 0;
+}
 
 
 

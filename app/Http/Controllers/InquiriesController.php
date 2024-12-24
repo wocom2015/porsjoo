@@ -131,7 +131,7 @@ class InquiriesController extends Controller
                 'name' => $request->name,
 //                'user_id' => auth()->user()->id,
                 'category_id' => $request->category_id,
-                'count' => $request->count,
+                'count' => $this->faTOen($request->count),
                 'unit_id' => $request->unit_id,
                 'description' => $request->description,
                 'buy_date' => ($request->buy_date != '') ? $request->buy_date : null,
@@ -139,7 +139,7 @@ class InquiriesController extends Controller
                 'close_date' => ($request->close_date != '') ? $request->close_date : null,
                 "province_id" => $request->province_id,
                 "city_id" => $request->city_id,
-                "price" => $request->price,
+                "price" => $this->faTOen($request->price),
                 "cheque_enable" => $request->cheque_enable,
                 "cheque_count" => $request->cheque_count,
                 "cash_percent" => $request->cash_percent,
@@ -165,7 +165,7 @@ class InquiriesController extends Controller
             'name' => $request->name,
             'user_id' => auth()->user()->id,
             'category_id' => $request->category_id,
-            'count' => $request->count,
+            'count' => $this->faTOen($request->count),
             'unit_id' => $request->unit_id,
             'description' => $request->description,
             'buy_date' => ($request->buy_date != '') ? jalali2gregorian($request->buy_date) : null,
@@ -173,10 +173,10 @@ class InquiriesController extends Controller
             'close_date' => ($request->close_date != '') ? jalali2gregorian($request->close_date) : null,
             "province_id" => $request->province_id,
             "city_id" => $request->city_id,
-            "price" => $request->price,
+            "price" => $this->faTOen($request->price),
             "cheque_enable" => $request->cheque_enable,
-            "cheque_count" => $request->cheque_count,
-            "cash_percent" => $request->cash_percent,
+            "cheque_count" => $this->faTOen($request->cheque_count),
+            "cash_percent" => $this->faTOen($request->cash_percent),
             "sample_enable" => $request->sample_enable,
             "guarantee_enable" => $request->guarantee_enable,
             "multiple_supplier" => $request->multiple_supplier,
@@ -233,7 +233,11 @@ class InquiriesController extends Controller
             if ($vendors->isNotEmpty()) {
                 foreach ($vendors as $user) {
                     //TODO : must be solved
-                    Notification::send($user, new NewPJ($category->name));
+                    try {
+                        Notification::send($user, new NewPJ($category->name));
+                    } catch (Exception $e) {
+
+                    }
                 }
             }
             return reply('success', "your_pj_inserted_successfully");
@@ -478,7 +482,9 @@ class InquiriesController extends Controller
                 $inquiry->provinceName = $inquiry->province->name;
                 $inquiry->repliesCount = $inquiry->replies->count();
                 $inquiry->created = jdate($inquiry->created_at)->format('%A, %d %B %Y');
-                $inquiry->categoryName = $inquiry->category->name;
+                if ($inquiry->category !== null) {
+                    $inquiry->categoryName = $inquiry->category->name;
+                }
                 $inquiry->pictureSrc = inquiry_pic($inquiry->id, 100, "thumb-img", false);
             }
         }
@@ -505,4 +511,10 @@ class InquiriesController extends Controller
 
         return back();
     }
+
+    function faTOen($string)
+    {
+        return strtr($string, array('۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'));
+    }
+
 }
