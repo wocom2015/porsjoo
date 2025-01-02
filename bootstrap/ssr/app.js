@@ -116,25 +116,25 @@ function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         clazz: "counter",
         duration: "10"
     }, null, _parent));
-    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center"> کل استعلام ها </div><div class="col-6 text-center"> استعلام های موفق </div></div></div><div class="container-fluid d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block"><div class="row"><div class="col-3 text-center counter"> +`);
+    _push(`</div></div><div class="row pt-10 pb-10 mt-10 mb-10"><div class="col-6 text-center"> کل استعلام ها </div><div class="col-6 text-center"> استعلام های موفق </div></div></div><div class="container-fluid d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block"><div class="row"><div class="col-3 text-center counter"> + `);
     _push(ssrRenderComponent(_component_circle_counter_component, {
         value: $props.entity.statistics_industries,
         clazz: "counter",
         duration: "10"
     }, null, _parent));
-    _push(`</div><div class="col-3 text-center counter"> +`);
+    _push(`</div><div class="col-3 text-center counter"> + `);
     _push(ssrRenderComponent(_component_circle_counter_component, {
         value: $props.entity.statistics_customers,
         clazz: "counter",
         duration: "10"
     }, null, _parent));
-    _push(`</div><div class="col-3 text-center counter"> +`);
+    _push(`</div><div class="col-3 text-center counter"> + `);
     _push(ssrRenderComponent(_component_circle_counter_component, {
         value: $props.entity.statistics_inquiries,
         clazz: "counter",
         duration: "10"
     }, null, _parent));
-    _push(`</div><div class="col-3 text-center counter"> +`);
+    _push(`</div><div class="col-3 text-center counter"> + `);
     _push(ssrRenderComponent(_component_circle_counter_component, {
         value: $props.entity.statistics_success_industries,
         clazz: "counter",
@@ -179,16 +179,16 @@ const _sfc_main$7 = {
                 }
             ).then(function (response) {
                 self.inquiries = response.data.data;
-        self.result = false;
-      });
-    },
-    showResult() {
-      if (this.$refs.search.value.length > 2) {
-        this.phrase = this.$refs.search.value;
-        var self = this;
-        axios(
-          {
-            method: "post",
+                self.result = false;
+            });
+        },
+        showResult() {
+            if (this.$refs.search.value.length > 2) {
+                this.phrase = this.$refs.search.value;
+                var self = this;
+                axios(
+                    {
+                        method: "post",
             url: "/search",
             data: { p: self.phrase, l: self.searchLimit, o: self.offset }
           }
@@ -411,13 +411,13 @@ const _sfc_main$5 = {
                     }
                 }
             });
+        }
+    },
+    mounted() {
+        this.setDefaults();
+        this.fetchCities(false);
+        this.setExpandLevel();
     }
-  },
-  mounted() {
-      this.setDefaults();
-      this.fetchCities(false);
-      this.setExpandLevel();
-  }
 };
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
     const _component_treeselect = resolveComponent("treeselect");
@@ -425,7 +425,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<form${ssrRenderAttrs(mergeProps({
         class: "row form-frame",
         id: "frmPJ"
-    }, _attrs))}><div class="col-lg-6 col-sm-12 mb-3"><input${ssrRenderAttr("value", $data.the_data.name)} class="form-control" name="name" placeholder="نام محصول مورد نظر شما *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><input${ssrRenderAttr("value", $data.the_data.count)} class="form-control" name="count" placeholder="تعداد محصول *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="unit_id"><option value=""${ssrIncludeBooleanAttr(Array.isArray($data.the_data.unit_id) ? ssrLooseContain($data.the_data.unit_id, "") : ssrLooseEqual($data.the_data.unit_id, "")) ? " selected" : ""}> -- واحد -- <span class="text-danger">*</span></option><!--[-->`);
+    }, _attrs))}><div class="col-lg-6 col-sm-12 mb-3"><input${ssrRenderAttr("value", $data.the_data.name)} class="form-control" name="name" placeholder="نام محصول مورد نظر شما *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><input${ssrRenderAttr("value", $data.the_data.count)} class="form-control" name="count" placeholder="تعداد محصول *" type="text"></div><div class="col-lg-3 col-sm-12 mb-3"><select class="form-control" name="unit_id"><option value=""${ssrIncludeBooleanAttr(Array.isArray($data.the_data.unit_id) ? ssrLooseContain($data.the_data.unit_id, "") : ssrLooseEqual($data.the_data.unit_id, "")) ? " selected" : ""}> -- واحد -- </option><!--[-->`);
     ssrRenderList($props.units, (item) => {
         _push(`<option${ssrRenderAttr("value", item.id)}${ssrIncludeBooleanAttr(Array.isArray($data.the_data.unit_id) ? ssrLooseContain($data.the_data.unit_id, item.id) : ssrLooseEqual($data.the_data.unit_id, item.id)) ? " selected" : ""}>${ssrInterpolate(item.name)}</option>`);
     });
@@ -491,16 +491,16 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     } else {
         _push(`<!---->`);
     }
-  _push(`<div class="col-lg-12 col-sm-12 mb-3">`);
-  if (this.submitted === 1) {
-    _push(`<a class="close-btn" href="/profile">بازگشت</a>`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`</div><div style="${ssrRenderStyle(this.message !== "" ? null : { display: "none" })}" class="content-frame text-success font-weight-bold">${ssrInterpolate(this.message)}</div><div class="content-frame" style="${ssrRenderStyle(this.errors !== "" ? null : { display: "none" })}"><p>لطفا خطاهای زیر را برطرف نمایید:</p><ul><!--[-->`);
-  ssrRenderList(this.errors, (item) => {
-    _push(`<li class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i><small>${ssrInterpolate(item)}</small></li>`);
-  });
+    _push(`<div class="col-lg-12 col-sm-12 mb-3">`);
+    if (this.submitted === 1) {
+        _push(`<a class="close-btn" href="/profile">بازگشت</a>`);
+    } else {
+        _push(`<!---->`);
+    }
+    _push(`</div><div style="${ssrRenderStyle(this.message !== "" ? null : {display: "none"})}" class="content-frame text-success font-weight-bold">${ssrInterpolate(this.message)}</div><div class="content-frame" style="${ssrRenderStyle(this.errors !== "" ? null : {display: "none"})}"><p>لطفا خطاهای زیر را برطرف نمایید:</p><ul><!--[-->`);
+    ssrRenderList(this.errors, (item) => {
+        _push(`<li class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i><small>${ssrInterpolate(item)}</small></li>`);
+    });
   _push(`<!--]--></ul></div></form>`);
 }
 const _sfc_setup$5 = _sfc_main$5.setup;

@@ -115,6 +115,15 @@
         /*min-width: 320px;*/
         width: 80%;
         /*margin: 0 20px;*/
-        left: 0;
+        left: 10%;
+        right: 10%;
     }
+
+    @media screen and (max-width: 768px) {
+        div.promoting-install-app-prompt {
+            width: 80%;
+            right: 20%;
+        }
+    }
+
 </style>
