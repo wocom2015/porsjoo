@@ -6417,7 +6417,14 @@ footer ul li a {
     padding: 0 10px 0 0;
 }
 
+select:has(option:checked[value=""]), select:has(option:checked[value=null]) {
+    color: gray;
+}
 
+option:not(:checked[value=""]), option:not(:checked[value=null]) {
+    color: black !important;
+}
 
-
-
+option:checked[value=""], option:checked[value=null] {
+    color: gray !important;
+}

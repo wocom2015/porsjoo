@@ -16,7 +16,7 @@
         </div>
         <div class="col-lg-3 col-sm-12 mb-3">
             <select v-model="the_data.unit_id" class="form-control" name="unit_id">
-                <option value="">
+                <option disabled value="null">
                     -- واحد --
                 </option>
                 <option v-for="item in units" :value="item.id">{{ item.name }}</option>
@@ -101,6 +101,9 @@
                     class="form-control"
                     name="province_id"
                     @change="fetchCities()">
+                <option disabled value="null">
+                    -- استان --
+                </option>
                 <option v-for="item in provinces" :value="item.id">{{ item.name }}</option>
             </select>
         </div>
@@ -114,6 +117,9 @@
             <select v-model="the_data.city_id"
                     class="form-control select2"
                     name="city_id">
+                <option disabled value="null">
+                    -- شهر --
+                </option>
                 <option v-for="item in cities" :value="item.id">{{ item.name }}</option>
             </select>
         </div>

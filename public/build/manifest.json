@@ -29,7 +29,7 @@
         "src": "resources/admin/sass/app.scss"
     },
     "resources/site/css/app.css": {
-        "file": "assets/app-08e9e756.css",
+        "file": "assets/app-50dec316.css",
         "isEntry": true,
         "src": "resources/site/css/app.css"
     },
@@ -43,16 +43,16 @@
     },
     "resources/site/fonts/Qs_Iranyekan medium.eot": {
         "file": "assets/Qs_Iranyekan medium-22e15d54.eot",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.eot"
-  },
-  "resources/site/fonts/Qs_Iranyekan medium.ttf": {
-    "file": "assets/Qs_Iranyekan medium-33a8463f.ttf",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.ttf"
-  },
-  "resources/site/fonts/Qs_Iranyekan medium.woff": {
-    "file": "assets/Qs_Iranyekan medium-12a1b2af.woff",
-    "src": "resources/site/fonts/Qs_Iranyekan medium.woff"
-  },
+        "src": "resources/site/fonts/Qs_Iranyekan medium.eot"
+    },
+    "resources/site/fonts/Qs_Iranyekan medium.ttf": {
+        "file": "assets/Qs_Iranyekan medium-33a8463f.ttf",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.ttf"
+    },
+    "resources/site/fonts/Qs_Iranyekan medium.woff": {
+        "file": "assets/Qs_Iranyekan medium-12a1b2af.woff",
+        "src": "resources/site/fonts/Qs_Iranyekan medium.woff"
+    },
   "resources/site/fonts/iranfont kalameh.ttf": {
     "file": "assets/iranfont kalameh-a9f54443.ttf",
     "src": "resources/site/fonts/iranfont kalameh.ttf"
@@ -69,7 +69,7 @@
       "css": [
           "assets/app-36de107f.css"
       ],
-      "file": "assets/app-9f3e2fe6.js",
+      "file": "assets/app-370a041d.js",
       "imports": [
           "_jquery-305d92ea.js"
       ],
